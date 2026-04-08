@@ -18,14 +18,22 @@ import {
 } from '@expo-google-fonts/dm-sans';
 import { colors } from '../src/theme/colors';
 
+import { useState } from 'react';
+import { initializeBible } from '../src/features/bible/bibleLoader';
+import { LoadingScreen } from '../src/components/LoadingScreen';
+
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
+  
+  const [bibleReady, setBibleReady] = useState(false);
+  const [initProgress, setInitProgress] = useState(0);
+  const [initMessage, setInitMessage] = useState('Preparing your Bible...');
 
-  const [loaded, error] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Lora_400Regular,
     Lora_400Regular_Italic,
     Lora_600SemiBold,
@@ -35,13 +43,41 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
+    async function startApp() {
+      if (fontsLoaded || fontError) {
+        // Only hide splash when we are ready to show something (either loading screen or app)
+        // SplashScreen.hideAsync(); // Move this down
+      }
     }
-  }, [loaded, error]);
+    startApp();
+  }, [fontsLoaded, fontError]);
 
-  if (!loaded && !error) {
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      const init = async () => {
+        try {
+          setInitMessage('Initializing offline Bible...');
+          await initializeBible((p) => {
+            setInitProgress(p);
+          });
+          setBibleReady(true);
+          await SplashScreen.hideAsync();
+        } catch (err) {
+          console.error('Bible init failed', err);
+          setBibleReady(true); // Fallback to let user in
+          await SplashScreen.hideAsync();
+        }
+      };
+      init();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
     return null;
+  }
+
+  if (!bibleReady) {
+    return <LoadingScreen progress={initProgress} message={initMessage} />;
   }
 
   return (

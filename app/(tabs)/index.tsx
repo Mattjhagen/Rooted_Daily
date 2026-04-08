@@ -12,19 +12,46 @@ import { getDailyVerse } from '../../src/data/dailyVerses';
 import { getVerse } from '../../src/features/bible/bibleService';
 import { Flame } from 'lucide-react-native';
 
+import { PlanCard } from '../../src/components/PlanCard';
+import { usePlansStore } from '../../src/features/plans/plansStore';
+import { getCanonicalPlan, getMixedOTNTPlan } from '../../src/data/readingPlanData';
+const rawBibleData = require('../../src/data/bibleFull.json');
+const getBooks = (data: any) => {
+  if (Array.isArray(data)) return data;
+  if (data.books && Array.isArray(data.books)) return data.books;
+  if (data.default) return getBooks(data.default);
+  return [];
+};
+const bibleData = getBooks(rawBibleData);
+
 export default function HomeScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
 
+  const { startPlan, toggleChapter, isChapterCompleted, activePlans } = usePlansStore();
   const [dailyData, setDailyData] = useState(getDailyVerse());
   const [verseText, setVerseText] = useState('Loading...');
-  const [streak, setStreak] = useState(5); // Mock streak
+  const [streak, setStreak] = useState(5);
+
+  const dayOfYear = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
+  
+  // Calculate plans
+  const canonicalSchedule = getCanonicalPlan(bibleData);
+  const todaysCanonical = canonicalSchedule[dayOfYear % 365] || canonicalSchedule[0];
+
+  const otntSchedule = getMixedOTNTPlan(bibleData);
+  const todaysOTNT = otntSchedule[dayOfYear % 365] || otntSchedule[0];
+
+  useEffect(() => {
+    // Start defaults if none
+    startPlan('canonical_365');
+    startPlan('otnt_365');
+  }, []);
 
   useEffect(() => {
     async function loadVerse() {
-      // Parse "John 3:16" to get book, chap, verse
       const parts = dailyData.ref.match(/(.*)\s(\d+):(\d+)/);
       if (parts) {
         const [_, book, chapter, verse] = parts;
@@ -46,7 +73,7 @@ export default function HomeScreen() {
     router.push(`/chat/${encodeURIComponent(dailyData.ref)}`);
   };
 
-  const today = new Date().toLocaleDateString('en-US', {
+  const todayStr = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
@@ -56,7 +83,7 @@ export default function HomeScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
-          <Text style={[styles.date, { color: themeColors.textSecondary }]}>{today}</Text>
+          <Text style={[styles.date, { color: themeColors.textSecondary }]}>{todayStr}</Text>
           <View style={styles.titleRow}>
             <Text style={[styles.title, { color: themeColors.text }]}>Rooted</Text>
             <View style={[styles.streakBadge, { backgroundColor: themeColors.goldLight }]}>
@@ -66,11 +93,38 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Daily Verse</Text>
+        </View>
         <VerseCard
           reference={dailyData.ref}
           text={verseText}
           reflectionPreview={dailyData.reflection}
           onPress={handleReflect}
+        />
+
+        <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Bible in a Year</Text>
+        </View>
+        
+        <PlanCard
+          title="Canonical Journey"
+          subtitle={`Today: ${todaysCanonical?.readings?.[0]?.display || 'Loading...'}`}
+          progress={(activePlans.find(p => p.planId === 'canonical_365')?.completedChapters.length || 0) / 1189}
+          isCompleted={todaysCanonical?.readings?.[0]?.chapters.every(ch => isChapterCompleted('canonical_365', ch)) || false}
+          themeColors={themeColors}
+          onPress={() => todaysCanonical?.readings?.[0] && router.push(`/verse/${encodeURIComponent(todaysCanonical.readings[0].chapters[0])}`)}
+          onCheck={() => todaysCanonical?.readings?.[0]?.chapters.forEach(ch => toggleChapter('canonical_365', ch))}
+        />
+
+        <PlanCard
+          title="Old & New Testament"
+          subtitle={`Today: ${todaysOTNT?.readings?.map(r => r.display).join(' & ') || 'Loading...'}`}
+          progress={(activePlans.find(p => p.planId === 'otnt_365')?.completedChapters.length || 0) / 1189}
+          isCompleted={todaysOTNT?.readings?.every(r => r.chapters.every(ch => isChapterCompleted('otnt_365', ch))) || false}
+          themeColors={themeColors}
+          onPress={() => todaysOTNT?.readings?.[0] && router.push(`/verse/${encodeURIComponent(todaysOTNT.readings[0].chapters[0])}`)}
+          onCheck={() => todaysOTNT?.readings?.forEach(r => r.chapters.forEach(ch => toggleChapter('otnt_365', ch)))}
         />
 
         <View style={styles.quickStartSection}>
@@ -132,5 +186,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     paddingHorizontal: spacing.lg,
     marginBottom: spacing.sm,
+  },
+  sectionHeader: {
+    marginTop: spacing.lg,
+    marginBottom: spacing.xs,
   },
 });
