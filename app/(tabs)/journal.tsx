@@ -6,22 +6,49 @@ import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { useJournalStore, JournalEntry } from '../../src/features/journal/journalStore';
-import { Edit3, Heart } from 'lucide-react-native';
+import { Edit3, Heart, MessageSquare } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 export default function JournalScreen() {
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
 
   const { entries, toggleFavorite } = useJournalStore();
 
+  const handleResumeChat = (item: JournalEntry) => {
+    router.push({
+      pathname: '/chat/[ref]',
+      params: { 
+        ref: item.verseRef,
+        q: `I want to reflect more on my previous note: "${item.note}"`
+      }
+    });
+  };
+
   const renderItem = ({ item }: { item: JournalEntry }) => (
-    <TouchableOpacity style={[styles.item, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+    <TouchableOpacity 
+      style={[styles.item, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+      onPress={() => handleResumeChat(item)}
+    >
       <View style={styles.itemHeader}>
-        <Text style={[styles.itemRef, { color: themeColors.accent }]}>{item.verseRef}</Text>
-        <TouchableOpacity onPress={() => toggleFavorite(item.id)}>
-          <Heart size={20} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
-        </TouchableOpacity>
+        <View style={styles.headerTitleRow}>
+          <Text style={[styles.itemRef, { color: themeColors.accent }]}>{item.verseRef}</Text>
+          <View style={[styles.typeBadge, { backgroundColor: item.type === 'prayer' ? themeColors.goldLight : themeColors.accentLight, marginLeft: spacing.sm }]}>
+            <Text style={[styles.typeText, { color: item.type === 'prayer' ? themeColors.gold : themeColors.accent }]}>
+              {item.type}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.actionIcons}>
+          <TouchableOpacity onPress={() => handleResumeChat(item)} style={styles.iconBtn}>
+            <MessageSquare size={20} color={themeColors.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => toggleFavorite(item.id)}>
+            <Heart size={20} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
+          </TouchableOpacity>
+        </View>
       </View>
       <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={2}>
         {item.verseText}
@@ -31,11 +58,6 @@ export default function JournalScreen() {
       </Text>
       <View style={styles.itemFooter}>
         <Text style={[styles.itemDate, { color: themeColors.textSecondary }]}>{item.date}</Text>
-        <View style={[styles.typeBadge, { backgroundColor: item.type === 'prayer' ? themeColors.goldLight : themeColors.accentLight }]}>
-          <Text style={[styles.typeText, { color: item.type === 'prayer' ? themeColors.gold : themeColors.accent }]}>
-            {item.type}
-          </Text>
-        </View>
       </View>
     </TouchableOpacity>
   );
@@ -139,6 +161,17 @@ const styles = StyleSheet.create({
     ...typography.body,
     textAlign: 'center',
     marginTop: spacing.md,
+  },
+  headerTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  actionIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconBtn: {
+    marginLeft: spacing.md,
   },
   disclaimerContainer: {
     padding: spacing.lg,

@@ -1,7 +1,7 @@
 // src/features/bible/bibleService.ts
 
 import * as SQLite from 'expo-sqlite';
-import { initBibleDatabase } from './bibleLoader';
+import { initializeBible } from './bibleLoader';
 
 export interface Verse {
   book: string;
@@ -10,13 +10,10 @@ export interface Verse {
   text: string;
 }
 
-let dbInstance: SQLite.SQLiteDatabase | null = null;
+const db = SQLite.openDatabaseSync('rooted.db');
 
 async function getDb() {
-  if (!dbInstance) {
-    dbInstance = await initBibleDatabase();
-  }
-  return dbInstance;
+  return db;
 }
 
 export async function getVerse(book: string, chapter: number, verse: number): Promise<Verse | null> {
