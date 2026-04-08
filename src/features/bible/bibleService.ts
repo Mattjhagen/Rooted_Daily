@@ -1,7 +1,7 @@
 // src/features/bible/bibleService.ts
 
 import * as SQLite from 'expo-sqlite';
-import { initializeBible } from './bibleLoader';
+import { initializeBible, getChapterCount as getBooksChapterCount } from './bibleLoader';
 
 export interface Verse {
   book: string;
@@ -11,6 +11,8 @@ export interface Verse {
 }
 
 const db = SQLite.openDatabaseSync('rooted.db');
+
+export const getChapterCount = (bookName: string) => getBooksChapterCount(bookName);
 
 async function getDb() {
   return db;

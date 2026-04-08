@@ -100,6 +100,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="chat/[ref]" options={{ title: 'Reflection' }} />
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
+        <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
     </>
   );

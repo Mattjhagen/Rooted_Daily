@@ -81,6 +81,14 @@ export const initializeBible = async (onProgress: (p: number) => void) => {
   console.log('Bible initialization complete.');
 };
 
+export const getChapterCount = (bookName: string): number => {
+  const book = bibleData.find((b: any) => {
+    const name = (BOOK_MAPPING[b.abbrev] || b.abbrev) as string;
+    return name.toLowerCase() === bookName.toLowerCase();
+  });
+  return book ? book.chapters.length : 0;
+};
+
 export const getVerse = (book: string, chapter: number, verse: number) => {
   return db.getFirstSync<{ text: string }>(
     'SELECT text FROM verses WHERE book = ? AND chapter = ? AND verse = ?',
