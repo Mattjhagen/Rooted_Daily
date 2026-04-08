@@ -1,0 +1,62 @@
+[
+  {
+    "book": "John",
+    "chapters": [
+      {
+        "chapter": 3,
+        "verses": [
+          { "verse": 16, "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life." }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "Philippians",
+    "chapters": [
+      {
+        "chapter": 4,
+        "verses": [
+          { "verse": 6, "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God." },
+          { "verse": 7, "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus." }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "Romans",
+    "chapters": [
+      {
+        "chapter": 8,
+        "verses": [
+          { "verse": 28, "text": "We know that all things work together for good for those who love God, to those who are called according to his purpose." }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "Psalms",
+    "chapters": [
+      {
+        "chapter": 23,
+        "verses": [
+          { "verse": 1, "text": "Yahweh is my shepherd: I shall lack nothing." },
+          { "verse": 2, "text": "He makes me lie down in green pastures. He leads me beside still waters." },
+          { "verse": 3, "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake." }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "Matthew",
+    "chapters": [
+      {
+        "chapter": 5,
+        "verses": [
+          { "verse": 3, "text": "Blessed are the poor in spirit, for theirs is the Kingdom of Heaven." },
+          { "verse": 4, "text": "Blessed are those who mourn, for they shall be comforted." },
+          { "verse": 5, "text": "Blessed are the gentle, for they shall inherit the earth." }
+        ]
+      }
+    ]
+  }
+]

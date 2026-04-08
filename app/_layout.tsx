@@ -1,59 +1,70 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+// app/_layout.tsx
+
 import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
+import { 
+  useFonts, 
+  Lora_400Regular, 
+  Lora_400Regular_Italic, 
+  Lora_600SemiBold 
+} from '@expo-google-fonts/lora';
+import { 
+  DMSans_400Regular, 
+  DMSans_500Medium, 
+  DMSans_600SemiBold 
+} from '@expo-google-fonts/dm-sans';
+import { colors } from '../src/theme/colors';
 
-import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
+
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
+    Lora_400Regular,
+    Lora_400Regular_Italic,
+    Lora_600SemiBold,
+    DMSans_400Regular,
+    DMSans_500Medium,
+    DMSans_600SemiBold,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, error]);
 
-  if (!loaded) {
+  if (!loaded && !error) {
     return null;
   }
 
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+    <>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: themeColors.background,
+          },
+          headerTintColor: themeColors.text,
+          headerTitleStyle: {
+            fontFamily: 'DMSans_600SemiBold',
+          },
+          contentStyle: {
+            backgroundColor: themeColors.background,
+          },
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="chat/[ref]" options={{ title: 'Reflection' }} />
+        <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
       </Stack>
-    </ThemeProvider>
+    </>
   );
 }

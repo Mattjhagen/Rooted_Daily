@@ -1,0 +1,167 @@
+// app/(tabs)/explore.tsx
+
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, FlatList, useColorScheme, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
+import { colors } from '../../src/theme/colors';
+import { typography } from '../../src/theme/typography';
+import { spacing } from '../../src/theme/spacing';
+import { Search, Book } from 'lucide-react-native';
+import { searchVerses } from '../../src/features/bible/bibleService';
+
+const BOOKS_OT = ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"];
+const BOOKS_NT = ["Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation"];
+
+export default function ExploreScreen() {
+  const router = useRouter();
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+
+  const handleSearch = async (text: string) => {
+    setSearchQuery(text);
+    if (text.length > 2) {
+      const results = await searchVerses(text);
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const renderBookItem = (name: string) => (
+    <TouchableOpacity 
+      key={name}
+      style={[styles.bookItem, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+      onPress={() => router.push(`/verse/${encodeURIComponent(name + ' 1:1')}`)}
+    >
+      <Book size={16} color={themeColors.accent} style={styles.bookIcon} />
+      <Text style={[styles.bookName, { color: themeColors.text }]} numberOfLines={1}>{name}</Text>
+    </TouchableOpacity>
+  );
+
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
+      <View style={styles.header}>
+        <Text style={[styles.title, { color: themeColors.text }]}>Explore</Text>
+        <View style={[styles.searchContainer, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+          <Search size={20} color={themeColors.textSecondary} />
+          <TextInput
+            style={[styles.searchInput, { color: themeColors.text }]}
+            placeholder="Search scripture or references..."
+            placeholderTextColor={themeColors.textSecondary}
+            value={searchQuery}
+            onChangeText={handleSearch}
+          />
+        </View>
+      </View>
+
+      {searchQuery.length > 2 ? (
+        <FlatList
+          data={searchResults}
+          keyExtractor={(item, index) => `${item.book}-${item.chapter}-${item.verse}-${index}`}
+          renderItem={({ item }) => (
+            <TouchableOpacity 
+              style={[styles.resultItem, { borderBottomColor: themeColors.border }]}
+              onPress={() => router.push(`/verse/${encodeURIComponent(`${item.book} ${item.chapter}:${item.verse}`)}`)}
+            >
+              <Text style={[styles.resultRef, { color: themeColors.accent }]}>{item.book} {item.chapter}:{item.verse}</Text>
+              <Text style={[styles.resultText, { color: themeColors.text }]} numberOfLines={2}>{item.text}</Text>
+            </TouchableOpacity>
+          )}
+          contentContainerStyle={styles.listContent}
+        />
+      ) : (
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Old Testament</Text>
+          <View style={styles.bookGrid}>
+            {BOOKS_OT.map(renderBookItem)}
+          </View>
+
+          <Text style={[styles.sectionTitle, { color: themeColors.textSecondary, marginTop: spacing.xl }]}>New Testament</Text>
+          <View style={styles.bookGrid}>
+            {BOOKS_NT.map(renderBookItem)}
+          </View>
+        </ScrollView>
+      )}
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    padding: spacing.lg,
+  },
+  title: {
+    fontFamily: 'Lora_600SemiBold',
+    fontSize: 28,
+    marginBottom: spacing.md,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    height: 48,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  searchInput: {
+    flex: 1,
+    marginLeft: spacing.sm,
+    fontFamily: 'DMSans_400Regular',
+    fontSize: 15,
+  },
+  scrollContent: {
+    padding: spacing.lg,
+    paddingTop: 0,
+  },
+  listContent: {
+    paddingHorizontal: spacing.lg,
+  },
+  sectionTitle: {
+    ...typography.caption,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: spacing.md,
+  },
+  bookGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  bookItem: {
+    width: '48%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: spacing.md,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: spacing.sm,
+  },
+  bookIcon: {
+    marginRight: spacing.sm,
+  },
+  bookName: {
+    fontFamily: 'DMSans_500Medium',
+    fontSize: 14,
+    flex: 1,
+  },
+  resultItem: {
+    paddingVertical: spacing.md,
+    borderBottomWidth: 1,
+  },
+  resultRef: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 14,
+    marginBottom: 4,
+  },
+  resultText: {
+    ...typography.body,
+    fontSize: 14,
+  },
+});
