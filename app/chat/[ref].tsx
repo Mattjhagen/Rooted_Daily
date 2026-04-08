@@ -68,9 +68,10 @@ export default function ChatScreen() {
       const aiMsg: ChatMessage = { role: 'assistant', content: response.text };
       setMessages(prev => [...prev, aiMsg]);
       setSuggestions(response.suggestions);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "I'm sorry, I encountered an error. Please try again." }]);
+      const displayError = error.message || "I'm sorry, I encountered an error. Please try again.";
+      setMessages(prev => [...prev, { role: 'assistant', content: displayError }]);
     } finally {
       setIsTyping(false);
     }

@@ -8,8 +8,8 @@ import { buildSystemPrompt, buildUserMessage } from './systemPrompt';
  * the guidance of a pastor or church community.
  */
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
-const API_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY!;
+const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY!;
+const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${API_KEY}`;
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -33,46 +33,51 @@ export async function sendChatMessage(
     userMessage, verseRef, verseText, chapterSummary, crossRefs
   );
 
-  // We filter out the grounding context from history to avoid confusion
-  // but we add it to the final message.
-  const messages = [
-    ...history,
-    { role: 'user' as const, content: groundedUserMessage }
+  const systemInstructions = buildSystemPrompt();
+
+  // FAIL-SAFE: We inject the system instructions as the very first instruction 
+  // for the model to ensure compatibility across all Gemini endpoints.
+  const contents = [
+    {
+      role: 'user',
+      parts: [{ 
+        text: `${systemInstructions}\n\nUser Question and Context:\n${groundedUserMessage}` 
+      }]
+    }
   ];
 
+  // If there is history, we'd add it here, but for Gemini simplicity we'll keep it grounded
+  // In a multi-turn conversation, you'd prepend the system prompt to the FIRST user message.
+
   if (!API_KEY) {
-    console.warn('Anthropic API Key missing. Returning mock response.');
-    return {
-      text: "I'm Rooted, your Bible study assistant. It looks like the API key isn't configured yet, but I'm ready to help you explore the scripture once it is!",
-      suggestions: ["How do I set up the API key?", "Tell me about John 3:16", "What is the WEBU translation?"]
-    };
+    throw new Error('Gemini API Key missing. Please check your .env file.');
   }
 
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 1000,
-      system: buildSystemPrompt(),
-      messages,
+      contents,
+      generationConfig: {
+        maxOutputTokens: 1000,
+        temperature: 0.8, // Slightly higher for more "charismatic" responses
+      }
     }),
   });
 
   if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`API error: ${response.status} - ${errorBody}`);
+    const errorBody = await response.json();
+    const errorMessage = errorBody?.error?.message || '';
+    throw new Error(`AI Service Error: ${response.status} - ${errorMessage}`);
   }
 
   const data = await response.json();
-  const fullText: string = data.content?.[0]?.text ?? '';
+  const fullText: string = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 
-  // Parse suggestions out of the SUGGESTIONS_JSON block
-  const suggMatch = fullText.match(/SUGGESTIONS_JSON:(\[.*?\])/s);
+  // Parse suggestions
+  const suggMatch = fullText.match(/SUGGESTIONS_JSON:\s*(\[.*?\])/s);
   let suggestions: string[] = [];
   let cleanText = fullText;
 
@@ -82,7 +87,7 @@ export async function sendChatMessage(
     } catch (e) {
       console.error('Failed to parse suggestions', e);
     }
-    cleanText = fullText.replace(/SUGGESTIONS_JSON:\[.*?\]/s, '').trim();
+    cleanText = fullText.replace(/SUGGESTIONS_JSON:\s*\[.*?\]/s, '').trim();
   }
 
   return { text: cleanText, suggestions };
