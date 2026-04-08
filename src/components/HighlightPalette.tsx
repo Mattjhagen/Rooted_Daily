@@ -19,17 +19,21 @@ interface HighlightPaletteProps {
   onClear: () => void;
   onAction: (action: 'note' | 'ai' | 'copy' | 'share') => void;
   onClose: () => void;
-  verseRef: string;
+  verseRefs: string[];
 }
 
-export function HighlightPalette({ onSelectColor, onClear, onAction, onClose, verseRef }: HighlightPaletteProps) {
+export function HighlightPalette({ onSelectColor, onClear, onAction, onClose, verseRefs }: HighlightPaletteProps) {
   const colorScheme = useColorScheme();
   const themeColors = colorScheme === 'dark' ? colors.dark : colors;
+
+  const title = verseRefs.length === 1 
+    ? verseRefs[0] 
+    : `${verseRefs.length} VERSES SELECTED`;
 
   return (
     <View style={[styles.container, { backgroundColor: themeColors.surface, borderTopColor: themeColors.border }]}>
       <View style={styles.header}>
-        <Text style={[styles.ref, { color: themeColors.textSecondary }]}>{verseRef}</Text>
+        <Text style={[styles.ref, { color: themeColors.textSecondary }]}>{title}</Text>
         <TouchableOpacity onPress={onClose}>
           <X size={20} color={themeColors.textSecondary} />
         </TouchableOpacity>

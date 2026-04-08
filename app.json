@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Deen-Buddy",
-    "slug": "Deen-Buddy",
-    "version": "1.0.0",
+    "name": "Rooted Daily",
+    "slug": "rooted-daily-bible-buddy",
+    "version": "0.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "deenbuddy",
@@ -14,7 +14,12 @@
       "backgroundColor": "#4A7C59"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +27,8 @@
         "backgroundColor": "#4A7C59"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.pacmacmoblellc.rooteddaily"
     },
     "web": {
       "bundler": "metro",
@@ -35,6 +41,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f1014dfb-6a3c-4a7b-8488-e4e2a94109aa"
+      }
+    },
+    "owner": "pacmac-mobile-llc",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f1014dfb-6a3c-4a7b-8488-e4e2a94109aa"
     }
   }
 }

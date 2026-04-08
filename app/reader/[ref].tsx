@@ -34,7 +34,7 @@ export default function ReaderScreen() {
   const [currentRef, setCurrentRef] = useState(ref);
   const [chapters, setChapters] = useState<ChapterData[]>([]);
   const [showDemo, setShowDemo] = useState(false);
-  const [selectedVerse, setSelectedVerse] = useState<string | null>(null);
+  const [selectedVerses, setSelectedVerses] = useState<string[]>([]);
   
   const flatListRef = useRef<FlatList>(null);
   const swipeAnim = useSharedValue(0);
@@ -90,35 +90,42 @@ export default function ReaderScreen() {
   }));
 
   const handleAction = async (action: 'note' | 'ai' | 'copy' | 'share') => {
-    if (!selectedVerse) return;
+    if (selectedVerses.length === 0) return;
     
     if (action === 'copy') {
-      Clipboard.setString(selectedVerse);
-      setSelectedVerse(null);
+      const texts = await getSelectedTexts();
+      Clipboard.setString(texts.join('\n'));
+      setSelectedVerses([]);
     } else if (action === 'ai') {
-      router.push(`/chat/${encodeURIComponent(selectedVerse)}`);
-      setSelectedVerse(null);
+      const texts = await getSelectedTexts();
+      router.push(`/chat/${encodeURIComponent(texts.join('\n'))}`);
+      setSelectedVerses([]);
     } else if (action === 'note') {
       router.push('/journal');
-      setSelectedVerse(null);
+      setSelectedVerses([]);
     } else if (action === 'share') {
-      await handleShare(selectedVerse);
-      setSelectedVerse(null);
+      await handleShare(selectedVerses);
+      setSelectedVerses([]);
     }
   };
 
-  const handleShare = async (ref: string) => {
-    // Find the text for this ref
-    let text = '';
-    const parts = ref.match(/(.*)\s(\d+):(\d+)/);
-    if (parts) {
-      const [_, book, chapter, verse] = parts;
-      const v = await getChapter(book, parseInt(chapter));
-      const verseData = v.find(item => item.verse === parseInt(verse));
-      if (verseData) text = verseData.text;
+  const getSelectedTexts = async () => {
+    const texts: string[] = [];
+    for (const ref of selectedVerses) {
+      const parts = ref.match(/(.*)\s(\d+):(\d+)/);
+      if (parts) {
+        const [_, book, chapter, verse] = parts;
+        const v = await getChapter(book, parseInt(chapter));
+        const verseData = v.find(item => item.verse === parseInt(verse));
+        if (verseData) texts.push(`${ref}: ${verseData.text}`);
+      }
     }
+    return texts;
+  };
 
-    const shareContent = `"${text}"\n\n— ${ref} (World English Bible)`;
+  const handleShare = async (refs: string[]) => {
+    const texts = await getSelectedTexts();
+    const shareContent = `${texts.join('\n')}\n\n— World English Bible`;
     try {
       await Share.share({ message: shareContent });
     } catch (err) {
@@ -129,27 +136,33 @@ export default function ReaderScreen() {
   const renderChapter = ({ item }: { item: ChapterData }) => (
     <Pressable 
       style={[styles.chapterPage, { width }]}
-      onPress={() => setSelectedVerse(null)}
+      onPress={() => setSelectedVerses([])}
     >
       <FlatList
         data={item.verses}
         keyExtractor={(v) => `${v.chapter}:${v.verse}`}
         renderItem={({ item: v }) => {
           const vRef = `${item.book} ${item.chapter}:${v.verse}`;
-          const isSelected = selectedVerse === vRef;
+          const isSelected = selectedVerses.includes(vRef);
           const highlightColor = highlights[vRef];
 
           return (
             <TouchableOpacity 
               activeOpacity={0.7}
-              onPress={() => setSelectedVerse(isSelected ? null : vRef)}
+              onPress={() => {
+                if (isSelected) {
+                  setSelectedVerses(selectedVerses.filter(r => r !== vRef));
+                } else {
+                  setSelectedVerses([...selectedVerses, vRef]);
+                }
+              }}
               style={[
                 styles.verseRow, 
                 highlightColor ? { backgroundColor: highlightColor + '44' } : null,
                 isSelected ? { 
-                  backgroundColor: themeColors.accent + '22',
+                  backgroundColor: '#34C75922',
                   borderBottomWidth: 1.5,
-                  borderBottomColor: themeColors.accent,
+                  borderBottomColor: '#34C759',
                   borderStyle: 'dotted'
                 } : null
               ]}
@@ -224,19 +237,19 @@ export default function ReaderScreen() {
         />
       </Animated.View>
 
-      {selectedVerse && (
+      {selectedVerses.length > 0 && (
         <HighlightPalette
-          verseRef={selectedVerse}
+          verseRefs={selectedVerses}
           onSelectColor={(color) => {
-            setHighlight(selectedVerse, color);
-            setSelectedVerse(null);
+            selectedVerses.forEach(ref => setHighlight(ref, color));
+            setSelectedVerses([]);
           }}
           onClear={() => {
-            removeHighlight(selectedVerse);
-            setSelectedVerse(null);
+            selectedVerses.forEach(ref => removeHighlight(ref));
+            setSelectedVerses([]);
           }}
           onAction={handleAction}
-          onClose={() => setSelectedVerse(null)}
+          onClose={() => setSelectedVerses([])}
         />
       )}
 

@@ -6,6 +6,8 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
 
+import { AudioIconButton } from './AudioIconButton';
+
 interface ChatMessageProps {
   role: 'user' | 'assistant';
   content: string;
@@ -31,6 +33,17 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
           borderBottomLeftRadius: isUser ? 16 : 4,
         }
       ]}>
+        {!isUser && (
+          <View style={styles.audioAction}>
+            <AudioIconButton 
+              text={content} 
+              title="Reflection" 
+              subtitle="Rooted Companion"
+              size={18}
+              color={themeColors.aiBubbleText}
+            />
+          </View>
+        )}
         <Text style={[
           styles.text,
           { color: isUser ? themeColors.userBubbleText : themeColors.aiBubbleText }
@@ -61,5 +74,11 @@ const styles = StyleSheet.create({
   },
   text: {
     ...typography.body,
+  },
+  audioAction: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 1,
   },
 });

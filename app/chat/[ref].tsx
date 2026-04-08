@@ -1,7 +1,8 @@
 // app/chat/[ref].tsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, useColorScheme, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, useColorScheme, KeyboardAvoidingView, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
@@ -12,6 +13,7 @@ import { sendChatMessage, ChatMessage } from '../../src/features/chat/chatServic
 import { getVerse } from '../../src/features/bible/bibleService';
 import { useJournalStore } from '../../src/features/journal/journalStore';
 import { Send, ChevronDown, ChevronUp, Save } from 'lucide-react-native';
+import { TypingIndicator } from '../../src/components/TypingIndicator';
 
 export default function ChatScreen() {
   const { ref: verseRef, q: initialQuery } = useLocalSearchParams<{ ref: string, q?: string }>();
@@ -123,7 +125,7 @@ export default function ChatScreen() {
         />
 
         {isTyping && (
-          <Text style={[styles.typing, { color: themeColors.textSecondary }]}>Rooted is thinking...</Text>
+          <TypingIndicator />
         )}
 
         {suggestions.length > 0 && (

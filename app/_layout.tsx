@@ -21,6 +21,8 @@ import { colors } from '../src/theme/colors';
 import { useState } from 'react';
 import { initializeBible } from '../src/features/bible/bibleLoader';
 import { LoadingScreen } from '../src/components/LoadingScreen';
+import { MiniPlayer } from '../src/components/MiniPlayer';
+import { audioService } from '../src/services/audio/AudioService';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -56,6 +58,7 @@ export default function RootLayout() {
     if (fontsLoaded || fontError) {
       const init = async () => {
         try {
+          await audioService.init(); // Init Audio settings
           setInitMessage('Initializing offline Bible...');
           await initializeBible((p) => {
             setInitProgress(p);
@@ -102,6 +105,7 @@ export default function RootLayout() {
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
+      <MiniPlayer />
     </>
   );
 }

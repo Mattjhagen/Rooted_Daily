@@ -7,6 +7,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing, shadows } from '../theme/spacing';
 import { ChevronRight } from 'lucide-react-native';
+import { AudioIconButton } from './AudioIconButton';
 
 interface VerseCardProps {
   reference: string;
@@ -38,6 +39,9 @@ export const VerseCard: React.FC<VerseCardProps> = ({
           <Text style={[styles.badgeText, { color: themeColors.accent }]}>WEB</Text>
         </View>
         <Text style={[styles.reference, { color: themeColors.accent }]}>{reference}</Text>
+        <View style={styles.audioButton}>
+          <AudioIconButton text={text} title={reference} subtitle="Rooted Scripture" size={20} />
+        </View>
       </View>
 
       <Text style={[styles.scripture, { color: themeColors.text }]} numberOfLines={4}>
@@ -78,6 +82,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: spacing.md,
+    justifyContent: 'space-between',
+  },
+  audioButton: {
+    marginLeft: 'auto',
   },
   badge: {
     paddingHorizontal: spacing.sm,
