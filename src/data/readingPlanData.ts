@@ -1,3 +1,5 @@
+import { BOOK_MAPPING } from '../constants/bibleMapping';
+
 export interface DailyReading {
   day: number;
   date?: string;
@@ -14,33 +16,65 @@ export const canonicalPlan: DailyReading[] = Array.from({ length: 365 }, (_, i) 
   readings: [] // Will be populated based on the full bible structure
 }));
 
+// Helper for title casing abbreviations as a fallback
+const formatAbbrev = (abbrev: string) => {
+  if (!abbrev) return 'Unknown';
+  // Handle cases like "1gn" or "1kgs"
+  return abbrev.charAt(0).toUpperCase() + abbrev.slice(1);
+};
+
 // We'll calculate the chunks in the code to ensure it's exact
 export function getCanonicalPlan(books: any[]): DailyReading[] {
-  if (!books || !Array.isArray(books)) {
-    console.warn('getCanonicalPlan: books is not an array', books);
-    return [];
+  if (!books || !Array.isArray(books) || books.length === 0) {
+    console.warn('getCanonicalPlan: books is not a valid array', books);
+    return Array.from({ length: 365 }, (_, i) => ({
+      day: i + 1,
+      readings: [{ display: 'Loading...', chapters: [] }]
+    }));
   }
+
   const allChapters: string[] = [];
   books.forEach(b => {
-    b.chapters.forEach((_: any, chIndex: number) => {
-      allChapters.push(`${b.name} ${chIndex + 1}`);
-    });
+    const bookName = BOOK_MAPPING[b.abbrev] || formatAbbrev(b.abbrev);
+    if (b.chapters && Array.isArray(b.chapters)) {
+      b.chapters.forEach((_: any, chIndex: number) => {
+        allChapters.push(`${bookName} ${chIndex + 1}`);
+      });
+    }
   });
 
+  if (allChapters.length === 0) {
+    return Array.from({ length: 365 }, (_, i) => ({
+      day: i + 1,
+      readings: [{ display: 'No Scripture Found', chapters: [] }]
+    }));
+  }
+
   const totalChapters = allChapters.length;
-  const chaptersPerDay = Math.ceil(totalChapters / 365);
+  // Use a more nuanced distribution: Exactly 1189 total / 365 days
+  const chaptersPerDay = totalChapters / 365;
   
   return Array.from({ length: 365 }, (_, i) => {
-    const start = i * chaptersPerDay;
-    const end = Math.min(start + chaptersPerDay, totalChapters);
+    const start = Math.floor(i * chaptersPerDay);
+    const end = i === 364 ? totalChapters : Math.floor((i + 1) * chaptersPerDay);
     const dayChapters = allChapters.slice(start, end);
     
+    if (dayChapters.length === 0) {
+      return { day: i + 1, readings: [] };
+    }
+
+    const first = dayChapters[0];
+    const last = dayChapters[dayChapters.length - 1];
+    
+    // Format Display: "Genesis 1-3" or "Genesis 1"
+    const display = dayChapters.length > 1 
+      ? `${first} - ${last.split(' ').pop()}`
+      : first;
+
     return {
       day: i + 1,
       readings: [{
-        display: dayChapters.length > 1 
-          ? `${dayChapters[0]} - ${dayChapters[dayChapters.length - 1].split(' ').pop()}`
-          : dayChapters[0],
+        display,
         chapters: dayChapters
       }]
     };
@@ -56,17 +90,24 @@ export const verseOfTheDay: Record<number, { ref: string, text: string }> = {
 };
 
 export function getMixedOTNTPlan(books: any[]): DailyReading[] {
-  if (!books || !Array.isArray(books)) {
-    console.warn('getMixedOTNTPlan: books is not an array', books);
-    return [];
+  if (!books || !Array.isArray(books) || books.length === 0) {
+    console.warn('getMixedOTNTPlan: books is not a valid array', books);
+    return Array.from({ length: 365 }, (_, i) => ({
+      day: i + 1,
+      readings: [{ display: 'Loading...', chapters: [] }]
+    }));
   }
+
   const otBooks = books.slice(0, 39);
   const ntBooks = books.slice(39);
 
   const getChapters = (bookList: any[]) => {
     const list: string[] = [];
     bookList.forEach(b => {
-      b.chapters.forEach((_: any, i: number) => list.push(`${b.name || b.abbrev} ${i + 1}`));
+      const bookName = BOOK_MAPPING[b.abbrev] || formatAbbrev(b.abbrev);
+      if (b.chapters && Array.isArray(b.chapters)) {
+        b.chapters.forEach((_: any, i: number) => list.push(`${bookName} ${i + 1}`));
+      }
     });
     return list;
   };
@@ -74,30 +115,44 @@ export function getMixedOTNTPlan(books: any[]): DailyReading[] {
   const otChapters = getChapters(otBooks);
   const ntChapters = getChapters(ntBooks);
 
-  const otPerDay = Math.ceil(otChapters.length / 365);
-  const ntPerDay = Math.ceil(ntChapters.length / 365);
+  if (otChapters.length === 0 && ntChapters.length === 0) {
+    return Array.from({ length: 365 }, (_, i) => ({
+      day: i + 1,
+      readings: []
+    }));
+  }
+
+  const otPerDay = otChapters.length / 365;
+  const ntPerDay = ntChapters.length / 365;
 
   return Array.from({ length: 365 }, (_, i) => {
-    const otStart = i * otPerDay;
-    const ntStart = i * ntPerDay;
+    const otStart = Math.floor(i * otPerDay);
+    const otEnd = i === 364 ? otChapters.length : Math.floor((i + 1) * otPerDay);
     
-    const dayOT = otChapters.slice(otStart, Math.min(otStart + otPerDay, otChapters.length));
-    const dayNT = ntChapters.slice(ntStart, Math.min(ntStart + ntPerDay, ntChapters.length));
+    const ntStart = Math.floor(i * ntPerDay);
+    const ntEnd = i === 364 ? ntChapters.length : Math.floor((i + 1) * ntPerDay);
+    
+    const dayOT = otChapters.slice(otStart, otEnd);
+    const dayNT = ntChapters.slice(ntStart, ntEnd);
 
     const readings = [];
     if (dayOT.length > 0) {
+      const first = dayOT[0];
+      const last = dayOT[dayOT.length - 1];
       readings.push({
         display: dayOT.length > 1 
-          ? `${dayOT[0]} - ${dayOT[dayOT.length-1].split(' ').pop()}` 
-          : dayOT[0],
+          ? `${first} - ${last.split(' ').pop()}` 
+          : first,
         chapters: dayOT
       });
     }
     if (dayNT.length > 0) {
+      const first = dayNT[0];
+      const last = dayNT[dayNT.length - 1];
       readings.push({
         display: dayNT.length > 1 
-          ? `${dayNT[0]} - ${dayNT[dayNT.length-1].split(' ').pop()}` 
-          : dayNT[0],
+          ? `${first} - ${last.split(' ').pop()}` 
+          : first,
         chapters: dayNT
       });
     }

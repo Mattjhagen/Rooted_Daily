@@ -16,13 +16,20 @@ import {
   DMSans_500Medium, 
   DMSans_600SemiBold 
 } from '@expo-google-fonts/dm-sans';
+import { EBGaramond_400Regular, EBGaramond_600SemiBold } from '@expo-google-fonts/eb-garamond';
+import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
+import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
+import { Montserrat_400Regular, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
 import { colors } from '../src/theme/colors';
 
 import { useState } from 'react';
 import { initializeBible } from '../src/features/bible/bibleLoader';
 import { LoadingScreen } from '../src/components/LoadingScreen';
 import { MiniPlayer } from '../src/components/MiniPlayer';
+import { FullPlayerModal } from '../src/components/FullPlayerModal';
 import { audioService } from '../src/services/audio/AudioService';
+import { ToastProvider } from '../src/context/ToastContext';
+import { Toast } from '../src/components/Toast';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,6 +49,14 @@ export default function RootLayout() {
     DMSans_400Regular,
     DMSans_500Medium,
     DMSans_600SemiBold,
+    EBGaramond_400Regular,
+    EBGaramond_600SemiBold,
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_700Bold,
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
   });
 
   useEffect(() => {
@@ -80,11 +95,16 @@ export default function RootLayout() {
   }
 
   if (!bibleReady) {
-    return <LoadingScreen progress={initProgress} message={initMessage} />;
+    return (
+      <ToastProvider>
+        <LoadingScreen progress={initProgress} message={initMessage} />
+        <Toast />
+      </ToastProvider>
+    );
   }
 
   return (
-    <>
+    <ToastProvider>
       <StatusBar style={isDark ? 'light' : 'dark'} />
       <Stack
         screenOptions={{
@@ -106,6 +126,8 @@ export default function RootLayout() {
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
       <MiniPlayer />
-    </>
+      <FullPlayerModal />
+      <Toast />
+    </ToastProvider>
   );
 }

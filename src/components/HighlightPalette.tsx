@@ -1,7 +1,7 @@
 // src/components/HighlightPalette.tsx
 
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, useColorScheme, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, useColorScheme, Animated, ScrollView } from 'react-native';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
@@ -39,7 +39,11 @@ export function HighlightPalette({ onSelectColor, onClear, onAction, onClose, ve
         </TouchableOpacity>
       </View>
 
-      <View style={styles.row}>
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false} 
+        contentContainerStyle={styles.scrollContent}
+      >
         <View style={styles.colorRow}>
           {HIGHLIGHT_COLORS.map((c) => (
             <TouchableOpacity 
@@ -87,7 +91,7 @@ export function HighlightPalette({ onSelectColor, onClear, onAction, onClose, ve
             <Text style={[styles.actionLabel, { color: themeColors.textSecondary }]}>Share</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -96,8 +100,8 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     bottom: 80, // Above reader bottom nav
-    left: spacing.md,
-    right: spacing.md,
+    left: 8,
+    right: 8,
     padding: spacing.md,
     borderRadius: 20,
     borderWidth: 1,
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
   },
   actionRow: {
     flexDirection: 'row',
-    gap: spacing.md,
+    gap: spacing.lg,
   },
   actionItem: {
     alignItems: 'center',
@@ -173,5 +177,10 @@ const styles = StyleSheet.create({
   actionLabel: {
     fontSize: 10,
     fontFamily: 'DMSans_500Medium',
+  },
+  scrollContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 60, // Give space for the last item (Share)
   },
 });

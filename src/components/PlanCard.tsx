@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
 import { typography } from '../theme/typography';
-import { CheckCircle, Circle } from 'lucide-react-native';
+import { CheckCircle, Circle, BookOpen } from 'lucide-react-native';
 
 interface PlanCardProps {
   title: string;
@@ -12,6 +12,7 @@ interface PlanCardProps {
   isCompleted: boolean;
   onPress?: () => void;
   onCheck?: () => void;
+  onReaderPress?: () => void;
   themeColors: any;
 }
 
@@ -22,6 +23,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
   isCompleted, 
   onPress, 
   onCheck,
+  onReaderPress,
   themeColors 
 }) => {
   return (
@@ -42,13 +44,18 @@ export const PlanCard: React.FC<PlanCardProps> = ({
           <Text style={[styles.title, { color: themeColors.text }]}>{title}</Text>
           <Text style={[styles.subtitle, { color: themeColors.textSecondary }]}>{subtitle}</Text>
         </View>
-        <TouchableOpacity onPress={onCheck} style={styles.checkBtn}>
-          {isCompleted ? (
-            <CheckCircle size={24} color={colors.accent} fill={colors.accentLight} />
-          ) : (
-            <Circle size={24} color={themeColors.border} />
-          )}
-        </TouchableOpacity>
+        <View style={styles.actions}>
+          <TouchableOpacity onPress={onReaderPress} style={[styles.actionBtn, { marginRight: spacing.sm }]}>
+            <BookOpen size={20} color={themeColors.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onCheck} style={styles.actionBtn}>
+            {isCompleted ? (
+              <CheckCircle size={24} color={colors.accent} fill={colors.accentLight} />
+            ) : (
+              <Circle size={24} color={themeColors.border} />
+            )}
+          </TouchableOpacity>
+        </View>
       </View>
       
       <View style={styles.progressTrack}>
@@ -90,7 +97,11 @@ const styles = StyleSheet.create({
   subtitle: {
     ...typography.caption,
   },
-  checkBtn: {
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  actionBtn: {
     padding: spacing.xs,
   },
   progressTrack: {

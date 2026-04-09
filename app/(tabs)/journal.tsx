@@ -1,12 +1,13 @@
 // app/(tabs)/journal.tsx
 
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { useJournalStore, JournalEntry } from '../../src/features/journal/journalStore';
-import { Edit3, Heart, MessageSquare } from 'lucide-react-native';
+import { Edit3, Heart, MessageSquare, BookOpen } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 
 export default function JournalScreen() {
@@ -42,10 +43,16 @@ export default function JournalScreen() {
           </View>
         </View>
         <View style={styles.actionIcons}>
+          <TouchableOpacity 
+            onPress={() => router.push(`/reader/${encodeURIComponent(item.verseRef)}`)} 
+            style={styles.iconBtn}
+          >
+            <BookOpen size={20} color={themeColors.accent} />
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => handleResumeChat(item)} style={styles.iconBtn}>
             <MessageSquare size={20} color={themeColors.accent} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => toggleFavorite(item.id)}>
+          <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.iconBtn}>
             <Heart size={20} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
           </TouchableOpacity>
         </View>

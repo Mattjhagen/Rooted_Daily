@@ -1,30 +1,24 @@
 import * as SQLite from 'expo-sqlite';
+import { BOOK_MAPPING } from '../../constants/bibleMapping';
 const rawBibleData = require('../../data/bibleFull.json');
 const getBooks = (data: any) => {
+  if (!data) return [];
   if (Array.isArray(data)) return data;
   if (data.books && Array.isArray(data.books)) return data.books;
   if (data.default) return getBooks(data.default);
+  if (data.default?.books) return data.default.books;
   return [];
 };
 const bibleData = getBooks(rawBibleData);
 
-const db = SQLite.openDatabaseSync('rooted.db');
-
-const BOOK_MAPPING: Record<string, string> = {
-  gn: "Genesis", ex: "Exodus", lv: "Leviticus", nm: "Numbers", dt: "Deuteronomy",
-  js: "Joshua", jud: "Judges", rt: "Ruth", "1sm": "1 Samuel", "2sm": "2 Samuel",
-  "1kgs": "1 Kings", "2kgs": "2 Kings", "1ch": "1 Chronicles", "2ch": "2 Chronicles",
-  ezr: "Ezra", ne: "Nehemiah", et: "Esther", job: "Job", ps: "Psalms", prv: "Proverbs",
-  ec: "Ecclesiastes", so: "Song of Solomon", is: "Isaiah", jr: "Jeremiah", lm: "Lamentations",
-  ez: "Ezekiel", dn: "Daniel", ho: "Hosea", jl: "Joel", am: "Amos", ob: "Obadiah",
-  jn: "Jonah", mi: "Micah", na: "Nahum", hk: "Habakkuk", zp: "Zephaniah", hg: "Haggai",
-  zc: "Zechariah", ml: "Malachi", mt: "Matthew", mk: "Mark", lk: "Luke", jo: "John",
-  act: "Acts", rm: "Romans", "1co": "1 Corinthians", "2co": "2 Corinthians", gl: "Galatians",
-  eph: "Ephesians", ph: "Philippians", cl: "Colossians", "1ts": "1 Thessalonians",
-  "2ts": "2 Thessalonians", "1tm": "1 Timothy", "2tm": "2 Timothy", tt: "Titus",
-  phm: "Philemon", hb: "Hebrews", jm: "James", "1pe": "1 Peter", "2pe": "2 Peter",
-  "1jo": "1 John", "2jo": "2 John", "3jo": "3 John", jd: "Jude", re: "Revelation"
+// Helper for title casing abbreviations as a fallback
+const formatAbbrev = (abbrev: string) => {
+  if (!abbrev) return 'Unknown';
+  // Handle cases like "1gn" or "1kgs"
+  return abbrev.charAt(0).toUpperCase() + abbrev.slice(1);
 };
+
+const db = SQLite.openDatabaseSync('rooted.db');
 
 export const initializeBible = async (onProgress: (p: number) => void) => {
   try {
@@ -55,29 +49,31 @@ export const initializeBible = async (onProgress: (p: number) => void) => {
   `);
 
   const totalBooks = bibleData.length;
-  let processedBooks = 0;
 
-  // Use a transaction for speed
-  db.withTransactionSync(() => {
-    for (const bookObj of bibleData) {
-      const bookName = BOOK_MAPPING[bookObj.abbrev] || bookObj.abbrev;
-      
+  // Process one book at a time to keep UI responsive
+  for (let i = 0; i < totalBooks; i++) {
+    const bookObj = bibleData[i];
+    const bookName = BOOK_MAPPING[bookObj.abbrev] || formatAbbrev(bookObj.abbrev);
+
+    // Run each book in its own transaction for speed + responsiveness
+    db.withTransactionSync(() => {
       bookObj.chapters.forEach((chapter: string[], chIdx: number) => {
         chapter.forEach((verseText: string, vIdx: number) => {
           db.runSync(
             'INSERT INTO verses (book, chapter, verse, text, translation) VALUES (?, ?, ?, ?, ?)',
-            [bookName, chIdx + 1, vIdx + 1, verseText, 'KJV']
+            [bookName, chIdx + 1, vIdx + 1, verseText, 'WEB']
           );
         });
       });
-      
-      processedBooks++;
-      // This is sync, so we can't really "yield" for UI, but we'll try to update
-      // In a real app we'd use chunks and requestAnimationFrame or a worker
-    }
-  });
+    });
+
+    // Report progress
+    onProgress((i + 1) / totalBooks);
+
+    // Yield to the event loop so the UI (LoadingScreen) can re-render
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
   
-  onProgress(1);
   console.log('Bible initialization complete.');
 };
 

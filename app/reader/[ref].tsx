@@ -1,18 +1,25 @@
 // app/reader/[ref].tsx
 
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity, SafeAreaView, Dimensions, Animated as RNAnimated } from 'react-native';
+import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity, Dimensions, Animated as RNAnimated } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { getChapter, getChapterCount, Verse as BibleVerse } from '../../src/features/bible/bibleService';
-import { ChevronLeft, ChevronRight, Share2, MessageCircle, Info } from 'lucide-react-native';
+import { ChevronLeft, ChevronRight, Share2, MessageCircle, Info, Type as TypeIcon } from 'lucide-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { useSharedValue, useAnimatedStyle, withRepeat, withSequence, withTiming, withDelay } from 'react-native-reanimated';
 import { Clipboard, Share, Pressable } from 'react-native';
 import { useHighlightsStore } from '../../src/features/bible/highlightsStore';
 import { HighlightPalette } from '../../src/components/HighlightPalette';
+import { AudioIconButton } from '../../src/components/AudioIconButton';
+import { useReaderSettings } from '../../src/features/reader/readerSettingsStore';
+import { ReaderSettingsSheet } from '../../src/components/ReaderSettingsSheet';
+import { BookmarkButton } from '../../src/components/BookmarkButton';
+import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
 
 const { width } = Dimensions.get('window');
 const SWIPE_DEMO_KEY = 'has_seen_swipe_demo';
@@ -27,7 +34,23 @@ export default function ReaderScreen() {
   const { ref } = useLocalSearchParams<{ ref: string }>();
   const router = useRouter();
   const colorScheme = useColorScheme();
-  const themeColors = colorScheme === 'dark' ? colors.dark : colors;
+  
+  // Custom Reader Settings
+  const { theme, fontSize, fontFamily } = useReaderSettings();
+  const { updateLastReadRef } = usePersistenceStore();
+  const [showSettings, setShowSettings] = useState(false);
+
+  // Theme resolution helper
+  const getReaderColors = () => {
+    switch (theme) {
+      case 'white': return { bg: '#FFFFFF', text: '#000000', surface: '#F9F9F9', border: '#EEE' };
+      case 'black': return { bg: '#000000', text: '#F0EDE8', surface: '#1A1A1A', border: '#333' };
+      // Parchment: Deepened text from #1C1917 to #000000 for better contrast on devices
+      default: return { bg: '#FAF8F4', text: '#000000', surface: '#FFFFFF', border: '#E8E2D9' };
+    }
+  };
+  const readerColors = getReaderColors();
+  const accentColor = colors.accent;
 
   const { highlights, setHighlight, removeHighlight } = useHighlightsStore();
 
@@ -47,6 +70,11 @@ export default function ReaderScreen() {
     }
     checkDemo();
   }, []);
+
+  // Persist last read ref
+  useEffect(() => {
+    updateLastReadRef(currentRef);
+  }, [currentRef]);
 
   const checkDemo = async () => {
     const seen = await AsyncStorage.getItem(SWIPE_DEMO_KEY);
@@ -133,9 +161,26 @@ export default function ReaderScreen() {
     }
   };
 
+  const isLightMode = theme !== 'black';
+
+  const textStyle = {
+    fontFamily: 
+      fontFamily === 'serif' ? 'Lora_400Regular' : 
+      // Scholarly: Use 600 weight in light mode for better legibility
+      fontFamily === 'scholarly' ? (isLightMode ? 'EBGaramond_600SemiBold' : 'EBGaramond_400Regular') :
+      // Academic: Use 700 weight in light mode for better legibility
+      fontFamily === 'academic' ? (isLightMode ? 'PlayfairDisplay_700Bold' : 'PlayfairDisplay_400Regular') :
+      fontFamily === 'sans' ? 'DMSans_400Regular' :
+      fontFamily === 'modern' ? 'Inter_400Regular' :
+      fontFamily === 'clean' ? 'Montserrat_400Regular' :
+      'Lora_400Regular',
+    fontSize: fontSize,
+    lineHeight: fontSize * 1.6,
+  };
+
   const renderChapter = ({ item }: { item: ChapterData }) => (
     <Pressable 
-      style={[styles.chapterPage, { width }]}
+      style={[styles.chapterPage, { width, backgroundColor: readerColors.bg }]}
       onPress={() => setSelectedVerses([])}
     >
       <FlatList
@@ -160,15 +205,15 @@ export default function ReaderScreen() {
                 styles.verseRow, 
                 highlightColor ? { backgroundColor: highlightColor + '44' } : null,
                 isSelected ? { 
-                  backgroundColor: '#34C75922',
+                  backgroundColor: colors.accent + '22',
                   borderBottomWidth: 1.5,
-                  borderBottomColor: '#34C759',
+                  borderBottomColor: colors.accent,
                   borderStyle: 'dotted'
                 } : null
               ]}
             >
-              <Text style={[styles.verseText, { color: themeColors.text }]}>
-                <Text style={[styles.verseNum, { color: themeColors.accent }]}>{v.verse} </Text>
+              <Text style={[textStyle, { color: readerColors.text }]}>
+                <Text style={[styles.verseNum, { color: accentColor, fontSize: fontSize * 0.6 }]}>{v.verse} </Text>
                 {v.text}
               </Text>
             </TouchableOpacity>
@@ -176,7 +221,7 @@ export default function ReaderScreen() {
         }}
         ListHeaderComponent={() => (
           <View style={styles.chapterHeader}>
-            <Text style={[styles.chapterTitle, { color: themeColors.text }]}>{item.chapter}</Text>
+            <Text style={[styles.chapterTitle, { color: readerColors.text }]}>{item.chapter}</Text>
           </View>
         )}
         contentContainerStyle={styles.versesContent}
@@ -202,15 +247,26 @@ export default function ReaderScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
-      <View style={styles.topBar}>
+    <SafeAreaView style={[styles.container, { backgroundColor: readerColors.bg }]}>
+      <StatusBar style={theme === 'black' ? 'light' : 'dark'} />
+      <View style={[styles.topBar, { backgroundColor: readerColors.bg }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.iconBtn}>
-          <ChevronLeft size={24} color={themeColors.text} />
+          <ChevronLeft size={24} color={readerColors.text} />
         </TouchableOpacity>
-        <Text style={[styles.bookTitle, { color: themeColors.text }]}>{activeChapter?.book}</Text>
-        <TouchableOpacity style={styles.iconBtn}>
-          <Share2 size={20} color={themeColors.text} />
-        </TouchableOpacity>
+        <Text style={[styles.bookTitle, { color: readerColors.text }]}>{activeChapter?.book}</Text>
+        <View style={styles.topRightActions}>
+          <TouchableOpacity onPress={() => setShowSettings(true)} style={styles.iconBtn}>
+            <TypeIcon size={20} color={readerColors.text} />
+          </TouchableOpacity>
+          <BookmarkButton reference={currentRef} color={readerColors.text} />
+          <AudioIconButton 
+            text={activeChapter?.verses.map(v => v.text).join(' ') || ''} 
+            title={`${activeChapter?.book} ${activeChapter?.chapter}`}
+            subtitle="Read by Rooted"
+            size={22}
+            color={readerColors.text}
+          />
+        </View>
       </View>
 
       <Animated.View style={[{ flex: 1 }, animatedStyle]}>
@@ -253,29 +309,34 @@ export default function ReaderScreen() {
         />
       )}
 
+      <ReaderSettingsSheet 
+        visible={showSettings} 
+        onClose={() => setShowSettings(false)} 
+      />
+
       {showDemo && (
         <View style={styles.demoOverlay} pointerEvents="none">
-          <View style={[styles.demoHint, { backgroundColor: themeColors.accent }]}>
+          <View style={[styles.demoHint, { backgroundColor: accentColor }]}>
             <Text style={styles.demoText}>Swipe to change chapters</Text>
           </View>
         </View>
       )}
 
-      <View style={[styles.bottomNav, { backgroundColor: themeColors.surface, borderTopColor: themeColors.border }]}>
+      <View style={[styles.bottomNav, { backgroundColor: readerColors.surface, borderTopColor: readerColors.border }]}>
         <TouchableOpacity style={styles.navBtn} onPress={handlePrev}>
-          <ChevronLeft size={24} color={activeIndex > 0 ? themeColors.text : themeColors.textSecondary} />
+          <ChevronLeft size={24} color={activeIndex > 0 ? readerColors.text : readerColors.text + '44'} />
         </TouchableOpacity>
         
         <TouchableOpacity 
-          style={[styles.reflectBtn, { backgroundColor: themeColors.accent }]}
+          style={[styles.reflectBtn, { backgroundColor: accentColor }]}
           onPress={() => router.push(`/chat/${encodeURIComponent(currentRef)}`)}
         >
-          <MessageCircle size={20} color={themeColors.white} />
+          <MessageCircle size={20} color="white" />
           <Text style={styles.reflectText}>Reflect</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.navBtn} onPress={handleNext}>
-          <ChevronRight size={24} color={activeIndex < chapters.length - 1 ? themeColors.text : themeColors.textSecondary} />
+          <ChevronRight size={24} color={activeIndex < chapters.length - 1 ? readerColors.text : readerColors.text + '44'} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -296,6 +357,12 @@ const styles = StyleSheet.create({
   bookTitle: {
     ...typography.headingLG,
     fontSize: 18,
+    marginLeft: 40, // Offset to keep it centered
+  },
+  topRightActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   iconBtn: {
     width: 40,

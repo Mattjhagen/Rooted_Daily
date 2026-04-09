@@ -24,7 +24,11 @@ export const MiniPlayer = () => {
   const isPlaying = playbackState === 'playing';
 
   return (
-    <View style={[styles.container, { backgroundColor: themeColors.surface, borderTopColor: themeColors.border }]}>
+    <TouchableOpacity 
+      activeOpacity={0.9}
+      onPress={() => useAudioStore.getState().setFullPlayerVisible(true)}
+      style={[styles.container, { backgroundColor: themeColors.surface, borderTopColor: themeColors.border }]}
+    >
       {/* Progress Bar */}
       <View style={styles.progressBarBg}>
         <View style={[styles.progressBarFill, { width: `${progress * 100}%`, backgroundColor: themeColors.accent }]} />
@@ -59,7 +63,7 @@ export const MiniPlayer = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

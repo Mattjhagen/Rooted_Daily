@@ -9,6 +9,7 @@ interface AudioTrack {
   title: string;
   subtitle?: string;
   url?: string;
+  text?: string; // Original scripture text for full player
 }
 
 interface AudioState {
@@ -16,11 +17,15 @@ interface AudioState {
   playbackState: PlaybackState;
   position: number;
   duration: number;
+  isFullPlayerVisible: boolean;
+  isKaraokeEnabled: boolean;
   
   // Actions
   setTrack: (track: AudioTrack | null) => void;
   setPlaybackState: (state: PlaybackState) => void;
   setProgress: (position: number, duration: number) => void;
+  setFullPlayerVisible: (visible: boolean) => void;
+  setKaraokeEnabled: (enabled: boolean) => void;
   reset: () => void;
 }
 
@@ -29,9 +34,13 @@ export const useAudioStore = create<AudioState>((set) => ({
   playbackState: 'idle',
   position: 0,
   duration: 0,
+  isFullPlayerVisible: false,
+  isKaraokeEnabled: true, // Enabled by default
 
   setTrack: (track) => set({ currentTrack: track, position: 0, duration: 0 }),
   setPlaybackState: (state) => set({ playbackState: state }),
   setProgress: (position, duration) => set({ position, duration }),
-  reset: () => set({ currentTrack: null, playbackState: 'idle', position: 0, duration: 0 }),
+  setFullPlayerVisible: (visible) => set({ isFullPlayerVisible: visible }),
+  setKaraokeEnabled: (enabled) => set({ isKaraokeEnabled: enabled }),
+  reset: () => set({ currentTrack: null, playbackState: 'idle', position: 0, duration: 0, isFullPlayerVisible: false }),
 }));

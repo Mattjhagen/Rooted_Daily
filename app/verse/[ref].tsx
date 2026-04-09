@@ -1,13 +1,14 @@
 // app/verse/[ref].tsx
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useColorScheme, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { getVerse, getChapter, Verse } from '../../src/features/bible/bibleService';
-import { MessageCircle, Share2, Bookmark, ChevronLeft } from 'lucide-react-native';
+import { MessageCircle, Share2, Bookmark, ChevronLeft, BookOpen } from 'lucide-react-native';
 
 export default function VerseDetailScreen() {
   const { ref } = useLocalSearchParams<{ ref: string }>();
@@ -21,19 +22,36 @@ export default function VerseDetailScreen() {
 
   useEffect(() => {
     async function loadData() {
-      const parts = ref.match(/(.*)\s(\d+):(\d+)/);
+      // Matches "Book Name 1:1" or "Book Name 1"
+      const parts = ref.match(/(.*)\s(\d+)(?::(\d+))?/);
       if (parts) {
-        const [_, book, chapter, verse] = parts;
-        const v = await getVerse(book, parseInt(chapter), parseInt(verse));
-        setMainVerse(v);
+        const [_, book, chapter, verseStr] = parts;
+        const chapterNum = parseInt(chapter);
+        const verseNum = verseStr ? parseInt(verseStr) : 1;
+
+        const v = await getVerse(book, chapterNum, verseNum);
+        if (v) {
+          setMainVerse(v);
+        } else {
+          // Fallback: try to just get the first verse of the chapter
+          const all = await getChapter(book, chapterNum);
+          if (all.length > 0) {
+             setMainVerse(all[0]);
+          }
+        }
 
         // Load surrounding verses for context
-        const all = await getChapter(book, parseInt(chapter));
-        const idx = all.findIndex(item => item.verse === parseInt(verse));
-        if (idx !== -1) {
-          const start = Math.max(0, idx - 3);
-          const end = Math.min(all.length, idx + 4);
-          setContextVerses(all.slice(start, end));
+        const all = await getChapter(book, chapterNum);
+        if (all.length > 0) {
+          const idx = all.findIndex(item => item.verse === verseNum);
+          if (idx !== -1) {
+            const start = Math.max(0, idx - 3);
+            const end = Math.min(all.length, idx + 4);
+            setContextVerses(all.slice(start, end));
+          } else {
+            // If just showing chapter, show the first 10 verses as "context"
+            setContextVerses(all.slice(0, 10));
+          }
         }
       }
     }
@@ -69,14 +87,22 @@ export default function VerseDetailScreen() {
             <Text style={[styles.actionText, { color: themeColors.white }]}>Reflect with AI</Text>
           </TouchableOpacity>
           
-          <View style={styles.secondaryActions}>
-            <TouchableOpacity style={[styles.iconBtn, { borderColor: themeColors.border }]}>
-              <Bookmark size={20} color={themeColors.text} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.iconBtn, { borderColor: themeColors.border }]}>
-              <Share2 size={20} color={themeColors.text} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity 
+            style={[styles.actionBtn, { backgroundColor: themeColors.surface, borderColor: themeColors.border, borderWidth: 1 }]}
+            onPress={() => router.push(`/reader/${encodeURIComponent(ref)}`)}
+          >
+            <BookOpen size={20} color={themeColors.text} />
+            <Text style={[styles.actionText, { color: themeColors.text }]}>Full Chapter</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.secondaryActionsRow}>
+          <TouchableOpacity style={[styles.iconBtn, { borderColor: themeColors.border }]}>
+            <Bookmark size={20} color={themeColors.text} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.iconBtn, { borderColor: themeColors.border }]}>
+            <Share2 size={20} color={themeColors.text} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.contextSection}>
@@ -135,20 +161,22 @@ const styles = StyleSheet.create({
   actionBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: spacing.lg,
+    paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
     borderRadius: 30,
     flex: 1,
     justifyContent: 'center',
-    marginRight: spacing.md,
+    marginHorizontal: spacing.xs,
   },
   actionText: {
     fontFamily: 'DMSans_600SemiBold',
-    fontSize: 16,
-    marginLeft: spacing.sm,
+    fontSize: 14,
+    marginLeft: spacing.xs,
   },
-  secondaryActions: {
+  secondaryActionsRow: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: spacing.xxl,
   },
   iconBtn: {
     width: 48,

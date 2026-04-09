@@ -45,3 +45,6 @@ yarn-error.*
 Library/
 .eas/
 .idea/
+brain/
+.npm/
+.npm-cache/

@@ -2,14 +2,9 @@
 
 import { buildSystemPrompt, buildUserMessage } from './systemPrompt';
 
-/**
- * AI DISCLAIMER: AI responses are for reflection purposes only. 
- * They do not constitute theological instruction or replace 
- * the guidance of a pastor or church community.
- */
-
-const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY!;
-const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${API_KEY}`;
+const GEMINI_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
+const ANTHROPIC_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
+const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -32,63 +27,121 @@ export async function sendChatMessage(
   const groundedUserMessage = buildUserMessage(
     userMessage, verseRef, verseText, chapterSummary, crossRefs
   );
-
   const systemInstructions = buildSystemPrompt();
 
-  // FAIL-SAFE: We inject the system instructions as the very first instruction 
-  // for the model to ensure compatibility across all Gemini endpoints.
-  const contents = [
-    {
-      role: 'user',
-      parts: [{ 
-        text: `${systemInstructions}\n\nUser Question and Context:\n${groundedUserMessage}` 
-      }]
-    }
+  // Define the provider waterfall
+  const providers = [
+    { name: 'Gemini', call: callGemini },
+    { name: 'Anthropic', call: callAnthropic },
+    { name: 'OpenAI', call: callOpenAI },
   ];
 
-  // If there is history, we'd add it here, but for Gemini simplicity we'll keep it grounded
-  // In a multi-turn conversation, you'd prepend the system prompt to the FIRST user message.
+  let lastError: any = null;
 
-  if (!API_KEY) {
-    throw new Error('Gemini API Key missing. Please check your .env file.');
+  for (const provider of providers) {
+    try {
+      console.log(`Attempting AI request with ${provider.name}...`);
+      const fullText = await provider.call(systemInstructions, groundedUserMessage, history);
+      return parseResponse(fullText);
+    } catch (error: any) {
+      console.warn(`${provider.name} failed:`, error.message);
+      lastError = error;
+      // Continue to next provider in loop
+    }
   }
 
-  const response = await fetch(API_URL, {
+  throw lastError || new Error('All AI providers failed. Please check your network or API keys.');
+}
+
+async function callGemini(system: string, user: string, history: ChatMessage[]) {
+  if (!GEMINI_KEY) throw new Error('Gemini key missing');
+  const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+  
+  const response = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      contents,
-      generationConfig: {
-        maxOutputTokens: 1000,
-        temperature: 0.8, // Slightly higher for more "charismatic" responses
-      }
-    }),
+      contents: [{ role: 'user', parts: [{ text: `${system}\n\n${user}` }] }],
+      generationConfig: { maxOutputTokens: 1000, temperature: 0.7 }
+    })
   });
 
-  if (!response.ok) {
-    const errorBody = await response.json();
-    const errorMessage = errorBody?.error?.message || '';
-    throw new Error(`AI Service Error: ${response.status} - ${errorMessage}`);
-  }
-
+  if (!response.ok) throw new Error(`Gemini Error ${response.status}`);
   const data = await response.json();
-  const fullText: string = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+}
 
-  // Parse suggestions
-  const suggMatch = fullText.match(/SUGGESTIONS_JSON:\s*(\[.*?\])/s);
+async function callAnthropic(system: string, user: string, history: ChatMessage[]) {
+  if (!ANTHROPIC_KEY) throw new Error('Anthropic key missing');
+  
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': ANTHROPIC_KEY,
+      'anthropic-version': '2023-06-01',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'claude-3-5-sonnet-20240620',
+      max_tokens: 1000,
+      system: system,
+      messages: [{ role: 'user', content: user }]
+    })
+  });
+
+  if (!response.ok) throw new Error(`Anthropic Error ${response.status}`);
+  const data = await response.json();
+  return data.content[0].text;
+}
+
+async function callOpenAI(system: string, user: string, history: ChatMessage[]) {
+  if (!OPENAI_KEY) throw new Error('OpenAI key missing');
+
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${OPENAI_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: user }
+      ],
+      temperature: 0.7
+    })
+  });
+
+  if (!response.ok) throw new Error(`OpenAI Error ${response.status}`);
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+
+function parseResponse(fullText: string): ChatResponse {
+  const suggMatch = fullText.match(/SUGGESTIONS_JSON:?\s*(`{1,3}json\s*)?({.*?\s*)?(\[.*\])/si);
   let suggestions: string[] = [];
   let cleanText = fullText;
 
   if (suggMatch) {
     try {
-      suggestions = JSON.parse(suggMatch[1]);
+      suggestions = JSON.parse(suggMatch[3].trim());
     } catch (e) {
       console.error('Failed to parse suggestions', e);
     }
-    cleanText = fullText.replace(/SUGGESTIONS_JSON:\s*\[.*?\]/s, '').trim();
+    cleanText = fullText.replace(/SUGGESTIONS_JSON:?\s*(`{1,3}json\s*)?({.*?)?\[.*\](.*?})?(`{1,3})?/si, '').trim();
+  } else {
+    const lastArrayMatch = fullText.match(/(\[.*?\])(?!.*\[)/s);
+    if (lastArrayMatch) {
+      try {
+        suggestions = JSON.parse(lastArrayMatch[1]);
+        cleanText = fullText.replace(lastArrayMatch[1], '').trim();
+      } catch (e) { }
+    }
   }
 
-  return { text: cleanText, suggestions };
+  cleanText = cleanText.replace(/```json.*?```/gsi, '');
+  cleanText = cleanText.replace(/SUGGESTIONS_JSON:?/gi, '').trim();
+
+  return { text: cleanText, suggestions: suggestions.slice(0, 4) };
 }

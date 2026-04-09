@@ -1,11 +1,12 @@
-// src/services/audio/AudioService.ts
-
 import { Audio } from 'expo-av';
+import * as Speech from 'expo-speech';
+import { Platform } from 'react-native';
 import { useAudioStore } from '../../features/audio/audioStore';
 
 class AudioService {
   private sound: Audio.Sound | null = null;
   private updateInterval: any = null;
+  private currentSpeechText: string | null = null;
 
   async init() {
     await Audio.setAudioModeAsync({
@@ -31,6 +32,12 @@ class AudioService {
       store.setTrack({ id: uri, title, subtitle, url: uri });
       store.setPlaybackState('loading');
 
+      if (uri.startsWith('speech://')) {
+        const text = uri.replace('speech://', '');
+        await this.playNativeSpeech(text);
+        return;
+      }
+
       const { sound } = await Audio.Sound.createAsync(
         { uri },
         { shouldPlay: true },
@@ -50,6 +57,13 @@ class AudioService {
     if (this.sound) {
       await this.sound.pauseAsync();
       useAudioStore.getState().setPlaybackState('paused');
+    } else {
+      if (Platform.OS === 'android') {
+        await Speech.stop();
+      } else {
+        await Speech.pause();
+      }
+      useAudioStore.getState().setPlaybackState('paused');
     }
   }
 
@@ -57,6 +71,15 @@ class AudioService {
     if (this.sound) {
       await this.sound.playAsync();
       useAudioStore.getState().setPlaybackState('playing');
+    } else {
+      if (Platform.OS === 'android') {
+        if (this.currentSpeechText) {
+          await this.playNativeSpeech(this.currentSpeechText);
+        }
+      } else {
+        await Speech.resume();
+        useAudioStore.getState().setPlaybackState('playing');
+      }
     }
   }
 
@@ -66,8 +89,42 @@ class AudioService {
       await this.sound.stopAsync();
       await this.sound.unloadAsync();
       this.sound = null;
-      useAudioStore.getState().setPlaybackState('idle');
+    } else {
+      this.stopProgressTimer();
+      await Speech.stop();
     }
+    useAudioStore.getState().setPlaybackState('idle');
+  }
+
+  private async playNativeSpeech(text: string) {
+    this.currentSpeechText = text;
+    const store = useAudioStore.getState();
+    store.setPlaybackState('playing');
+    
+    // Estimate duration: ~150 words per minute -> 2.5 words per sec
+    const words = text.split(/\s+/).length;
+    const estimatedDuration = (words / 2.5) * 1000;
+    store.setProgress(0, estimatedDuration);
+
+    this.startSpeechProgressTimer(estimatedDuration);
+
+    Speech.speak(text, {
+      onDone: () => { this.stop(); },
+      onError: () => { store.setPlaybackState('error'); },
+    });
+  }
+
+  private startSpeechProgressTimer(duration: number) {
+    if (this.updateInterval) clearInterval(this.updateInterval);
+    const start = Date.now();
+    this.updateInterval = setInterval(() => {
+      const elapsed = Date.now() - start;
+      if (elapsed >= duration) {
+        this.stop();
+      } else {
+        useAudioStore.getState().setProgress(elapsed, duration);
+      }
+    }, 500);
   }
 
   private onPlaybackStatusUpdate = (status: any) => {

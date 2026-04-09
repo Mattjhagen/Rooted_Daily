@@ -1,13 +1,17 @@
 // src/services/audio/TTSService.ts
 
 import * as FileSystem from 'expo-file-system/legacy';
+import * as Speech from 'expo-speech';
 import CryptoJS from 'crypto-js';
 
 const OPENAI_API_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
+const ELEVENLABS_API_KEY = process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY;
 const AUDIO_CACHE_DIR = `${FileSystem.cacheDirectory}audio_cache/`;
 
+const ELEVENLABS_VOICE_ID = 'nPczCjzI2devNBz1zQ9n'; // Marcus - Great for Scripture
+
 /**
- * TTSService handles generating audio from text using OpenAI TTS
+ * TTSService handles generating audio from text using ElevenLabs or OpenAI TTS
  * and caching results locally.
  */
 export class TTSService {
@@ -34,25 +38,66 @@ export class TTSService {
     return clean.trim();
   }
 
-  static async getAudio(text: string, voice: 'alloy' | 'shimmer' | 'echo' = 'shimmer'): Promise<string | null> {
-    if (!OPENAI_API_KEY) {
-      console.warn('OpenAI API Key missing for TTS');
-      return null;
+  static async getAudio(text: string, voice?: string): Promise<string | null> {
+    if (ELEVENLABS_API_KEY) {
+      return this.getElevenLabsAudio(text, voice || ELEVENLABS_VOICE_ID);
+    }
+    
+    if (OPENAI_API_KEY) {
+      return this.getOpenAIAudio(text);
     }
 
+    console.warn('No API Keys for TTS. Falling back to native speech.');
+    return `speech://${text}`;
+  }
+
+  private static async getElevenLabsAudio(text: string, voiceId: string): Promise<string | null> {
+    const cleanedText = this.cleanText(text);
+    const hash = CryptoJS.MD5(cleanedText + voiceId).toString();
+    const filePath = `${AUDIO_CACHE_DIR}${hash}.mp3`;
+
+    await this.ensureCacheDir();
+
+    const fileInfo = await FileSystem.getInfoAsync(filePath);
+    if (fileInfo.exists) return filePath;
+
+    try {
+      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+        method: 'POST',
+        headers: {
+          'xi-api-key': ELEVENLABS_API_KEY!,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: cleanedText,
+          model_id: 'eleven_monolingual_v1',
+          voice_settings: {
+            stability: 0.5,
+            similarity_boost: 0.75,
+          },
+        }),
+      });
+
+      if (!response.ok) throw new Error(`ElevenLabs Error: ${response.status}`);
+
+      const blob = await response.blob();
+      return this.saveBlobToFile(blob, filePath);
+    } catch (error) {
+      console.error('ElevenLabs TTS failed', error);
+      return this.getOpenAIAudio(text); // Fallback
+    }
+  }
+
+  private static async getOpenAIAudio(text: string, voice: 'alloy' | 'shimmer' | 'echo' = 'shimmer'): Promise<string | null> {
     const cleanedText = this.cleanText(text);
     const hash = CryptoJS.MD5(cleanedText + voice).toString();
     const filePath = `${AUDIO_CACHE_DIR}${hash}.mp3`;
 
     await this.ensureCacheDir();
 
-    // Check Cache
     const fileInfo = await FileSystem.getInfoAsync(filePath);
-    if (fileInfo.exists) {
-      return filePath;
-    }
+    if (fileInfo.exists) return filePath;
 
-    // Generate via OpenAI
     try {
       const response = await fetch('https://api.openai.com/v1/audio/speech', {
         method: 'POST',
@@ -67,29 +112,28 @@ export class TTSService {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`OpenAI TTS Error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`OpenAI TTS Error: ${response.status}`);
 
-      // Convert response to base64 and save to file
       const blob = await response.blob();
-      const reader = new FileReader();
-      
-      return new Promise((resolve, reject) => {
-        reader.onloadend = async () => {
-          const base64data = (reader.result as string).split(',')[1];
-          await FileSystem.writeAsStringAsync(filePath, base64data, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
-          resolve(filePath);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-      
+      return this.saveBlobToFile(blob, filePath);
     } catch (error) {
-      console.error('TTS Generation failed', error);
+      console.error('OpenAI TTS failed', error);
       return null;
     }
+  }
+
+  private static async saveBlobToFile(blob: Blob, filePath: string): Promise<string> {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      reader.onloadend = async () => {
+        const base64data = (reader.result as string).split(',')[1];
+        await FileSystem.writeAsStringAsync(filePath, base64data, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+        resolve(filePath);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   }
 }

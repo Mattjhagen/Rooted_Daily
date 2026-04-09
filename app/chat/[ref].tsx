@@ -12,8 +12,9 @@ import { SuggestedChips } from '../../src/components/SuggestedChips';
 import { sendChatMessage, ChatMessage } from '../../src/features/chat/chatService';
 import { getVerse } from '../../src/features/bible/bibleService';
 import { useJournalStore } from '../../src/features/journal/journalStore';
-import { Send, ChevronDown, ChevronUp, Save } from 'lucide-react-native';
+import { Send, ChevronDown, ChevronUp, Save, BookOpen } from 'lucide-react-native';
 import { TypingIndicator } from '../../src/components/TypingIndicator';
+import { useToast } from '../../src/context/ToastContext';
 
 export default function ChatScreen() {
   const { ref: verseRef, q: initialQuery } = useLocalSearchParams<{ ref: string, q?: string }>();
@@ -31,6 +32,7 @@ export default function ChatScreen() {
   
   const flatListRef = useRef<FlatList>(null);
   const addJournalEntry = useJournalStore(state => state.addEntry);
+  const { showToast } = useToast();
 
   useEffect(() => {
     async function initChat() {
@@ -91,7 +93,7 @@ export default function ChatScreen() {
         note: lastAiMsg.content,
         type: 'reflection'
       });
-      alert('Saved to Journal');
+      showToast({ message: 'Saved to Journal', type: 'success' });
     }
   };
 
@@ -99,17 +101,26 @@ export default function ChatScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <KeyboardAvoidingView 
         style={{ flex: 1 }} 
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 80}
       >
         <View style={[styles.verseHeader, { backgroundColor: themeColors.surface, borderBottomColor: themeColors.border }]}>
-          <TouchableOpacity 
-            style={styles.verseHeaderToggle} 
-            onPress={() => setIsVerseExpanded(!isVerseExpanded)}
-          >
-            <Text style={[styles.verseRef, { color: themeColors.accent }]}>{verseRef}</Text>
-            {isVerseExpanded ? <ChevronUp size={20} color={themeColors.textSecondary} /> : <ChevronDown size={20} color={themeColors.textSecondary} />}
-          </TouchableOpacity>
+          <View style={styles.verseHeaderRow}>
+            <TouchableOpacity 
+              style={styles.verseHeaderToggle} 
+              onPress={() => setIsVerseExpanded(!isVerseExpanded)}
+            >
+              <Text style={[styles.verseRef, { color: themeColors.accent }]}>{verseRef}</Text>
+              {isVerseExpanded ? <ChevronUp size={20} color={themeColors.textSecondary} /> : <ChevronDown size={20} color={themeColors.textSecondary} />}
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              onPress={() => router.push(`/reader/${encodeURIComponent(verseRef)}`)}
+              style={styles.readerBtn}
+            >
+              <BookOpen size={20} color={themeColors.textSecondary} />
+            </TouchableOpacity>
+          </View>
           {isVerseExpanded && (
             <Text style={[styles.verseText, { color: themeColors.text }]}>"{verseText}"</Text>
           )}
@@ -167,10 +178,19 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     borderBottomWidth: 1,
   },
-  verseHeaderToggle: {
+  verseHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  verseHeaderToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  readerBtn: {
+    padding: spacing.xs,
+    marginLeft: spacing.md,
   },
   verseRef: {
     fontFamily: 'DMSans_600SemiBold',

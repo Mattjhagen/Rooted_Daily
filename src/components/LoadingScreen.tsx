@@ -1,5 +1,4 @@
-import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image, useColorScheme } from 'react-native';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
 import { typography } from '../theme/typography';
@@ -10,16 +9,19 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress, message }) => {
+  const isDark = useColorScheme() === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: themeColors.background }]}>
       <View style={styles.content}>
         <Image 
-          source={require('../../assets/images/icon.png')} 
+          source={isDark ? require('../../assets/images/icon.png') : require('../../assets/images/icon-light.png')} 
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.title}>Rooted</Text>
-        <Text style={styles.message}>{message}</Text>
+        <Text style={[styles.title, { color: themeColors.accent }]}>Rooted</Text>
+        <Text style={[styles.message, { color: themeColors.textSecondary }]}>{message}</Text>
         
         <View style={styles.progressContainer}>
           <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />

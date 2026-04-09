@@ -36,7 +36,7 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
     } else {
       // Start new track
       useAudioStore.getState().setPlaybackState('loading');
-      useAudioStore.getState().setTrack({ id: title, title, subtitle });
+      useAudioStore.getState().setTrack({ id: title, title, subtitle, text });
       
       const audioUrl = await TTSService.getAudio(text);
       if (audioUrl) {

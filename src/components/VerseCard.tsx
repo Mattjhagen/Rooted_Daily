@@ -14,6 +14,7 @@ interface VerseCardProps {
   text: string;
   reflectionPreview?: string;
   onPress?: () => void;
+  onReaderPress?: () => void;
   showReadFull?: boolean;
 }
 
@@ -22,6 +23,7 @@ export const VerseCard: React.FC<VerseCardProps> = ({
   text,
   reflectionPreview,
   onPress,
+  onReaderPress,
   showReadFull = true,
 }) => {
   const colorScheme = useColorScheme();
@@ -61,7 +63,7 @@ export const VerseCard: React.FC<VerseCardProps> = ({
         </TouchableOpacity>
 
         {showReadFull && (
-          <TouchableOpacity style={styles.secondaryCta}>
+          <TouchableOpacity style={styles.secondaryCta} onPress={onReaderPress}>
             <Text style={[styles.secondaryCtaText, { color: themeColors.textSecondary }]}>Read full chapter</Text>
           </TouchableOpacity>
         )}
