@@ -13,9 +13,9 @@ import { Devotional, DevotionalSubmission } from './types';
  * and are never displayed publicly. Include this in your privacy policy.
  */
 
-const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
-const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
-const SUPABASE_SERVICE_KEY = process.env.EXPO_PUBLIC_SUPABASE_SERVICE_KEY || ''; // admin only
+const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'placeholder';
+const SUPABASE_SERVICE_KEY = process.env.EXPO_PUBLIC_SUPABASE_SERVICE_KEY || 'placeholder'; // admin only
 
 // Create the public client
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

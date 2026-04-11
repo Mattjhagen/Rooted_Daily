@@ -7,11 +7,12 @@ const ANTHROPIC_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
 const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 
 // Ollama Configuration
-const OLLAMA_HOST = "https://inner-ebooks-duty-literacy.trycloudflare.com";
-const OLLAMA_MODEL = "llama3.1:8b-instruct-q4_K_M";
+// Configuration for your Ubuntu Proxy (behind Cloudflare Tunnel)
+const PROXY_URL = "https://potatoes-figured-bike-assign.trycloudflare.com/api/v1/chat"; 
+const PROXY_KEY = "ROOTED_DAILY_SECRET_2024"; // MUST MATCH Ubuntu Server key
 
 export interface ChatMessage {
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
@@ -59,25 +60,30 @@ export async function sendChatMessage(
 }
 
 async function callOllama(system: string, user: string, history: ChatMessage[]) {
-  const url = `${OLLAMA_HOST}/api/chat`;
+  const url = PROXY_URL;
   
   const response = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'x-api-key': PROXY_KEY
+    },
     body: JSON.stringify({
-      model: OLLAMA_MODEL,
       messages: [
-        { role: 'system', content: system },
+        { 
+          role: 'system', 
+          content: "You are Rooted Daily AI, helping users grow in their Christian faith through scripture, reflection, and encouragement." 
+        },
         ...history,
         { role: 'user', content: user }
       ],
-      stream: false
+      model: "llama3.2"
     })
   });
 
-  if (!response.ok) throw new Error(`Ollama Error ${response.status}`);
+  if (!response.ok) throw new Error(`Ollama Proxy Error ${response.status}`);
   const data = await response.json();
-  return data.message.content;
+  return data.content;
 }
 
 async function callGemini(system: string, user: string, history: ChatMessage[]) {
