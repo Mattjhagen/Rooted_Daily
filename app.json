@@ -50,17 +50,18 @@
     "experiments": {
       "typedRoutes": true
     },
-    "extra": {
-      "eas": {
-        "projectId": "f1014dfb-6a3c-4a7b-8488-e4e2a94109aa"
-      }
-    },
-    "owner": "pacmac-mobile-llc",
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/f1014dfb-6a3c-4a7b-8488-e4e2a94109aa"
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8068b023-d161-4ea9-9da1-402876a5140c"
+      }
+    },
+    "owner": "unsungomaha"
   }
 }
