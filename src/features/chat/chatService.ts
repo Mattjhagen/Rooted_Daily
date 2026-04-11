@@ -8,7 +8,7 @@ const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 
 // Ollama Configuration
 // Configuration for your Ubuntu Proxy (behind Cloudflare Tunnel)
-const PROXY_URL = "https://potatoes-figured-bike-assign.trycloudflare.com/api/v1/chat"; 
+const PROXY_URL = "https://hampton-investigation-stress-this.trycloudflare.com/api/v1/chat"; 
 const PROXY_KEY = "ROOTED_DAILY_SECRET_2024"; // MUST MATCH Ubuntu Server key
 
 export interface ChatMessage {
