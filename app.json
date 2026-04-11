@@ -45,7 +45,10 @@
           "icon": "./assets/images/icon.png",
           "color": "#212733"
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker",
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
