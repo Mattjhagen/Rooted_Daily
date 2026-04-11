@@ -123,13 +123,29 @@ export default function HomeScreen() {
     day: 'numeric',
   });
 
+  const [titleTaps, setTitleTaps] = useState(0);
+
+  const handleTitleTap = () => {
+    const newTaps = titleTaps + 1;
+    if (newTaps === 3) {
+      setTitleTaps(0);
+      router.push('/admin/devotionals');
+    } else {
+      setTitleTaps(newTaps);
+      // Reset taps after 2 seconds of inactivity
+      setTimeout(() => setTitleTaps(0), 2000);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
           <Text style={[styles.date, { color: themeColors.textSecondary }]}>{todayStr}</Text>
           <View style={styles.titleRow}>
-            <Text style={[styles.title, { color: themeColors.text }]}>Rooted</Text>
+            <TouchableOpacity activeOpacity={1} onPress={handleTitleTap}>
+              <Text style={[styles.title, { color: themeColors.text }]}>Rooted</Text>
+            </TouchableOpacity>
             <View style={styles.headerRight}>
               {lastReadRef && (
                 <TouchableOpacity 

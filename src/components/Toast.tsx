@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, Dimensions, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, useColorScheme, Platform } from 'react-native';
 import Animated, { 
   useSharedValue, 
   useAnimatedStyle, 
@@ -20,6 +20,7 @@ export const Toast: React.FC = () => {
   const { toast, visible, hideToast } = useToast();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
   
   const translateY = useSharedValue(-100);
   const opacity = useSharedValue(0);
@@ -54,16 +55,25 @@ export const Toast: React.FC = () => {
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
-      <BlurView intensity={isDark ? 30 : 50} tint={isDark ? 'dark' : 'light'} style={styles.blur}>
-        <View style={styles.content}>
-          <View style={styles.iconContainer}>
-            {getIcon()}
+      {Platform.OS === 'ios' ? (
+        <BlurView intensity={isDark ? 30 : 50} tint={isDark ? 'dark' : 'light'} style={styles.blur}>
+          <View style={styles.content}>
+            <View style={styles.iconContainer}>{getIcon()}</View>
+            <Text style={[styles.text, { color: isDark ? colors.white : colors.dark.text }]} numberOfLines={2}>
+              {toast.message}
+            </Text>
           </View>
-          <Text style={[styles.text, { color: isDark ? colors.white : colors.dark.text }]} numberOfLines={2}>
-            {toast.message}
-          </Text>
+        </BlurView>
+      ) : (
+        <View style={[styles.blur, { backgroundColor: isDark ? 'rgba(30, 27, 24, 0.95)' : 'rgba(255, 255, 255, 0.95)', borderBottomWidth: 1, borderBottomColor: themeColors.border }]}>
+          <View style={styles.content}>
+            <View style={styles.iconContainer}>{getIcon()}</View>
+            <Text style={[styles.text, { color: isDark ? colors.white : colors.dark.text }]} numberOfLines={2}>
+              {toast.message}
+            </Text>
+          </View>
         </View>
-      </BlurView>
+      )}
     </Animated.View>
   );
 };

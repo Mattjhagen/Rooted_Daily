@@ -101,8 +101,8 @@ export default function ChatScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <KeyboardAvoidingView 
         style={{ flex: 1 }} 
-        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 80}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
       >
         <View style={[styles.verseHeader, { backgroundColor: themeColors.surface, borderBottomColor: themeColors.border }]}>
           <View style={styles.verseHeaderRow}>
@@ -150,12 +150,21 @@ export default function ChatScreen() {
             <Save size={24} color={themeColors.accent} />
           </TouchableOpacity>
           <TextInput
-            style={[styles.input, { color: themeColors.text, backgroundColor: themeColors.background }]}
+            style={[
+              styles.input, 
+              { 
+                color: themeColors.text, 
+                backgroundColor: isDark ? '#2A2622' : themeColors.background,
+                borderColor: isDark ? '#3D3832' : themeColors.border,
+                borderWidth: isDark ? 1 : 0
+              }
+            ]}
             placeholder="Ask anything..."
             placeholderTextColor={themeColors.textSecondary}
             value={inputText}
             onChangeText={setInputText}
             multiline
+            textAlignVertical="center"
           />
           <TouchableOpacity 
             style={[styles.sendBtn, { backgroundColor: themeColors.accent }]} 
@@ -226,10 +235,11 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 20,
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    maxHeight: 100,
+    paddingVertical: Platform.OS === 'ios' ? spacing.sm : spacing.xs,
+    maxHeight: 120,
+    minHeight: 40,
     fontFamily: 'DMSans_400Regular',
-    fontSize: 15,
+    fontSize: 16,
   },
   sendBtn: {
     width: 40,

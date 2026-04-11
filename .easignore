@@ -1,0 +1,15 @@
+AndroidStudio/
+Library/
+.npm/
+.npm_cache_tmp/
+node_modules/
+.app-store/
+.expo/
+.git/
+.idea/
+.vscode/
+v0.0.1/
+rooted_icon_512.png
+logo_dark_light.png
+temp_icon.png
+rooted_app_icon.svg

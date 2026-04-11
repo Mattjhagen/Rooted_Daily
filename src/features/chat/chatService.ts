@@ -6,6 +6,10 @@ const GEMINI_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 const ANTHROPIC_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
 const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 
+// Ollama Configuration
+const OLLAMA_HOST = "https://inner-ebooks-duty-literacy.trycloudflare.com";
+const OLLAMA_MODEL = "llama3.1:8b-instruct-q4_K_M";
+
 export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
@@ -29,8 +33,9 @@ export async function sendChatMessage(
   );
   const systemInstructions = buildSystemPrompt();
 
-  // Define the provider waterfall
+  // Define the provider waterfall - Ollama is now first!
   const providers = [
+    { name: 'Ollama', call: callOllama },
     { name: 'Gemini', call: callGemini },
     { name: 'Anthropic', call: callAnthropic },
     { name: 'OpenAI', call: callOpenAI },
@@ -51,6 +56,28 @@ export async function sendChatMessage(
   }
 
   throw lastError || new Error('All AI providers failed. Please check your network or API keys.');
+}
+
+async function callOllama(system: string, user: string, history: ChatMessage[]) {
+  const url = `${OLLAMA_HOST}/api/chat`;
+  
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: OLLAMA_MODEL,
+      messages: [
+        { role: 'system', content: system },
+        ...history,
+        { role: 'user', content: user }
+      ],
+      stream: false
+    })
+  });
+
+  if (!response.ok) throw new Error(`Ollama Error ${response.status}`);
+  const data = await response.json();
+  return data.message.content;
 }
 
 async function callGemini(system: string, user: string, history: ChatMessage[]) {
