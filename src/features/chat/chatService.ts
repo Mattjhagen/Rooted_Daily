@@ -2,22 +2,11 @@
 
 import { buildSystemPrompt, buildUserMessage } from './systemPrompt';
 
-<<<<<<< Updated upstream
-const GEMINI_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
-const ANTHROPIC_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
-const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
-
-// Ollama Configuration
-// Configuration for your Ubuntu Proxy (behind Cloudflare Tunnel)
-const PROXY_URL = "https://hampton-investigation-stress-this.trycloudflare.com/api/v1/chat"; 
-const PROXY_KEY = "ROOTED_DAILY_SECRET_2024"; // MUST MATCH Ubuntu Server key
-=======
 const GEMINI_KEY   = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 const OPENAI_KEY   = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 const CLAUDE_KEY   = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
 // Groq key lives securely in Cloudflare Worker — never in the app bundle
 const AI_PROXY_URL = process.env.EXPO_PUBLIC_AI_PROXY_URL || 'https://rooted-ai.mattjhagen.workers.dev';
->>>>>>> Stashed changes
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
