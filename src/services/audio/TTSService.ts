@@ -1,6 +1,6 @@
 // src/services/audio/TTSService.ts
 
-import * as FileSystem from 'expo-file-system/legacy';
+import * as FileSystem from 'expo-file-system';
 import * as Speech from 'expo-speech';
 import CryptoJS from 'crypto-js';
 
@@ -62,26 +62,31 @@ export class TTSService {
     if (fileInfo.exists) return filePath;
 
     try {
-      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-        method: 'POST',
-        headers: {
-          'xi-api-key': ELEVENLABS_API_KEY!,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          text: cleanedText,
-          model_id: 'eleven_monolingual_v1',
-          voice_settings: {
-            stability: 0.5,
-            similarity_boost: 0.75,
+      const response = await FileSystem.downloadAsync(
+        `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
+        filePath,
+        {
+          headers: {
+            'xi-api-key': ELEVENLABS_API_KEY!,
+            'Content-Type': 'application/json',
           },
-        }),
-      });
+          httpMethod: 'POST',
+          body: JSON.stringify({
+            text: cleanedText,
+            model_id: 'eleven_monolingual_v1',
+            voice_settings: {
+              stability: 0.5,
+              similarity_boost: 0.75,
+            },
+          }),
+        }
+      );
 
-      if (!response.ok) throw new Error(`ElevenLabs Error: ${response.status}`);
+      if (response.status !== 200) {
+        throw new Error(`ElevenLabs Error: ${response.status}`);
+      }
 
-      const blob = await response.blob();
-      return this.saveBlobToFile(blob, filePath);
+      return filePath;
     } catch (error) {
       console.error('ElevenLabs TTS failed', error);
       return this.getOpenAIAudio(text); // Fallback
@@ -99,41 +104,31 @@ export class TTSService {
     if (fileInfo.exists) return filePath;
 
     try {
-      const response = await fetch('https://api.openai.com/v1/audio/speech', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'tts-1',
-          input: cleanedText,
-          voice: voice,
-        }),
-      });
+      const response = await FileSystem.downloadAsync(
+        'https://api.openai.com/v1/audio/speech',
+        filePath,
+        {
+          headers: {
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          httpMethod: 'POST',
+          body: JSON.stringify({
+            model: 'tts-1',
+            input: cleanedText,
+            voice: voice,
+          }),
+        }
+      );
 
-      if (!response.ok) throw new Error(`OpenAI TTS Error: ${response.status}`);
+      if (response.status !== 200) {
+        throw new Error(`OpenAI TTS Error: ${response.status}`);
+      }
 
-      const blob = await response.blob();
-      return this.saveBlobToFile(blob, filePath);
+      return filePath;
     } catch (error) {
       console.error('OpenAI TTS failed', error);
       return null;
     }
-  }
-
-  private static async saveBlobToFile(blob: Blob, filePath: string): Promise<string> {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      reader.onloadend = async () => {
-        const base64data = (reader.result as string).split(',')[1];
-        await FileSystem.writeAsStringAsync(filePath, base64data, {
-          encoding: FileSystem.EncodingType.Base64,
-        });
-        resolve(filePath);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
   }
 }

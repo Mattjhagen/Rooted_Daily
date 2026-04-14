@@ -10,15 +10,33 @@ import { requestNotificationPermissions, scheduleDailyReminder, cancelAllReminde
 import { useToast } from '../../src/context/ToastContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { HelpCircle, Heart, Mail, ExternalLink } from 'lucide-react-native';
+import * as Linking from 'expo-linking';
+import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
+
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
   const { showToast } = useToast();
+  const { setHasSeenTutorial } = usePersistenceStore();
 
   const [isEnabled, setIsEnabled] = useState(false);
   const [date, setDate] = useState(new Date(new Date().setHours(7, 0, 0, 0)));
   const [showPicker, setShowPicker] = useState(false);
+
+  const handleReplayTutorial = () => {
+    setHasSeenTutorial(false);
+    showToast({ message: 'Tutorial will show on next Home visit!', type: 'success' });
+  };
+
+  const handleDonate = () => {
+    Linking.openURL('https://www.venmo.com/u/RootedDaily');
+  };
+
+  const handleContact = () => {
+    Linking.openURL('mailto:rootedapp@p3lending.space');
+  };
 
   useEffect(() => {
     // Load saved settings
@@ -116,6 +134,46 @@ export default function SettingsScreen() {
         )}
       </View>
 
+      <View style={styles.section}>
+        <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Support the Mission</Text>
+        <View style={[styles.infoBox, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+          <Text style={[styles.infoText, { color: themeColors.textSecondary }]}>
+            Rooted Daily will always be a free resource. As a solo developer, I cover the significant costs for hosting and high-speed AI personally. If this app has blessed you, please consider a small donation to help keep our mission growing and the Word spreading.
+          </Text>
+          
+          <TouchableOpacity 
+            style={[styles.donateBtn, { backgroundColor: themeColors.accent }]}
+            onPress={handleDonate}
+          >
+            <Heart size={18} color="white" fill="white" />
+            <Text style={styles.donateBtnText}>Support on Venmo</Text>
+            <ExternalLink size={14} color="white" opacity={0.7} />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity 
+          style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: spacing.md }]}
+          onPress={handleContact}
+        >
+          <View style={styles.rowLabel}>
+            <Mail size={20} color={themeColors.accent} />
+            <Text style={[styles.rowText, { color: themeColors.text }]}>Got Feedback? Contact Me</Text>
+          </View>
+          <ChevronRight size={18} color={themeColors.textSecondary} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
+          onPress={handleReplayTutorial}
+        >
+          <View style={styles.rowLabel}>
+            <HelpCircle size={20} color={themeColors.accent} />
+            <Text style={[styles.rowText, { color: themeColors.text }]}>Replay Tutorial</Text>
+          </View>
+          <ChevronRight size={18} color={themeColors.textSecondary} />
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.footer}>
         <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v0.0.3</Text>
       </View>
@@ -183,5 +241,30 @@ const styles = StyleSheet.create({
   versionText: {
     ...typography.caption,
     opacity: 0.6,
+  },
+  infoBox: {
+    marginHorizontal: spacing.xl,
+    padding: spacing.lg,
+    borderRadius: 16,
+    borderWidth: 1,
+    gap: spacing.md,
+  },
+  infoText: {
+    fontFamily: 'DMSans_400Regular',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  donateBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: spacing.md,
+    borderRadius: 12,
+    gap: 8,
+  },
+  donateBtnText: {
+    color: 'white',
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 15,
   },
 });

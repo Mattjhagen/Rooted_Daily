@@ -4,28 +4,32 @@
     "slug": "rooted-daily-bible-buddy",
     "version": "0.0.3",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
-      "image": "./assets/images/splash-icon.png",
+      "image": "./assets/images/rooted-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#212733"
     },
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.pacmacmoblellc.rooteddaily",
       "infoPlist": {
         "UIBackgroundModes": [
+          "audio",
           "audio"
-        ]
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/rooted-icon.png",
         "backgroundColor": "#212733"
       },
+      "softwareKeyboardLayoutMode": "resize",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.pacmacmoblellc.rooteddaily",
@@ -34,7 +38,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/rooted-icon.png"
     },
     "plugins": [
       "expo-router",
@@ -42,7 +46,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/icon.png",
+          "icon": "./assets/images/rooted-icon.png",
           "color": "#212733"
         }
       ],
@@ -57,7 +61,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/f1014dfb-6a3c-4a7b-8488-e4e2a94109aa"
+      "url": "https://u.expo.dev/8068b023-d161-4ea9-9da1-402876a5140c"
     },
     "extra": {
       "router": {},

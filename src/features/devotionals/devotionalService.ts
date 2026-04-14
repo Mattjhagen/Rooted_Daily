@@ -13,8 +13,8 @@ import { Devotional, DevotionalSubmission } from './types';
  * and are never displayed publicly. Include this in your privacy policy.
  */
 
-const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'placeholder';
+const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://xphxtkdsshqsddajzlkj.supabase.co';
+const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhwaHh0a2Rzc2hxc2RkYWp6bGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4Mzg1MzksImV4cCI6MjA5MTQxNDUzOX0.zkXqNnFkOxkYEkQh8pYpsfUMdJMd8ri_Bta5_Jn_8lg';
 const SUPABASE_SERVICE_KEY = process.env.EXPO_PUBLIC_SUPABASE_SERVICE_KEY || 'placeholder'; // admin only
 
 // Create the public client

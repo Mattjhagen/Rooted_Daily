@@ -2,6 +2,7 @@
 
 import { buildSystemPrompt, buildUserMessage } from './systemPrompt';
 
+<<<<<<< Updated upstream
 const GEMINI_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 const ANTHROPIC_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
 const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
@@ -10,6 +11,13 @@ const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
 // Configuration for your Ubuntu Proxy (behind Cloudflare Tunnel)
 const PROXY_URL = "https://hampton-investigation-stress-this.trycloudflare.com/api/v1/chat"; 
 const PROXY_KEY = "ROOTED_DAILY_SECRET_2024"; // MUST MATCH Ubuntu Server key
+=======
+const GEMINI_KEY   = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
+const OPENAI_KEY   = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
+const CLAUDE_KEY   = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY;
+// Groq key lives securely in Cloudflare Worker — never in the app bundle
+const AI_PROXY_URL = process.env.EXPO_PUBLIC_AI_PROXY_URL || 'https://rooted-ai.mattjhagen.workers.dev';
+>>>>>>> Stashed changes
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -21,6 +29,108 @@ export interface ChatResponse {
   suggestions: string[];
 }
 
+// ── 1. Groq via Cloudflare Worker (Llama 3.3 70B — primary, 14,400 req/day free)
+async function callGroq(messages: ChatMessage[]): Promise<string> {
+  const response = await fetch(AI_PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`Groq proxy error: ${response.status} — ${err}`);
+  }
+
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message || 'Groq error');
+  return data.choices?.[0]?.message?.content ?? '';
+}
+
+// ── 2. Gemini (fallback)
+async function callGemini(history: ChatMessage[], userMessage: string, systemPrompt: string): Promise<string> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
+
+  const contents = [
+    ...history.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    })),
+    { role: 'user', parts: [{ text: userMessage }] }
+  ];
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents,
+      system_instruction: { parts: [{ text: systemPrompt }] }
+    })
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    console.error('Gemini Error Body:', errorBody);
+    throw new Error('Gemini API Error');
+  }
+
+  const data = await response.json();
+  return data.candidates[0].content.parts[0].text;
+}
+
+// ── 3. OpenAI (fallback)
+async function callOpenAI(messages: any[]): Promise<string> {
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${OPENAI_KEY}`
+    },
+    body: JSON.stringify({
+      model: 'gpt-3.5-turbo',
+      messages: messages.map(m => ({ role: m.role, content: m.content }))
+    })
+  });
+
+  if (!response.ok) throw new Error('OpenAI Failed');
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+
+// ── 4. Claude (last resort)
+async function callClaude(messages: any[]): Promise<string> {
+  const systemMessage = messages.find(m => m.role === 'system')?.content;
+  const chatMessages = messages.filter(m => m.role !== 'system');
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': CLAUDE_KEY || '',
+      'anthropic-version': '2023-06-01',
+      'dangerously-allow-browser': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-3-haiku-20240307',
+      max_tokens: 1000,
+      system: systemMessage,
+      messages: chatMessages.map(m => ({
+        role: m.role === 'assistant' ? 'assistant' : 'user',
+        content: m.content
+      }))
+    })
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    console.error('Claude API Error:', err);
+    throw new Error('Claude Failed');
+  }
+  const data = await response.json();
+  return data.content[0].text;
+}
+
+// ── Main export
 export async function sendChatMessage(
   history: ChatMessage[],
   userMessage: string,
@@ -29,152 +139,67 @@ export async function sendChatMessage(
   chapterSummary?: string,
   crossRefs?: string[]
 ): Promise<ChatResponse> {
-  const groundedUserMessage = buildUserMessage(
-    userMessage, verseRef, verseText, chapterSummary, crossRefs
-  );
+  const groundedUserMessage = buildUserMessage(userMessage, verseRef, verseText, chapterSummary, crossRefs);
   const systemInstructions = buildSystemPrompt();
 
-  // Define the provider waterfall - Ollama is now first!
-  const providers = [
-    { name: 'Ollama', call: callOllama },
-    { name: 'Gemini', call: callGemini },
-    { name: 'Anthropic', call: callAnthropic },
-    { name: 'OpenAI', call: callOpenAI },
+  const fullHistory: ChatMessage[] = [
+    { role: 'system', content: systemInstructions },
+    ...history,
+    { role: 'user', content: groundedUserMessage }
   ];
 
-  let lastError: any = null;
-
-  for (const provider of providers) {
-    try {
-      console.log(`Attempting AI request with ${provider.name}...`);
-      const fullText = await provider.call(systemInstructions, groundedUserMessage, history);
-      return parseResponse(fullText);
-    } catch (error: any) {
-      console.warn(`${provider.name} failed:`, error.message);
-      lastError = error;
-      // Continue to next provider in loop
-    }
+  // 1. Groq (primary)
+  try {
+    const text = await callGroq(fullHistory);
+    return parseResponse(text);
+  } catch (e: any) {
+    console.warn('Groq failed, trying Gemini:', e.message);
   }
 
-  throw lastError || new Error('All AI providers failed. Please check your network or API keys.');
+  // 2. Gemini
+  try {
+    const text = await callGemini(history, groundedUserMessage, systemInstructions);
+    return parseResponse(text);
+  } catch (e: any) {
+    console.warn('Gemini failed, trying OpenAI:', e.message);
+  }
+
+  // 3. OpenAI
+  try {
+    const text = await callOpenAI(fullHistory);
+    return parseResponse(text);
+  } catch (e: any) {
+    console.warn('OpenAI failed, trying Claude:', e.message);
+  }
+
+  // 4. Claude
+  try {
+    const text = await callClaude(fullHistory);
+    return parseResponse(text);
+  } catch (e: any) {
+    console.error('All AI providers failed:', e.message);
+    throw new Error('Our AI is currently unavailable. Please check your internet or try again later.');
+  }
 }
 
-async function callOllama(system: string, user: string, history: ChatMessage[]) {
-  const url = PROXY_URL;
-  
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 
-      'Content-Type': 'application/json',
-      'x-api-key': PROXY_KEY
-    },
-    body: JSON.stringify({
-      messages: [
-        { 
-          role: 'system', 
-          content: "You are Rooted Daily AI, helping users grow in their Christian faith through scripture, reflection, and encouragement." 
-        },
-        ...history,
-        { role: 'user', content: user }
-      ],
-      model: "llama3.2"
-    })
-  });
+function parseResponse(text: string): ChatResponse {
+  if (!text) return { text: 'I am here to help you reflect.', suggestions: [] };
 
-  if (!response.ok) throw new Error(`Ollama Proxy Error ${response.status}`);
-  const data = await response.json();
-  return data.content;
-}
-
-async function callGemini(system: string, user: string, history: ChatMessage[]) {
-  if (!GEMINI_KEY) throw new Error('Gemini key missing');
-  const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
-  
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: `${system}\n\n${user}` }] }],
-      generationConfig: { maxOutputTokens: 1000, temperature: 0.7 }
-    })
-  });
-
-  if (!response.ok) throw new Error(`Gemini Error ${response.status}`);
-  const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-}
-
-async function callAnthropic(system: string, user: string, history: ChatMessage[]) {
-  if (!ANTHROPIC_KEY) throw new Error('Anthropic key missing');
-  
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': ANTHROPIC_KEY,
-      'anthropic-version': '2023-06-01',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'claude-3-5-sonnet-20240620',
-      max_tokens: 1000,
-      system: system,
-      messages: [{ role: 'user', content: user }]
-    })
-  });
-
-  if (!response.ok) throw new Error(`Anthropic Error ${response.status}`);
-  const data = await response.json();
-  return data.content[0].text;
-}
-
-async function callOpenAI(system: string, user: string, history: ChatMessage[]) {
-  if (!OPENAI_KEY) throw new Error('OpenAI key missing');
-
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${OPENAI_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: system },
-        { role: 'user', content: user }
-      ],
-      temperature: 0.7
-    })
-  });
-
-  if (!response.ok) throw new Error(`OpenAI Error ${response.status}`);
-  const data = await response.json();
-  return data.choices[0].message.content;
-}
-
-function parseResponse(fullText: string): ChatResponse {
-  const suggMatch = fullText.match(/SUGGESTIONS_JSON:?\s*(`{1,3}json\s*)?({.*?\s*)?(\[.*\])/si);
+  const jsonMatch = text.match(/SUGGESTIONS_JSON:(\[.*\])/);
   let suggestions: string[] = [];
-  let cleanText = fullText;
 
-  if (suggMatch) {
+  if (jsonMatch) {
     try {
-      suggestions = JSON.parse(suggMatch[3].trim());
+      suggestions = JSON.parse(jsonMatch[1]);
     } catch (e) {
-      console.error('Failed to parse suggestions', e);
-    }
-    cleanText = fullText.replace(/SUGGESTIONS_JSON:?\s*(`{1,3}json\s*)?({.*?)?\[.*\](.*?})?(`{1,3})?/si, '').trim();
-  } else {
-    const lastArrayMatch = fullText.match(/(\[.*?\])(?!.*\[)/s);
-    if (lastArrayMatch) {
-      try {
-        suggestions = JSON.parse(lastArrayMatch[1]);
-        cleanText = fullText.replace(lastArrayMatch[1], '').trim();
-      } catch (e) { }
+      console.warn('Failed to parse suggestions JSON', e);
     }
   }
 
-  cleanText = cleanText.replace(/```json.*?```/gsi, '');
-  cleanText = cleanText.replace(/SUGGESTIONS_JSON:?/gi, '').trim();
+  const cleanText = text.replace(/SUGGESTIONS_JSON:\[.*\]/g, '').trim();
 
-  return { text: cleanText, suggestions: suggestions.slice(0, 4) };
+  return {
+    text: cleanText,
+    suggestions: suggestions.slice(0, 3)
+  };
 }

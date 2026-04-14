@@ -30,6 +30,8 @@ const getBooks = (data: any) => {
 };
 const bibleData = getBooks(rawBibleData);
 
+import { TutorialModal } from '../../src/components/TutorialModal';
+
 export default function HomeScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
@@ -43,8 +45,17 @@ export default function HomeScreen() {
     getDevotionalProgress, 
     streakCount, 
     points, 
-    performCheckIn 
+    performCheckIn,
+    hasSeenTutorial,
+    setHasSeenTutorial
   } = usePersistenceStore();
+  
+  const [showTutorial, setShowTutorial] = useState(!hasSeenTutorial);
+
+  const handleCloseTutorial = () => {
+    setShowTutorial(false);
+    setHasSeenTutorial(true);
+  };
   
   const [dailyData, setDailyData] = useState(getDailyVerse());
   const [verseText, setVerseText] = useState('Loading...');
@@ -167,7 +178,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <View style={styles.sectionHeader}>
+        <View style={styles.devotionalHeader}>
           <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Daily Devotional</Text>
           <View style={styles.checkpoints}>
             <View style={styles.checkpoint}>
@@ -229,6 +240,10 @@ export default function HomeScreen() {
           />
         </View>
       </ScrollView>
+      <TutorialModal 
+        isVisible={showTutorial} 
+        onClose={handleCloseTutorial} 
+      />
     </SafeAreaView>
   );
 }
@@ -281,6 +296,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     marginBottom: spacing.sm,
   },
+  devotionalHeader: {
+    marginTop: spacing.lg,
+    marginBottom: spacing.sm,
+  },
   sectionHeader: {
     marginTop: spacing.lg,
     marginBottom: spacing.xs,
@@ -317,7 +336,7 @@ const styles = StyleSheet.create({
   checkpoints: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: spacing.lg,
+    paddingLeft: spacing.lg,
   },
   checkpoint: {
     flexDirection: 'row',

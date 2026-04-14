@@ -46,15 +46,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, size }) => <Search size={size} color={color} />,
+          title: 'Bible',
+          tabBarIcon: ({ color, size }) => <BookOpen size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="devotionals"
         options={{
           title: 'Devotionals',
-          tabBarIcon: ({ color, size }) => <BookOpen size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Search size={size} color={color} />,
         }}
       />
       <Tabs.Screen

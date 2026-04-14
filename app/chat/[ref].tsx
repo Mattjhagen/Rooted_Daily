@@ -101,8 +101,8 @@ export default function ChatScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <KeyboardAvoidingView 
         style={{ flex: 1 }} 
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 100}
       >
         <View style={[styles.verseHeader, { backgroundColor: themeColors.surface, borderBottomColor: themeColors.border }]}>
           <View style={styles.verseHeaderRow}>
@@ -149,23 +149,26 @@ export default function ChatScreen() {
           <TouchableOpacity onPress={saveToJournal} style={styles.actionBtn}>
             <Save size={24} color={themeColors.accent} />
           </TouchableOpacity>
-          <TextInput
-            style={[
-              styles.input, 
-              { 
-                color: themeColors.text, 
-                backgroundColor: isDark ? '#2A2622' : themeColors.background,
-                borderColor: isDark ? '#3D3832' : themeColors.border,
-                borderWidth: isDark ? 1 : 0
-              }
-            ]}
-            placeholder="Ask anything..."
-            placeholderTextColor={themeColors.textSecondary}
-            value={inputText}
-            onChangeText={setInputText}
-            multiline
-            textAlignVertical="center"
-          />
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={[
+                styles.input, 
+                { 
+                  color: themeColors.text, 
+                  backgroundColor: isDark ? '#2A2622' : themeColors.background,
+                  borderColor: isDark ? '#3D3832' : themeColors.border,
+                  borderWidth: isDark ? 1 : 0
+                }
+              ]}
+              placeholder="Ask anything..."
+              placeholderTextColor={themeColors.textSecondary}
+              value={inputText}
+              onChangeText={setInputText}
+              multiline
+              scrollEnabled={true}
+              blurOnSubmit={false}
+            />
+          </View>
           <TouchableOpacity 
             style={[styles.sendBtn, { backgroundColor: themeColors.accent }]} 
             onPress={() => handleSend(inputText)}
@@ -231,8 +234,11 @@ const styles = StyleSheet.create({
   actionBtn: {
     marginRight: spacing.sm,
   },
-  input: {
+  inputWrapper: {
     flex: 1,
+    justifyContent: 'center',
+  },
+  input: {
     borderRadius: 20,
     paddingHorizontal: spacing.md,
     paddingVertical: Platform.OS === 'ios' ? spacing.sm : spacing.xs,

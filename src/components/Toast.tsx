@@ -35,6 +35,11 @@ export const Toast: React.FC = () => {
     }
   }, [visible]);
 
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+    opacity: opacity.value,
+  }));
+
   if (!toast) return null;
 
   const getIcon = () => {
@@ -47,11 +52,6 @@ export const Toast: React.FC = () => {
       default: return <Info size={size} color={isDark ? colors.accent : colors.dark.accent} />;
     }
   };
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
-    opacity: opacity.value,
-  }));
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>

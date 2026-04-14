@@ -7,6 +7,7 @@ import { useAudioStore } from '../features/audio/audioStore';
 import { audioService } from '../services/audio/AudioService';
 import { TTSService } from '../services/audio/TTSService';
 import { colors } from '../theme/colors';
+import { useToast } from '../context/ToastContext';
 
 interface AudioIconButtonProps {
   text: string;
@@ -24,6 +25,7 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
   color 
 }) => {
   const { currentTrack, playbackState } = useAudioStore();
+  const { showToast } = useToast();
   const isActive = currentTrack?.title === title;
   const isLoading = isActive && playbackState === 'loading';
   const isPlaying = isActive && playbackState === 'playing';
@@ -38,10 +40,16 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
       useAudioStore.getState().setPlaybackState('loading');
       useAudioStore.getState().setTrack({ id: title, title, subtitle, text });
       
+      showToast({ message: 'Preparing audio...', type: 'info' });
       const audioUrl = await TTSService.getAudio(text);
+      
       if (audioUrl) {
+        if (!audioUrl.startsWith('speech://')) {
+          showToast({ message: 'Streaming high-quality narration...', type: 'success' });
+        }
         await audioService.play(audioUrl, title, subtitle);
       } else {
+        showToast({ message: 'Audio currently unavailable.', type: 'error' });
         useAudioStore.getState().setPlaybackState('error');
       }
     }

@@ -15,10 +15,12 @@ interface PersistenceState {
   streakCount: number;
   points: number;
   lastCheckInDate: string | null;
+  hasSeenTutorial: boolean;
   updateLastReadRef: (ref: string) => void;
   updateDevotionalProgress: (date: string, updates: Partial<DevotionalProgress>) => void;
   getDevotionalProgress: (date: string) => DevotionalProgress;
   performCheckIn: () => { pointsEarned: number; newStreak: number } | null;
+  setHasSeenTutorial: (seen: boolean) => void;
 }
 
 export const usePersistenceStore = create<PersistenceState>()(
@@ -29,8 +31,11 @@ export const usePersistenceStore = create<PersistenceState>()(
       streakCount: 0,
       points: 0,
       lastCheckInDate: null,
+      hasSeenTutorial: false,
       
       updateLastReadRef: (lastReadRef) => set({ lastReadRef }),
+      
+      setHasSeenTutorial: (hasSeenTutorial) => set({ hasSeenTutorial }),
       
       updateDevotionalProgress: (date, updates) => {
         const current = get().getDevotionalProgress(date);

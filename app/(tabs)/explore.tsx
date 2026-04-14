@@ -77,7 +77,7 @@ export default function ExploreScreen() {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <View style={styles.header}>
-        <Text style={[styles.title, { color: themeColors.text }]}>Explore</Text>
+        <Text style={[styles.title, { color: themeColors.text }]}>Bible</Text>
         <View style={[styles.searchContainer, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
           <Search size={20} color={themeColors.textSecondary} />
           <TextInput
