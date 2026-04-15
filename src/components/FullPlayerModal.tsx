@@ -34,12 +34,23 @@ export const FullPlayerModal = () => {
     return currentTrack.text.split(/(?<=[.!?])\s+/);
   }, [currentTrack?.text]);
 
-  // Determine active sentence index
+  // Determine active sentence index using character-weighted timing
   const activeIndex = useMemo(() => {
     if (!isKaraokeEnabled || duration <= 0 || sentences.length === 0) return -1;
+    
+    const totalChars = sentences.reduce((acc, s) => acc + s.length, 0);
     const progress = position / duration;
-    return Math.floor(progress * sentences.length);
-  }, [position, duration, sentences.length, isKaraokeEnabled]);
+    const targetChar = progress * totalChars;
+    
+    let processedChars = 0;
+    for (let i = 0; i < sentences.length; i++) {
+      processedChars += sentences[i].length;
+      if (processedChars >= targetChar) {
+        return i;
+      }
+    }
+    return sentences.length - 1;
+  }, [position, duration, sentences, isKaraokeEnabled]);
 
   if (!currentTrack) return null;
 

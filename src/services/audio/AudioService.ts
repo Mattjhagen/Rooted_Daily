@@ -68,6 +68,9 @@ class AudioService {
       // Start playing explicitly
       const status = await sound.playAsync();
       
+      // Force apply the rate again after play starts (fixes some Android issues)
+      await sound.setRateAsync(store.playbackRate, true);
+      
       if (status.isLoaded && status.isPlaying) {
         store.setPlaybackState('playing');
         this.startProgressTimer();
