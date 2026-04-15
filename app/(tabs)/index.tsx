@@ -50,7 +50,21 @@ export default function HomeScreen() {
     setHasSeenTutorial
   } = usePersistenceStore();
   
-  const [showTutorial, setShowTutorial] = useState(!hasSeenTutorial);
+  const [showTutorial, setShowTutorial] = useState(false);
+
+  // Wait for Zustand to rehydrate from AsyncStorage before deciding to show tutorial
+  useEffect(() => {
+    // Check if already hydrated (synchronous case)
+    if (usePersistenceStore.persist.hasHydrated()) {
+      setShowTutorial(!usePersistenceStore.getState().hasSeenTutorial);
+      return;
+    }
+    // Wait for async hydration to finish
+    const unsub = usePersistenceStore.persist.onFinishHydration((state) => {
+      setShowTutorial(!state.hasSeenTutorial);
+    });
+    return () => unsub();
+  }, []);
 
   const handleCloseTutorial = () => {
     setShowTutorial(false);
