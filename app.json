@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.pacmacmoblellc.rooteddaily",
+      "bundleIdentifier": "com.rooteddaily.bible",
       "infoPlist": {
         "UIBackgroundModes": [
           "audio",
@@ -32,7 +32,7 @@
       "softwareKeyboardLayoutMode": "resize",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.pacmacmoblellc.rooteddaily",
+      "package": "com.rooteddaily.bible",
       "versionCode": 4
     },
     "web": {
