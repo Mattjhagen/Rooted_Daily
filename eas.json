@@ -24,7 +24,10 @@
       "distribution": "store",
       "channel": "production",
       "android": {
-        "buildType": "apk"
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_AI_PROXY_URL": "https://rooted-ai.mattjhagen.workers.dev"
       }
     }
   },

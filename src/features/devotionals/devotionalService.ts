@@ -1,24 +1,11 @@
 // src/features/devotionals/devotionalService.ts
 
-import { createClient } from '@supabase/supabase-js';
 import { Devotional, DevotionalSubmission } from './types';
-
-/**
- * CONTENT POLICY: Devotionals submitted through this feature are reviewed
- * before publication. Submissions must be scripture-centered and may not
- * contain commercial promotions, solicitations, or content contradicting
- * basic Christian orthodoxy as defined by the Nicene Creed.
- * 
- * PRIVACY: Submitter email addresses are stored only for contact purposes
- * and are never displayed publicly. Include this in your privacy policy.
- */
+import { supabase } from '../../services/supabase';
+import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://xphxtkdsshqsddajzlkj.supabase.co';
-const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhwaHh0a2Rzc2hxc2RkYWp6bGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4Mzg1MzksImV4cCI6MjA5MTQxNDUzOX0.zkXqNnFkOxkYEkQh8pYpsfUMdJMd8ri_Bta5_Jn_8lg';
 const SUPABASE_SERVICE_KEY = process.env.EXPO_PUBLIC_SUPABASE_SERVICE_KEY || 'placeholder'; // admin only
-
-// Create the public client
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Create the admin client (use with caution, only for admin screens)
 const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);

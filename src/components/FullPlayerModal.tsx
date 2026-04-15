@@ -22,7 +22,8 @@ export const FullPlayerModal = () => {
     isFullPlayerVisible, 
     setFullPlayerVisible,
     isKaraokeEnabled,
-    setKaraokeEnabled
+    setKaraokeEnabled,
+    playbackRate
   } = useAudioStore();
 
   const isPlaying = playbackState === 'playing';
@@ -59,7 +60,13 @@ export const FullPlayerModal = () => {
             <Text style={[styles.playingFrom, { color: themeColors.textSecondary }]}>PLAYING FROM</Text>
             <Text style={[styles.mainTitle, { color: themeColors.text }]}>{currentTrack.subtitle || 'Scripture'}</Text>
           </View>
-          <TouchableOpacity style={styles.closeBtn}>
+          <TouchableOpacity 
+            style={styles.closeBtn}
+            onPress={() => {
+              const msg = `Source: Rooted Daily Narration\nTrack: ${currentTrack.title}\n\nThis audio is generated to help you focus on the Word. "Focus Sync" highlights the text as it is read.`;
+              alert(msg);
+            }}
+          >
             <Info size={24} color={themeColors.text} />
           </TouchableOpacity>
         </View>
@@ -76,7 +83,8 @@ export const FullPlayerModal = () => {
                     { 
                       color: index === activeIndex ? themeColors.accent : themeColors.text,
                       opacity: index === activeIndex ? 1 : 0.4,
-                      backgroundColor: index === activeIndex ? themeColors.accent + '10' : 'transparent',
+                      backgroundColor: index === activeIndex ? themeColors.accent + '25' : 'transparent',
+                      textDecorationLine: index === activeIndex ? 'underline' : 'none',
                     }
                   ]}
                 >
@@ -118,18 +126,34 @@ export const FullPlayerModal = () => {
 
           {/* Main Controls */}
           <View style={styles.mainControls}>
-            <TouchableOpacity><SkipBack size={32} color={themeColors.text} fill={themeColors.text} /></TouchableOpacity>
             <TouchableOpacity 
-              onPress={() => isPlaying ? audioService.pause() : audioService.resume()}
-              style={[styles.playBtn, { backgroundColor: themeColors.text }]}
+              onPress={() => {
+                const rates = [0.5, 0.8, 0.9, 1, 1.25, 1.5, 2];
+                const currentIndex = rates.indexOf(playbackRate);
+                const nextIndex = (currentIndex + 1) % rates.length;
+                audioService.setPlaybackRate(rates[nextIndex]);
+              }}
+              style={styles.speedBtn}
             >
-              {isPlaying ? (
-                <Pause size={36} color={themeColors.background} fill={themeColors.background} />
-              ) : (
-                <Play size={36} color={themeColors.background} fill={themeColors.background} />
-              )}
+              <Text style={[styles.speedText, { color: themeColors.accent }]}>{playbackRate}x</Text>
             </TouchableOpacity>
-            <TouchableOpacity><SkipForward size={32} color={themeColors.text} fill={themeColors.text} /></TouchableOpacity>
+
+            <View style={styles.playbackCenter}>
+              <TouchableOpacity><SkipBack size={32} color={themeColors.text} fill={themeColors.text} /></TouchableOpacity>
+              <TouchableOpacity 
+                onPress={() => isPlaying ? audioService.pause() : audioService.resume()}
+                style={[styles.playBtn, { backgroundColor: themeColors.text }]}
+              >
+                {isPlaying ? (
+                  <Pause size={36} color={themeColors.background} fill={themeColors.background} />
+                ) : (
+                  <Play size={36} color={themeColors.background} fill={themeColors.background} />
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity><SkipForward size={32} color={themeColors.text} fill={themeColors.text} /></TouchableOpacity>
+            </View>
+
+            <View style={{ width: 44 }} /> {/* Spacer to balance speed button */}
           </View>
         </View>
       </View>
@@ -249,5 +273,23 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  playbackCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 40,
+  },
+  speedBtn: {
+    width: 44,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  speedText: {
+    fontSize: 12,
+    fontFamily: 'DMSans_700Bold',
   },
 });

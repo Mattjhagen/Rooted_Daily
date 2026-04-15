@@ -29,7 +29,20 @@ class AudioService {
         await this.stop();
       }
 
-      store.setTrack({ id: uri, title, subtitle, url: uri });
+      // Ensure Audio Mode is active (fixes silent playback issues)
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+        staysActiveInBackground: true,
+        interruptionModeIOS: 1, // DoNotMix
+        playsInSilentModeIOS: true,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: 1, // DoNotMix
+        playThroughEarpieceAndroid: false,
+      });
+
+      // Use existing track text if we're just updating the URI
+      const existingText = store.currentTrack?.text;
+      store.setTrack({ id: uri, title, subtitle, url: uri, text: existingText });
       store.setPlaybackState('loading');
 
       if (uri.startsWith('speech://')) {
@@ -38,18 +51,48 @@ class AudioService {
         return;
       }
 
+      // Create sound but don't auto-play yet
       const { sound } = await Audio.Sound.createAsync(
         { uri },
-        { shouldPlay: true },
+        { 
+          shouldPlay: false,
+          rate: store.playbackRate,
+          shouldCorrectPitch: true,
+          volume: 1.0,
+        },
         this.onPlaybackStatusUpdate
       );
       
       this.sound = sound;
-      this.startProgressTimer();
+
+      // Start playing explicitly
+      const status = await sound.playAsync();
+      
+      if (status.isLoaded && status.isPlaying) {
+        store.setPlaybackState('playing');
+        this.startProgressTimer();
+      } else {
+        // Retry play if it failed to start
+        setTimeout(async () => {
+          if (this.sound) await this.sound.playAsync();
+        }, 100);
+      }
       
     } catch (error) {
       console.error('Playback failed', error);
       useAudioStore.getState().setPlaybackState('error');
+    }
+  }
+
+  async setPlaybackRate(rate: number) {
+    const store = useAudioStore.getState();
+    store.setPlaybackRate(rate);
+    
+    if (this.sound) {
+      await this.sound.setRateAsync(rate, true);
+    } else if (this.currentSpeechText) {
+      // For native speech, we would need to stop and restart with new rate
+      // or just wait for next play. Speech.speak also has a rate option.
     }
   }
 

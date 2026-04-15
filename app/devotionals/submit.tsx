@@ -316,7 +316,7 @@ export default function SubmitDevotionalScreen() {
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]} edges={['top']}>
+    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]} edges={['top', 'bottom']}>
       <Stack.Screen options={{ 
         title: 'Submit Devotional',
         headerShown: step !== 'success',
@@ -324,10 +324,14 @@ export default function SubmitDevotionalScreen() {
       }} />
 
       <KeyboardAvoidingView 
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined} 
         style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
           {renderStepIndicator()}
           
           {step === 1 && renderStep1()}

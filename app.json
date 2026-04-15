@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rooted Daily",
     "slug": "rooted-daily-bible-buddy",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "orientation": "portrait",
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
@@ -30,10 +30,9 @@
         "backgroundColor": "#212733"
       },
       "softwareKeyboardLayoutMode": "resize",
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.rooteddaily.bible",
-      "versionCode": 4
+      "versionCode": 6
     },
     "web": {
       "bundler": "metro",

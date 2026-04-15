@@ -1,15 +1,31 @@
-AndroidStudio/
-Library/
-.npm/
-.npm_cache_tmp/
+# Dependencies
 node_modules/
-.app-store/
+
+# Native build artifacts
+android/
+ios/
+
+# Expo
 .expo/
-.git/
+dist/
+web-build/
+
+# IDE and System files
 .idea/
 .vscode/
+.DS_Store
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Large project-specific junk
+Library/
+AndroidStudio/
+rooted.env/
 v0.0.1/
-rooted_icon_512.png
-logo_dark_light.png
+brain/
 temp_icon.png
-rooted_app_icon.svg
+logo_dark_light.png
+v0.0.1/

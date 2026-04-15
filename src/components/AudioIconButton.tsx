@@ -45,9 +45,18 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
       showToast({ message: 'Preparing audio...', type: 'info' });
       const audioUrl = await TTSService.getAudio(text);
       
-      if (!audioUrl.startsWith('speech://')) {
+      if (!audioUrl) {
+        useAudioStore.getState().setPlaybackState('error');
+        showToast({ message: 'Could not generate audio. Please try again.', type: 'error' });
+        return;
+      }
+
+      if (audioUrl.startsWith('speech://')) {
+        showToast({ message: 'Using device speech...', type: 'info' });
+      } else {
         showToast({ message: 'Streaming high-quality narration...', type: 'success' });
       }
+      
       await audioService.play(audioUrl, trackTitle, trackSubtitle);
     }
   };

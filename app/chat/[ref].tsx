@@ -10,7 +10,7 @@ import { spacing } from '../../src/theme/spacing';
 import { ChatMessage as ChatMessageComponent } from '../../src/components/ChatMessage';
 import { SuggestedChips } from '../../src/components/SuggestedChips';
 import { sendChatMessage, ChatMessage } from '../../src/features/chat/chatService';
-import { getVerse } from '../../src/features/bible/bibleService';
+import { getVerse, getChapter } from '../../src/features/bible/bibleService';
 import { useJournalStore } from '../../src/features/journal/journalStore';
 import { Send, ChevronDown, ChevronUp, Save, BookOpen } from 'lucide-react-native';
 import { TypingIndicator } from '../../src/components/TypingIndicator';
@@ -36,13 +36,45 @@ export default function ChatScreen() {
 
   useEffect(() => {
     async function initChat() {
-      // Load verse text
+      let displayRef = verseRef;
+      let contextText = '';
+
+      // Check if verseRef is a single reference or a text block
       const parts = verseRef.match(/(.*)\s(\d+):(\d+)/);
-      if (parts) {
+      const chapterParts = verseRef.match(/(.*)\s(\d+)$/);
+      
+      // If it matches exactly a single verse
+      if (parts && verseRef.split('\n').length === 1 && !verseRef.includes(': ')) {
         const [_, book, chapter, verse] = parts;
         const v = await getVerse(book, parseInt(chapter), parseInt(verse));
-        if (v) setVerseText(v.text);
+        if (v) contextText = v.text;
+      } else if (chapterParts && verseRef.split('\n').length === 1) {
+        // It's a chapter reference (e.g. "Genesis 1")
+        const [_, book, chapter] = chapterParts;
+        const v = await getChapter(book, parseInt(chapter));
+        if (v && v.length > 0) {
+          contextText = v.map(item => `${item.verse}: ${item.text}`).join('\n');
+        }
+      } else if (verseRef.includes(': ')) {
+        // It's likely a block of verses passed from the reader
+        // e.g. "John 3:16: For God so loved...\nJohn 3:17: ..."
+        contextText = verseRef;
+        
+        // Try to extract a nice title
+        const firstLine = verseRef.split('\n')[0];
+        const titleMatch = firstLine.match(/(.*)\s(\d+):(\d+)/);
+        if (titleMatch) {
+          const lastLine = verseRef.trim().split('\n').pop() || '';
+          const lastMatch = lastLine.match(/:(\d+)/);
+          displayRef = lastMatch 
+            ? `${titleMatch[1]} ${titleMatch[2]}:${titleMatch[3]}-${lastMatch[1]}`
+            : titleMatch[0];
+        } else {
+          displayRef = "Selected Verses";
+        }
       }
+
+      setVerseText(contextText);
 
       // Initial query if provided
       if (initialQuery) {
@@ -50,7 +82,10 @@ export default function ChatScreen() {
       } else {
         // Welcome message
         setMessages([
-          { role: 'assistant', content: `Hello! I'm here to help you reflect on ${verseRef}. What would you like to explore about this verse?` }
+          { 
+            role: 'assistant', 
+            content: `Hello! I'm here to help you reflect on ${displayRef}. What would you like to explore about these verses?` 
+          }
         ]);
         setSuggestions(["What does this mean?", "Historical context", "How to apply this?"]);
       }

@@ -195,20 +195,44 @@ export default function HomeScreen() {
         <View style={styles.devotionalHeader}>
           <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Daily Devotional</Text>
           <View style={styles.checkpoints}>
-            <View style={styles.checkpoint}>
+            <TouchableOpacity 
+              style={styles.checkpoint}
+              onPress={() => showToast({ 
+                message: "Tap the verse card below to read today's Scripture and reflection.", 
+                type: 'info' 
+              })}
+            >
               {devProgress.readBible ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.readBible ? themeColors.text : themeColors.textSecondary }]}>Read</Text>
-            </View>
+            </TouchableOpacity>
+
             <View style={styles.divider} />
-            <View style={styles.checkpoint}>
+
+            <TouchableOpacity 
+              style={styles.checkpoint}
+              onPress={() => showToast({ 
+                message: "Tap 'Reflect' or one of the topics below to start a chat about the verse.", 
+                type: 'info' 
+              })}
+            >
               {devProgress.reflected ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.reflected ? themeColors.text : themeColors.textSecondary }]}>Reflect</Text>
-            </View>
+            </TouchableOpacity>
+
             <View style={styles.divider} />
-            <View style={styles.checkpoint}>
+
+            <TouchableOpacity 
+              style={styles.checkpoint}
+              onPress={() => showToast({ 
+                message: devProgress.completed 
+                  ? "Great job! You've earned points for today's devotional." 
+                  : "Finish Read and Reflect to complete today's task and get your points!", 
+                type: 'info' 
+              })}
+            >
               {devProgress.completed ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.completed ? themeColors.text : themeColors.textSecondary }]}>Done</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
 
