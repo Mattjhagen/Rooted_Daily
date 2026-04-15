@@ -38,20 +38,17 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
     } else {
       // Start new track
       useAudioStore.getState().setPlaybackState('loading');
-      useAudioStore.getState().setTrack({ id: title, title, subtitle, text });
+      const trackTitle = title || 'Scripture Reading';
+      const trackSubtitle = subtitle || 'Rooted Daily';
+      useAudioStore.getState().setTrack({ id: trackTitle, title: trackTitle, subtitle: trackSubtitle, text });
       
       showToast({ message: 'Preparing audio...', type: 'info' });
       const audioUrl = await TTSService.getAudio(text);
       
-      if (audioUrl) {
-        if (!audioUrl.startsWith('speech://')) {
-          showToast({ message: 'Streaming high-quality narration...', type: 'success' });
-        }
-        await audioService.play(audioUrl, title, subtitle);
-      } else {
-        showToast({ message: 'Audio currently unavailable.', type: 'error' });
-        useAudioStore.getState().setPlaybackState('error');
+      if (!audioUrl.startsWith('speech://')) {
+        showToast({ message: 'Streaming high-quality narration...', type: 'success' });
       }
+      await audioService.play(audioUrl, trackTitle, trackSubtitle);
     }
   };
 
