@@ -35,7 +35,7 @@ export default function SettingsScreen() {
   };
 
   const handleContact = () => {
-    Linking.openURL('mailto:rootedapp@p3lending.space');
+    Linking.openURL('mailto:rootedapp@rootedapp.space');
   };
 
   useEffect(() => {
