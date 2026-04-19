@@ -29,6 +29,14 @@
         "foregroundImage": "./assets/images/rooted-icon.png",
         "backgroundColor": "#212733"
       },
+      "intentFilters": [
+        {
+          "action": "MAIN",
+          "category": [
+            "LEANBACK_LAUNCHER"
+          ]
+        }
+      ],
       "softwareKeyboardLayoutMode": "resize",
       "predictiveBackGestureEnabled": false,
       "package": "com.rooteddaily.bible",
