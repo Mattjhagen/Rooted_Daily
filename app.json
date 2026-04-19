@@ -3,7 +3,7 @@
     "name": "Rooted Daily",
     "slug": "rooted-daily-bible-buddy",
     "version": "0.0.7",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
     "userInterfaceStyle": "automatic",
@@ -48,6 +48,7 @@
       "favicon": "./assets/images/rooted-icon.png"
     },
     "plugins": [
+      "./plugins/withAndroidTV",
       "expo-router",
       "expo-sqlite",
       [
