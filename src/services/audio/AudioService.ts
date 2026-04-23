@@ -1,22 +1,20 @@
-import { Audio } from 'expo-av';
+import { createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 import * as Speech from 'expo-speech';
 import { Platform } from 'react-native';
 import { useAudioStore } from '../../features/audio/audioStore';
 
 class AudioService {
-  private sound: Audio.Sound | null = null;
+  private player: any = null;
   private updateInterval: any = null;
   private currentSpeechText: string | null = null;
+  private statusSubscription: any = null;
 
   async init() {
-    await Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      staysActiveInBackground: true,
-      interruptionModeIOS: 1, // InterruptionModeIOS.DoNotMix
-      playsInSilentModeIOS: true,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: 1, // InterruptionModeAndroid.DoNotMix
-      playThroughEarpieceAndroid: false,
+    await setAudioModeAsync({
+      shouldPlayInBackground: true,
+      playsInSilentMode: true,
+      shouldRouteThroughEarpiece: false,
+      interruptionMode: 'doNotMix',
     });
   }
 
@@ -25,19 +23,16 @@ class AudioService {
       const store = useAudioStore.getState();
       
       // Stop current if playing
-      if (this.sound) {
+      if (this.player || this.currentSpeechText) {
         await this.stop();
       }
 
-      // Ensure Audio Mode is active (fixes silent playback issues)
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        staysActiveInBackground: true,
-        interruptionModeIOS: 1, // DoNotMix
-        playsInSilentModeIOS: true,
-        shouldDuckAndroid: true,
-        interruptionModeAndroid: 1, // DoNotMix
-        playThroughEarpieceAndroid: false,
+      // Ensure Audio Mode is active
+      await setAudioModeAsync({
+        shouldPlayInBackground: true,
+        playsInSilentMode: true,
+        shouldRouteThroughEarpiece: false,
+        interruptionMode: 'doNotMix',
       });
 
       // Use existing track text if we're just updating the URI
@@ -51,35 +46,25 @@ class AudioService {
         return;
       }
 
-      // Create sound but don't auto-play yet
-      const { sound } = await Audio.Sound.createAsync(
-        { uri },
-        { 
-          shouldPlay: false,
-          rate: store.playbackRate,
-          shouldCorrectPitch: true,
-          volume: 1.0,
-        },
-        this.onPlaybackStatusUpdate
-      );
+      // Create player
+      const player = createAudioPlayer(uri, {
+        updateInterval: 500,
+        keepAudioSessionActive: true
+      });
       
-      this.sound = sound;
+      this.player = player;
 
-      // Start playing explicitly
-      const status = await sound.playAsync();
-      
-      // Force apply the rate again after play starts (fixes some Android issues)
-      await sound.setRateAsync(store.playbackRate, true);
-      
-      if (status.isLoaded && status.isPlaying) {
-        store.setPlaybackState('playing');
-        this.startProgressTimer();
-      } else {
-        // Retry play if it failed to start
-        setTimeout(async () => {
-          if (this.sound) await this.sound.playAsync();
-        }, 100);
-      }
+      // Set initial rate
+      player.playbackRate = store.playbackRate;
+
+      // Subscribe to status updates (New Audio API uses listeners)
+      this.statusSubscription = player.addListener('playbackStatusUpdate', (status: any) => {
+        this.onPlaybackStatusUpdate(status);
+      });
+
+      // Start playing
+      player.play();
+      store.setPlaybackState('playing');
       
     } catch (error) {
       console.error('Playback failed', error);
@@ -91,19 +76,16 @@ class AudioService {
     const store = useAudioStore.getState();
     store.setPlaybackRate(rate);
     
-    if (this.sound) {
-      await this.sound.setRateAsync(rate, true);
-    } else if (this.currentSpeechText) {
-      // For native speech, we would need to stop and restart with new rate
-      // or just wait for next play. Speech.speak also has a rate option.
+    if (this.player) {
+      this.player.playbackRate = rate;
     }
   }
 
   async pause() {
-    if (this.sound) {
-      await this.sound.pauseAsync();
+    if (this.player) {
+      this.player.pause();
       useAudioStore.getState().setPlaybackState('paused');
-    } else {
+    } else if (this.currentSpeechText) {
       if (Platform.OS === 'android') {
         await Speech.stop();
       } else {
@@ -114,10 +96,10 @@ class AudioService {
   }
 
   async resume() {
-    if (this.sound) {
-      await this.sound.playAsync();
+    if (this.player) {
+      this.player.play();
       useAudioStore.getState().setPlaybackState('playing');
-    } else {
+    } else if (this.currentSpeechText) {
       if (Platform.OS === 'android') {
         if (this.currentSpeechText) {
           await this.playNativeSpeech(this.currentSpeechText);
@@ -130,15 +112,25 @@ class AudioService {
   }
 
   async stop() {
-    if (this.sound) {
-      this.stopProgressTimer();
-      await this.sound.stopAsync();
-      await this.sound.unloadAsync();
-      this.sound = null;
-    } else {
-      this.stopProgressTimer();
-      await Speech.stop();
+    if (this.statusSubscription) {
+      this.statusSubscription.remove();
+      this.statusSubscription = null;
     }
+
+    if (this.player) {
+      this.player.pause();
+      // In expo-audio, players are SharedObjects and can be cleaned up
+      // but they don't have an explicit 'unload' like Sound. 
+      // We just null it out if we're done.
+      this.player = null;
+    }
+
+    if (this.currentSpeechText) {
+      await Speech.stop();
+      this.currentSpeechText = null;
+    }
+
+    this.stopProgressTimer();
     useAudioStore.getState().setPlaybackState('idle');
   }
 
@@ -175,29 +167,22 @@ class AudioService {
 
   private onPlaybackStatusUpdate = (status: any) => {
     const store = useAudioStore.getState();
-    if (status.isLoaded) {
-      if (status.didJustFinish) {
-        this.stop();
-      } else {
-        store.setPlaybackState(status.isPlaying ? 'playing' : 'paused');
-        store.setProgress(status.positionMillis, status.durationMillis || 0);
-      }
-    } else if (status.error) {
-      console.error(`Playback Error: ${status.error}`);
-      store.setPlaybackState('error');
+    
+    // expo-audio status has boolean flags and numeric values directly
+    if (status.didJustFinish) {
+      this.stop();
+      return;
     }
+
+    store.setPlaybackState(status.playing ? 'playing' : 'paused');
+    // Note: status.currentTime and status.duration are in SECONDS in expo-audio
+    // store.setProgress usually expects milliseconds based on previous code
+    store.setProgress(status.currentTime * 1000, status.duration * 1000);
   };
 
   private startProgressTimer() {
-    if (this.updateInterval) clearInterval(this.updateInterval);
-    this.updateInterval = setInterval(async () => {
-      if (this.sound) {
-        const status = await this.sound.getStatusAsync();
-        if (status.isLoaded) {
-          useAudioStore.getState().setProgress(status.positionMillis, status.durationMillis || 0);
-        }
-      }
-    }, 500);
+    // legacy, expo-audio's playbackStatusUpdate listener handles this better
+    // but keeping for compatibility if needed.
   }
 
   private stopProgressTimer() {
