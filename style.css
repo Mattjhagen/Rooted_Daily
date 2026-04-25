@@ -81,7 +81,7 @@ header {
 .hero {
   padding: 8rem 0;
   text-align: center;
-  background: radial-gradient(circle at 50% -20%, var(--color-surface) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% -20%, rgba(74, 124, 89, 0.3) 0%, transparent 70%);
 }
 
 .hero h1 {
