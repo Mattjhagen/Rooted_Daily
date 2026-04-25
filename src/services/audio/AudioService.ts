@@ -1,23 +1,15 @@
-import { Audio } from 'expo-av';
+import { useAudioPlayer, createAudioPlayer, AudioPlayer } from 'expo-audio';
 import * as Speech from 'expo-speech';
 import { Platform } from 'react-native';
 import { useAudioStore } from '../../features/audio/audioStore';
 
 class AudioService {
-  private sound: Audio.Sound | null = null;
-  private updateInterval: any = null;
+  private player: AudioPlayer | null = null;
   private currentSpeechText: string | null = null;
+  private updateInterval: any = null;
 
   async init() {
-    await Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      staysActiveInBackground: true,
-      interruptionModeIOS: 1, // InterruptionModeIOS.DoNotMix
-      playsInSilentModeIOS: true,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: 1, // InterruptionModeAndroid.DoNotMix
-      playThroughEarpieceAndroid: false,
-    });
+    // Initial setup if needed
   }
 
   async play(uri: string, title: string, subtitle?: string) {
@@ -25,22 +17,11 @@ class AudioService {
       const store = useAudioStore.getState();
       
       // Stop current if playing
-      if (this.sound) {
-        await this.stop();
+      if (this.player) {
+        this.player.pause();
+        this.player.replace(null);
       }
 
-      // Ensure Audio Mode is active (fixes silent playback issues)
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        staysActiveInBackground: true,
-        interruptionModeIOS: 1, // DoNotMix
-        playsInSilentModeIOS: true,
-        shouldDuckAndroid: true,
-        interruptionModeAndroid: 1, // DoNotMix
-        playThroughEarpieceAndroid: false,
-      });
-
-      // Use existing track text if we're just updating the URI
       const existingText = store.currentTrack?.text;
       store.setTrack({ id: uri, title, subtitle, url: uri, text: existingText });
       store.setPlaybackState('loading');
@@ -51,35 +32,23 @@ class AudioService {
         return;
       }
 
-      // Create sound but don't auto-play yet
-      const { sound } = await Audio.Sound.createAsync(
-        { uri },
-        { 
-          shouldPlay: false,
-          rate: store.playbackRate,
-          shouldCorrectPitch: true,
-          volume: 1.0,
-        },
-        this.onPlaybackStatusUpdate
-      );
+      // Create new player with expo-audio
+      this.player = createAudioPlayer(uri);
       
-      this.sound = sound;
+      // Configure playback
+      this.player.playbackRate = store.playbackRate;
+      this.player.shouldKeepScreenOn = true;
+      
+      // Add status listener
+      this.player.addListener('statusChange', (status) => {
+        if (status === 'playing') store.setPlaybackState('playing');
+        if (status === 'paused') store.setPlaybackState('paused');
+        if (status === 'finished') this.stop();
+        if (status === 'error') store.setPlaybackState('error');
+      });
 
-      // Start playing explicitly
-      const status = await sound.playAsync();
-      
-      // Force apply the rate again after play starts (fixes some Android issues)
-      await sound.setRateAsync(store.playbackRate, true);
-      
-      if (status.isLoaded && status.isPlaying) {
-        store.setPlaybackState('playing');
-        this.startProgressTimer();
-      } else {
-        // Retry play if it failed to start
-        setTimeout(async () => {
-          if (this.sound) await this.sound.playAsync();
-        }, 100);
-      }
+      this.player.play();
+      this.startProgressTimer();
       
     } catch (error) {
       console.error('Playback failed', error);
@@ -91,18 +60,14 @@ class AudioService {
     const store = useAudioStore.getState();
     store.setPlaybackRate(rate);
     
-    if (this.sound) {
-      await this.sound.setRateAsync(rate, true);
-    } else if (this.currentSpeechText) {
-      // For native speech, we would need to stop and restart with new rate
-      // or just wait for next play. Speech.speak also has a rate option.
+    if (this.player) {
+      this.player.playbackRate = rate;
     }
   }
 
   async pause() {
-    if (this.sound) {
-      await this.sound.pauseAsync();
-      useAudioStore.getState().setPlaybackState('paused');
+    if (this.player) {
+      this.player.pause();
     } else {
       if (Platform.OS === 'android') {
         await Speech.stop();
@@ -114,9 +79,8 @@ class AudioService {
   }
 
   async resume() {
-    if (this.sound) {
-      await this.sound.playAsync();
-      useAudioStore.getState().setPlaybackState('playing');
+    if (this.player) {
+      this.player.play();
     } else {
       if (Platform.OS === 'android') {
         if (this.currentSpeechText) {
@@ -130,11 +94,10 @@ class AudioService {
   }
 
   async stop() {
-    if (this.sound) {
+    if (this.player) {
       this.stopProgressTimer();
-      await this.sound.stopAsync();
-      await this.sound.unloadAsync();
-      this.sound = null;
+      this.player.pause();
+      this.player = null;
     } else {
       this.stopProgressTimer();
       await Speech.stop();
@@ -175,29 +138,11 @@ class AudioService {
     }, 500);
   }
 
-  private onPlaybackStatusUpdate = (status: any) => {
-    const store = useAudioStore.getState();
-    if (status.isLoaded) {
-      if (status.didJustFinish) {
-        this.stop();
-      } else {
-        store.setPlaybackState(status.isPlaying ? 'playing' : 'paused');
-        store.setProgress(status.positionMillis, status.durationMillis || 0);
-      }
-    } else if (status.error) {
-      console.error(`Playback Error: ${status.error}`);
-      store.setPlaybackState('error');
-    }
-  };
-
   private startProgressTimer() {
     if (this.updateInterval) clearInterval(this.updateInterval);
     this.updateInterval = setInterval(async () => {
-      if (this.sound) {
-        const status = await this.sound.getStatusAsync();
-        if (status.isLoaded) {
-          useAudioStore.getState().setProgress(status.positionMillis, status.durationMillis || 0);
-        }
+      if (this.player) {
+        useAudioStore.getState().setProgress(this.player.currentTime, this.player.duration);
       }
     }, 500);
   }
