@@ -33,12 +33,12 @@
             </nav>
         </header>
 
-        <section class="hero" style="padding: 4rem 0;">
-            <h1>The Holy Bible</h1>
-            <p>Select a book to start reading and listening.</p>
+        <main class="bible-content" style="max-width: 1000px;">
+            <h1 style="text-align: center; margin-bottom: 1rem;">The Holy Bible</h1>
+            <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: 3rem;">Select a book to start reading and listening.</p>
             
-            <div class="bible-grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
-                <!-- Old Testament -->
+            <h2 class="bible-section-title">Old Testament</h2>
+            <div class="bible-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
                 <a href="/bible/genesis/" class="book-link">Genesis</a>
                 <a href="/bible/exodus/" class="book-link">Exodus</a>
                 <a href="/bible/leviticus/" class="book-link">Leviticus</a>
@@ -78,8 +78,10 @@
                 <a href="/bible/haggai/" class="book-link">Haggai</a>
                 <a href="/bible/zechariah/" class="book-link">Zechariah</a>
                 <a href="/bible/malachi/" class="book-link">Malachi</a>
-                
-                <!-- New Testament -->
+            </div>
+
+            <h2 class="bible-section-title" style="margin-top: 4rem;">New Testament</h2>
+            <div class="bible-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
                 <a href="/bible/matthew/" class="book-link">Matthew</a>
                 <a href="/bible/mark/" class="book-link">Mark</a>
                 <a href="/bible/luke/" class="book-link">Luke</a>
@@ -108,9 +110,9 @@
                 <a href="/bible/jude/" class="book-link">Jude</a>
                 <a href="/bible/revelation/" class="book-link">Revelation</a>
             </div>
-        </section>
+        </main>
 
-        <footer>
+        <footer style="margin-top: 4rem;">
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
