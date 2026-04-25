@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
-import { Bell, Clock, ChevronRight } from 'lucide-react-native';
+import { Bell, Clock, ChevronRight, Mic } from 'lucide-react-native';
 import { requestNotificationPermissions, scheduleDailyReminder, cancelAllReminders } from '../../src/services/NotificationService';
 import { useToast } from '../../src/context/ToastContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,13 +13,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HelpCircle, Heart, Mail, ExternalLink } from 'lucide-react-native';
 import * as Linking from 'expo-linking';
 import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
+import { useAudioStore } from '../../src/features/audio/audioStore';
+import { useRouter } from 'expo-router';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
-  const { showToast } = useToast();
   const { setHasSeenTutorial } = usePersistenceStore();
+  const { preferredVoiceIdentifier } = useAudioStore();
+  const router = useRouter();
 
   const [isEnabled, setIsEnabled] = useState(false);
   const [date, setDate] = useState(new Date(new Date().setHours(7, 0, 0, 0)));
@@ -132,6 +135,25 @@ export default function SettingsScreen() {
             />
           </View>
         )}
+      </View>
+
+      <View style={styles.section}>
+        <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Accessibility</Text>
+        <TouchableOpacity 
+          style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+          onPress={() => router.push('/settings/personal-voice')}
+        >
+          <View style={styles.rowLabel}>
+            <Mic size={20} color={themeColors.accent} />
+            <Text style={[styles.rowText, { color: themeColors.text }]}>Use Your Own Voice (AI)</Text>
+          </View>
+          <View style={styles.rowValue}>
+            <Text style={[styles.valueText, { color: themeColors.textSecondary }]}>
+              {preferredVoiceIdentifier ? 'Set up' : 'Off'}
+            </Text>
+            <ChevronRight size={18} color={themeColors.textSecondary} />
+          </View>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.section}>

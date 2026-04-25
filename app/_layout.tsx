@@ -115,6 +115,7 @@ export default function RootLayout() {
           headerTitleStyle: {
             fontFamily: 'DMSans_600SemiBold',
           },
+          headerBackTitle: 'Back',
           contentStyle: {
             backgroundColor: themeColors.background,
           },

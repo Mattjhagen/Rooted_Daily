@@ -155,6 +155,8 @@ class AudioService {
     this.startSpeechProgressTimer(estimatedDuration);
 
     Speech.speak(text, {
+      voice: store.preferredVoiceIdentifier || undefined,
+      rate: store.playbackRate,
       onDone: () => { this.stop(); },
       onError: () => { store.setPlaybackState('error'); },
     });

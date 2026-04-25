@@ -37,13 +37,22 @@ export const AudioIconButton: React.FC<AudioIconButtonProps> = ({
       await audioService.resume();
     } else {
       // Start new track
-      useAudioStore.getState().setPlaybackState('loading');
+      const { preferredVoiceIdentifier } = useAudioStore.getState();
       const trackTitle = title || 'Scripture Reading';
-      const trackSubtitle = subtitle || 'Rooted Daily';
+      const trackSubtitle = preferredVoiceIdentifier ? 'Read by You (AI)' : (subtitle || 'Rooted Daily');
+      
+      useAudioStore.getState().setPlaybackState('loading');
       useAudioStore.getState().setTrack({ id: trackTitle, title: trackTitle, subtitle: trackSubtitle, text });
       
       showToast({ message: 'Preparing audio...', type: 'info' });
-      const audioUrl = await TTSService.getAudio(text);
+      
+      // If personal voice is selected, we bypass expensive AI narration to use the device's voice
+      let audioUrl: string | null = null;
+      if (preferredVoiceIdentifier) {
+        audioUrl = `speech://${TTSService.cleanText(text)}`;
+      } else {
+        audioUrl = await TTSService.getAudio(text);
+      }
       
       if (!audioUrl) {
         useAudioStore.getState().setPlaybackState('error');

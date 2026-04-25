@@ -26,7 +26,7 @@ import { getVerse } from '../../src/features/bible/bibleService';
 import { submitDevotional } from '../../src/features/devotionals/devotionalService';
 import { useToast } from '../../src/context/ToastContext';
 
-type Step = 1 | 2 | 3 | 'success';
+type Step = 1 | 2 | 'success';
 
 export default function SubmitDevotionalScreen() {
   const router = useRouter();
@@ -79,9 +79,14 @@ export default function SubmitDevotionalScreen() {
     previewVerse();
   }, [verseRef]);
 
-  const canMoveToStep2 = orgName.trim() !== '' && isValidEmail(contactEmail);
-  const canMoveToStep3 = authorName.trim() !== '' && title.trim() !== '' && isValidVerse(verseRef);
-  const canSubmit = body.length >= 200 && body.length <= 2000;
+  const canMoveToStep2 = 
+    orgName.trim() !== '' && 
+    isValidEmail(contactEmail) && 
+    authorName.trim() !== '' && 
+    title.trim() !== '' && 
+    isValidVerse(verseRef);
+
+  const canSubmit = body.length >= 100 && body.length <= 3000;
 
   const handleSubmit = async () => {
     try {
@@ -110,41 +115,52 @@ export default function SubmitDevotionalScreen() {
     if (step === 'success') return null;
     return (
       <View style={styles.stepIndicator}>
-        {[1, 2, 3].map((i) => (
+        {[1, 2].map((i) => (
           <View 
             key={i} 
             style={[
               styles.stepDot, 
-              { backgroundColor: step === i ? themeColors.accent : themeColors.border }
+              { backgroundColor: step === i ? themeColors.accent : themeColors.border, width: step === i ? 40 : 24 }
             ]} 
           />
         ))}
-        <Text style={[styles.stepText, { color: themeColors.textSecondary }]}>Step {step} of 3</Text>
+        <Text style={[styles.stepText, { color: themeColors.textSecondary }]}>Step {step} of 2</Text>
       </View>
     );
   };
 
   const renderStep1 = () => (
     <View style={styles.formContainer}>
-      <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Your Organization</Text>
-      <Text style={[styles.sectionSubtitle, { color: themeColors.textSecondary }]}>Tell us about your church or organization.</Text>
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: themeColors.text }]}>General Info</Text>
+        <Text style={[styles.sectionSubtitle, { color: themeColors.textSecondary }]}>About you and your organization.</Text>
+      </View>
       
       <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Organization Name*</Text>
-        <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. Grace Fellowship"
-          placeholderTextColor={themeColors.textSecondary + '80'}
-          value={orgName}
-          onChangeText={setOrgName}
-        />
+        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Organization & Author*</Text>
+        <View style={styles.row}>
+          <TextInput
+            style={[styles.input, { flex: 1, backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text, marginRight: spacing.sm }]}
+            placeholder="Org Name"
+            placeholderTextColor={themeColors.textSecondary + '80'}
+            value={orgName}
+            onChangeText={setOrgName}
+          />
+          <TextInput
+            style={[styles.input, { flex: 1, backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
+            placeholder="Author Name"
+            placeholderTextColor={themeColors.textSecondary + '80'}
+            value={authorName}
+            onChangeText={setAuthorName}
+          />
+        </View>
       </View>
 
       <View style={styles.inputGroup}>
         <Text style={[styles.label, { color: themeColors.textSecondary }]}>Contact Email*</Text>
         <TextInput
           style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. contact@grace.org"
+          placeholder="e.g. contact@church.org"
           placeholderTextColor={themeColors.textSecondary + '80'}
           keyboardType="email-address"
           autoCapitalize="none"
@@ -153,63 +169,22 @@ export default function SubmitDevotionalScreen() {
         />
       </View>
 
-      <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Website URL (Optional)</Text>
-        <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. https://grace.org"
-          placeholderTextColor={themeColors.textSecondary + '80'}
-          keyboardType="url"
-          autoCapitalize="none"
-          value={websiteUrl}
-          onChangeText={setWebsiteUrl}
-        />
-      </View>
-    </View>
-  );
-
-  const renderStep2 = () => (
-    <View style={styles.formContainer}>
-      <Text style={[styles.sectionTitle, { color: themeColors.text }]}>About the Devotional</Text>
-      
-      <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Author Name*</Text>
-        <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. John Smith"
-          placeholderTextColor={themeColors.textSecondary + '80'}
-          value={authorName}
-          onChangeText={setAuthorName}
-        />
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Devotional Details</Text>
       </View>
 
       <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Author Title (Optional)</Text>
+        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Title & Verse*</Text>
         <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. Senior Pastor"
-          placeholderTextColor={themeColors.textSecondary + '80'}
-          value={authorTitle}
-          onChangeText={setAuthorTitle}
-        />
-      </View>
-
-      <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Devotional Title*</Text>
-        <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. Finding Peace in the Storm"
+          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text, marginBottom: spacing.sm }]}
+          placeholder="Devotional Title (e.g. Grace Abounds)"
           placeholderTextColor={themeColors.textSecondary + '80'}
           value={title}
           onChangeText={setTitle}
         />
-      </View>
-
-      <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Bible Verse Reference*</Text>
         <TextInput
           style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. John 3:16"
+          placeholder="Verse Reference (e.g. John 3:16)"
           placeholderTextColor={themeColors.textSecondary + '80'}
           value={verseRef}
           onChangeText={setVerseRef}
@@ -224,39 +199,26 @@ export default function SubmitDevotionalScreen() {
         ) : null}
       </View>
 
-      <View style={styles.inputGroup}>
-        <Text style={[styles.label, { color: themeColors.textSecondary }]}>Theme (Optional)</Text>
-        <TextInput
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text }]}
-          placeholder="e.g. Grace, Love, Hope"
-          placeholderTextColor={themeColors.textSecondary + '80'}
-          value={theme}
-          onChangeText={setTheme}
-        />
-      </View>
-
-      <View style={styles.row}>
-        <Text style={[styles.label, { color: themeColors.text }]}>Schedule for a specific date?</Text>
+      <TouchableOpacity 
+        style={[styles.row, { paddingVertical: spacing.sm }]}
+        onPress={() => setIsScheduled(!isScheduled)}
+      >
+        <View>
+          <Text style={[styles.label, { color: themeColors.text }]}>Schedule Release?</Text>
+          <Text style={[styles.caption, { color: themeColors.textSecondary }]}>{isScheduled ? scheduledFor.toDateString() : 'Publish as soon as approved'}</Text>
+        </View>
         <Switch 
           value={isScheduled} 
           onValueChange={setIsScheduled} 
           trackColor={{ false: themeColors.border, true: themeColors.accent }}
         />
-      </View>
+      </TouchableOpacity>
 
       {isScheduled && (
-        <TouchableOpacity 
-          style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, justifyContent: 'center' }]}
-          onPress={() => setShowDatePicker(true)}
-        >
-          <Text style={{ color: themeColors.text }}>{scheduledFor.toDateString()}</Text>
-        </TouchableOpacity>
-      )}
-
-      {showDatePicker && (
         <DateTimePicker
           value={scheduledFor}
           mode="date"
+          display="default"
           onChange={(e, date) => {
             setShowDatePicker(false);
             if (date) setScheduledFor(date);
@@ -266,22 +228,24 @@ export default function SubmitDevotionalScreen() {
     </View>
   );
 
-  const renderStep3 = () => (
+  const renderStep2 = () => (
     <View style={styles.formContainer}>
-      <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Write the Devotional</Text>
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: themeColors.text }]}>Write Reflection</Text>
+      </View>
       
       <View style={[styles.guidelines, { backgroundColor: themeColors.surfaceAlt }]}>
         <AlertCircle size={16} color={themeColors.textSecondary} />
         <Text style={[styles.guidelineText, { color: themeColors.textSecondary }]}>
-          Keep it scripture-centered. Avoid brand promotion. Do not sell products.
+          Keep it scripture-centered. Minimum 100 characters.
         </Text>
       </View>
 
       <View style={styles.inputGroup}>
         <View style={styles.labelRow}>
-          <Text style={[styles.label, { color: themeColors.textSecondary }]}>Full Devotional Body*</Text>
-          <Text style={[styles.counter, { color: body.length < 200 ? colors.danger : themeColors.textSecondary }]}>
-            {body.length}/2000
+          <Text style={[styles.label, { color: themeColors.textSecondary }]}>Devotional Body*</Text>
+          <Text style={[styles.counter, { color: body.length < 100 ? colors.danger : themeColors.textSecondary }]}>
+            {body.length}/3000
           </Text>
         </View>
         <TextInput
@@ -289,12 +253,12 @@ export default function SubmitDevotionalScreen() {
           placeholder="Share your reflection through the Word..."
           placeholderTextColor={themeColors.textSecondary + '80'}
           multiline
-          numberOfLines={10}
+          numberOfLines={12}
           textAlignVertical="top"
           value={body}
           onChangeText={setBody}
+          autoFocus
         />
-        <Text style={[styles.hint, { color: themeColors.textSecondary }]}>Minimum 200 characters required.</Text>
       </View>
     </View>
   );
@@ -336,27 +300,26 @@ export default function SubmitDevotionalScreen() {
           
           {step === 1 && renderStep1()}
           {step === 2 && renderStep2()}
-          {step === 3 && renderStep3()}
           {step === 'success' && renderSuccess()}
         </ScrollView>
 
         {step !== 'success' && (
           <View style={[styles.footer, { borderTopColor: themeColors.border, backgroundColor: themeColors.surface }]}>
-            {step > 1 ? (
+            {step === 2 ? (
               <TouchableOpacity 
                 style={[styles.navBtn, styles.backBtn]} 
-                onPress={() => setStep((step - 1) as Step)}
+                onPress={() => setStep(1)}
               >
                 <ChevronLeft size={20} color={themeColors.text} />
                 <Text style={[styles.navBtnText, { color: themeColors.text }]}>Back</Text>
               </TouchableOpacity>
             ) : <View style={styles.navBtn} />}
 
-            {step < 3 ? (
+            {step === 1 ? (
               <TouchableOpacity 
-                style={[styles.navBtn, styles.nextBtn, { opacity: (step === 1 ? canMoveToStep2 : canMoveToStep3) ? 1 : 0.5 }]} 
-                onPress={() => setStep((step + 1) as Step)}
-                disabled={!(step === 1 ? canMoveToStep2 : canMoveToStep3)}
+                style={[styles.navBtn, styles.nextBtn, { opacity: canMoveToStep2 ? 1 : 0.5 }]} 
+                onPress={() => setStep(2)}
+                disabled={!canMoveToStep2}
               >
                 <Text style={[styles.navBtnText, { color: themeColors.accent }]}>Next</Text>
                 <ChevronRight size={20} color={themeColors.accent} />

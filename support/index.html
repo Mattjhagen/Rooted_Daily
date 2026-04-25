@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | Rooted Daily</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .support-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+        }
+        h2 {
+            font-family: var(--font-heading);
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+        .support-item {
+            margin-bottom: 2rem;
+        }
+        .support-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .back-link:hover {
+            color: var(--color-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="../rooted_icon_512.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </div>
+        </header>
+
+        <main class="support-container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h2>How can we help?</h2>
+            
+            <div class="support-item">
+                <h3>Contact Support</h3>
+                <p>Have questions or feedback? Our team is here to help you stay rooted in the Word.</p>
+                <a href="mailto:support@rootedapp.space" class="contact-btn">Email Support</a>
+            </div>
+
+            <div class="support-item">
+                <h3>Report an Issue</h3>
+                <p>If you've encountered a bug or technical issue, please let us know so we can fix it for you.</p>
+            </div>
+
+            <div class="support-item">
+                <h3>Account & Data</h3>
+                <p>For inquiries regarding your account or data privacy, please contact our support team.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

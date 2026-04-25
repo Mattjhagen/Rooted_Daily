@@ -20,6 +20,7 @@ interface AudioState {
   isFullPlayerVisible: boolean;
   isKaraokeEnabled: boolean;
   playbackRate: number;
+  preferredVoiceIdentifier: string | null;
   
   // Actions
   setTrack: (track: AudioTrack | null) => void;
@@ -28,6 +29,7 @@ interface AudioState {
   setFullPlayerVisible: (visible: boolean) => void;
   setKaraokeEnabled: (enabled: boolean) => void;
   setPlaybackRate: (rate: number) => void;
+  setPreferredVoiceIdentifier: (id: string | null) => void;
   reset: () => void;
 }
 
@@ -39,6 +41,7 @@ export const useAudioStore = create<AudioState>((set) => ({
   isFullPlayerVisible: false,
   isKaraokeEnabled: true, // Enabled by default
   playbackRate: 1.0,
+  preferredVoiceIdentifier: null,
 
   setTrack: (track) => set({ currentTrack: track, position: 0, duration: 0 }),
   setPlaybackState: (state) => set({ playbackState: state }),
@@ -46,5 +49,6 @@ export const useAudioStore = create<AudioState>((set) => ({
   setFullPlayerVisible: (visible) => set({ isFullPlayerVisible: visible }),
   setKaraokeEnabled: (enabled) => set({ isKaraokeEnabled: enabled }),
   setPlaybackRate: (rate) => set({ playbackRate: rate }),
-  reset: () => set({ currentTrack: null, playbackState: 'idle', position: 0, duration: 0, isFullPlayerVisible: false, playbackRate: 1.0 }),
+  setPreferredVoiceIdentifier: (id) => set({ preferredVoiceIdentifier: id }),
+  reset: () => set({ currentTrack: null, playbackState: 'idle', position: 0, duration: 0, isFullPlayerVisible: false, playbackRate: 1.0, preferredVoiceIdentifier: null }),
 }));

@@ -57,10 +57,10 @@ export default function JournalScreen() {
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={2}>
+      <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={2} ellipsizeMode="tail">
         {item.verseText}
       </Text>
-      <Text style={[styles.itemNote, { color: themeColors.textSecondary }]} numberOfLines={3}>
+      <Text style={[styles.itemNote, { color: themeColors.textSecondary }]} numberOfLines={3} ellipsizeMode="tail">
         {item.note}
       </Text>
       <View style={styles.itemFooter}>
@@ -135,10 +135,12 @@ const styles = StyleSheet.create({
   itemText: {
     ...typography.scriptureMD,
     marginBottom: spacing.sm,
+    flexShrink: 1,
   },
   itemNote: {
     ...typography.body,
     marginBottom: spacing.md,
+    flexShrink: 1,
   },
   itemFooter: {
     flexDirection: 'row',
