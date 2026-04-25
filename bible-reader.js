@@ -1,10 +1,31 @@
 // bible-reader.js
 
+// Configuration
+const SUPABASE_URL = 'https://xphxtkdsshqsddajzlkj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhwaHh0a2Rzc2hxc2RkYWp6bGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4Mzg1MzksImV4cCI6MjA5MTQxNDUzOX0.zkXqNnFkOxkYEkQh8pYpsfUMdJMd8ri_Bta5_Jn_8lg'; // ADDED REAL ANON KEY
+const AI_PROXY_URL = 'https://rooted-ai.mattjhagen.workers.dev';
+
+let supabaseClient = null;
+if (SUPABASE_ANON_KEY) {
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initAuth();
     initHighlighting();
     initAI();
+    checkUser();
 });
+
+async function checkUser() {
+    if (!supabaseClient) return;
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) {
+        const signinBtn = document.getElementById('signin-btn');
+        if (signinBtn) signinBtn.textContent = 'Account';
+        loadHighlights(user.id);
+    }
+}
 
 // --- Auth Logic ---
 function initAuth() {
@@ -47,13 +68,35 @@ function initAuth() {
     }
 
     if (authForm) {
-        authForm.addEventListener('submit', (e) => {
+        authForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
-            const action = isSignUp ? 'Account created' : 'Welcome back';
-            alert(`${action}! successful for ${email}. (Note: This is a demo; real Supabase integration requires keys)`);
-            authModal.style.display = 'none';
-            if (signinBtn) signinBtn.textContent = 'Account';
+            const password = document.getElementById('password').value;
+
+            if (!supabaseClient) {
+                alert(`Demo Mode: ${isSignUp ? 'Account created' : 'Welcome back'}! (To enable real auth, add your SUPABASE_ANON_KEY to bible-reader.js)`);
+                authModal.style.display = 'none';
+                if (signinBtn) signinBtn.textContent = 'Account';
+                return;
+            }
+
+            try {
+                let result;
+                if (isSignUp) {
+                    result = await supabaseClient.auth.signUp({ email, password });
+                } else {
+                    result = await supabaseClient.auth.signInWithPassword({ email, password });
+                }
+
+                if (result.error) throw result.error;
+
+                alert(isSignUp ? 'Account created! Please check your email.' : 'Welcome back!');
+                authModal.style.display = 'none';
+                if (signinBtn) signinBtn.textContent = 'Account';
+                loadHighlights(result.data.user.id);
+            } catch (err) {
+                alert(err.message);
+            }
         });
     }
 }
@@ -88,7 +131,7 @@ function initHighlighting() {
         if (selectedVerse) {
             selectedVerse.classList.toggle('highlighted');
             menu.style.display = 'none';
-            saveHighlight(selectedVerse.querySelector('.verse-num').textContent);
+            saveHighlight(selectedVerse.querySelector('.verse-num').textContent, selectedVerse.textContent);
         }
     });
 
@@ -101,11 +144,46 @@ function initHighlighting() {
     });
 }
 
-function saveHighlight(verseNum) {
+async function saveHighlight(verseNum, text) {
     const chapter = document.title.split('|')[0].trim();
+    
+    // Local fallback
     let highlights = JSON.parse(localStorage.getItem('rooted_highlights') || '[]');
     highlights.push({ chapter, verseNum, date: new Date().toISOString() });
     localStorage.setItem('rooted_highlights', JSON.stringify(highlights));
+
+    // Supabase sync
+    if (supabaseClient) {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (user) {
+            await supabaseClient.from('highlights').upsert({
+                user_id: user.id,
+                reference: `${chapter}:${verseNum}`,
+                content: text,
+                created_at: new Date().toISOString()
+            });
+        }
+    }
+}
+
+async function loadHighlights(userId) {
+    if (!supabaseClient) return;
+    const { data, error } = await supabaseClient
+        .from('highlights')
+        .select('*')
+        .eq('user_id', userId);
+    
+    if (data) {
+        const chapter = document.title.split('|')[0].trim();
+        data.forEach(h => {
+            if (h.reference.startsWith(chapter)) {
+                const verseNum = h.reference.split(':')[1];
+                const verseEl = Array.from(document.querySelectorAll('.verse-num'))
+                    .find(el => el.textContent === verseNum);
+                if (verseEl) verseEl.parentElement.classList.add('highlighted');
+            }
+        });
+    }
 }
 
 // --- AI Logic ---
@@ -115,7 +193,6 @@ function initAI() {
     const closeChat = document.getElementById('close-chat');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
-    const messages = document.getElementById('chat-messages');
 
     if (bubble) {
         bubble.addEventListener('click', () => {
@@ -130,7 +207,7 @@ function initAI() {
     }
 
     if (chatForm) {
-        chatForm.addEventListener('submit', (e) => {
+        chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const text = chatInput.value;
             if (!text) return;
@@ -138,11 +215,27 @@ function initAI() {
             addMessage(text, 'user');
             chatInput.value = '';
 
-            setTimeout(() => {
-                addMessage("I'm Rooted, your AI Bible companion. This is a demo of how I can help you reflect on scripture. In the full version, I'll provide deep insights based on the context of this passage.", 'ai');
-            }, 1000);
+            try {
+                const response = await callAIProxy([{ role: 'user', content: text }]);
+                addMessage(response, 'ai');
+            } catch (err) {
+                console.error('AI Proxy Error:', err);
+                addMessage("I'm having trouble connecting to my thoughts right now. Please try again in a moment.", 'ai');
+            }
         });
     }
+}
+
+async function callAIProxy(messages) {
+    const response = await fetch(AI_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages })
+    });
+
+    if (!response.ok) throw new Error('AI Proxy failed');
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || data.text || "I'm not sure how to respond to that.";
 }
 
 function openAIChat(initialMessage) {
@@ -150,9 +243,9 @@ function openAIChat(initialMessage) {
     chatWindow.style.display = 'flex';
     if (initialMessage) {
         addMessage(initialMessage, 'user');
-        setTimeout(() => {
-            addMessage("That's a profound verse. How does it speak to your heart today?", 'ai');
-        }, 1000);
+        callAIProxy([{ role: 'user', content: initialMessage }])
+            .then(response => addMessage(response, 'ai'))
+            .catch(() => addMessage("That's a profound verse. How does it speak to your heart today?", 'ai'));
     }
 }
 
