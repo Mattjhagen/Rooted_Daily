@@ -3,13 +3,13 @@
 
 :root {
   --color-bg: #0C150E;
-  --color-surface: #1D3B24;
+  --color-surface: rgba(12, 21, 14, 0.8);
   --color-accent: #4A7C59;
   --color-text: #F4F1DE;
-  --color-text-secondary: #97A89B;
-  --glass-bg: rgba(29, 59, 36, 0.4);
-  --glass-border: rgba(244, 241, 222, 0.1);
-  --font-heading: 'Outfit', sans-serif;
+  --color-text-secondary: rgba(244, 241, 222, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --font-heading: 'Lora', serif;
   --font-body: 'Inter', sans-serif;
 }
 
@@ -20,11 +20,17 @@
 }
 
 body {
-  background-color: var(--color-bg);
+  background: 
+    linear-gradient(rgba(12, 21, 14, 0.85), rgba(12, 21, 14, 0.95)),
+    url('https://images.unsplash.com/photo-1504052434139-a133dfdec49c?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .container {
@@ -98,14 +104,14 @@ header {
 /* Glass Card */
 .download-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  padding: 3rem;
-  border-radius: 2rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
   display: inline-flex;
-  gap: 2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  gap: 1.5rem;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
   animation: fadeInUp 1s ease-out;
 }
 
