@@ -59,6 +59,18 @@ header {
   letter-spacing: -0.02em;
 }
 
+.nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+}
+
 /* Hero Section */
 .hero {
   padding: 8rem 0;
@@ -113,6 +125,18 @@ header {
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn.primary {
+  background: var(--color-accent);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  min-width: 200px;
+  justify-content: center;
+}
+
+.btn.primary:hover {
+  background: #5a8c6b;
 }
 
 .btn.disabled {
