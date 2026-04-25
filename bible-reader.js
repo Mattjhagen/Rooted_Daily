@@ -12,6 +12,11 @@ function initAuth() {
     const authModal = document.getElementById('auth-modal');
     const closeAuth = document.getElementById('close-auth');
     const authForm = document.getElementById('auth-form');
+    const createAccountBtn = document.getElementById('create-account-btn');
+    const authTitle = authModal ? authModal.querySelector('h2') : null;
+    const authSubmitBtn = authForm ? authForm.querySelector('button[type="submit"]') : null;
+
+    let isSignUp = false;
 
     if (signinBtn) {
         signinBtn.addEventListener('click', (e) => {
@@ -26,11 +31,27 @@ function initAuth() {
         });
     }
 
+    if (createAccountBtn) {
+        createAccountBtn.addEventListener('click', () => {
+            isSignUp = !isSignUp;
+            if (isSignUp) {
+                authTitle.textContent = 'Create Account';
+                authSubmitBtn.textContent = 'Sign Up';
+                createAccountBtn.textContent = 'Already have an account? Sign In';
+            } else {
+                authTitle.textContent = 'Join Rooted Daily';
+                authSubmitBtn.textContent = 'Sign In';
+                createAccountBtn.textContent = 'Create Account';
+            }
+        });
+    }
+
     if (authForm) {
         authForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
-            alert(`Welcome back! Sign-in successful for ${email}. (Note: This is a demo; real Supabase integration requires keys)`);
+            const action = isSignUp ? 'Account created' : 'Welcome back';
+            alert(`${action}! successful for ${email}. (Note: This is a demo; real Supabase integration requires keys)`);
             authModal.style.display = 'none';
             if (signinBtn) signinBtn.textContent = 'Account';
         });
