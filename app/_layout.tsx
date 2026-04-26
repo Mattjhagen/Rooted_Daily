@@ -20,6 +20,7 @@ import { EBGaramond_400Regular, EBGaramond_600SemiBold } from '@expo-google-font
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 import { Montserrat_400Regular, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
+import { Caveat_400Regular, Caveat_700Bold } from '@expo-google-fonts/caveat';
 import { colors } from '../src/theme/colors';
 
 import { useState } from 'react';
@@ -57,6 +58,8 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Montserrat_400Regular,
     Montserrat_600SemiBold,
+    Caveat_400Regular,
+    Caveat_700Bold,
   });
 
   useEffect(() => {

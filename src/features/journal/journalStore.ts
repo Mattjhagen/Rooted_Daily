@@ -18,6 +18,7 @@ export interface JournalEntry {
   note: string;
   type: 'reflection' | 'prayer';
   isFavorite?: boolean;
+  isPublic?: boolean;
 }
 
 interface JournalState {

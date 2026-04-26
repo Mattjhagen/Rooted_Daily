@@ -12,7 +12,7 @@ import { SuggestedChips } from '../../src/components/SuggestedChips';
 import { sendChatMessage, ChatMessage } from '../../src/features/chat/chatService';
 import { getVerse, getChapter } from '../../src/features/bible/bibleService';
 import { useJournalStore } from '../../src/features/journal/journalStore';
-import { Send, ChevronDown, ChevronUp, Save, BookOpen } from 'lucide-react-native';
+import { Send, ChevronDown, ChevronUp, Save, BookOpen, Users } from 'lucide-react-native';
 import { TypingIndicator } from '../../src/components/TypingIndicator';
 import { useToast } from '../../src/context/ToastContext';
 
@@ -29,6 +29,7 @@ export default function ChatScreen() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [verseText, setVerseText] = useState('');
   const [isVerseExpanded, setIsVerseExpanded] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
   
   const flatListRef = useRef<FlatList>(null);
   const addJournalEntry = useJournalStore(state => state.addEntry);
@@ -126,9 +127,10 @@ export default function ChatScreen() {
         verseRef,
         verseText,
         note: lastAiMsg.content,
-        type: 'reflection'
+        type: 'reflection',
+        isPublic
       });
-      showToast({ message: 'Saved to Journal', type: 'success' });
+      showToast({ message: isPublic ? 'Shared to Legacy Wall' : 'Saved to Journal', type: 'success' });
     }
   };
 
@@ -184,6 +186,15 @@ export default function ChatScreen() {
           <TouchableOpacity onPress={saveToJournal} style={styles.actionBtn}>
             <Save size={24} color={themeColors.accent} />
           </TouchableOpacity>
+          
+          <TouchableOpacity 
+            onPress={() => setIsPublic(!isPublic)} 
+            style={[styles.legacyToggle, { backgroundColor: isPublic ? colors.accent + '22' : 'transparent' }]}
+          >
+            <Users size={20} color={isPublic ? colors.accent : themeColors.textSecondary} />
+            {isPublic && <Text style={[styles.legacyText, { color: colors.accent }]}>Legacy Wall</Text>}
+          </TouchableOpacity>
+
           <View style={styles.inputWrapper}>
             <TextInput
               style={[
@@ -289,5 +300,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: spacing.sm,
+  },
+  legacyToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginRight: spacing.sm,
+    gap: 4,
+  },
+  legacyText: {
+    fontSize: 10,
+    fontFamily: 'DMSans_700Bold',
   },
 });

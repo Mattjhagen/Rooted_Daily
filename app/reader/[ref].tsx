@@ -20,6 +20,8 @@ import { useReaderSettings } from '../../src/features/reader/readerSettingsStore
 import { ReaderSettingsSheet } from '../../src/components/ReaderSettingsSheet';
 import { BookmarkButton } from '../../src/components/BookmarkButton';
 import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
+import { BibleEngine } from '../../src/features/bible/BibleEngine';
+import { PublicPrivateToggle } from '../../src/components/PublicPrivateToggle';
 
 const { width } = Dimensions.get('window');
 const SWIPE_DEMO_KEY = 'has_seen_swipe_demo';
@@ -36,7 +38,7 @@ export default function ReaderScreen() {
   const colorScheme = useColorScheme();
   
   // Custom Reader Settings
-  const { theme, fontSize, fontFamily } = useReaderSettings();
+  const { theme, fontSize, fontFamily, selectedVersion, isPublicMode } = useReaderSettings();
   const { updateLastReadRef } = usePersistenceStore();
   const [showSettings, setShowSettings] = useState(false);
 
@@ -50,6 +52,8 @@ export default function ReaderScreen() {
     }
   };
   const readerColors = getReaderColors();
+  // RT (Heirloom) uses a specific paper tint if parchment is selected
+  const paperTint = (selectedVersion === 'RT' && theme === 'parchment') ? '#F4F1EA' : readerColors.bg;
   const accentColor = colors.accent;
 
   const { highlights, setHighlight, removeHighlight } = useHighlightsStore();
@@ -100,7 +104,7 @@ export default function ReaderScreen() {
     const end = Math.min(count, startChapter + 2);
 
     for (let i = start; i <= end; i++) {
-      const verses = await getChapter(book, i);
+      const verses = await BibleEngine.getChapter(book, i, selectedVersion);
       loaded.push({ book, chapter: i, verses });
     }
     setChapters(loaded);
@@ -173,6 +177,7 @@ export default function ReaderScreen() {
       fontFamily === 'sans' ? 'DMSans_400Regular' :
       fontFamily === 'modern' ? 'Inter_400Regular' :
       fontFamily === 'clean' ? 'Montserrat_400Regular' :
+      fontFamily === 'heirloom' || selectedVersion === 'RT' ? 'Caveat_400Regular' :
       'Lora_400Regular',
     fontSize: fontSize,
     lineHeight: fontSize * 1.6,
@@ -209,6 +214,9 @@ export default function ReaderScreen() {
                   borderBottomWidth: 1.5,
                   borderBottomColor: colors.accent,
                   borderStyle: 'dotted'
+                } : null,
+                selectedVersion === 'RT' ? {
+                  transform: [{ rotate: (v.verse % 2 === 0 ? '0.2deg' : '-0.2deg') }],
                 } : null
               ]}
             >
@@ -216,6 +224,15 @@ export default function ReaderScreen() {
                 <Text style={[styles.verseNum, { color: accentColor, fontSize: fontSize * 0.6 }]}>{v.verse} </Text>
                 {v.text}
               </Text>
+              
+              {/* Heirloom Marginalia (Footnotes) */}
+              {selectedVersion === 'RT' && (
+                <View style={styles.footnoteContainer}>
+                   <Text style={styles.rtFootnote}>
+                     {v.verse === 1 ? "The Hebrew 'bereshit' opens Scripture with a declaration of absolute origin." : ""}
+                   </Text>
+                </View>
+              )}
             </TouchableOpacity>
           );
         }}
@@ -247,9 +264,9 @@ export default function ReaderScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: readerColors.bg }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: paperTint }]}>
       <StatusBar style={theme === 'black' ? 'light' : 'dark'} />
-      <View style={[styles.topBar, { backgroundColor: readerColors.bg }]}>
+      <View style={[styles.topBar, { backgroundColor: paperTint }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.iconBtn}>
           <ChevronLeft size={24} color={readerColors.text} />
         </TouchableOpacity>
@@ -334,6 +351,8 @@ export default function ReaderScreen() {
           <MessageCircle size={20} color="white" />
           <Text style={styles.reflectText}>Reflect</Text>
         </TouchableOpacity>
+
+        <PublicPrivateToggle />
 
         <TouchableOpacity style={styles.navBtn} onPress={handleNext}>
           <ChevronRight size={24} color={activeIndex < chapters.length - 1 ? readerColors.text : readerColors.text + '44'} />
@@ -448,5 +467,19 @@ const styles = StyleSheet.create({
   demoText: {
     color: 'white',
     fontFamily: 'DMSans_500Medium',
+  },
+  footnoteContainer: {
+    marginTop: spacing.xs,
+    paddingLeft: spacing.lg,
+    borderLeftWidth: 1,
+    borderLeftColor: colors.accent + '33',
+  },
+  rtFootnote: {
+    fontFamily: 'Caveat_400Regular',
+    fontSize: 18,
+    color: '#3d6b4f', // Using accent color for 'ink' look
+    opacity: 0.85,
+    transform: [{ rotate: '-1.5deg' }],
+    lineHeight: 22,
   }
 });
