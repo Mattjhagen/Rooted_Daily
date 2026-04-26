@@ -3,90 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaiah 53 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Isaiah 53 in the Rooted Translation. The Suffering Servant—witness the man of sorrows familiar with pain, discover the promise of healing through His wounds, and learn of the one who was led like a lamb to the slaughter for the iniquity of us all.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Isaiah 53 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Isaiah 53 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/isaiah/52/" class="nav-btn">← Back to Isaiah 52</a>
-            <h1>Isaiah 53</h1>
-            <p class="psalm-sub">The Man of Sorrows and the Root of Dry Ground.</p>
+            <a href="../../" class="nav-btn">← Back to Isaiah</a>
+            <h1 style="margin-top: 1rem;">Isaiah 53</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="shoot-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,128,0,0.05); border-radius: 2rem; border: 3px solid mediumseagreen; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,127,0.15);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem;">Root out of Dry Ground</h2>
-                    <div class="verse" data-verse="2" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He grew up before him like a tender shoot, and like a root out of dry ground.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="sorrows-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,0,0,0.05); border-radius: 2.5rem; border: 3px solid #ff4444; text-align: center; box-shadow: 0 0 100px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">Man of Suffering</h2>
-                    <div class="verse" data-verse="3" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “He was despised and rejected by mankind, a man of suffering, and familiar with pain.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="vicarious-box" style="margin: 4rem 0; padding: 4rem; background: rgba(139,0,0,0.1); border-radius: 3rem; border: 4px solid darkred; text-align: center; box-shadow: 0 0 120px rgba(255,68,68,0.3);">
-                    <h2 style="color: darkred; margin-bottom: 2rem; font-size: 2.2rem;">Pierced for Us</h2>
-                    <div class="verse" data-verse="5" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He was pierced for our transgressions, he was crushed for our iniquities.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="5" style="margin-top: 2rem; font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “By his wounds we are healed.”
-                    </div>
-                </div>
-
-                <div class="lamb-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,255,255,0.02); border-radius: 4rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">Led Like a Lamb</h2>
-                    <div class="verse" data-verse="7" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He was led like a lamb to the slaughter... he did not open his mouth.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                </div>
-
-                <div class="offering-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,215,0,0.1); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.3);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">Guilt Offering</h2>
-                    <div class="verse" data-verse="10" style="font-size: 1.6rem; color: silver;">“It was the Lord’s will to crush him.”</div>
-                    <div class="verse" data-verse="11" style="margin-top: 2rem; font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “By his knowledge my righteous servant will justify many.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="isaiah" data-chapter="53">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Who has believed our message? To whom has the arm of Yahweh been revealed? </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">For he grew up before him as a tender plant, and as a root out of dry ground. He has no good looks or majesty. When we see him, there is no beauty that we should desire him. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">He was despised, and rejected by men; a man of suffering, and acquainted with disease. He was despised as one from whom men hide their face; and we didn’t respect him.  </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Surely he has borne our sickness, and carried our suffering; yet we considered him plagued, struck by God, and afflicted. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">But he was pierced for our transgressions. He was crushed for our iniquities. The punishment that brought our peace was on him; and by his wounds we are healed. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">All we like sheep have gone astray. Everyone has turned to his own way; and Yahweh has laid on him the iniquity of us all. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">He was oppressed, yet when he was afflicted he didn’t open his mouth. As a lamb that is led to the slaughter, and as a sheep that before its shearers is silent, so he didn’t open his mouth. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">He was taken away by oppression and judgment; and as for his generation, who considered that he was cut off out of the land of the living and stricken for the disobedience of my people? </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">They made his grave with the wicked, and with a rich man in his death; although he had done no violence, nor was any deceit in his mouth.  </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Yet it pleased Yahweh to bruise him. He has caused him to suffer. When you make his soul an offering for sin, he will see his offspring.  He will prolong his days, and Yahweh’s pleasure will prosper in his hand. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">After the suffering of his soul, he will see the light  and be satisfied. My righteous servant will justify many by the knowledge of himself; and he will bear their iniquities. </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">Therefore will I give him a portion with the great, and he will divide the plunder with the strong; because he poured out his soul to death, and was counted with the transgressors; yet he bore the sin of many, and made intercession for the transgressors. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Root out of Dry Ground (we-kha-shō-resh mē-e-retz tzi-yāh):</strong> In the scrolls, this is the "Biological Root of the Incarnation." The "Messiah" is "Rooted" in "Barrenness" (*Dry Ground*). It signifies "Life emerging from Death."</p>
-                <p id="fn2"><sup>2</sup> <strong>Man of Suffering (ish makh-ō-bhōth):</strong> Literally "Man of Pains." The scrolls highlight the "Somatic Root of the Servant." His "Identity" is "Rooted" in the "Experience of Human Agony." It signify "The Familiarity of God with Grief."</p>
-                <p id="fn3"><sup>3</sup> <strong>Pierced for our Transgressions (me-chō-lāl mip-pe-shā-ē-nū):</strong> The scrolls highlight the "Vicarious Root of Atonement." "Sin" is "Uprooted" by the "Piercing" (*Chalaal*) of the "Representative." It signifies "The Penal Substitution."</p>
-                <p id="fn4"><sup>4</sup> <strong>Led like a Lamb (ka-śeh lat-te-bhach):</strong> The scrolls highlight the "Silent Root of Sacrifice." The "Servant" is "Rooted" in "Quiet Submission" (*Open not his mouth*). It signify "The Voluntary Nature of the Passion."</p>
-                <p id="fn5"><sup>5</sup> <strong>Justify Many (yatz-dīq... la-rab-bīm):</strong> The scrolls conclude with this "Legal Root of Grace." "Guilt" is "Uprooted" and "Righteousness" is "Rooted" in the "Many." It marks the transition to "The Glory of Zion" in *Isaiah 54*. It is the "Rooted Daily" anthem of "The Suffering Savior." He bore it all.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/isaiah/52/" class="nav-btn">← Isaiah 52</a>
                 <a href="/bible/isaiah/54/" class="nav-btn">Isaiah 54 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -95,6 +63,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -107,6 +79,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse the Bible | Rooted Daily</title>
-    <meta name="description" content="Browse every book and chapter of the Bible. Read and listen to scripture with AI reflections and audio narration.">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSEJQQEFLJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HSEJQQEFLJ');
-    </script>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="Browse every book and chapter of the Bible. Read and listen to scripture with AI reflections and community footnotes.">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -23,142 +13,101 @@
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/" class="nav-link" style="margin-right: 1.5rem;">Home</a>
+                <a href="../" class="nav-link" style="margin-right: 1.5rem;">Home</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content" style="max-width: 1000px;">
             <h1 style="text-align: center; margin-bottom: 1rem;">The Holy Bible</h1>
-            <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: 3rem;">Select a book to start reading and listening.</p>
+            <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: 3rem;">Select a book to start reading.</p>
             
             <h2 class="bible-section-title">Old Testament</h2>
-            <div class="bible-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
-                <a href="/bible/genesis/" class="book-link">Genesis</a>
-                <a href="/bible/exodus/" class="book-link">Exodus</a>
-                <a href="/bible/leviticus/" class="book-link">Leviticus</a>
-                <a href="/bible/numbers/" class="book-link">Numbers</a>
-                <a href="/bible/deuteronomy/" class="book-link">Deuteronomy</a>
-                <a href="/bible/joshua/" class="book-link">Joshua</a>
-                <a href="/bible/judges/" class="book-link">Judges</a>
-                <a href="/bible/ruth/" class="book-link">Ruth</a>
-                <a href="/bible/1-samuel/" class="book-link">1 Samuel</a>
-                <a href="/bible/2-samuel/" class="book-link">2 Samuel</a>
-                <a href="/bible/1-kings/" class="book-link">1 Kings</a>
-                <a href="/bible/2-kings/" class="book-link">2 Kings</a>
-                <a href="/bible/1-chronicles/" class="book-link">1 Chronicles</a>
-                <a href="/bible/2-chronicles/" class="book-link">2 Chronicles</a>
-                <a href="/bible/ezra/" class="book-link">Ezra</a>
-                <a href="/bible/nehemiah/" class="book-link">Nehemiah</a>
-                <a href="/bible/esther/" class="book-link">Esther</a>
-                <a href="/bible/job/" class="book-link">Job</a>
-                <a href="/bible/psalms/" class="book-link">Psalms</a>
-                <a href="/bible/proverbs/" class="book-link">Proverbs</a>
-                <a href="/bible/ecclesiastes/" class="book-link">Ecclesiastes</a>
-                <a href="/bible/song-of-solomon/" class="book-link">Song of Solomon</a>
-                <a href="/bible/isaiah/" class="book-link">Isaiah</a>
-                <a href="/bible/jeremiah/" class="book-link">Jeremiah</a>
-                <a href="/bible/lamentations/" class="book-link">Lamentations</a>
-                <a href="/bible/ezekiel/" class="book-link">Ezekiel</a>
-                <a href="/bible/daniel/" class="book-link">Daniel</a>
-                <a href="/bible/hosea/" class="book-link">Hosea</a>
-                <a href="/bible/joel/" class="book-link">Joel</a>
-                <a href="/bible/amos/" class="book-link">Amos</a>
-                <a href="/bible/obadiah/" class="book-link">Obadiah</a>
-                <a href="/bible/jonah/" class="book-link">Jonah</a>
-                <a href="/bible/micah/" class="book-link">Micah</a>
-                <a href="/bible/nahum/" class="book-link">Nahum</a>
-                <a href="/bible/habakkuk/" class="book-link">Habakkuk</a>
-                <a href="/bible/zephaniah/" class="book-link">Zephaniah</a>
-                <a href="/bible/haggai/" class="book-link">Haggai</a>
-                <a href="/bible/zechariah/" class="book-link">Zechariah</a>
-                <a href="/bible/malachi/" class="book-link">Malachi</a>
+            <div class="bible-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem;">
+                <a href="genesis/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Genesis</a>
+                <a href="exodus/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Exodus</a>
+                <a href="leviticus/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Leviticus</a>
+                <a href="numbers/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Numbers</a>
+                <a href="deuteronomy/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Deuteronomy</a>
+                <a href="joshua/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Joshua</a>
+                <a href="judges/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Judges</a>
+                <a href="ruth/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Ruth</a>
+                <a href="1-samuel/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Samuel</a>
+                <a href="2-samuel/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Samuel</a>
+                <a href="1-kings/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Kings</a>
+                <a href="2-kings/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Kings</a>
+                <a href="1-chronicles/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Chronicles</a>
+                <a href="2-chronicles/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Chronicles</a>
+                <a href="ezra/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Ezra</a>
+                <a href="nehemiah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Nehemiah</a>
+                <a href="esther/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Esther</a>
+                <a href="job/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Job</a>
+                <a href="psalms/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Psalms</a>
+                <a href="proverbs/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Proverbs</a>
+                <a href="ecclesiastes/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Ecclesiastes</a>
+                <a href="song-of-solomon/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Song of Solomon</a>
+                <a href="isaiah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Isaiah</a>
+                <a href="jeremiah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Jeremiah</a>
+                <a href="lamentations/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Lamentations</a>
+                <a href="ezekiel/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Ezekiel</a>
+                <a href="daniel/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Daniel</a>
+                <a href="hosea/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Hosea</a>
+                <a href="joel/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Joel</a>
+                <a href="amos/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Amos</a>
+                <a href="obadiah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Obadiah</a>
+                <a href="jonah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Jonah</a>
+                <a href="micah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Micah</a>
+                <a href="nahum/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Nahum</a>
+                <a href="habakkuk/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Habakkuk</a>
+                <a href="zephaniah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Zephaniah</a>
+                <a href="haggai/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Haggai</a>
+                <a href="zechariah/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Zechariah</a>
+                <a href="malachi/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Malachi</a>
             </div>
 
-            <h2 class="bible-section-title" style="margin-top: 4rem;">New Testament</h2>
-            <div class="bible-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
-                <a href="/bible/matthew/" class="book-link">Matthew</a>
-                <a href="/bible/mark/" class="book-link">Mark</a>
-                <a href="/bible/luke/" class="book-link">Luke</a>
-                <a href="/bible/john/" class="book-link">John</a>
-                <a href="/bible/acts/" class="book-link">Acts</a>
-                <a href="/bible/romans/" class="book-link">Romans</a>
-                <a href="/bible/1-corinthians/" class="book-link">1 Corinthians</a>
-                <a href="/bible/2-corinthians/" class="book-link">2 Corinthians</a>
-                <a href="/bible/galatians/" class="book-link">Galatians</a>
-                <a href="/bible/ephesians/" class="book-link">Ephesians</a>
-                <a href="/bible/philippians/" class="book-link">Philippians</a>
-                <a href="/bible/colossians/" class="book-link">Colossians</a>
-                <a href="/bible/1-thessalonians/" class="book-link">1 Thessalonians</a>
-                <a href="/bible/2-thessalonians/" class="book-link">2 Thessalonians</a>
-                <a href="/bible/1-timothy/" class="book-link">1 Timothy</a>
-                <a href="/bible/2-timothy/" class="book-link">2 Timothy</a>
-                <a href="/bible/titus/" class="book-link">Titus</a>
-                <a href="/bible/philemon/" class="book-link">Philemon</a>
-                <a href="/bible/hebrews/" class="book-link">Hebrews</a>
-                <a href="/bible/james/" class="book-link">James</a>
-                <a href="/bible/1-peter/" class="book-link">1 Peter</a>
-                <a href="/bible/2-peter/" class="book-link">2 Peter</a>
-                <a href="/bible/1-john/" class="book-link">1 John</a>
-                <a href="/bible/2-john/" class="book-link">2 John</a>
-                <a href="/bible/3-john/" class="book-link">3 John</a>
-                <a href="/bible/jude/" class="book-link">Jude</a>
-                <a href="/bible/revelation/" class="book-link">Revelation</a>
+            <h2 class="bible-section-title" style="margin: 4rem 0 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; color: var(--color-text-secondary);">New Testament</h2>
+            <div class="bible-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem;">
+                <a href="matthew/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Matthew</a>
+                <a href="mark/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Mark</a>
+                <a href="luke/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Luke</a>
+                <a href="john/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">John</a>
+                <a href="acts/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Acts</a>
+                <a href="romans/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Romans</a>
+                <a href="1-corinthians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Corinthians</a>
+                <a href="2-corinthians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Corinthians</a>
+                <a href="galatians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Galatians</a>
+                <a href="ephesians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Ephesians</a>
+                <a href="philippians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Philippians</a>
+                <a href="colossians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Colossians</a>
+                <a href="1-thessalonians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Thessalonians</a>
+                <a href="2-thessalonians/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Thessalonians</a>
+                <a href="1-timothy/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Timothy</a>
+                <a href="2-timothy/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Timothy</a>
+                <a href="titus/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Titus</a>
+                <a href="philemon/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Philemon</a>
+                <a href="hebrews/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Hebrews</a>
+                <a href="james/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">James</a>
+                <a href="1-peter/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 Peter</a>
+                <a href="2-peter/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 Peter</a>
+                <a href="1-john/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">1 John</a>
+                <a href="2-john/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">2 John</a>
+                <a href="3-john/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">3 John</a>
+                <a href="jude/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Jude</a>
+                <a href="revelation/" class="book-link" style="text-decoration: none; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 1rem; color: var(--color-text); text-align: center;">Revelation</a>
             </div>
         </main>
 
-        <footer style="margin-top: 4rem;">
+        <footer style="margin-top: 4rem; text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
 
-    <!-- Interactive Elements -->
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
-
-    <div id="ai-chat-window" class="ai-chat-window">
-        <div class="ai-chat-header">
-            <span>Rooted AI</span>
-            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
-        </div>
-        <div id="chat-messages" class="ai-chat-messages">
-            <div class="message ai">Hi! I'm Rooted. How can I help you today?</div>
-        </div>
-        <form id="chat-form" class="ai-chat-input">
-            <input type="text" id="chat-input" placeholder="Ask Rooted...">
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-    <div id="auth-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-auth" class="close-modal">✕</button>
-            <h2>Join Rooted Daily</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Sign in to save your highlights and journal entries across devices.</p>
-            <form id="auth-form">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
-                    <button type="button" id="create-account-btn" class="btn" style="width: 100%; background: transparent; border: 1px solid var(--glass-border); color: white;">Create Account</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="../bible-reader.js"></script>
+    <script src="../assets/js/bible-reader.js"></script>
 </body>
 </html>

@@ -3,80 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecclesiastes 11 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Ecclesiastes 11 in the Rooted Translation. The Venture of Faith—discover the wisdom of shipping your grain across the sea, witness the mystery of the path of the wind, and learn to enjoy the light of the sun while banishing anxiety from your heart.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Ecclesiastes 11 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Ecclesiastes 11 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/ecclesiastes/10/" class="nav-btn">← Back to Ecclesiastes 10</a>
-            <h1>Ecclesiastes 11</h1>
-            <p class="psalm-sub">Risk, Diligence, and the Joy of Light.</p>
+            <a href="../../" class="nav-btn">← Back to Ecclesiastes</a>
+            <h1 style="margin-top: 1rem;">Ecclesiastes 11</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="risk-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,139,0.05); border-radius: 2rem; border: 3px solid deepskyblue; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,191,255,0.15);">
-                    <h2 style="color: deepskyblue; margin-bottom: 2rem;">Bread upon the Waters</h2>
-                    <div class="verse" data-verse="1" style="font-size: 1.6rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Ship your grain across the sea; after many days you may receive a return.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                    <div class="verse" data-verse="2" style="margin-top: 2rem; font-weight: 700; color: silver;">“Invest in seven, yes, in eight, for you do not know what disaster may come upon the land.”</div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="wind-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 2.5rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem;">The Watching Sower</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.5rem; font-weight: 900; color: #ff4444;">“Whoever watches the wind will not plant; whoever looks at the clouds will not reap.” <a href="#fn2" class="fn"><sup>2</sup></a></div>
-                    <div class="verse" data-verse="5" style="margin-top: 2rem; color: silver; opacity: 0.8;">“As you do not know the path of the wind... so you cannot understand the work of God.” <a href="#fn3" class="fn"><sup>3</sup></a></div>
-                </div>
-                
-                <div class="light-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,215,0,0.1); border-radius: 3rem; border: 3px solid gold; text-align: center; box-shadow: 0 0 80px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem;">Light is Sweet</h2>
-                    <div class="verse" data-verse="7" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Light is sweet, and it pleases the eyes to see the sun.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                </div>
-
-                <div class="anxiety-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,128,0,0.05); border-radius: 4rem; border: 4px solid mediumseagreen; text-align: center; box-shadow: 0 0 100px rgba(0,255,127,0.1);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2rem;">Banish Anxiety</h2>
-                    <div class="verse" data-verse="9" style="font-size: 1.2rem; color: silver;">“You who are young, be happy while you are young... follow the ways of your heart.”</div>
-                    <div class="verse" data-verse="10" style="margin-top: 2rem; font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Banish anxiety from your heart and cast off the troubles of your body.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="ecclesiastes" data-chapter="11">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Cast your bread on the waters; for you shall find it after many days. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Give a portion to seven, yes, even to eight; for you don’t know what evil will be on the earth. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">If the clouds are full of rain, they empty themselves on the earth; and if a tree falls toward the south, or toward the north, in the place where the tree falls, there shall it be. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">He who observes the wind won’t sow; and he who regards the clouds won’t reap. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">As you don’t know what is the way of the wind, nor how the bones grow in the womb of her who is with child; even so you don’t know the work of God who does all. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">In the morning sow your seed, and in the evening don’t withhold your hand; for you don’t know which will prosper, whether this or that, or whether they both will be equally good. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">Truly the light is sweet, and a pleasant thing it is for the eyes to see the sun. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">Yes, if a man lives many years, let him rejoice in them all; but let him remember the days of darkness, for they shall be many. All that comes is vanity. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Rejoice, young man, in your youth, and let your heart cheer you in the days of your youth, and walk in the ways of your heart, and in the sight of your eyes; but know that for all these things God will bring you into judgment. </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Therefore remove sorrow from your heart, and put away evil from your flesh; for youth and the dawn of life are vanity. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Ship your Grain (shal-lach Lach-me-kha al-pe-ney ham-Ma-yim):</strong> Literally "Send your bread upon the face of the waters." In the scrolls, this is the "Mercantile Root of Faith." To "Send" (*Shallach*) "Bread" (*Lechem*) is to "Uproot" the "Safety of Possession" for "Future Return" (*Lim-tza-en-nu*). It signifies "Strategic Generosity."</p>
-                <p id="fn2"><sup>2</sup> <strong>Watches the Wind (sho-mer Ru-ach):</strong> The scrolls highlight the "Paralysis Root of Observation." If "Analysis" (*Shomer*) is "Rooted" in "Variables" (*Wind/Clouds*), the "Action" (*Plant/Reap*) is "Uprooted." It signify "The Danger of Perfectionism."</p>
-                <p id="fn3"><sup>3</sup> <strong>Path of the Wind (De-rekh ha-Ru-ach):</strong> The scrolls highlight the "Mystery Root of Creation." Human "Comprehension" (*Yoda*) is "Uprooted" by the "Vastness" of "God’s Work" (*Ma-a-seh*). It signifies "Epistemic Humility."</p>
-                <p id="fn4"><sup>4</sup> <strong>Light is Sweet (u-ma-thoq ha-Or):</strong> The scrolls highlight the "Vitality Root of Perception." "Light" (*Or*) "Roots" the "Soul" in "Sweetness" (*Mathoq*). It signify "The Intrinsic Value of Being."</p>
-                <p id="fn5"><sup>5</sup> <strong>Banish Anxiety (we-ha-ser Ka-as mil-Lib-be-kha):</strong> Literally "Remove anger/vexation from your heart." The scrolls conclude with this "Purification Root." "Anxiety" (*Ka-as*) "Uproots" the "Joy" of youth. It marks the transition to "The Creator" in *Ecclesiastes 12*. It is the "Rooted Daily" anthem of "The Unburdened Soul." Cast it off.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/ecclesiastes/10/" class="nav-btn">← Ecclesiastes 10</a>
                 <a href="/bible/ecclesiastes/12/" class="nav-btn">Ecclesiastes 12 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -85,6 +61,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -97,6 +77,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

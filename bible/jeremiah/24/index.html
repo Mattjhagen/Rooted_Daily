@@ -3,81 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeremiah 24 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Jeremiah 24 in the Rooted Translation. The Two Baskets of Figs—witness the vision of the good and bad figs, discover the Lord’s promise to plant the exiles and not uproot them, and learn of the heart given to know the Lord.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Jeremiah 24 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Jeremiah 24 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/jeremiah/23/" class="nav-btn">← Back to Jeremiah 23</a>
-            <h1>Jeremiah 24</h1>
-            <p class="psalm-sub">The Two Baskets and the Heart of the Exile.</p>
+            <a href="../../" class="nav-btn">← Back to Jeremiah</a>
+            <h1 style="margin-top: 1rem;">Jeremiah 24</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="figs-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,139,139,0.05); border-radius: 2rem; border: 1px solid darkcyan; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,255,0.1);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem;">Two Baskets</h2>
-                    <div class="verse" data-verse="2" style="font-size: 1.4rem; color: silver;">“One basket had very good figs.”</div>
-                    <div class="verse" data-verse="2" style="margin-top: 1rem; font-size: 1.4rem; color: #ff4444;">“The other basket had very bad figs.” <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="good-figs-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 2.5rem; border: 4px solid mediumseagreen; text-align: center; box-shadow: 0 0 100px rgba(0,255,127,0.2);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">Planted for Good</h2>
-                    <div class="verse" data-verse="5" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Like these good figs, I regard as good the exiles from Judah.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                    <div class="verse" data-verse="6" style="margin-top: 2rem; font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “I will plant them and not uproot them.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-                
-                <div class="heart-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,139,139,0.05); border-radius: 3rem; border: 1px solid deepskyblue; text-align: center; box-shadow: 0 0 120px rgba(0,255,255,0.2);">
-                    <h2 style="color: deepskyblue; margin-bottom: 2rem; font-size: 2.2rem;">A Heart to Know Me</h2>
-                    <div class="verse" data-verse="7" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “I will give them a heart to know me, that I am the Lord.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                </div>
-
-                <div class="bad-figs-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,0,0,0.05); border-radius: 4rem; border: 3px solid #ff4444; text-align: center;">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">The Bad Figs</h2>
-                    <div class="verse" data-verse="8" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “So will I deal with Zedekiah king of Judah... and the survivors in this land.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="jeremiah" data-chapter="24">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh showed me, and behold, two baskets of figs set before Yahweh’s temple, after that Nebuchadnezzar king of Babylon had carried away captive Jeconiah the son of Jehoiakim, king of Judah, and the princes of Judah, with the craftsmen and smiths, from Jerusalem, and had brought them to Babylon.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">One basket had very good figs, like the figs that are first-ripe; and the other basket had very bad figs, which could not be eaten, they were so bad.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Then Yahweh asked me, “What do you see, Jeremiah?” I said, “Figs. The good figs are very good, and the bad are very bad, so bad that can’t be eaten.”</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Yahweh’s word came to me, saying,</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">“Yahweh, the God of Israel says: ‘Like these good figs, so will I regard the captives of Judah, whom I have sent out of this place into the land of the Chaldeans, for good.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">For I will set my eyes on them for good, and I will bring them again to this land. I will build them, and not pull them down. I will plant them, and not pluck them up.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">I will give them a heart to know me, that I am Yahweh: and they shall be my people, and I will be their God; for they shall return to me with their whole heart.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">“‘As the bad figs, which can’t be eaten, they are so bad,’ surely Yahweh says, ‘So I will give up Zedekiah the king of Judah, and his princes, and the remnant of Jerusalem, who remain in this land, and those who dwell in the land of Egypt.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">I will even give them up to be tossed back and forth among all the kingdoms of the earth for evil; to be a reproach and a proverb, a taunt and a curse, in all places where I shall drive them.</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">I will send the sword, the famine, and the pestilence, among them, until they be consumed from off the land that I gave to them and to their fathers.’”</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Two Baskets (she-nē dū-dhā-yīm):</strong> In the scrolls, this is the "Sorting Root of Providence." "Individuality" is "Uprooted" as the "Nation" is "Sorted" into "Two Essential Qualities" (*Good/Bad*). It signifies "The Discernment of God."</p>
-                <p id="fn2"><sup>2</sup> <strong>Regard as Good (ak-kīr... le-tō-bhāh):</strong> Literally "I will recognize." The scrolls highlight the "Epistemological Root of Favor." "Judgment" is "Uprooted" for the "Exiles" (*Golah*) and "Grace" is "Rooted" in "Recognition" (*Akkir*). It signify "The Protective Gaze."</p>
-                <p id="fn3"><sup>3</sup> <strong>Plant and not Uproot (ū-ne-ta-tīm we-lō eth-tōsh):</strong> This is the central "Rooted Daily" motif. The scrolls highlight the "Permanent Root of the Remnant." "Instability" is "Uprooted" and "Endurance" is "Rooted" in the "Land." It signifies "The Future Restoration."</p>
-                <p id="fn4"><sup>4</sup> <strong>Heart to Know Me (lēbh la-dha-ath ō-thī):</strong> The scrolls highlight the "Relational Root of Newness." "Stoniness" is "Uprooted" and "Knowing" (*Da-ath*) is "Rooted" in the "Internal Man" (*Heart/Leb*). It signify "The Beginning of the New Covenant concept."</p>
-                <p id="fn5"><sup>5</sup> <strong>Zedekiah (Tzid-qi-yā-hū):</strong> The scrolls conclude with this "Ironic Root of Judgment." The king whose name means "Yahweh is Righteous" is "Uprooted" because of "Unrighteousness." It marks the transition to "The Seventy Years" in *Jeremiah 25*. It is the "Rooted Daily" anthem of "The Good Fig." Know Him.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/jeremiah/23/" class="nav-btn">← Jeremiah 23</a>
                 <a href="/bible/jeremiah/25/" class="nav-btn">Jeremiah 25 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -86,6 +61,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -98,6 +77,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

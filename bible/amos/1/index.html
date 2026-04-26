@@ -3,82 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amos 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Amos 1 in the Rooted Translation. The Lion’s Roar—witness the judgment of the nations surrounding Israel, discover the consequence of the three sins and four, and learn of the divine roar from Zion that thunders against injustice.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Amos 1 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Amos 1 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/joel/3/" class="nav-btn">← Back to Joel 3</a>
-            <h1>Amos 1</h1>
-            <p class="psalm-sub">The Lion Roars from Zion and the Judgment of the Sledges.</p>
+            <a href="../../" class="nav-btn">← Back to Amos</a>
+            <h1 style="margin-top: 1rem;">Amos 1</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="lion-roar-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid gold; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,215,0,0.1);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.2rem;">The Lord Roars</h2>
-                    <div class="verse" data-verse="2" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “The Lord roars from Zion and thunders from Jerusalem.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="three-four-box" style="margin: 4rem 0; padding: 4rem; background: rgba(139,0,0,0.1); border-radius: 2.5rem; border: 4px solid #ff4444; text-align: center; box-shadow: 0 0 100px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">For Three Sins, Even Four</h2>
-                    <div class="verse" data-verse="3" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “For three sins of Damascus, even for four, I will not relent.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="iron-sledges-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,0,0,0.9); border-radius: 3rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">Sledges of Iron</h2>
-                    <div class="verse" data-verse="3" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “Because she threshed Gilead with sledges having iron teeth.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="pity-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.5); border-radius: 4rem; border: 4px solid silver; text-align: center; box-shadow: 0 0 150px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.5rem;">Casting Off Pity</h2>
-                    <div class="verse" data-verse="11" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Because he pursued his brother with a sword and cast off all pity.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="13" style="margin-top: 2rem; font-size: 1.5rem; color: #ff4444; font-weight: 900;">
-                        “Because he ripped open the pregnant women of Gilead.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="amos" data-chapter="1">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The words of Amos, who was among the herdsmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel, two years before the earthquake.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">He said: “Yahweh  will roar from Zion, and utter his voice from Jerusalem; and the pastures of the shepherds will mourn, and the top of Carmel will wither.” </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh says: “For three transgressions of Damascus, yes, for four, I will not turn away its punishment; because they have threshed Gilead with threshing instruments of iron; </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">but I will send a fire into the house of Hazael, and it will devour the palaces of Ben Hadad. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">I will break the bar of Damascus, and cut off the inhabitant from the valley of Aven, and him who holds the scepter from the house of Eden; and the people of Syria shall go into captivity to Kir,”  says Yahweh.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">Yahweh says: “For three transgressions of Gaza, yes, for four, I will not turn away its punishment; because they carried away captive the whole community, to deliver them up to Edom; </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">but I will send a fire on the wall of Gaza, and it will devour its palaces. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">I will cut off the inhabitant from Ashdod, and him who holds the scepter from Ashkelon; and I will turn my hand against Ekron; and the remnant of the Philistines will perish,”  says the Lord  Yahweh.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Yahweh says: “For three transgressions of Tyre, yes, for four, I will not turn away its punishment; because they delivered up the whole community to Edom, and didn’t remember the brotherly covenant; </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">but I will send a fire on the wall of Tyre, and it will devour its palaces.” </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Yahweh says: “For three transgressions of Edom, yes, for four, I will not turn away its punishment; because he pursued his brother with the sword, and cast off all pity, and his anger raged continually, and he kept his wrath forever; </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">but I will send a fire on Teman, and it will devour the palaces of Bozrah.” </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Yahweh says: “For three transgressions of the children of Ammon, yes, for four, I will not turn away its punishment; because they have ripped open the pregnant women of Gilead, that they may enlarge their border. </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">But I will kindle a fire in the wall of Rabbah, and it will devour its palaces, with shouting in the day of battle, with a storm in the day of the whirlwind; </span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">and their king will go into captivity, he and his princes together,”  says Yahweh.</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>The Lord Roars (YHWH mit-tzi-yōn yish-āgh):</strong> The scrolls highlight the "Vocal Root of Sovereignty." "Silence" is "Uprooted." God "Roots" his "Message" in the "Roar" (*Sha-agh*) of the "Lion." It signifies "The Aesthetic of Impending Justice."</p>
-                <p id="fn2"><sup>2</sup> <strong>Three Sins, Even Four (al-she-lō-shāh pish-ē... we-al-ar-bā-āh):</strong> The scrolls highlight the "Numerical Root of the Limit." "Endurance" is "Uprooted." God "Roots" his "Judgment" in the "Exceeding" of the "Measure" (*Pesha*). It signify "The Finality of the Edict."</p>
-                <p id="fn3"><sup>3</sup> <strong>Sledges of Iron (ba-cha-rū-tzōth hab-bar-zel):</strong> The scrolls highlight the "Industrial Root of Cruelty." "Humanity" is "Uprooted." The "Oppression" is "Rooted" in "Iron" (*Barzel*). It signifies "The Mechanical Nature of Tyranny."</p>
-                <p id="fn4"><sup>4</sup> <strong>Cast off all Pity (shi-chēth ra-cha-māw):</strong> Literally "He corrupted/destroyed his compassions." The scrolls highlight the "Relational Root of the Crime." "Brotherhood" is "Uprooted." He "Rooted" his "Action" in "Sword" (*Cherebh*) rather than "Mercy" (*Rachamim*). It signify "The Spiritual Suicide of the Cruel."</p>
-                <p id="fn5"><sup>5</sup> <strong>Ripped Open (biq-ā-mām):</strong> The scrolls conclude with this "Brutal Root of Expansion." "Sanctity of Life" is "Uprooted." It marks the transition to "Judgment on Moab and Israel" in *Amos 2*. It is the "Rooted Daily" anthem of "The Lion’s Roar." He does not relent.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/joel/3/" class="nav-btn">← Joel 3</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <span></span>
                 <a href="/bible/amos/2/" class="nav-btn">Amos 2 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -87,6 +66,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -99,6 +82,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

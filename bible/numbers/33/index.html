@@ -3,74 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numbers 33 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Numbers Chapter 33 in the Rooted Translation. A retrospective of Israel’s journey: the forty-two stages from Egypt to Moab and the command to purge the land of idolatry.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Numbers 33 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Numbers 33 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/numbers/" class="nav-btn">← Back to Numbers</a>
-            <h1>Numbers 33</h1>
+            <a href="../../" class="nav-btn">← Back to Numbers</a>
+            <h1 style="margin-top: 1rem;">Numbers 33</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="verse" data-verse="1"><span class="verse-num">1</span>Here are the stages in the journey of the Israelites when they came out of Egypt by divisions under the leadership of Moses and Aaron. <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                <div class="verse" data-verse="2"><span class="verse-num">2</span>At the LORD’s command Moses recorded the stages in their journey. This is their journey by stages:</div>
-                
-                <div class="summary-box" style="margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 1rem; border-left: 4px solid var(--color-primary);">
-                    <p><strong>The Forty-Two Stages:</strong> The scrolls list 42 distinct stopping points. Key locations include:</p>
-                    <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-                        <li><strong>Rameses to Sinai:</strong> Succoth, Etham, Pi Hahiroth, Marah (bitter water), Elim (12 springs, 70 palms), Rephidim (no water), and the Desert of Sinai.</li>
-                        <li><strong>Sinai to Kadesh:</strong> Kibroth Hattaavah (graves of craving), Hazeroth, and Rithmah.</li>
-                        <li><strong>The Wandering:</strong> Rimmon Perez, Libnah, Rissah, Kehelathah, Mount Shepher, Haradah, Makheloth, Tahath, Terah, Mithkah, Hashmonah, Moseroth, Bene Jaakan, Hor Haggidgad, Jotbathah, Abronah, Ezion Geber.</li>
-                        <li><strong>The Final Approach:</strong> Kadesh (Desert of Zin), Mount Hor (where Aaron died), Zalmonah, Punon, Oboth, Iye Abarim, Dibon Gad, Almon Diblathaim, the Abarim range, and the Plains of Moab.</li>
-                    </ul>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="verse" data-verse="38"><span class="verse-num">38</span>At the LORD’s command Aaron the priest went up Mount Hor, where he died on the first day of the fifth month of the fortieth year after the Israelites came out of Egypt.</div>
-                <div class="verse" data-verse="39"><span class="verse-num">39</span>Aaron was a hundred and twenty-three years old when he died on Mount Hor.</div>
-                <div class="verse" data-verse="40"><span class="verse-num">40</span>The Canaanite king of Arad, who lived in the Negev of Canaan, heard that the Israelites were coming.</div>
-                <div class="verse" data-verse="48"><span class="verse-num">48</span>They left the mountains of Abarim and camped on the plains of Moab by the Jordan across from Jericho.</div>
-                <div class="verse" data-verse="49"><span class="verse-num">49</span>There on the plains of Moab they camped along the Jordan from Beth Jeshimoth to Abel Shittim.</div>
-                <div class="verse" data-verse="50"><span class="verse-num">50</span>On the plains of Moab by the Jordan across from Jericho the LORD said to Moses,</div>
-                <div class="verse" data-verse="51"><span class="verse-num">51</span>“Speak to the Israelites and say to them: ‘When you cross the Jordan into Canaan,”</div>
-                <div class="verse" data-verse="52"><span class="verse-num">52</span>“‘drive out all the inhabitants of the land before you. Destroy all their carved images and their cast idols, and demolish all their high places.” <a href="#fn2" class="fn"><sup>2</sup></a></div>
-                <div class="verse" data-verse="53"><span class="verse-num">53</span>“‘Take possession of the land and settle in it, for I have given you the land to possess.”</div>
-                <div class="verse" data-verse="54"><span class="verse-num">54</span>“‘Distribute the land by lot, according to your clans. To a larger group give a larger inheritance, and to a smaller group a smaller one. Whatever falls to them by lot will be theirs. Distribute it according to your ancestral tribes.”</div>
-                <div class="verse" data-verse="55"><span class="verse-num">55</span>“‘But if you do not drive out the inhabitants of the land, those you allow to remain will become barbs in your eyes and thorns in your sides. They will give you trouble in the land where you will live.” <a href="#fn3" class="fn"><sup>3</sup></a></div>
-                <div class="verse" data-verse="56"><span class="verse-num">56</span>“‘And then I will do to you what I plan to do to them.’”</div>
+            <div class="verse-container" data-book-slug="numbers" data-chapter="33">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">These are the journeys of the children of Israel, when they went out of the land of Egypt by their armies under the hand of Moses and Aaron.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Moses wrote their goings out according to their journeys by the commandment of Yahweh. These are their journeys according to their goings out.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">They traveled from Rameses in the first month, on the fifteenth day of the first month; on the next day after the Passover, the children of Israel went out with a high hand in the sight of all the Egyptians,</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">while the Egyptians were burying all their firstborn, whom Yahweh had struck among them. Yahweh also executed judgments on their gods.</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The children of Israel traveled from Rameses, and encamped in Succoth.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">They traveled from Succoth, and encamped in Etham, which is in the edge of the wilderness.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">They traveled from Etham, and turned back to Pihahiroth, which is before Baal Zephon: and they encamped before Migdol.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">They traveled from before Hahiroth, and crossed through the middle of the sea into the wilderness. They went three days’ journey in the wilderness of Etham, and encamped in Marah.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">They traveled from Marah, and came to Elim. In Elim, there were twelve springs of water, and seventy palm trees; and they encamped there.</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">They traveled from Elim, and encamped by the Red Sea.</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">They traveled from the Red Sea, and encamped in the wilderness of Sin.</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">They traveled from the wilderness of Sin, and encamped in Dophkah.</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">They traveled from Dophkah, and encamped in Alush.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">They traveled from Alush, and encamped in Rephidim, where there was no water for the people to drink.</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">They traveled from Rephidim, and encamped in the wilderness of Sinai.</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">They traveled from the wilderness of Sinai, and encamped in Kibroth Hattaavah.</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">They traveled from Kibroth Hattaavah, and encamped in Hazeroth.</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">They traveled from Hazeroth, and encamped in Rithmah.</span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">They traveled from Rithmah, and encamped in Rimmon Perez.</span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">They traveled from Rimmon Perez, and encamped in Libnah.</span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">They traveled from Libnah, and encamped in Rissah.</span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">They traveled from Rissah, and encamped in Kehelathah.</span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">They traveled from Kehelathah, and encamped in Mount Shepher.</span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">They traveled from Mount Shepher, and encamped in Haradah.</span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">They traveled from Haradah, and encamped in Makheloth.</span></div>
+<div class="verse"><span class="verse-num">26</span><span class="verse-text">They traveled from Makheloth, and encamped in Tahath.</span></div>
+<div class="verse"><span class="verse-num">27</span><span class="verse-text">They traveled from Tahath, and encamped in Terah.</span></div>
+<div class="verse"><span class="verse-num">28</span><span class="verse-text">They traveled from Terah, and encamped in Mithkah.</span></div>
+<div class="verse"><span class="verse-num">29</span><span class="verse-text">They traveled from Mithkah, and encamped in Hashmonah.</span></div>
+<div class="verse"><span class="verse-num">30</span><span class="verse-text">They traveled from Hashmonah, and encamped in Moseroth.</span></div>
+<div class="verse"><span class="verse-num">31</span><span class="verse-text">They traveled from Moseroth, and encamped in Bene Jaakan.</span></div>
+<div class="verse"><span class="verse-num">32</span><span class="verse-text">They traveled from Bene Jaakan, and encamped in Hor Haggidgad.</span></div>
+<div class="verse"><span class="verse-num">33</span><span class="verse-text">They traveled from Hor Haggidgad, and encamped in Jotbathah.</span></div>
+<div class="verse"><span class="verse-num">34</span><span class="verse-text">They traveled from Jotbathah, and encamped in Abronah.</span></div>
+<div class="verse"><span class="verse-num">35</span><span class="verse-text">They traveled from Abronah, and encamped in Ezion Geber.</span></div>
+<div class="verse"><span class="verse-num">36</span><span class="verse-text">They traveled from Ezion Geber, and encamped at Kadesh in the wilderness of Zin.</span></div>
+<div class="verse"><span class="verse-num">37</span><span class="verse-text">They traveled from Kadesh, and encamped in Mount Hor, in the edge of the land of Edom.</span></div>
+<div class="verse"><span class="verse-num">38</span><span class="verse-text">Aaron the priest went up into Mount Hor at the commandment of Yahweh, and died there, in the fortieth year after the children of Israel had come out of the land of Egypt, in the fifth month, on the first day of the month.</span></div>
+<div class="verse"><span class="verse-num">39</span><span class="verse-text">Aaron was one hundred twenty-three years old when he died in Mount Hor.</span></div>
+<div class="verse"><span class="verse-num">40</span><span class="verse-text">The Canaanite, the king of Arad, who lived in the South in the land of Canaan, heard of the coming of the children of Israel.</span></div>
+<div class="verse"><span class="verse-num">41</span><span class="verse-text">They traveled from Mount Hor, and encamped in Zalmonah.</span></div>
+<div class="verse"><span class="verse-num">42</span><span class="verse-text">They traveled from Zalmonah, and encamped in Punon.</span></div>
+<div class="verse"><span class="verse-num">43</span><span class="verse-text">They traveled from Punon, and encamped in Oboth.</span></div>
+<div class="verse"><span class="verse-num">44</span><span class="verse-text">They traveled from Oboth, and encamped in Iye Abarim, in the border of Moab.</span></div>
+<div class="verse"><span class="verse-num">45</span><span class="verse-text">They traveled from Iyim, and encamped in Dibon Gad.</span></div>
+<div class="verse"><span class="verse-num">46</span><span class="verse-text">They traveled from Dibon Gad, and encamped in Almon Diblathaim.</span></div>
+<div class="verse"><span class="verse-num">47</span><span class="verse-text">They traveled from Almon Diblathaim, and encamped in the mountains of Abarim, before Nebo.</span></div>
+<div class="verse"><span class="verse-num">48</span><span class="verse-text">They traveled from the mountains of Abarim, and encamped in the plains of Moab by the Jordan at Jericho.</span></div>
+<div class="verse"><span class="verse-num">49</span><span class="verse-text">They encamped by the Jordan, from Beth Jeshimoth even to Abel Shittim in the plains of Moab.</span></div>
+<div class="verse"><span class="verse-num">50</span><span class="verse-text">Yahweh spoke to Moses in the plains of Moab by the Jordan at Jericho, saying,</span></div>
+<div class="verse"><span class="verse-num">51</span><span class="verse-text">Speak to the children of Israel, and tell them, “When you pass over the Jordan into the land of Canaan,</span></div>
+<div class="verse"><span class="verse-num">52</span><span class="verse-text">then you shall drive out all the inhabitants of the land from before you, destroy all their stone idols, destroy all their molten images, and demolish all their high places.</span></div>
+<div class="verse"><span class="verse-num">53</span><span class="verse-text">You shall take possession of the land, and dwell therein; for I have given the land to you to possess it.</span></div>
+<div class="verse"><span class="verse-num">54</span><span class="verse-text">You shall inherit the land by lot according to your families; to the more you shall give the more inheritance, and to the fewer you shall give the less inheritance. Wherever the lot falls to any man, that shall be his. You shall inherit according to the tribes of your fathers.</span></div>
+<div class="verse"><span class="verse-num">55</span><span class="verse-text">“But if you do not drive out the inhabitants of the land from before you, then those you let remain of them will be as pricks in your eyes and as thorns in your sides, and they will harass you in the land in which you dwell.</span></div>
+<div class="verse"><span class="verse-num">56</span><span class="verse-text">It shall happen that as I thought to do to them, so will I do to you.”</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Stages (Massa'ei):</strong> The word in the original scrolls is *Massa'ei*, which comes from a root meaning "to pull up stakes." It emphasizes the temporary nature of the wilderness. Jewish mystics often point out that there are 42 stages, just as there are 42 letters in one of the hidden names of God. It suggests that the journey was not just geographical, but a spiritual "spelling out" of the nation's identity.</p>
-                <p id="fn2"><sup>2</sup> <strong>Demolish their High Places:</strong> In the scrolls, the "High Places" (*Bamot*) were local shrines where the Canaanites worshipped their gods. God was not just commanding a military conquest, but a cultural and spiritual "cleansing." The Israelites were to ensure that there was no infrastructure of idolatry left to tempt them.</p>
-                <p id="fn3"><sup>3</sup> <strong>Thorns in your sides:</strong> This is a vivid metaphor in the original scrolls. God warns that a "partial" obedience will lead to "permanent" irritation. If the toxic influences are allowed to remain, they will inevitably infect the community. This prophecy is sadly fulfilled in the book of Judges and later history.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/numbers/32/" class="nav-btn">← Chapter 32</a>
-                <a href="/bible/numbers/34/" class="nav-btn">Chapter 34 →</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/numbers/32/" class="nav-btn">← Numbers 32</a>
+                <a href="/bible/numbers/34/" class="nav-btn">Numbers 34 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -95,6 +123,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

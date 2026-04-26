@@ -3,83 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deuteronomy 6 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Deuteronomy Chapter 6 in the Rooted Translation. The Shema: Israel’s central declaration of faith, and the command to love God and teach His words to the next generation.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Deuteronomy 6 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Deuteronomy 6 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/deuteronomy/" class="nav-btn">← Back to Deuteronomy</a>
-            <h1>Deuteronomy 6</h1>
+            <a href="../../" class="nav-btn">← Back to Deuteronomy</a>
+            <h1 style="margin-top: 1rem;">Deuteronomy 6</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="verse" data-verse="1"><span class="verse-num">1</span>These are the commands, decrees and laws the LORD your God directed me to teach you to observe in the land that you are crossing the Jordan to possess,</div>
-                <div class="verse" data-verse="2"><span class="verse-num">2</span>so that you, your children and their children after them may fear the LORD your God as long as you live by keeping all his decrees and commands that I give you, and so that you may enjoy long life.</div>
-                <div class="verse" data-verse="3"><span class="verse-num">3</span>Hear, Israel, and be careful to obey so that it may go well with you and that you may increase greatly in a land flowing with milk and honey, just as the LORD, the God of your ancestors, promised you.</div>
-                
-                <div class="shema-box" style="margin: 3rem 0; padding: 2.5rem; background: rgba(255,255,255,0.05); border-radius: 1.5rem; border: 2px solid var(--color-primary); text-align: center;">
-                    <div class="verse" data-verse="4" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">
-                        <span class="verse-num">4</span>Hear, O Israel: The LORD our God, the LORD is one. <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                    <div class="verse" data-verse="5" style="font-size: 1.2rem; line-height: 1.6; font-style: italic;">
-                        <span class="verse-num">5</span>Love the LORD your God with all your heart and with all your soul and with all your strength. <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="verse" data-verse="6"><span class="verse-num">6</span>These commandments that I give you today are to be on your hearts.</div>
-                <div class="verse" data-verse="7"><span class="verse-num">7</span>Impress them on your children. Talk about them when you sit at home and when you walk along the road, when you lie down and when you get up. <a href="#fn3" class="fn"><sup>3</sup></a></div>
-                <div class="verse" data-verse="8"><span class="verse-num">8</span>Tie them as symbols on your hands and bind them on your foreheads.</div>
-                <div class="verse" data-verse="9"><span class="verse-num">9</span>Write them on the doorposts of your houses and on your gates.</div>
-                <div class="verse" data-verse="10"><span class="verse-num">10</span>When the LORD your God brings you into the land he swore to your ancestors, to Abraham, Isaac and Jacob, to give you—a land with large, flourishing cities you did not build,</div>
-                <div class="verse" data-verse="11"><span class="verse-num">11</span>houses filled with all kinds of good things you did not provide, wells you did not dig, and vineyards and olive groves you did not plant—then when you eat and are satisfied,</div>
-                <div class="verse" data-verse="12"><span class="verse-num">12</span>be careful that you do not forget the LORD, who brought you out of Egypt, out of the land of slavery. <a href="#fn4" class="fn"><sup>4</sup></a></div>
-                <div class="verse" data-verse="13"><span class="verse-num">13</span>Fear the LORD your God, serve him only and take your oaths in his name.</div>
-                <div class="verse" data-verse="14"><span class="verse-num">14</span>Do not follow other gods, the gods of the peoples around you;</div>
-                <div class="verse" data-verse="15"><span class="verse-num">15</span>for the LORD your God, who is among you, is a jealous God and his anger will burn against you, and he will destroy you from the face of the land.</div>
-                <div class="verse" data-verse="16"><span class="verse-num">16</span>Do not put the LORD your God to the test as you did at Massah.</div>
-                <div class="verse" data-verse="17"><span class="verse-num">17</span>Be sure to keep the commands of the LORD your God and the stipulations and decrees he has given you.</div>
-                <div class="verse" data-verse="18"><span class="verse-num">18</span>Do what is right and good in the LORD’s sight, so that it may go well with you and you may go in and take possession of the good land the LORD promised on oath to your ancestors,</div>
-                <div class="verse" data-verse="19"><span class="verse-num">19</span>thrusting out all your enemies before you, as the LORD said.</div>
-                <div class="verse" data-verse="20"><span class="verse-num">20</span>In the future, when your son asks you, “What is the meaning of the stipulations, decrees and laws the LORD our God has commanded you?”</div>
-                <div class="verse" data-verse="21"><span class="verse-num">21</span>tell him: “We were slaves of Pharaoh in Egypt, but the LORD brought us out of Egypt with a mighty hand.</div>
-                <div class="verse" data-verse="22"><span class="verse-num">22</span>Before our eyes the LORD sent signs and wonders—great and terrible—on Egypt and Pharaoh and his whole household.”</div>
-                <div class="verse" data-verse="23"><span class="verse-num">23</span>“But he brought us out from there to bring us in and give us the land he promised on oath to our ancestors.”</div>
-                <div class="verse" data-verse="24"><span class="verse-num">24</span>“The LORD commanded us to obey all these decrees and to fear the LORD our God, so that we might always prosper and be kept alive, as is the case today.”</div>
-                <div class="verse" data-verse="25"><span class="verse-num">25</span>“And if we are careful to obey all this law before the LORD our God, as he has commanded us, that will be our righteousness.”</div>
+            <div class="verse-container" data-book-slug="deuteronomy" data-chapter="6">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now this is the commandment, the statutes, and the ordinances, which Yahweh your God commanded to teach you, that you might do them in the land where you go over to possess it;</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">that you might fear Yahweh your God, to keep all his statutes and his commandments, which I command you; you, and your son, and your son’s son, all the days of your life; and that your days may be prolonged.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Hear therefore, Israel, and observe to do it; that it may be well with you, and that you may increase mightily, as Yahweh, the God of your fathers, has promised to you, in a land flowing with milk and honey.</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Hear, Israel: Yahweh is our God. Yahweh is one.</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">You shall love Yahweh your God with all your heart, with all your soul, and with all your might.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">These words, which I command you today, shall be on your heart;</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">and you shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise up.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">You shall bind them for a sign on your hand, and they shall be for frontlets between your eyes.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">You shall write them on the door posts of your house, and on your gates.</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">It shall be, when Yahweh your God brings you into the land which he swore to your fathers, to Abraham, to Isaac, and to Jacob, to give you, great and goodly cities, which you didn’t build,</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">and houses full of all good things, which you didn’t fill, and cisterns dug out, which you didn’t dig, vineyards and olive trees, which you didn’t plant, and you shall eat and be full;</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">then beware lest you forget Yahweh, who brought you out of the land of Egypt, out of the house of bondage.</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">You shall fear Yahweh your God; and you shall serve him, and shall swear by his name.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">You shall not go after other gods, of the gods of the peoples who are around you;</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">for Yahweh your God among you is a jealous God; lest the anger of Yahweh your God be kindled against you, and he destroy you from off the face of the earth.</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">You shall not tempt Yahweh your God, as you tempted him in Massah.</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">You shall diligently keep the commandments of Yahweh your God, and his testimonies, and his statutes, which he has commanded you.</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">You shall do that which is right and good in Yahweh’s sight; that it may be well with you, and that you may go in and possess the good land which Yahweh swore to your fathers,</span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">to thrust out all your enemies from before you, as Yahweh has spoken.</span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">When your son asks you in time to come, saying, “What do the testimonies, the statutes, and the ordinances, which Yahweh our God has commanded you mean?”</span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">then you shall tell your son, “We were Pharaoh’s slaves in Egypt. Yahweh brought us out of Egypt with a mighty hand;</span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">and Yahweh showed great and awesome signs and wonders on Egypt, on Pharaoh, and on all his house, before our eyes;</span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">and he brought us out from there, that he might bring us in, to give us the land which he swore to our fathers.</span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">Yahweh commanded us to do all these statutes, to fear Yahweh our God, for our good always, that he might preserve us alive, as we are today.</span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">It shall be righteousness to us, if we observe to do all this commandment before Yahweh our God, as he has commanded us.”</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>The Shema (Hear):</strong> In the original scrolls, this is the most important sentence in the Bible. *Shema Yisrael, Adonai Eloheinu, Adonai Echad*. The word "One" (*Echad*) doesn't just mean a numerical one, but a "Unique Unity." It excludes all other gods and asserts that everything in the universe flows from a single Source. It is the foundation of monotheism.</p>
-                <p id="fn2"><sup>2</sup> <strong>Love the LORD:</strong> The scrolls introduce a revolutionary concept: a relationship with God based on *Love* (*Ahavah*), not just fear or ritual. "Heart, Soul, and Strength" cover the emotions, the life-force, and the material resources of a person. It is a call for "Total Devotion."</p>
-                <p id="fn3"><sup>3</sup> <strong>Art of Passing it On:</strong> In the scrolls, the home is the primary school of faith. The instruction is not to have a "weekly class," but to weave the words of God into the natural rhythm of life—eating, walking, resting, and waking. Faith was meant to be the "Atmosphere" of the home, not just a subject of study.</p>
-                <p id="fn4"><sup>4</sup> <strong>Be careful not to forget:</strong> Moses warns about the "Danger of Success." In the wilderness, the people were forced to depend on God for daily manna. In the Promised Land, they would have houses they didn't build and wells they didn't dig. The scrolls teach that prosperity often leads to "Spiritual Amnesia." We are most in danger of forgetting God when we are most comfortable.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/deuteronomy/5/" class="nav-btn">← Chapter 5</a>
-                <a href="/bible/deuteronomy/7/" class="nav-btn">Chapter 7 →</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/deuteronomy/5/" class="nav-btn">← Deuteronomy 5</a>
+                <a href="/bible/deuteronomy/7/" class="nav-btn">Deuteronomy 7 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -104,6 +92,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

@@ -3,103 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psalms 126 | Rooted Daily</title>
-    <meta name="description" content="Read Psalms Chapter 126. Experience the Bible with audio narration and AI reflections on Rooted Daily.">
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSEJQQEFLJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HSEJQQEFLJ');
-</script>
-
-    <link rel="stylesheet" href="../../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Psalms 126 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Psalms 126 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
+            <a href="../../" class="nav-btn">← Back to Psalms</a>
+            <h1 style="margin-top: 1rem;">Psalms 126</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-        <a href="/bible/psalms/" class="nav-btn">← Back to Psalms</a>
-        <h1 style="margin-top: 1rem;">Psalms 126</h1>
-        <div style="margin-top: 2rem;">
-          <div class="verse"><span class="verse-num">1</span><b>A Song of Ascents. </b>   When Yahweh brought back those who returned to Zion, we were like those who dream. </div><div class="verse"><span class="verse-num">2</span>Then our mouth was filled with laughter, and our tongue with singing. Then they said among the nations, “Yahweh has done great things for them.” </div><div class="verse"><span class="verse-num">3</span>Yahweh has done great things for us, and we are glad. </div><div class="verse"><span class="verse-num">4</span>Restore our fortunes again, Yahweh, like the streams in the Negev. </div><div class="verse"><span class="verse-num">5</span>Those who sow in tears will reap in joy. </div><div class="verse"><span class="verse-num">6</span>He who goes out weeping, carrying seed for sowing, will certainly come again with joy, carrying his sheaves. </div>
-        </div>
-        <div class="chapter-nav">
-          <a href="/bible/psalms/125/" class="nav-btn">← Chapter 125</a>
-          <a href="/bible/psalms/127/" class="nav-btn">Chapter 127 →</a>
-        </div>
-      
+            <div class="ch-nav"></div>
+
+            <div class="verse-container" data-book-slug="psalms" data-chapter="126">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text"><b>A Song of Ascents. </b>   When Yahweh brought back those who returned to Zion, we were like those who dream. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Then our mouth was filled with laughter, and our tongue with singing. Then they said among the nations, “Yahweh has done great things for them.” </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh has done great things for us, and we are glad. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Restore our fortunes again, Yahweh, like the streams in the Negev. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">Those who sow in tears will reap in joy. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">He who goes out weeping, carrying seed for sowing, will certainly come again with joy, carrying his sheaves. </span></div>
+            </div>
+
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/psalms/125/" class="nav-btn">← Psalms 125</a>
+                <a href="/bible/psalms/127/" class="nav-btn">Psalms 127 →</a>
+            </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
-    <!-- Interactive Elements -->
+    <!-- AI & Social Tools -->
     <div id="highlight-menu">
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 Reflect</button>
+        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
+        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
     </div>
 
     <div id="ai-bubble" class="ai-bubble">
         <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
-    <div id="ai-chat-window" class="ai-chat-window">
-        <div class="ai-chat-header">
-            <span>Rooted AI</span>
-            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
+    <div id="insight-drawer" class="insight-drawer">
+        <div class="drawer-header">
+            <h3>Community Insights</h3>
+            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
         </div>
-        <div id="chat-messages" class="ai-chat-messages">
-            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
-        </div>
-        <form id="chat-form" class="ai-chat-input">
-            <input type="text" id="chat-input" placeholder="Ask Rooted...">
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-    <div id="auth-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-auth" class="close-modal">✕</button>
-            <h2>Join Rooted Daily</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Sign in to save your highlights and journal entries across devices.</p>
-            <form id="auth-form">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
-                    <button type="button" id="create-account-btn" class="btn" style="width: 100%; background: transparent; border: 1px solid var(--glass-border); color: white;">Create Account</button>
-                </div>
-            </form>
+        <div id="insight-content" class="drawer-content">
+            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
         </div>
     </div>
 
-    <script src="../../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

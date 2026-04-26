@@ -3,85 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zechariah 6 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Zechariah 6 in the Rooted Translation. The Chariots and the Crown—witness the four spirits of heaven, discover the crowning of the High Priest, and learn of the Branch who shall be both King and Priest on His throne.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Zechariah 6 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Zechariah 6 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/zechariah/5/" class="nav-btn">← Back to Zechariah 5</a>
-            <h1>Zechariah 6</h1>
-            <p class="psalm-sub">The Bronze Mountains and the Crowning of the Branch.</p>
+            <a href="../../" class="nav-btn">← Back to Zechariah</a>
+            <h1 style="margin-top: 1rem;">Zechariah 6</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="bronze-mountains-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid silver; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem;">Mountains of Bronze</h2>
-                    <div class="verse" data-verse="1" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Four chariots coming out from between two mountains—mountains of bronze!” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="four-spirits-box" style="margin: 4rem 0; padding: 5rem; background: rgba(139,0,0,0.05); border-radius: 4rem; border: 4px solid #ff4444; text-align: center; box-shadow: 0 0 150px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.5rem;">The Spirits of Heaven</h2>
-                    <div class="verse" data-verse="5" style="font-size: 2.2rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “These are the four spirits of heaven, going out from the presence of the Lord.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="the-crown-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.9); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 200px rgba(255,215,0,0.3);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">The Gold and Silver Crown</h2>
-                    <div class="verse" data-verse="11" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Make a crown, and set it on the head of Joshua.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="12" style="margin-top: 1.5rem; font-size: 2.2rem; font-weight: 900; color: silver;">
-                        “Here is the man whose name is the Branch.”
-                    </div>
-                </div>
-
-                <div class="throne-harmony-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,139,139,0.05); border-radius: 4rem; border: 4px solid darkcyan; text-align: center; box-shadow: 0 0 150px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem; font-size: 2.5rem;">The Priest-King</h2>
-                    <div class="verse" data-verse="13" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He will be a priest on his throne. And there will be harmony between the two.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="15" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “Those who are far away will come and build.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="zechariah" data-chapter="6">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Again I lifted up my eyes, and saw, and behold, four chariots came out from between two mountains; and the mountains were mountains of brass.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">In the first chariot were red horses; in the second chariot black horses;</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">in the third chariot white horses; and in the fourth chariot dappled horses, all of them powerful.</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Then I asked the angel who talked with me, “What are these, my lord?”</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The angel answered me, “These are the four winds of the sky, which go out from standing before the Lord of all the earth.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">The one with the black horses goes out toward the north country; and the white went out after them; and the dappled went out toward the south country.”</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">The strong went out, and sought to go that they might walk back and forth through the earth: and he said, “Go around and through the earth!” So they walked back and forth through the earth.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">Then he called to me, and spoke to me, saying, “Behold, those who go toward the north country have quieted my spirit in the north country.”</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Yahweh’s word came to me, saying,</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">“Take of them of the captivity, even of Heldai, of Tobijah, and of Jedaiah; and come the same day, and go into the house of Josiah the son of Zephaniah, where they have come from Babylon.</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Yes, take silver and gold, and make crowns, and set them on the head of Joshua the son of Jehozadak, the high priest;</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">and speak to him, saying, ‘Yahweh of Armies says, “Behold, the man whose name is the Branch: and he shall grow up out of his place; and he shall build Yahweh’s temple;</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">even he shall build Yahweh’s temple; and he shall bear the glory, and shall sit and rule on his throne; and he shall be a priest on his throne; and the counsel of peace shall be between them both.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">The crowns shall be to Helem, and to Tobijah, and to Jedaiah, and to Hen the son of Zephaniah, for a memorial in Yahweh’s temple.</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">Those who are far off shall come and build in Yahweh’s temple; and you shall know that Yahweh of Armies has sent me to you. This will happen, if you will diligently obey Yahweh your God’s voice.”’” </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Mountains of Bronze (ha-rē ne-chō-sheth):</strong> The scrolls highlight the "Impenetrable Root of the Sovereignty." "Fragility" is "Uprooted." The "Mountains" (*Harim*) are "Rooted" in "Bronze" (*Nechosheth*). It signifies "The Aesthetic of the Eternal Foundation."</p>
-                <p id="fn2"><sup>2</sup> <strong>Spirits of Heaven (ar-ba rū-chōth ha-shā-ma-yim):</strong> The scrolls highlight the "Elemental Root of the Agency." "Isolation" is "Uprooted." They are "Rooted" in the "Presence" (*Al-yatzibh*) of the Lord. It signify "The Aesthetic of the Cosmic Oversight."</p>
-                <p id="fn3"><sup>3</sup> <strong>Make a Crown (a-śī-thā a-tā-rōth):</strong> The scrolls highlight the "Regal Root of the Priesthood." "Fragmentation" is "Uprooted." The "Crown" (*Atarah*) is "Rooted" in "Silver" (*Keseph*) and "Gold" (*Zahabh*). It signifies "The Aesthetic of the United Office."</p>
-                <p id="fn4"><sup>4</sup> <strong>Harmony between the Two (a-tzath shā-lōm):</strong> Literally "The Counsel of Peace." The scrolls highlight the "Integrated Root of the Governance." "Conflict" is "Uprooted." The "Priest" (*Kohen*) and the "King" (*Moshel*) are "Rooted" in "Shalom." It signify "The Aesthetic of the Divine Synthesis."</p>
-                <p id="fn5"><sup>5</sup> <strong>Far Away (re-chō-qīm):</strong> The scrolls conclude with this "Inclusive Root of the Expansion." "Exclusion" is "Uprooted." It marks the end of the night visions and the transition to "Justice and Mercy" in *Zechariah 7*. It is the "Rooted Daily" anthem of "The Chariots." The world is coming.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/zechariah/5/" class="nav-btn">← Zechariah 5</a>
                 <a href="/bible/zechariah/7/" class="nav-btn">Zechariah 7 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -90,6 +66,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -102,6 +82,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

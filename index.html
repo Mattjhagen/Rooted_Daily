@@ -3,53 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooted Daily | Your Bible Companion</title>
-    <meta name="description" content="Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling. Stay Rooted in the Word with our interactive reader.">
-    <meta name="keywords" content="Bible, Daily Devotional, Audio Bible, AI Bible, Bible Journaling, Christian App, Rooted Daily">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSEJQQEFLJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HSEJQQEFLJ');
-    </script>
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rootedapp.space/">
-    <meta property="og:title" content="Rooted Daily | Your Bible Companion">
-    <meta property="og:description" content="Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling.">
-    <meta property="og:image" content="https://rootedapp.space/rooted_icon_512.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rootedapp.space/">
-    <meta property="twitter:title" content="Rooted Daily | Your Bible Companion">
-    <meta property="twitter:description" content="Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling.">
-    <meta property="twitter:image" content="https://rootedapp.space/rooted_icon_512.png">
-
-    <link rel="stylesheet" href="style.css">
+    <title>Rooted Daily Bible (LLT) | Ancient Truth in Today's Language</title>
+    <meta name="description" content="A modern English Bible translation — read all 66 books online with AI insights and community footnotes.">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Rooted Daily",
-      "operatingSystem": "iOS, Android",
-      "applicationCategory": "LifestyleApplication",
-      "description": "A modern Bible companion with audio narration, AI reflections, and journaling.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
 </head>
 <body>
     <div class="container">
@@ -65,30 +23,14 @@
         </header>
 
         <section class="hero">
-            <h1>Stay Rooted in the Word</h1>
-            <p>Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling.</p>
+            <h1>The Living Legacy<br>Translation</h1>
+            <p>Ancient Truth in Today's Language — a modern, faithful English Bible built for clarity, depth, and daily reading.</p>
             
             <div class="download-card">
                 <a href="/bible/" class="btn primary">
                     <div class="btn-content" style="text-align: center;">
                         <span class="btn-small">Launch Web App</span>
                         Read Bible Online
-                    </div>
-                </a>
-                
-                <a href="https://play.google.com/store/apps/details?id=com.rooteddaily.bible" class="btn">
-                    <img src="https://img.icons8.com/ios-filled/24/000000/google-play.png" alt="Play Store">
-                    <div class="btn-content">
-                        <span class="btn-small">Get it on</span>
-                        Google Play
-                    </div>
-                </a>
-                
-                <a href="#" class="btn disabled">
-                    <img src="https://img.icons8.com/ios-filled/24/ffffff/apple-app-store.png" alt="App Store" style="opacity: 0.8;">
-                    <div class="btn-content">
-                        <span class="btn-small">Coming Soon to</span>
-                        App Store
                     </div>
                 </a>
             </div>
@@ -100,8 +42,8 @@
                 <p>Highlight, share, and dive deep into scripture with a fluid, horizontal reader.</p>
             </div>
             <div class="feature-card">
-                <h3>🎙️ Natural Narration</h3>
-                <p>Listen to any verse or AI reflection with our premium, human-like audio narration.</p>
+                <h3>✦ Heirloom Mode</h3>
+                <p>Toggle the LLT mode for a parchment-styled experience with scholarly marginalia.</p>
             </div>
             <div class="feature-card">
                 <h3>🪴 Deep Reflections</h3>
@@ -111,57 +53,13 @@
 
         <footer>
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
-            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-secondary);">
-    <a href="https://github.com/Mattjhagen/Rooted_Daily" target="_blank" rel="noopener noreferrer" style="color: var(--color-text-secondary); text-decoration: underline;">Open source</a> project created with coffee, code, and Jesus &lt;3
-</p>
-            <p style="margin-top: 1rem;">
-                <a href="support/index.html" style="color: var(--color-text-secondary); text-decoration: none; margin-right: 1.5rem;">Support</a>
-                <a href="privacy/index.html" style="color: var(--color-text-secondary); text-decoration: none;">Privacy Policy</a>
-            </p>
         </footer>
     </div>
 
-    <!-- Interactive Elements -->
     <div id="ai-bubble" class="ai-bubble">
         <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
-    <div id="ai-chat-window" class="ai-chat-window">
-        <div class="ai-chat-header">
-            <span>Rooted AI</span>
-            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
-        </div>
-        <div id="chat-messages" class="ai-chat-messages">
-            <div class="message ai">Hi! I'm Rooted. How can I help you today?</div>
-        </div>
-        <form id="chat-form" class="ai-chat-input">
-            <input type="text" id="chat-input" placeholder="Ask Rooted...">
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-    <div id="auth-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-auth" class="close-modal">✕</button>
-            <h2>Join Rooted Daily</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Sign in to save your highlights and journal entries across devices.</p>
-            <form id="auth-form">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
-                    <button type="button" id="create-account-btn" class="btn" style="width: 100%; background: transparent; border: 1px solid var(--glass-border); color: white;">Create Account</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="bible-reader.js"></script>
+    <script src="assets/js/bible-reader.js"></script>
 </body>
 </html>

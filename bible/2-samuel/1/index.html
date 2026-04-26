@@ -3,82 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Samuel 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read 2 Samuel Chapter 1 in the Rooted Translation. David receives news of the disaster on Mount Gilboa and leads the nation in mourning, composing a powerful lament for his fallen king and his beloved friend Jonathan.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>2 Samuel 1 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read 2 Samuel 1 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/2-samuel/" class="nav-btn">← Back to 2 Samuel Index</a>
-            <h1>2 Samuel 1</h1>
+            <a href="../../" class="nav-btn">← Back to 2 Samuel</a>
+            <h1 style="margin-top: 1rem;">2 Samuel 1</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="messenger-box" style="margin: 2rem 0; padding: 2.5rem; background: rgba(255,255,255,0.05); border-radius: 1.5rem; border: 1px solid var(--color-primary);">
-                    <div class="verse" data-verse="1"><span class="verse-num">1</span>After the death of Saul, David returned from striking down the Amalekites and stayed in Ziklag two days.</div>
-                    <div class="verse" data-verse="2"><span class="verse-num">2</span>On the third day a man arrived from Saul’s camp with his clothes torn and dust on his head...</div>
-                    <div class="verse" data-verse="4"><span class="verse-num">4</span>“The men fled from the battle,” he replied. “Many of them fell and died. And Saul and his son Jonathan are dead.”</div>
-                </div>
-                
-                <div class="story-box" style="margin: 3rem 0; padding: 2.5rem; background: rgba(0,0,0,0.3); border-radius: 1.5rem; border-left: 5px solid #ff4444;">
-                    <div class="verse" data-verse="6"><span class="verse-num">6</span>“I happened to be on Mount Gilboa,” the young man said, “and there was Saul, leaning on his spear...</div>
-                    <div class="verse" data-verse="10" style="font-weight: 700;"><span class="verse-num">10</span>“So I stood over him and killed him, because I knew that after he had fallen he could not survive. And I took the crown that was on his head and the band on his arm and have brought them here to my lord.” <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="mourning-box" style="margin: 3rem 0; padding: 2.5rem; background: rgba(255,255,255,0.02); border-radius: 1.5rem; border: 1px solid var(--glass-border);">
-                    <div class="verse" data-verse="11"><span class="verse-num">11</span>Then David and all the men with him took hold of their clothes and tore them.</div>
-                    <div class="verse" data-verse="12" style="font-style: italic;"><span class="verse-num">12</span>They mourned and wept and fasted until evening for Saul and his son Jonathan, and for the army of the LORD and for the nation of Israel, because they had fallen by the sword.</div>
-                </div>
-
-                <div class="execution-box" style="margin: 3rem 0; padding: 2.5rem; background: rgba(255,0,0,0.05); border-radius: 1.5rem; border: 1px solid #ff4444;">
-                    <div class="verse" data-verse="14"><span class="verse-num">14</span>David asked him, “Why were you not afraid to lift your hand to destroy the LORD’s anointed?” <a href="#fn2" class="fn"><sup>2</sup></a></div>
-                    <div class="verse" data-verse="16" style="font-weight: 700; color: #ff4444;">
-                        <span class="verse-num">16</span>For David said to him, “Your blood be on your own head. Your own mouth testified against you when you said, ‘I killed the LORD’s anointed.’”
-                    </div>
-                </div>
-
-                <div class="poetry-box" style="margin: 4rem 0; padding: 3rem; background: rgba(255,215,0,0.05); border-radius: 2rem; border: 2px solid gold; font-family: 'Lora', serif; line-height: 1.8;">
-                    <h3 style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading);">The Song of the Bow</h3>
-                    <div class="verse" data-verse="19" style="text-align: center; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">“A gazelle lies slain on your heights, Israel.<br>How the mighty have fallen!” <a href="#fn3" class="fn"><sup>3</sup></a></div>
-                    <div class="verse" data-verse="23" style="text-align: center;">“Saul and Jonathan—<br>in life they were loved and admired,<br>and in death they were not parted.<br>They were swifter than eagles,<br>they were stronger than lions.”</div>
-                    <div class="verse" data-verse="25" style="text-align: center; margin-top: 1.5rem; font-weight: 700;">“How the mighty have fallen in battle!<br>Jonathan lies slain on your heights.”</div>
-                    <div class="verse" data-verse="26" style="text-align: center; color: var(--color-accent); font-size: 1.2rem;">“I grieve for you, Jonathan my brother;<br>you were very dear to me.<br>Your love for me was wonderful,<br>more wonderful than that of women.” <a href="#fn4" class="fn"><sup>4</sup></a></div>
-                    <div class="verse" data-verse="27" style="text-align: center; margin-top: 1.5rem; font-weight: 700;">“How the mighty have fallen!<br>The weapons of war have perished!” <a href="#fn5" class="fn"><sup>5</sup></a></div>
-                </div>
+            <div class="verse-container" data-book-slug="2-samuel" data-chapter="1">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">After the death of Saul, when David had returned from the slaughter of the Amalekites, and David had stayed two days in Ziklag;</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">on the third day, behold,  a man came out of the camp from Saul, with his clothes torn, and earth on his head. When he came to David, he fell to the earth, and showed respect.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">David said to him, “Where do you come from?” He said to him, “I have escaped out of the camp of Israel.”</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">David said to him, “How did it go? Please tell me.” He answered, “The people have fled from the battle, and many of the people also have fallen and are dead. Saul and Jonathan his son are dead also.”</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">David said to the young man who told him, “How do you know that Saul and Jonathan his son are dead?”</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">The young man who told him said, “As I happened by chance on Mount Gilboa, behold, Saul was leaning on his spear; and behold, the chariots and the horsemen followed close behind him.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">When he looked behind him, he saw me, and called to me. I answered, ‘Here I am.’</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">He said to me, ‘Who are you?’ I answered him, ‘I am an Amalekite.’</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">He said to me, ‘Please stand beside me, and kill me; for anguish has taken hold of me, because my life lingers in me.’</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">So I stood beside him and killed him, because I was sure that he could not live after that he had fallen. I took the crown that was on his head and the bracelet that was on his arm, and have brought them here to my lord.”</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Then David took hold on his clothes, and tore them; and all the men who were with him did likewise.</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">They mourned, wept, and fasted until evening, for Saul, and for Jonathan his son, and for the people of Yahweh,  and for the house of Israel; because they had fallen by the sword.</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">David said to the young man who told him, “Where are you from?” He answered, “I am the son of a foreigner, an Amalekite.”</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">David said to him, “Why were you not afraid to stretch out your hand to destroy Yahweh’s anointed?”</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">David called one of the young men, and said, “Go near, and cut him down!” He struck him so that he died.</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">David said to him, “Your blood be on your head; for your mouth has testified against you, saying, ‘I have slain Yahweh’s anointed.’”</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">David lamented with this lamentation over Saul and over Jonathan his son</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">(and he commanded them to teach the children of Judah the song of the bow; behold, it is written in the book of Jashar):</span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">“Your glory, Israel, was slain on your high places! How the mighty have fallen! </span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">Don’t tell it in Gath. Don’t publish it in the streets of Ashkelon, lest the daughters of the Philistines rejoice, lest the daughters of the uncircumcised triumph. </span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">You mountains of Gilboa, let there be no dew or rain on you, and no fields of offerings; For there the shield of the mighty was defiled and cast away, The shield of Saul was not anointed with oil. </span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">From the blood of the slain, from the fat of the mighty, Jonathan’s bow didn’t turn back. Saul’s sword didn’t return empty. </span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">Saul and Jonathan were lovely and pleasant in their lives. In their death, they were not divided. They were swifter than eagles. They were stronger than lions. </span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">You daughters of Israel, weep over Saul, who clothed you delicately in scarlet, who put ornaments of gold on your clothing. </span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">How the mighty have fallen in the middle of the battle! Jonathan was slain on your high places. </span></div>
+<div class="verse"><span class="verse-num">26</span><span class="verse-text">I am distressed for you, my brother Jonathan. You have been very pleasant to me. Your love to me was wonderful, passing the love of women. </span></div>
+<div class="verse"><span class="verse-num">27</span><span class="verse-text">How the mighty have fallen, and the weapons of war have perished!” </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>The Amalekite’s Story:</strong> In the scrolls, there is a discrepancy between this man’s account and the record in 1 Samuel 31 (where Saul fell on his own sword). Most scholars believe the Amalekite was "Lying for Profit." He likely found Saul already dead, took the crown, and invented a story of "Mercy Killing" to gain a reward from David. He fundamentally misunderstood David’s character.</p>
-                <p id="fn2"><sup>2</sup> <strong>Testified against yourself:</strong> David’s decision in the scrolls was based on the "Sanctity of the Anointing." Even if the man was lying, he had confessed to regicide. By executing him, David was distancing himself from any claim that he had "Ascended by Violence." He was establishing that the "Anointed Office" was untouchable by human hands.</p>
-                <p id="fn3"><sup>3</sup> <strong>A Gazelle (Hat-Tze-vi):</strong> The word in the scrolls also means "Beauty" or "Glory." This lament is one of the oldest pieces of poetry in the Bible. David was not just mourning a friend; he was mourning the "National Glory" of Israel. It shows that David was a "King of the Heart" before he was a "King of the Land."</p>
-                <p id="fn4"><sup>4</sup> <strong>More wonderful than that of women:</strong> In the scrolls, this refers to the "Covenantal Intensity" of their friendship. In a world of political marriages and shifting alliances, Jonathan’s love for David was purely based on "Spiritual Recognition" and "Selfless Sacrifice." It was a "Philia" love that transcended all social norms.</p>
-                <p id="fn5"><sup>5</sup> <strong>The Mighty have Fallen:</strong> This refrain in the scrolls serves as the "Theme of the Transition." The era of the "Mighty Man" (the giant Saul) was over. The era of the "Man of the Spirit" (David) was beginning. The "Weapons of War" (Saul’s physical power) had failed, making way for a kingdom based on the "Heart of God."</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/1-samuel/31/" class="nav-btn">← 1 Samuel 31</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <span></span>
                 <a href="/bible/2-samuel/2/" class="nav-btn">2 Samuel 2 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -87,6 +78,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -99,6 +94,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

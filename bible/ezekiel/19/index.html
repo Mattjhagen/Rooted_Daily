@@ -3,82 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ezekiel 19 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Ezekiel 19 in the Rooted Translation. The Lament for the Princes—witness the imagery of the lioness and her whelps, discover the allegory of the uprooted vine, and learn of the fall of the strong scepters as the nation’s leadership is led away in hooks and snares.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Ezekiel 19 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Ezekiel 19 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/ezekiel/18/" class="nav-btn">← Back to Ezekiel 18</a>
-            <h1>Ezekiel 19</h1>
-            <p class="psalm-sub">The Lioness of Judah and the Desert Vine.</p>
+            <a href="../../" class="nav-btn">← Back to Ezekiel</a>
+            <h1 style="margin-top: 1rem;">Ezekiel 19</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="lioness-box" style="margin: 2rem 0; padding: 3rem; background: rgba(139,69,19,0.1); border-radius: 2rem; border: 4px solid #8b4513; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(139,69,19,0.2);">
-                    <h2 style="color: #8b4513; margin-bottom: 2rem;">The Mother Lioness</h2>
-                    <div class="verse" data-verse="2" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “What a lioness was your mother among the lions!” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="whelp-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 2.5rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">Caught in the Snare</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “He was caught in their pit... they led him with hooks to Egypt.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="vineyard-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 3rem; border: 4px solid mediumseagreen; text-align: center; box-shadow: 0 0 120px rgba(0,255,127,0.2);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">The Vine in the Vineyard</h2>
-                    <div class="verse" data-verse="10" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Your mother was like a vine in your vineyard... fit for a ruler’s scepter.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="uprooted-fury-box" style="margin: 4rem 0; padding: 5rem; background: rgba(139,0,0,0.1); border-radius: 4rem; border: 3px solid #ff4444; text-align: center; box-shadow: 0 0 150px rgba(255,68,68,0.3);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.5rem;">Uprooted in Fury</h2>
-                    <div class="verse" data-verse="12" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “It was uprooted in fury and thrown to the ground.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="13" style="margin-top: 2rem; font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Now it is planted in the desert, in a dry and thirsty land.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="ezekiel" data-chapter="19">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">“Moreover, take up a lamentation for the princes of Israel,</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">and say, ‘What was your mother? A lioness. She couched among lions, in the middle of the young lions she nourished her cubs. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">She brought up one of her cubs. He became a young lion, and he learned to catch the prey. He devoured men. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">The nations also heard of him. He was taken in their pit; and they brought him with hooks to the land of Egypt.  </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">“‘Now when she saw that she had waited, and her hope was lost, then she took another of her cubs, and made him a young lion. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">He went up and down among the lions; he became a young lion, and he learned to catch the prey. He devoured men. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">He knew their palaces, and laid waste their cities; and the land was desolate, with its fullness, because of the noise of his roaring. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">Then the nations set against him on every side from the provinces; and they spread their net over him. He was taken in their pit. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">They put him in a cage with hooks, and brought him to the king of Babylon. They brought him into strongholds, that his voice should no more be heard on the mountains of Israel.  </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">“‘Your mother was like a vine, in your blood, planted by the waters. It was fruitful and full of branches by reason of many waters. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">It had strong rods for the scepters of those who bore rule, and their stature was exalted among the thick boughs, and they were seen in their height with the multitude of their branches. </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">But it was plucked up in fury, it was cast down to the ground, and the east wind dried up its fruit. Its strong rods were broken off and withered. The fire consumed them. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Now it is planted in the wilderness, in a dry and thirsty land. </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">Fire has gone out of the rods of its branches. It has devoured its fruit, so that there is in it no strong rod to be a scepter to rule.’  This is a lamentation, and shall be for a lamentation.”</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Lioness (le-bhī-yā):</strong> In the scrolls, this is the "Predatory Root of Royalty." Judah is "Rooted" as the "Lioness." It signifies "The Strength and Nobility of the Davidic Line."</p>
-                <p id="fn2"><sup>2</sup> <strong>Hooks (ba-cha-chīm):</strong> The scrolls highlight the "Captive Root of the King." "Freedom" is "Uprooted" by "Force." It signify "The Humiliation of the Captured Sovereign."</p>
-                <p id="fn3"><sup>3</sup> <strong>Ruler’s Scepter (ma-tōth mō-she-līm):</strong> The scrolls highlight the "Authoritative Root of Power." The "Vine" (*Gephen*) was "Rooted" with "Scepters" (*Matot*). It signifies "The Former Glory of the Kingdom."</p>
-                <p id="fn4"><sup>4</sup> <strong>Uprooted in Fury (wat-tit-ta-sh be-chē-māh):</strong> The scrolls highlight the "Violent Root of Dislocation." "Stability" is "Uprooted" (*Nathash*) by "Divine Wrath" (*Chemah*). It signify "The Aesthetic of Sudden Collapse."</p>
-                <p id="fn5"><sup>5</sup> <strong>Planted in the Desert (wat-tī-tā-ē-hū bam-midh-bār):</strong> The scrolls conclude with this "Arid Root of Displacement." The "Vine" is "Re-Rooted" in a "Thirsty Land" (*Babylon*). It marks the transition to "The History of Rebellion" in *Ezekiel 20*. It is the "Rooted Daily" anthem of "The Uprooted Lion." Lament for the princes.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/ezekiel/18/" class="nav-btn">← Ezekiel 18</a>
                 <a href="/bible/ezekiel/20/" class="nav-btn">Ezekiel 20 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -87,6 +65,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -99,6 +81,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

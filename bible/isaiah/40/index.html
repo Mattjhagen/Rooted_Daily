@@ -3,87 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaiah 40 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Isaiah 40 in the Rooted Translation. The Message of Comfort—witness the voice calling in the wilderness, discover the incomparable greatness of the God who measures the waters in His hand, and learn the promise of renewed strength for those who wait upon the Lord.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Isaiah 40 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Isaiah 40 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/isaiah/39/" class="nav-btn">← Back to Isaiah 39</a>
-            <h1>Isaiah 40</h1>
-            <p class="psalm-sub">Comfort, the Voice, and the Eagle’s Wings.</p>
+            <a href="../../" class="nav-btn">← Back to Isaiah</a>
+            <h1 style="margin-top: 1rem;">Isaiah 40</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="comfort-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,139,139,0.05); border-radius: 2rem; border: 4px solid darkcyan; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem;">Comfort My People</h2>
-                    <div class="verse" data-verse="1" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Comfort, comfort my people, says your God.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="voice-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 2.5rem; border: 1px solid silver; text-align: center; box-shadow: 0 0 100px rgba(255,255,255,0.1);">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">The Voice in the Wilderness</h2>
-                    <div class="verse" data-verse="3" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “In the wilderness prepare the way for the Lord; make straight in the desert a highway for our God.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="grass-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 3rem; border: 2px solid mediumseagreen; text-align: center;">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem;">The Word Endures</h2>
-                    <div class="verse" data-verse="8" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “The grass withers and the flowers fall, but the word of our God endures forever.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="greatness-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,139,0.05); border-radius: 4rem; border: 3px solid deepskyblue; text-align: center; box-shadow: 0 0 120px rgba(0,191,255,0.2);">
-                    <h2 style="color: deepskyblue; margin-bottom: 2rem; font-size: 2.2rem;">Incomparable</h2>
-                    <div class="verse" data-verse="15">“The nations are like a drop in a bucket.”</div>
-                    <div class="verse" data-verse="12" style="margin-top: 2rem; font-size: 1.6rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Who has measured the waters in the hollow of his hand?” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                </div>
-
-                <div class="wings-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,215,0,0.1); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.3);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">Wings Like Eagles</h2>
-                    <div class="verse" data-verse="31" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “But those who hope in the Lord will renew their strength. They will soar on wings like eagles.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="isaiah" data-chapter="40">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">“Comfort, comfort my people,” says your God.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Speak comfortably to Jerusalem; and call out to her that her warfare is accomplished, that her iniquity is pardoned, that she has received of Yahweh’s hand double for all her sins.”</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">The voice of one who calls out, “Prepare the way of Yahweh in the wilderness! Make a level highway in the desert for our God. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Every valley shall be exalted, and every mountain and hill shall be made low. The uneven shall be made level, and the rough places a plain. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">Yahweh’s glory shall be revealed, and all flesh shall see it together; for the mouth of Yahweh has spoken it.” </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">The voice of one saying, “Cry!” One said, “What shall I cry?” “All flesh is like grass, and all its glory is like the flower of the field. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">The grass withers, the flower fades, because Yahweh’s breath blows on it. Surely the people are like grass. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">The grass withers, the flower fades; but the word of our God stands forever.”  </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">You who tell good news to Zion, go up on a high mountain. You who tell good news to Jerusalem, lift up your voice with strength. Lift it up. Don’t be afraid. Say to the cities of Judah, “Behold, your God!” </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Behold, the Lord Yahweh will come as a mighty one, and his arm will rule for him. Behold, his reward is with him, and his recompense before him. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">He will feed his flock like a shepherd. He will gather the lambs in his arm, and carry them in his bosom. He will gently lead those who have their young.  </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">Who has measured the waters in the hollow of his hand, and marked off the sky with his span, and calculated the dust of the earth in a measuring basket, and weighed the mountains in scales, and the hills in a balance? </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Who has directed Yahweh’s Spirit, or has taught him as his counselor? </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">Who did he take counsel with, and who instructed him, and taught him in the path of justice, and taught him knowledge, and showed him the way of understanding? </span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">Behold, the nations are like a drop in a bucket, and are regarded as a speck of dust on a balance. Behold, he lifts up the islands like a very little thing. </span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">Lebanon is not sufficient to burn, nor its animals sufficient for a burnt offering. </span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">All the nations are like nothing before him. They are regarded by him as less than nothing, and vanity. </span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">To whom then will you liken God? Or what likeness will you compare to him? </span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">A workman has cast an image, and the goldsmith overlays it with gold, and casts silver chains for it. </span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">He who is too impoverished for such an offering chooses a tree that will not rot. He seeks a skillful workman to set up an engraved image for him that will not be moved.  </span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">Haven’t you known? Haven’t you heard, yet? Haven’t you been told from the beginning? Haven’t you understood from the foundations of the earth? </span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">It is he who sits above the circle of the earth, and its inhabitants are like grasshoppers; who stretches out the heavens like a curtain, and spreads them out like a tent to dwell in; </span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">who brings princes to nothing; who makes the judges of the earth like meaningless. </span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">They are planted scarcely. They are sown scarcely. Their stock has scarcely taken root in the ground. He merely blows on them, and they wither, and the whirlwind takes them away as stubble.  </span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">“To whom then will you liken me? Who is my equal?” says the Holy One. </span></div>
+<div class="verse"><span class="verse-num">26</span><span class="verse-text">Lift up your eyes on high, and see who has created these, who brings out their army by number. He calls them all by name. by the greatness of his might, and because he is strong in power, Not one is lacking. </span></div>
+<div class="verse"><span class="verse-num">27</span><span class="verse-text">Why do you say, Jacob, and speak, Israel, “My way is hidden from Yahweh, and the justice due me is disregarded by my God?” </span></div>
+<div class="verse"><span class="verse-num">28</span><span class="verse-text">Haven’t you known? Haven’t you heard? The everlasting God, Yahweh, The Creator of the ends of the earth, doesn’t faint. He isn’t weary. His understanding is unsearchable. </span></div>
+<div class="verse"><span class="verse-num">29</span><span class="verse-text">He gives power to the weak. He increases the strength of him who has no might. </span></div>
+<div class="verse"><span class="verse-num">30</span><span class="verse-text">Even the youths faint and get weary, and the young men utterly fall; </span></div>
+<div class="verse"><span class="verse-num">31</span><span class="verse-text">But those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Comfort (Na-cha-mu):</strong> In the scrolls, this is the "Empathetic Root of Restoration." The "Sorrow" of exile is "Uprooted" by the "Double Comfort" (*Nachamu Nachamu*). It signifies "The End of Alienation."</p>
-                <p id="fn2"><sup>2</sup> <strong>Voice calling (Qōl qō-rē):</strong> The scrolls highlight the "Vocal Root of Preparation." The "Highway" (*Ma-su-lul*) is "Rooted" in "Obedience" (*Prepare*). It signify "The Clearing of Spiritual Obstacles."</p>
-                <p id="fn3"><sup>3</sup> <strong>Word Endures (de-bhar-E-lo-hē-nu yā-qūm le-ō-lām):</strong> The scrolls highlight the "Temporal Root of Truth." Human life is "Uprooted" like "Grass" (*Cha-tzir*), but the "Word" (*De-bhar*) is "Rooted" in "Eternity" (*Olam*). It signifies "The Absolute Reliability of God."</p>
-                <p id="fn4"><sup>4</sup> <strong>Hollow of His Hand (be-sha-a-lo):</strong> The scrolls highlight the "Anatomical Root of Omnipotence." The "Cosmos" is "Rooted" in the "Palm" of the Creator. It signify "The Mastery of the Infinite."</p>
-                <p id="fn5"><sup>5</sup> <strong>Wings like Eagles (e-ber ka-ne-shā-rīm):</strong> The scrolls conclude with this "Aerodynamic Root of Hope." "Fatigue" is "Uprooted" by "Waiting" (*Qiwwi*) which "Roots" the soul in "Ascension." It marks the transition to "The Lord’s Help" in *Isaiah 41*. It is the "Rooted Daily" anthem of "The Renewed Strength." Soar with the King.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/isaiah/39/" class="nav-btn">← Isaiah 39</a>
                 <a href="/bible/isaiah/41/" class="nav-btn">Isaiah 41 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -92,6 +82,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -104,6 +98,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

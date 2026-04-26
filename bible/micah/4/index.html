@@ -3,82 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micah 4 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Micah 4 in the Rooted Translation. The Mountain of the Lord—witness the vision of swords beaten into plowshares, discover the promise of everyone sitting under their own vine and fig tree, and learn of the redemption that comes from the exile in Babylon.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Micah 4 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Micah 4 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/micah/3/" class="nav-btn">← Back to Micah 3</a>
-            <h1>Micah 4</h1>
-            <p class="psalm-sub">The Highest Mountain and the Vine of Peace.</p>
+            <a href="../../" class="nav-btn">← Back to Micah</a>
+            <h1 style="margin-top: 1rem;">Micah 4</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="mountain-temple-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid silver; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem;">The Highest Mountain</h2>
-                    <div class="verse" data-verse="1" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “The mountain of the Lord’s temple will be established as the highest of the mountains.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="plowshares-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 2.5rem; border: 4px solid mediumseagreen; text-align: center; box-shadow: 0 0 100px rgba(0,255,127,0.1);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">Swords into Plowshares</h2>
-                    <div class="verse" data-verse="3" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “They will beat their swords into plowshares and their spears into pruning hooks.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="vine-fig-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 3rem; border: 1px solid gold; text-align: center; box-shadow: 0 0 120px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.2rem;">Under the Vine</h2>
-                    <div class="verse" data-verse="4" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Everyone will sit under their own vine and under their own fig tree.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="babylon-redeem-box" style="margin: 4rem 0; padding: 5rem; background: rgba(139,0,0,0.05); border-radius: 4rem; border: 4px solid #ff4444; text-align: center; box-shadow: 0 0 150px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.5rem;">To Babylon</h2>
-                    <div class="verse" data-verse="10" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “You will go to Babylon; there you will be redeemed.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="13" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “I will give you horns of iron.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="micah" data-chapter="4">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">But in the latter days, it will happen that the mountain of Yahweh’s temple will be established on the top of the mountains, and it will be exalted above the hills; and peoples will stream to it. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Many nations will go and say, “Come, and let us go up to the mountain of Yahweh, and to the house of the God of Jacob; and he will teach us of his ways, and we will walk in his paths.” For the law will go out of Zion, and Yahweh’s word from Jerusalem; </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">and he will judge between many peoples, and will decide concerning strong nations afar off. They will beat their swords into plowshares, and their spears into pruning hooks. Nation will not lift up sword against nation, neither will they learn war any more. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">But they will sit every man under his vine and under his fig tree; and no one will make them afraid: For the mouth of Yahweh of Armies has spoken. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">Indeed all the nations may walk in the name of their gods; but we will walk in the name of Yahweh our God forever and ever. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">“In that day,” says Yahweh, “I will assemble that which is lame, and I will gather that which is driven away, and that which I have afflicted; </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">and I will make that which was lame a remnant, and that which was cast far off a strong nation: and Yahweh will reign over them on Mount Zion from then on, even forever.” </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">You, tower of the flock, the hill of the daughter of Zion, to you it will come, yes, the former dominion will come, the kingdom of the daughter of Jerusalem. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Now why do you cry out aloud? Is there no king in you? Has your counselor perished, that pains have taken hold of you as of a woman in travail? </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Be in pain, and labor to give birth, daughter of Zion, like a woman in travail; for now you will go out of the city, and will dwell in the field, and will come even to Babylon. There you will be rescued. There Yahweh will redeem you from the hand of your enemies. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Now many nations have assembled against you, that say, “Let her be defiled, and let our eye gloat over Zion.” </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">But they don’t know the thoughts of Yahweh, neither do they understand his counsel; for he has gathered them like the sheaves to the threshing floor. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Arise and thresh, daughter of Zion; for I will make your horn iron, and I will make your hoofs brass; and you will beat in pieces many peoples: and I will devote their gain to Yahweh, and their substance to the Lord of the whole earth. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Highest of the Mountains (be-rōsh he-hā-rīm):</strong> Literally "At the head of the mountains." The scrolls highlight the "Elevated Root of the Temple." "Lowliness" is "Uprooted." Zion is "Rooted" as the "Chief" (*Rosh*). It signifies "The Aesthetic of Spiritual Preeminence."</p>
-                <p id="fn2"><sup>2</sup> <strong>Swords into Plowshares (le-it-tīm):</strong> The scrolls highlight the "Transformative Root of Peace." "Violence" is "Uprooted." The "Cherebh" (*Sword*) is "Rooted" in the "Soil" as a "Plowshare" (*Et*). It signify "The Alchemy of the Kingdom."</p>
-                <p id="fn3"><sup>3</sup> <strong>Under the Vine (ta-chath gaph-nō):</strong> The scrolls highlight the "Peaceful Root of the Estate." "Fear" is "Uprooted." Each soul is "Rooted" under their own "Vine" (*Gephen*). It signifies "The Aesthetic of Personal Security and Abundance."</p>
-                <p id="fn4"><sup>4</sup> <strong>To Babylon (adh-Bā-bhel):</strong> The scrolls highlight the "Exilic Root of the Redemption." "Home" is "Uprooted" for a time. But "Redemption" (*Gaal*) is "Rooted" in the "Far Land." It signify "The Saving that comes through the Furnace."</p>
-                <p id="fn5"><sup>5</sup> <strong>Horns of Iron (qe-ren bar-zel):</strong> The scrolls conclude with this "Potent Root of the Victory." "Weakness" is "Uprooted." It marks the transition to "The Ruler from Bethlehem" in *Micah 5*. It is the "Rooted Daily" anthem of "The Highest Mountain." No one will make them afraid.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/micah/3/" class="nav-btn">← Micah 3</a>
                 <a href="/bible/micah/5/" class="nav-btn">Micah 5 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -87,6 +64,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -99,6 +80,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

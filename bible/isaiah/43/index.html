@@ -3,88 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaiah 43 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Isaiah 43 in the Rooted Translation. Israel’s Only Savior—witness the promise of God’s presence through the waters and fires, discover the new thing springing up in the wilderness, and learn of the Lord who blots out transgressions for His own sake.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Isaiah 43 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Isaiah 43 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/isaiah/42/" class="nav-btn">← Back to Isaiah 42</a>
-            <h1>Isaiah 43</h1>
-            <p class="psalm-sub">The Savior through the Waters.</p>
+            <a href="../../" class="nav-btn">← Back to Isaiah</a>
+            <h1 style="margin-top: 1rem;">Isaiah 43</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="summon-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,139,139,0.05); border-radius: 2rem; border: 4px solid darkcyan; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem;">Summoned by Name</h2>
-                    <div class="verse" data-verse="1" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Do not fear, for I have redeemed you; I have summoned you by name; you are mine.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="water-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,0,139,0.05); border-radius: 2.5rem; border: 3px solid deepskyblue; text-align: center; box-shadow: 0 0 100px rgba(0,191,255,0.2);">
-                    <h2 style="color: deepskyblue; margin-bottom: 2rem; font-size: 2.2rem;">Through the Waters</h2>
-                    <div class="verse" data-verse="2" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “When you pass through the waters, I will be with you.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                    <div class="verse" data-verse="2" style="margin-top: 1rem; color: silver; font-weight: 700;">“When you walk through the fire, you will not be burned.”</div>
-                </div>
-                
-                <div class="witness-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 3rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem;">My Witnesses</h2>
-                    <div class="verse" data-verse="10" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “‘You are my witnesses,’ declares the Lord.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="11" style="margin-top: 1.5rem; font-size: 1.4rem; color: #ff4444;">“Apart from me there is no savior.”</div>
-                </div>
-
-                <div class="new-thing-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,128,0,0.05); border-radius: 4rem; border: 3px solid mediumseagreen; text-align: center; box-shadow: 0 0 120px rgba(0,255,127,0.2);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.5rem;">A New Thing</h2>
-                    <div class="verse" data-verse="19" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “See, I am doing a new thing! Now it springs up; do you not perceive it?” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                </div>
-
-                <div class="blot-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,215,0,0.1); border-radius: 4rem; border: 2px solid gold; text-align: center;">
-                    <h2 style="color: gold; margin-bottom: 2rem;">Blotting Out Sins</h2>
-                    <div class="verse" data-verse="25" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “I, even I, am he who blots out your transgressions, for my own sake.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="isaiah" data-chapter="43">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">But now Yahweh who created you, Jacob, and he who formed you, Israel says: “Don’t be afraid, for I have redeemed you. I have called you by your name. You are mine. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">When you pass through the waters, I will be with you; and through the rivers, they will not overflow you. When you walk through the fire, you will not be burned, and flame will not scorch you. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">For I am Yahweh your God, the Holy One of Israel, your Savior. I have given Egypt as your ransom, Ethiopia and Seba in your place. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Since you have been precious and honored in my sight, and I have loved you; therefore I will give people in your place, and nations instead of your life. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">Don’t be afraid; for I am with you. I will bring your offspring  from the east, and gather you from the west. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">I will tell the north, ‘Give them up!’ and tell the south, ‘Don’t hold them back! Bring my sons from far, and my daughters from the ends of the earth — </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">everyone who is called by my name, and whom I have created for my glory, whom I have formed, yes, whom I have made.’”  </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">Bring out the blind people who have eyes, and the deaf who have ears. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Let all the nations be gathered together, and let the peoples be assembled. Who among them can declare this, and show us former things? Let them bring their witnesses, that they may be justified; or let them hear, and say, “That is true.”  </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">“You are my witnesses,” says Yahweh, “With my servant whom I have chosen; that you may know and believe me, and understand that I am he. Before me there was no God formed, neither will there be after me. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">I myself am Yahweh; and besides me there is no savior. </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">I have declared, I have saved, and I have shown; and there was no strange god among you. Therefore you are my witnesses”, says Yahweh, “and I am God. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Yes, since the day was I am he; and there is no one who can deliver out of my hand. I will work, and who can hinder it?” </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">Yahweh, your Redeemer, the Holy One of Israel says: “For your sake, I have sent to Babylon, and I will bring all of them down as fugitives, even the Chaldeans, in the ships of their rejoicing.</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">I am Yahweh, your Holy One, the Creator of Israel, your King.”</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">Yahweh, who makes a way in the sea, and a path in the mighty waters says: </span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">who brings out the chariot and horse, the army and the mighty man (they lie down together, they shall not rise; they are extinct, they are quenched like a wick): </span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">“Don’t remember the former things, and don’t consider the things of old. </span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">Behold, I will do a new thing. It springs out now. Don’t you know it? I will even make a way in the wilderness, and rivers in the desert. </span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">The animals of the field shall honor me, the jackals and the ostriches; because I give water in the wilderness and rivers in the desert, to give drink to my people, my chosen, </span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">the people which I formed for myself, that they might declare my praise. </span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">Yet you have not called on me, Jacob; but you have been weary of me, Israel. </span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">You have not brought me of your sheep for burnt offerings; neither have you honored me with your sacrifices. I have not burdened you with offerings, nor wearied you with frankincense. </span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">You have bought me no sweet cane with money, nor have you filled me with the fat of your sacrifices; but you have burdened me with your sins. You have wearied me with your iniquities. </span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">I, even I, am he who blots out your transgressions for my own sake; and I will not remember your sins. </span></div>
+<div class="verse"><span class="verse-num">26</span><span class="verse-text">Put me in remembrance. Let us plead together. Declare your case, that you may be justified. </span></div>
+<div class="verse"><span class="verse-num">27</span><span class="verse-text">Your first father sinned, and your teachers have transgressed against me. </span></div>
+<div class="verse"><span class="verse-num">28</span><span class="verse-text">Therefore I will profane the princes of the sanctuary; and I will make Jacob a curse, and Israel an insult.” </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Summoned by Name (qā-rā-thī bhe-shim-khā):</strong> In the scrolls, this is the "Personal Root of Ownership." God "Roots" the "Redemption" (*Ga-al*) in the "Specific Identity" (*Name*) of the individual. It signifies "The Divine Claim."</p>
-                <p id="fn2"><sup>2</sup> <strong>Through the Waters (ki-tha-a-bhōr bam-Ma-yim):</strong> The scrolls highlight the "Atmospheric Root of Presence." The "Crisis" (*Waters/Fire*) is not "Uprooted," but the "Sustenance" (*I am with you*) is "Rooted" within it. It signify "The Unsinkable Faith."</p>
-                <p id="fn3"><sup>3</sup> <strong>My Witnesses (ē-dhāy):</strong> The scrolls highlight the "Evidentiary Root of Chosenness." Israel is "Rooted" as the "Proof" (*Witness*) of God’s "Monotheism." It signifies "The Responsibility of History."</p>
-                <p id="fn4"><sup>4</sup> <strong>Now it Springs Up (at-tāh tith-māch):</strong> The scrolls highlight the "Biological Root of Innovation." The "New Thing" is "Rooted" in "Present Emergence" (*At-tah*). It signify "The Perpetual Creativity of God."</p>
-                <p id="fn5"><sup>5</sup> <strong>Blots out Transgressions (mō-cheh phe-shā-e-khā):</strong> The scrolls conclude with this "Erasure Root." "Sin" is "Uprooted" (*Wiped/Blotted*) for the sake of the "Divine Reputation" (*My own sake*). It marks the transition to "The Folly of Idols" in *Isaiah 44*. It is the "Rooted Daily" anthem of "The Forgiven New Thing." Perceive it.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/isaiah/42/" class="nav-btn">← Isaiah 42</a>
                 <a href="/bible/isaiah/44/" class="nav-btn">Isaiah 44 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -93,6 +79,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -105,6 +95,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

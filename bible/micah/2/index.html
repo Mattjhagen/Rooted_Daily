@@ -3,83 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micah 2 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Micah 2 in the Rooted Translation. The Plotters—witness the woe to those who plan evil on their beds, discover the rebuke of those who seize fields and houses, and learn of the divine promise to gather the remnant and the One who breaks open the way.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Micah 2 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Micah 2 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/micah/1/" class="nav-btn">← Back to Micah 1</a>
-            <h1>Micah 2</h1>
-            <p class="psalm-sub">The Wicked on their Beds and the Breaker of the Way.</p>
+            <a href="../../" class="nav-btn">← Back to Micah</a>
+            <h1 style="margin-top: 1rem;">Micah 2</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="plot-evil-box" style="margin: 2rem 0; padding: 3rem; background: rgba(139,0,0,0.1); border-radius: 2rem; border: 4px solid #ff4444; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">Evil on the Bed</h2>
-                    <div class="verse" data-verse="1" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Woe to those who plot evil and plan wickedness on their beds!” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                    <div class="verse" data-verse="1" style="margin-top: 1rem; color: silver;">“At morning’s light they carry it out.”</div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="seize-fields-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,0,0,0.8); border-radius: 2.5rem; border: 1px solid silver; text-align: center;">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">They Covet and Seize</h2>
-                    <div class="verse" data-verse="2" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “They covet fields and seize them, and houses, and take them.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="gather-sheep-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 3rem; border: 4px solid mediumseagreen; text-align: center; box-shadow: 0 0 120px rgba(0,255,127,0.1);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">Remnant of Israel</h2>
-                    <div class="verse" data-verse="12" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “I will bring them together like sheep in a pen.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="breaker-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,139,139,0.05); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.3);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">The One Who Breaks Open</h2>
-                    <div class="verse" data-verse="13" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “The One who breaks open the way will go up before them.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="13" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “Their King will pass through before them.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="micah" data-chapter="2">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Woe to those who devise iniquity and work evil on their beds! When the morning is light, they practice it, because it is in the power of their hand. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">They covet fields, and seize them; and houses, and take them away: and they oppress a man and his house, even a man and his heritage. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Therefore Yahweh says: “Behold, I am planning against these people a disaster, from which you will not remove your necks, neither will you walk haughtily; for it is an evil time. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">In that day they will take up a parable against you, and lament with a doleful lamentation, saying, ‘We are utterly ruined! My people’s possession is divided up. Indeed he takes it from me and assigns our fields to traitors!’” </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">Therefore you will have no one who divides the land by lot in Yahweh’s assembly. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">“Don’t prophesy!” They prophesy. “Don’t prophesy about these things. Disgrace won’t overtake us.” </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">Shall it be said, O house of Jacob: “Is Yahweh’s Spirit angry? Are these his doings? Don’t my words do good to him who walks blamelessly?” </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">But lately my people have risen up as an enemy. You strip the robe and clothing from those who pass by without a care, returning from battle. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">You drive the women of my people out from their pleasant houses; from their young children you take away my blessing forever. </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Arise, and depart! For this is not your resting place, because of uncleanness that destroys, even with a grievous destruction. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">If a man walking in a spirit of falsehood lies: “I will prophesy to you of wine and of strong drink”; he would be the prophet of this people. </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">I will surely assemble, Jacob, all of you; I will surely gather the remnant of Israel; I will put them together as the sheep of Bozrah, as a flock in the middle of their pasture; they will swarm with people. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">He who breaks open the way goes up before them. They break through the gate, and go out. And their king passes on before them, with Yahweh at their head. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Plot Evil (chō-she-bhē ā-wen):</strong> The scrolls highlight the "Nocturnal Root of the Crime." "Rest" is "Uprooted." They "Root" their "Wickedness" (*Awen*) in the "Thinking" (*Chashabh*) done in secret. It signifies "The Aesthetic of the Premeditated."</p>
-                <p id="fn2"><sup>2</sup> <strong>Seize them (we-ghā-zā-lū):</strong> The scrolls highlight the "Violent Root of the Greed." "Propriety" is "Uprooted." They "Root" their "Ownership" in "Seizing" (*Gazal*). It signify "The Connection between Power and Theft."</p>
-                <p id="fn3"><sup>3</sup> <strong>Sheep in a Pen (ke-tzōn bo-tzrāh):</strong> The scrolls highlight the "Collective Root of the Survival." "Isolation" is "Uprooted." God "Roots" the "Remnant" (*Shearith*) in a "Safe Enclosure" (*Botzrah*). It signifies "The Aesthetic of Gathering."</p>
-                <p id="fn4"><sup>4</sup> <strong>The One who Breaks Open (hap-pō-rētz):</strong> Literally "The Breaker." The scrolls highlight the "Dynamic Root of the Deliverance." "Confinement" is "Uprooted." The "Leader" is "Rooted" in "Breaking Through" (*Paratz*). It signify "The Divine Agency of Liberation."</p>
-                <p id="fn5"><sup>5</sup> <strong>Their King (mal-kām):</strong> The scrolls conclude with this "Monarchical Root of the Presence." "Anarchy" is "Uprooted." It marks the transition to "Judgment on the Leaders" in *Micah 3*. It is the "Rooted Daily" anthem of "The Breaker." Follow the King.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/micah/1/" class="nav-btn">← Micah 1</a>
                 <a href="/bible/micah/3/" class="nav-btn">Micah 3 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -88,6 +64,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -100,6 +80,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

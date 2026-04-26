@@ -3,70 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exodus 13 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Exodus Chapter 13 in the Rooted Translation. The consecration of the firstborn, the memorial of unleavened bread, and the journey toward the Red Sea.">
-    <link rel="stylesheet" href="../../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Exodus 13 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Exodus 13 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/exodus/" class="nav-btn">← Back to Exodus</a>
-            <h1>Exodus 13</h1>
+            <a href="../../" class="nav-btn">← Back to Exodus</a>
+            <h1 style="margin-top: 1rem;">Exodus 13</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="verse" data-verse="1"><span class="verse-num">1</span>The LORD said to Moses,</div>
-                <div class="verse" data-verse="2"><span class="verse-num">2</span>“Consecrate to me every firstborn male. The first offspring of every womb among the Israelites belongs to me, whether human or animal.”</div>
-                <div class="verse" data-verse="3"><span class="verse-num">3</span>Then Moses said to the people, “Commemorate this day, the day you came out of Egypt, out of the land of slavery, because the LORD brought you out of it with a mighty hand. Eat nothing containing yeast.”</div>
-                <div class="verse" data-verse="4"><span class="verse-num">4</span>“Today, in the month of Aviv, you are leaving.”</div>
-                <div class="verse" data-verse="5"><span class="verse-num">5</span>“When the LORD brings you into the land of the Canaanites, Hittites, Amorites, Hivites and Jebusites—the land he swore to your ancestors to give you, a land flowing with milk and honey—you are to observe this ceremony in this month:”</div>
-                <div class="verse" data-verse="6"><span class="verse-num">6</span>“For seven days eat bread made without yeast and on the seventh day hold a festival to the LORD.”</div>
-                <div class="verse" data-verse="7"><span class="verse-num">7</span>“Eat unleavened bread during those seven days; nothing with yeast in it is to be seen among you, nor shall any yeast be seen anywhere within your borders.”</div>
-                <div class="verse" data-verse="8"><span class="verse-num">8</span>“On that day tell your son, ‘I do this because of what the LORD did for me when I came out of Egypt.’”</div>
-                <div class="verse" data-verse="9"><span class="verse-num">9</span>“This observance will be for you like a sign on your hand and a reminder on your forehead that this law of the LORD is to be on your lips. For the LORD brought you out of Egypt with his mighty hand.”</div>
-                <div class="verse" data-verse="10"><span class="verse-num">10</span>“You must keep this ordinance at the appointed time year after year.”</div>
-                <div class="verse" data-verse="11"><span class="verse-num">11</span>“After the LORD brings you into the land of the Canaanites and gives it to you, as he promised on oath to you and your ancestors,”</div>
-                <div class="verse" data-verse="12"><span class="verse-num">12</span>“you are to give over to the LORD the first offspring of every womb. All the firstborn males of your livestock belong to the LORD.”</div>
-                <div class="verse" data-verse="13"><span class="verse-num">13</span>“Redeem with a lamb every firstborn donkey, but if you do not redeem it, break its neck. Redeem every firstborn among your sons.” <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                <div class="verse" data-verse="14"><span class="verse-num">14</span>“In days to come, when your son asks you, ‘What does this mean?’ say to him, ‘With a mighty hand the LORD brought us out of Egypt, out of the land of slavery.”</div>
-                <div class="verse" data-verse="15"><span class="verse-num">15</span>“‘When Pharaoh stubbornly refused to let us go, the LORD killed the firstborn of both people and animals in Egypt. This is why I sacrifice to the LORD the first male offspring of every womb and redeem each of my firstborn sons.’”</div>
-                <div class="verse" data-verse="16"><span class="verse-num">16</span>“And it will be like a sign on your hand and a symbol on your forehead that the LORD brought us out of Egypt with his mighty hand.”</div>
-                <div class="verse" data-verse="17"><span class="verse-num">17</span>When Pharaoh let the people go, God did not lead them on the road through the Philistine country, though that was shorter. For God said, “If they face war, they might change their minds and return to Egypt.”</div>
-                <div class="verse" data-verse="18"><span class="verse-num">18</span>So God led the people around by the desert road toward the Red Sea. The Israelites went up out of Egypt ready for battle. <a href="#fn2" class="fn"><sup>2</sup></a></div>
-                <div class="verse" data-verse="19"><span class="verse-num">19</span>Moses took the bones of Joseph with him because Joseph had made the Israelites swear an oath. He had said, “God will surely come to your aid, and then you must carry my bones up with you from this place.”</div>
-                <div class="verse" data-verse="20"><span class="verse-num">20</span>After leaving Sukkoth they camped at Etham on the edge of the desert.</div>
-                <div class="verse" data-verse="21"><span class="verse-num">21</span>By day the LORD went ahead of them in a pillar of cloud to guide them on their way and by night in a pillar of fire to give them light, so that they could travel by day or night.</div>
-                <div class="verse" data-verse="22"><span class="verse-num">22</span>Neither the pillar of cloud by day nor the pillar of fire by night left its place in front of the people.</div>
+            <div class="ch-nav"></div>
+
+            <div class="verse-container" data-book-slug="exodus" data-chapter="13">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Moses, saying,</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Sanctify to me all the firstborn, whatever opens the womb among the children of Israel, both of man and of animal. It is mine.”</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Moses said to the people, “Remember this day, in which you came out of Egypt, out of the house of bondage; for by strength of hand Yahweh brought you out from this place. No leavened bread shall be eaten.</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Today you go out in the month Abib.</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">It shall be, when Yahweh shall bring you into the land of the Canaanite, and the Hittite, and the Amorite, and the Hivite, and the Jebusite, which he swore to your fathers to give you, a land flowing with milk and honey, that you shall keep this service in this month.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">Seven days you shall eat unleavened bread, and in the seventh day shall be a feast to Yahweh.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">Unleavened bread shall be eaten throughout the seven days; and no leavened bread shall be seen with you. No yeast shall be seen with you, within all your borders.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">You shall tell your son in that day, saying, ‘It is because of that which Yahweh did for me when I came out of Egypt.’</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">It shall be for a sign to you on your hand, and for a memorial between your eyes, that Yahweh’s law may be in your mouth; for with a strong hand Yahweh has brought you out of Egypt.</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">You shall therefore keep this ordinance in its season from year to year.</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">“It shall be, when Yahweh shall bring you into the land of the Canaanite, as he swore to you and to your fathers, and shall give it you,</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">that you shall set apart to Yahweh all that opens the womb, and every firstborn which you have that comes from an animal. The males shall be Yahweh’s.</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Every firstborn of a donkey you shall redeem with a lamb; and if you will not redeem it, then you shall break its neck; and you shall redeem all the firstborn of man among your sons.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">It shall be, when your son asks you in time to come, saying, ‘What is this?’ that you shall tell him, ‘By strength of hand Yahweh brought us out from Egypt, from the house of bondage.</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">When Pharaoh stubbornly refused to let us go, Yahweh killed all the firstborn in the land of Egypt, both the firstborn of man, and the firstborn of animal. Therefore I sacrifice to Yahweh all that opens the womb, being males; but all the firstborn of my sons I redeem.’</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">It shall be for a sign on your hand, and for symbols between your eyes: for by strength of hand Yahweh brought us out of Egypt.”</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">When Pharaoh had let the people go, God didn’t lead them by the way of the land of the Philistines, although that was near; for God said, “Lest perhaps the people change their minds when they see war, and they return to Egypt”;</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">but God led the people around by the way of the wilderness by the Red Sea; and the children of Israel went up armed out of the land of Egypt.</span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">Moses took the bones of Joseph with him, for he had made the children of Israel swear, saying, “God will surely visit you, and you shall carry up my bones away from here with you.”</span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">They took their journey from Succoth, and encamped in Etham, in the edge of the wilderness.</span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">Yahweh went before them by day in a pillar of cloud, to lead them on their way, and by night in a pillar of fire, to give them light, that they might go by day and by night:</span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">the pillar of cloud by day, and the pillar of fire by night, didn’t depart from before the people.</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Redeem every firstborn son:</strong> In the scrolls, this practice (*Pidyon HaBen*) acknowledges that the life of the firstborn belongs to God because He spared them in Egypt. By "redeeming" them with a price, the family recognizes God's ownership over all life.</p>
-                <p id="fn2"><sup>2</sup> <strong>Red Sea (Yam Suph):</strong> The Hebrew <em>Yam Suph</em> literally translates to "Sea of Reeds." While traditionally associated with the Red Sea, the scrolls and historical geography suggest it may refer to the bitter lakes or the marshy regions north of the Suez, where Pharaoh's chariots would easily get stuck, turning the terrain itself into a weapon of God.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/exodus/12/" class="nav-btn">← Chapter 12</a>
-                <a href="/bible/exodus/14/" class="nav-btn">Chapter 14 →</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/exodus/12/" class="nav-btn">← Exodus 12</a>
+                <a href="/bible/exodus/14/" class="nav-btn">Exodus 14 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -91,6 +89,7 @@
         </div>
     </div>
 
-    <script src="../../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

@@ -3,83 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonah 3 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Jonah 3 in the Rooted Translation. The Repentance of Nineveh—witness the second call of Jonah, discover the short message of forty days, and learn of the profound repentance that reached from the king on his throne to the animals in the field.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Jonah 3 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Jonah 3 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/jonah/2/" class="nav-btn">← Back to Jonah 2</a>
-            <h1>Jonah 3</h1>
-            <p class="psalm-sub">The Forty Days and the Sackcloth of the City.</p>
+            <a href="../../" class="nav-btn">← Back to Jonah</a>
+            <h1 style="margin-top: 1rem;">Jonah 3</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="second-call-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,128,0,0.05); border-radius: 2rem; border: 4px solid mediumseagreen; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,127,0.1);">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">A Second Time</h2>
-                    <div class="verse" data-verse="1" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Then the word of the Lord came to Jonah a second time.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="overthrown-box" style="margin: 4rem 0; padding: 4rem; background: rgba(139,0,0,0.1); border-radius: 2.5rem; border: 3px solid #ff4444; text-align: center; box-shadow: 0 0 100px rgba(255,68,68,0.2);">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">Forty Days</h2>
-                    <div class="verse" data-verse="4" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Forty more days and Nineveh will be overthrown.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="king-sackcloth-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.8); border-radius: 4rem; border: 1px solid silver; text-align: center; box-shadow: 0 0 120px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.5rem;">From Throne to Dust</h2>
-                    <div class="verse" data-verse="6" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “He rose from his throne, took off his royal robes, and sat down in the dust.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="8" style="margin-top: 1.5rem; font-size: 1.5rem; color: gold;">“Let everyone call urgently on God.”</div>
-                </div>
-
-                <div class="god-relents-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,139,139,0.05); border-radius: 4rem; border: 4px solid darkcyan; text-align: center; box-shadow: 0 0 200px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem; font-size: 2.5rem;">God Relented</h2>
-                    <div class="verse" data-verse="10" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He relented and did not bring on them the destruction.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="10" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “When God saw how they turned from their evil ways.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="jonah" data-chapter="3">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s word came to Jonah the second time, saying,</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Arise, go to Nineveh, that great city, and preach to it the message that I give you.”</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">So Jonah arose, and went to Nineveh, according to Yahweh’s word. Now Nineveh was an exceedingly great city, three days’ journey across.</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">Jonah began to enter into the city a day’s journey, and he cried out, and said, “In forty days, Nineveh will be overthrown!”</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The people of Nineveh believed God; and they proclaimed a fast, and put on sackcloth, from their greatest even to their least.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">The news reached the king of Nineveh, and he arose from his throne, and took off his royal robe, covered himself with sackcloth, and sat in ashes.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">He made a proclamation and published through Nineveh by the decree of the king and his nobles, saying, “Let neither man nor animal, herd nor flock, taste anything; let them not feed, nor drink water;</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">but let them be covered with sackcloth, both man and animal, and let them cry mightily to God. Yes, let them turn everyone from his evil way, and from the violence that is in his hands.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Who knows whether God will not turn and relent, and turn away from his fierce anger, so that we might not perish?”</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">God saw their works, that they turned from their evil way. God relented of the disaster which he said he would do to them, and he didn’t do it.</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>A Second Time (shē-nīth):</strong> The scrolls highlight the "Iterative Root of Grace." "Finality" is "Uprooted." God "Roots" his "Message" in a "Second" (*Shenith*) opportunity. It signifies "The Aesthetic of the Do-Over."</p>
-                <p id="fn2"><sup>2</sup> <strong>Forty Days (ar-bā-īm yōm):</strong> The scrolls highlight the "Temporal Root of the Probation." "Eternity" is "Uprooted." Nineveh is "Rooted" in a "Window" of "Forty" (*Arba-im*) days. It signify "The Divine Deadline."</p>
-                <p id="fn3"><sup>3</sup> <strong>From Throne to Dust (way-ye-ghe-as min-kis-ō):</strong> The scrolls highlight the "Hierarchical Root of Repentance." "Royal Pride" is "Uprooted." The "King" is "Rooted" in "Sackcloth" (*Saq*) and "Ashes" (*Epher*). It signifies "The Spiritual Equalizer."</p>
-                <p id="fn4"><sup>4</sup> <strong>God Relented (way-yin-nā-chem hā-E-lō-hīm):</strong> The scrolls highlight the "Dynamic Root of the Divine Heart." "Fatalism" is "Uprooted." God "Roots" his "Action" in "Relenting" (*Nacham*). It signify "The Responsiveness of the Sovereign."</p>
-                <p id="fn5"><sup>5</sup> <strong>Turned from Evil (shā-bhū mid-dar-kām):</strong> The scrolls conclude with this "Kinetic Root of Change." "Inertia" is "Uprooted." It marks the transition to "Jonah’s Anger" in *Jonah 4*. It is the "Rooted Daily" anthem of "The Second Call." The city is spared.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/jonah/2/" class="nav-btn">← Jonah 2</a>
                 <a href="/bible/jonah/4/" class="nav-btn">Jonah 4 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -88,6 +61,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -100,6 +77,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

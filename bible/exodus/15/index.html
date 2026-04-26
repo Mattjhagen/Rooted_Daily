@@ -3,75 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exodus 15 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Exodus Chapter 15 in the Rooted Translation. The Song of Moses and Miriam, the testing at Marah, and the arrival at Elim.">
-    <link rel="stylesheet" href="../../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Exodus 15 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Exodus 15 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/exodus/" class="nav-btn">← Back to Exodus</a>
-            <h1>Exodus 15</h1>
+            <a href="../../" class="nav-btn">← Back to Exodus</a>
+            <h1 style="margin-top: 1rem;">Exodus 15</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="verse" data-verse="1"><span class="verse-num">1</span>Then Moses and the Israelites sang this song to the LORD: “I will sing to the LORD, for he is highly exalted. Both horse and driver he has hurled into the sea.” <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                <div class="verse" data-verse="2"><span class="verse-num">2</span>“The LORD is my strength and my defense; he has become my salvation. He is my God, and I will praise him, my father’s God, and I will exalt him.”</div>
-                <div class="verse" data-verse="3"><span class="verse-num">3</span>“The LORD is a warrior; the LORD is his name.”</div>
-                <div class="verse" data-verse="4"><span class="verse-num">4</span>“Pharaoh’s chariots and his army he has hurled into the sea. The best of Pharaoh’s officers are drowned in the Red Sea.”</div>
-                <div class="verse" data-verse="5"><span class="verse-num">5</span>“The deep waters have covered them; they sank to the depths like a stone.”</div>
-                <div class="verse" data-verse="6"><span class="verse-num">6</span>“Your right hand, LORD, was majestic in power. Your right hand, LORD, shattered the enemy.”</div>
-                <div class="verse" data-verse="7"><span class="verse-num">7</span>“In the greatness of your majesty you threw down those who opposed you. You unleashed your burning anger; it consumed them like stubble.”</div>
-                <div class="verse" data-verse="8"><span class="verse-num">8</span>“By the blast of your nostrils the waters piled up. The surging waters stood up like a wall; the deep waters congealed in the heart of the sea.”</div>
-                <div class="verse" data-verse="9"><span class="verse-num">9</span>“The enemy boasted, ‘I will pursue, I will overtake them. I will divide the spoils; I will gorge myself on them. I will draw my sword and my hand will destroy them.’”</div>
-                <div class="verse" data-verse="10"><span class="verse-num">10</span>“But you blew with your breath, and the sea covered them. They sank like lead in the mighty waters.”</div>
-                <div class="verse" data-verse="11"><span class="verse-num">11</span>“Who among the gods is like you, LORD? Who is like you—majestic in holiness, awesome in glory, working wonders?”</div>
-                <div class="verse" data-verse="12"><span class="verse-num">12</span>“You stretch out your right hand, and the earth swallows your enemies.”</div>
-                <div class="verse" data-verse="13"><span class="verse-num">13</span>“In your unfailing love you will lead the people you have redeemed. In your strength you will guide them to your holy dwelling.”</div>
-                <div class="verse" data-verse="14"><span class="verse-num">14</span>“The nations will hear and tremble; anguish will grip the people of Philistia.”</div>
-                <div class="verse" data-verse="15"><span class="verse-num">15</span>“The chiefs of Edom will be terrified, the leaders of Moab will be seized with trembling, the people of Canaan will melt away;”</div>
-                <div class="verse" data-verse="16"><span class="verse-num">16</span>“terror and dread will fall on them. By the power of your arm they will be as still as a stone—until your people pass by, LORD, until the people you bought pass by.”</div>
-                <div class="verse" data-verse="17"><span class="verse-num">17</span>“You will bring them in and plant them on the mountain of your inheritance—the place, LORD, you made for your dwelling, the sanctuary, Lord, your hands established.”</div>
-                <div class="verse" data-verse="18"><span class="verse-num">18</span>“The LORD reigns for ever and ever.”</div>
-                <div class="verse" data-verse="19"><span class="verse-num">19</span>When Pharaoh’s horses, chariots and horsemen went into the sea, the LORD brought the waters of the sea back over them, but the Israelites walked through the sea on dry ground.</div>
-                <div class="verse" data-verse="20"><span class="verse-num">20</span>Then Miriam the prophet, Aaron’s sister, took a timbrel in her hand, and all the women followed her, with timbrels and dancing.</div>
-                <div class="verse" data-verse="21"><span class="verse-num">21</span>Miriam sang to them: “Sing to the LORD, for he is highly exalted. Both horse and driver he has hurled into the sea.”</div>
-                <div class="verse" data-verse="22"><span class="verse-num">22</span>Then Moses led Israel from the Red Sea and they went into the Desert of Shur. For three days they traveled in the desert without finding water.</div>
-                <div class="verse" data-verse="23"><span class="verse-num">23</span>When they came to Marah, they could not drink its water because it was bitter. (That is why the place is called Marah.)</div>
-                <div class="verse" data-verse="24"><span class="verse-num">24</span>So the people grumbled against Moses, saying, “What are we to drink?”</div>
-                <div class="verse" data-verse="25"><span class="verse-num">25</span>Then Moses cried out to the LORD, and the LORD showed him a piece of wood. He threw it into the water, and the water became fit to drink. There the LORD issued a ruling and instruction for them and put them to the test.</div>
-                <div class="verse" data-verse="26"><span class="verse-num">26</span>He said, “If you listen carefully to the LORD your God and do what is right in his eyes, if you pay attention to his commands and keep all his decrees, I will not bring on you any of the diseases I brought on the Egyptians, for I am the LORD, who heals you.” <a href="#fn2" class="fn"><sup>2</sup></a></div>
-                <div class="verse" data-verse="27"><span class="verse-num">27</span>Then they came to Elim, where there were twelve springs and seventy palm trees, and they camped there near the water.</div>
+            <div class="ch-nav"></div>
+
+            <div class="verse-container" data-book-slug="exodus" data-chapter="15">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Then Moses and the children of Israel sang this song to Yahweh, and said, “I will sing to Yahweh, for he has triumphed gloriously. The horse and his rider he has thrown into the sea. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Yah is my strength and song. He has become my salvation. This is my God, and I will praise him; my father’s God, and I will exalt him. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh is a man of war. Yahweh is his name. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">He has cast Pharaoh’s chariots and his army into the sea. His chosen captains are sunk in the Red Sea. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The deeps cover them. They went down into the depths like a stone. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">Your right hand, Yahweh, is glorious in power. Your right hand, Yahweh, dashes the enemy in pieces. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">In the greatness of your excellency, you overthrow those who rise up against you. You send out your wrath. It consumes them as stubble. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">With the blast of your nostrils, the waters were piled up. The floods stood upright as a heap. The deeps were congealed in the heart of the sea. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">The enemy said, ‘I will pursue. I will overtake. I will divide the plunder. My desire shall be satisfied on them. I will draw my sword, my hand shall destroy them.’ </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">You blew with your wind. The sea covered them. They sank like lead in the mighty waters. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Who is like you, Yahweh, among the gods? Who is like you, glorious in holiness, fearful in praises, doing wonders? </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">You stretched out your right hand. The earth swallowed them. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">“You, in your loving kindness, have led the people that you have redeemed. You have guided them in your strength to your holy habitation. </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">The peoples have heard. They tremble. Pangs have taken hold on the inhabitants of Philistia. </span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">Then the chiefs of Edom were dismayed. Trembling takes hold of the mighty men of Moab. All the inhabitants of Canaan have melted away. </span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">Terror and dread falls on them. By the greatness of your arm they are as still as a stone — until your people pass over, Yahweh, until the people pass over who you have purchased. </span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">You shall bring them in, and plant them in the mountain of your inheritance, the place, Yahweh, which you have made for yourself to dwell in; the sanctuary, Lord, which your hands have established. </span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">Yahweh shall reign forever and ever.” </span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">For the horses of Pharaoh went in with his chariots and with his horsemen into the sea, and Yahweh brought back the waters of the sea on them; but the children of Israel walked on dry land in the middle of the sea.</span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">Miriam the prophetess, the sister of Aaron, took a tambourine in her hand; and all the women went out after her with tambourines and with dances.</span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">Miriam answered them, “Sing to Yahweh, for he has triumphed gloriously. The horse and his rider he has thrown into the sea.” </span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">Moses led Israel onward from the Red Sea, and they went out into the wilderness of Shur; and they went three days in the wilderness, and found no water.</span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">When they came to Marah, they couldn’t drink from the waters of Marah, for they were bitter. Therefore its name was called Marah. </span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">The people murmured against Moses, saying, “What shall we drink?”</span></div>
+<div class="verse"><span class="verse-num">25</span><span class="verse-text">Then he cried to Yahweh. Yahweh showed him a tree, and he threw it into the waters, and the waters were made sweet. There he made a statute and an ordinance for them, and there he tested them;</span></div>
+<div class="verse"><span class="verse-num">26</span><span class="verse-text">and he said, “If you will diligently listen to Yahweh your God’s voice, and will do that which is right in his eyes, and will pay attention to his commandments, and keep all his statutes, I will put none of the diseases on you, which I have put on the Egyptians; for I am Yahweh who heals you.”</span></div>
+<div class="verse"><span class="verse-num">27</span><span class="verse-text">They came to Elim, where there were twelve springs of water, and seventy palm trees: and they encamped there by the waters.</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Song of the Sea (Shirat HaYam):</strong> In the original scrolls, this song is formatted differently from the surrounding prose, using a "brick-on-brick" layout. It is one of the oldest pieces of poetry in the Bible. It celebrates the LORD not just as a creator, but as a "Warrior" who actively fights for the oppressed.</p>
-                <p id="fn2"><sup>2</sup> <strong>The LORD who heals you (Yahweh Ropheka):</strong> This is one of the compound names of God revealed in the scrolls. Coming immediately after the bitter waters of Marah, it teaches that the same God who struck Egypt with disease is the only one who can heal and preserve the health of His people.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/exodus/14/" class="nav-btn">← Chapter 14</a>
-                <a href="/bible/exodus/16/" class="nav-btn">Chapter 16 →</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/exodus/14/" class="nav-btn">← Exodus 14</a>
+                <a href="/bible/exodus/16/" class="nav-btn">Exodus 16 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -96,6 +94,7 @@
         </div>
     </div>
 
-    <script src="../../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

@@ -3,83 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Daniel 1 in the Rooted Translation. The Resolution—witness Daniel and his friends’ commitment to the Lord in the court of Babylon, discover the test of vegetables and water, and learn of the wisdom that made them ten times better than the magicians.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Daniel 1 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Daniel 1 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/ezekiel/48/" class="nav-btn">← Back to Ezekiel 48</a>
-            <h1>Daniel 1</h1>
-            <p class="psalm-sub">The Choice Youths and the Trial of the Table.</p>
+            <a href="../../" class="nav-btn">← Back to Daniel</a>
+            <h1 style="margin-top: 1rem;">Daniel 1</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="babylon-court-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid silver; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">Chosen for Babylon</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Youths without any physical defect, handsome, and showing aptitude for every kind of learning.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="resolution-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,139,139,0.05); border-radius: 2.5rem; border: 4px solid darkcyan; text-align: center; box-shadow: 0 0 100px rgba(0,255,255,0.1);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem; font-size: 2.2rem;">Daniel’s Resolution</h2>
-                    <div class="verse" data-verse="8" style="font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Daniel resolved not to defile himself with the royal food and wine.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="vegetable-test-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,128,0,0.05); border-radius: 3rem; border: 2px solid mediumseagreen; text-align: center;">
-                    <h2 style="color: mediumseagreen; margin-bottom: 2rem; font-size: 2.2rem;">The Ten Day Test</h2>
-                    <div class="verse" data-verse="12" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Give us nothing but vegetables to eat and water to drink.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="15" style="margin-top: 1.5rem; color: silver;">“They looked healthier and better nourished than any of the young men.”</div>
-                </div>
-
-                <div class="ten-times-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,215,0,0.1); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">Ten Times Better</h2>
-                    <div class="verse" data-verse="20" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He found them ten times better than all the magicians and enchanters.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="21" style="margin-top: 1rem; color: silver; font-weight: 700;">
-                        “And Daniel remained there until the first year of King Cyrus.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
+            <div class="verse-container" data-book-slug="daniel" data-chapter="1">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In the third year of the reign of Jehoiakim king of Judah came Nebuchadnezzar king of Babylon to Jerusalem, and besieged it.</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">The Lord  gave Jehoiakim king of Judah into his hand, with part of the vessels of the house of God;  and he carried them into the land of Shinar to the house of his god: and he brought the vessels into the treasure house of his god.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">The king spoke to Ashpenaz the master of his eunuchs, that he should bring in some of the children of Israel, even of the royal offspring  and of the nobles;</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">youths in whom was no defect, but well-favored, and skillful in all wisdom, and endowed with knowledge, and understanding science, and such as had ability to stand in the king’s palace; and that he should teach them the learning and the language of the Chaldeans.</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The king appointed for them a daily portion of the king’s dainties, and of the wine which he drank, and that they should be nourished three years; that at its end they should stand before the king.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">Now among these were, of the children of Judah, Daniel, Hananiah, Mishael, and Azariah.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">The prince of the eunuchs gave names to them: to Daniel he gave the name Belteshazzar; and to Hananiah, Shadrach; and to Mishael, Meshach; and to Azariah, Abednego.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">But Daniel purposed in his heart that he would not defile himself with the king’s dainties, nor with the wine which he drank: therefore he requested of the prince of the eunuchs that he might not defile himself.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Now God made Daniel to find kindness and compassion in the sight of the prince of the eunuchs.</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">The prince of the eunuchs said to Daniel, I fear my lord the king, who has appointed your food and your drink: for why should he see your faces worse looking than the youths who are of your own age? so would you endanger my head with the king.</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Then Daniel said to the steward whom the prince of the eunuchs had appointed over Daniel, Hananiah, Mishael, and Azariah:</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">Test your servants, I beg you, ten days; and let them give us vegetables to eat, and water to drink.</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">Then let our faces be looked on before you, and the face of the youths who eat of the king’s dainties; and as you see, deal with your servants.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">So he listened to them in this matter, and proved them ten days.</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">At the end of ten days their faces appeared fairer, and they were fatter in flesh, than all the youths who ate of the king’s dainties.</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">So the steward took away their dainties, and the wine that they should drink, and gave them pulse.</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">Now as for these four youths, God gave them knowledge and skill in all learning and wisdom: and Daniel had understanding in all visions and dreams.</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">At the end of the days which the king had appointed for bringing them in, the prince of the eunuchs brought them in before Nebuchadnezzar.</span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">The king talked with them; and among them all was found no one like Daniel, Hananiah, Mishael, and Azariah: therefore stood they before the king.</span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">In every matter of wisdom and understanding, concerning which the king inquired of them, he found them ten times better than all the magicians and enchanters who were in all his realm.</span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">Daniel continued even to the first year of king Cyrus.</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Physical Defect (mūm):</strong> The scrolls highlight the "Aesthetic Root of Selection." Nebuchadnezzar seeks "Perfection" (*Mumless*). It signify "The High Cost of Imperial Service."</p>
-                <p id="fn2"><sup>2</sup> <strong>Resolved not to Defile (śām Dā-ni-yēl al-lib-bō):</strong> Literally "Daniel set upon his heart." The scrolls highlight the "Intentional Root of Sanctity." "Babylonian Culture" is "Uprooted" from his "Diet." He "Roots" his "Identity" in the "Law." It signifies "The Courage of the Minority."</p>
-                <p id="fn3"><sup>3</sup> <strong>Vegetables (haz-zē-rō-īm):</strong> Literally "Sown seeds." The scrolls highlight the "Organic Root of Purity." Daniel "Roots" his "Health" in "Seeds" (*Zeroim*) rather than "Royal Meat" (*Pathbag*). It signify "The Power of Natural Law under Divine Favor."</p>
-                <p id="fn4"><sup>4</sup> <strong>Ten Times Better (e-śer yā-dhōth):</strong> Literally "Ten hands." The scrolls highlight the "Exponential Root of Wisdom." "Imperial Learning" is "Uprooted" by "Divine Understanding." It signifies "The Superhuman Advantage of Faithfulness."</p>
-                <p id="fn5"><sup>5</sup> <strong>Until King Cyrus (adh-she-nath a-chath le-Khō-resh):</strong> The scrolls conclude with this "Chronological Root of Endurance." Daniel "Roots" himself in "Babylon" through multiple empires. It marks the transition to "The King’s Dream" in *Daniel 2*. It is the "Rooted Daily" anthem of "The Vegetable Test." Better in every way.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/ezekiel/48/" class="nav-btn">← Ezekiel 48</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <span></span>
                 <a href="/bible/daniel/2/" class="nav-btn">Daniel 2 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -88,6 +72,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -100,6 +88,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

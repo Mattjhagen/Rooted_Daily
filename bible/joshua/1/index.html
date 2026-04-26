@@ -3,76 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joshua 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Joshua Chapter 1 in the Rooted Translation. After the death of Moses, God commissions Joshua to lead the people across the Jordan, calling for strength, courage, and meditation on the Word.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Joshua 1 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Joshua 1 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/joshua/" class="nav-btn">← Back to Joshua Index</a>
-            <h1>Joshua 1</h1>
+            <a href="../../" class="nav-btn">← Back to Joshua</a>
+            <h1 style="margin-top: 1rem;">Joshua 1</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="verse" data-verse="1"><span class="verse-num">1</span>After the death of Moses the servant of the LORD, the LORD said to Joshua son of Nun, Moses’ aide:</div>
-                <div class="verse" data-verse="2"><span class="verse-num">2</span>“Moses my servant is dead. Now then, you and all these people, get ready to cross the Jordan River into the land I am about to give to them—to the Israelites.” <a href="#fn1" class="fn"><sup>1</sup></a></div>
-                <div class="verse" data-verse="3"><span class="verse-num">3</span>“I will give you every place where you set your foot, as I promised Moses.”</div>
-                <div class="verse" data-verse="4"><span class="verse-num">4</span>“Your territory will extend from the desert to Lebanon, and from the great river, the Euphrates—all the Hittite country—to the Mediterranean Sea in the west.”</div>
-                <div class="verse" data-verse="5"><span class="verse-num">5</span>“No one will be able to stand against you all the days of your life. As I was with Moses, so I will be with you; I will never leave you nor forsake you.”</div>
-                <div class="verse" data-verse="6" style="font-size: 1.1rem; font-weight: 700;">
-                    <span class="verse-num">6</span>“Be strong and courageous, because you will lead these people to inherit the land I swore to their ancestors to give them.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                </div>
-                <div class="verse" data-verse="7"><span class="verse-num">7</span>“Be strong and very courageous. Be careful to obey all the law my servant Moses gave you; do not turn from it to the right or to the left, that you may be prosperous wherever you go.”</div>
-                
-                <div class="meditation-box" style="margin: 2.5rem 0; padding: 2.5rem; background: rgba(255,255,255,0.05); border-radius: 1.5rem; border: 2px solid var(--color-primary);">
-                    <div class="verse" data-verse="8" style="font-size: 1.25rem; font-weight: 700;">
-                        <span class="verse-num">8</span>“Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="verse" data-verse="9"><span class="verse-num">9</span>“Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.”</div>
-                <div class="verse" data-verse="10"><span class="verse-num">10</span>So Joshua ordered the officers of the people:</div>
-                <div class="verse" data-verse="11"><span class="verse-num">11</span>“Go through the camp and tell the people, ‘Get your provisions ready. Three days from now you will cross the Jordan here to go in and take possession of the land the LORD your God is giving you for your own.’”</div>
-                <div class="verse" data-verse="12"><span class="verse-num">12</span>But to the Reubenites, the Gadites and the half-tribe of Manasseh, Joshua said,</div>
-                <div class="verse" data-verse="13"><span class="verse-num">13</span>“Remember the command that Moses the servant of the LORD gave you: ‘The LORD your God is giving you rest and has granted you this land.’”</div>
-                <div class="verse" data-verse="14"><span class="verse-num">14</span>“Your wives, your children and your livestock may stay in the land that Moses gave you east of the Jordan, but all your fighting men, ready for battle, must cross over ahead of your fellow Israelites. You are to help them”</div>
-                <div class="verse" data-verse="15"><span class="verse-num">15</span>“until the LORD gives them rest, as he has done for you, and until they too have taken possession of the land the LORD your God is giving them. After that, you may go back and occupy your own land, which Moses the servant of the LORD gave you east of the Jordan toward the sunrise.”</div>
-                <div class="verse" data-verse="16"><span class="verse-num">16</span>Then they answered Joshua, “Whatever you have commanded us we will do, and wherever you send us we will go.”</div>
-                <div class="verse" data-verse="17"><span class="verse-num">17</span>“Just as we fully obeyed Moses, so we will obey you. Only may the LORD your God be with you as he was with Moses.”</div>
-                <div class="verse" data-verse="18"><span class="verse-num">18</span>“Whoever rebels against your word and does not obey it, whatever you may command them, will be put to death. Only be strong and courageous!” <a href="#fn4" class="fn"><sup>4</sup></a></div>
+            <div class="verse-container" data-book-slug="joshua" data-chapter="1">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now after the death of Moses the servant of Yahweh,  Yahweh spoke to Joshua the son of Nun, Moses’ servant, saying,</span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Moses my servant is dead. Now therefore arise, go across this Jordan, you, and all these people, to the land which I am giving to them, even to the children of Israel.</span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">I have given you every place that the sole of your foot will tread on, as I told Moses.</span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">From the wilderness, and this Lebanon, even to the great river, the river Euphrates, all the land of the Hittites, and to the great sea toward the going down of the sun, shall be your border.</span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">No man will be able to stand before you all the days of your life. As I was with Moses, so I will be with you. I will not fail you nor forsake you.</span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">“Be strong and courageous; for you shall cause this people to inherit the land which I swore to their fathers to give them.</span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">Only be strong and very courageous. Be careful to observe to do according to all the law, which Moses my servant commanded you. Don’t turn from it to the right hand or to the left, that you may have good success wherever you go.</span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">This book of the law shall not depart from your mouth, but you shall meditate on it day and night, that you may observe to do according to all that is written in it; for then you shall make your way prosperous, and then you shall have good success.</span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God  is with you wherever you go.”</span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Then Joshua commanded the officers of the people, saying,</span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">“Pass through the middle of the camp, and command the people, saying, ‘Prepare food; for within three days you are to pass over this Jordan, to go in to possess the land, which Yahweh your God gives you to possess it.’”</span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">Joshua spoke to the Reubenites, and to the Gadites, and to the half-tribe of Manasseh, saying,</span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">“Remember the word which Moses the servant of Yahweh commanded you, saying, ‘Yahweh your God gives you rest, and will give you this land.</span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">Your wives, your little ones, and your livestock, shall live in the land which Moses gave you beyond the Jordan; but you shall pass over before your brothers armed, all the mighty men of valor, and shall help them</span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">until Yahweh has given your brothers rest, as he has given you, and they have also possessed the land which Yahweh your God gives them. Then you shall return to the land of your possession, and possess it, which Moses the servant of Yahweh gave you beyond the Jordan toward the sunrise.’”</span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">They answered Joshua, saying, “All that you have commanded us we will do, and wherever you send us we will go.</span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">Just as we listened to Moses in all things, so will we listen to you. Only may Yahweh your God be with you, as he was with Moses.</span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">Whoever rebels against your commandment, and doesn’t listen to your words in all that you command him shall himself be put to death. Only be strong and courageous.”</span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Moses my servant is dead:</strong> In the original scrolls, this is a stark, brief announcement. It marks the end of the "Moses Era." The focus shifts immediately from mourning the past to "getting ready" for the future. It teaches that while leaders die, the *Plan of God* continues without interruption.</p>
-                <p id="fn2"><sup>2</sup> <strong>Strong and Courageous:</strong> This phrase is repeated four times in this chapter (v. 6, 7, 9, 18). In the scrolls, this is the essential quality for the "Settlement Period." Moses needed patience to lead slaves in the desert, but Joshua needs "Fortitude" to lead warriors into a land of giants. Different challenges require different spiritual virtues.</p>
-                <p id="fn3"><sup>3</sup> <strong>Meditate (Hagita):</strong> The word in the scrolls literally means "to mutter" or "to hum." It implies a constant, vocal recitation of the Law. Prosperity in the scrolls is not linked to military strategy or political alliances, but to the "Saturation" of the mind with God’s Word. Success is defined as the *ability to obey*.</p>
-                <p id="fn4"><sup>4</sup> <strong>The People's Response:</strong> Notice that the people echo God's own words back to Joshua: "Only be strong and courageous!" (v. 18). It shows that the entire nation was aligned with the divine commission. Joshua’s authority was validated by his adherence to the same Law that governed Moses.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/deuteronomy/34/" class="nav-btn">← Deuteronomy 34</a>
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <span></span>
                 <a href="/bible/joshua/2/" class="nav-btn">Joshua 2 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -97,6 +85,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

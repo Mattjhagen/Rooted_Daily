@@ -3,82 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaiah 50 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Isaiah 50 in the Rooted Translation. The Obedient Servant—witness the willingness to suffer for the Lord, discover the strength found in setting the face like flint, and learn of the well-instructed tongue that knows how to sustain the weary.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Isaiah 50 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Isaiah 50 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
-            <a href="/bible/isaiah/49/" class="nav-btn">← Back to Isaiah 49</a>
-            <h1>Isaiah 50</h1>
-            <p class="psalm-sub">The Instructed Ear and the Face like Flint.</p>
+            <a href="../../" class="nav-btn">← Back to Isaiah</a>
+            <h1 style="margin-top: 1rem;">Isaiah 50</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="tongue-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,139,139,0.05); border-radius: 2rem; border: 4px solid darkcyan; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem;">The Sustaining Word</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “The Sovereign Lord has given me a well-instructed tongue, to know the word that sustains the weary.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
+            <div class="ch-nav"></div>
 
-                <div class="morning-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,215,0,0.1); border-radius: 2.5rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 100px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.2rem;">Morning by Morning</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.6rem; color: silver;">“He wakens me morning by morning.”</div>
-                    <div class="verse" data-verse="4" style="margin-top: 2rem; font-size: 2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Wakens my ear to listen like one being instructed.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="suffering-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,0,0,0.05); border-radius: 3rem; border: 3px solid #ff4444; text-align: center;">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem;">Obedience in Pain</h2>
-                    <div class="verse" data-verse="6" style="font-size: 1.8rem; font-weight: 900; color: #ff4444; line-height: 1.4;">
-                        “I offered my back to those who beat me, my cheeks to those who pulled out my beard.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                    <div class="verse" data-verse="6" style="margin-top: 1rem; color: silver;">“I did not hide my face from mocking and spitting.”</div>
-                </div>
-
-                <div class="flint-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.5); border-radius: 4rem; border: 2px solid silver; text-align: center; box-shadow: 0 0 120px rgba(255,255,255,0.1);">
-                    <h2 style="color: silver; margin-bottom: 2rem; font-size: 2.2rem;">Face Like Flint</h2>
-                    <div class="verse" data-verse="7" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “I have set my face like flint, and I know I will not be put to shame.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="8" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 700;">“He who vindicates me is near.”</div>
-                </div>
+            <div class="verse-container" data-book-slug="isaiah" data-chapter="50">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh says, “Where is the bill of your mother’s divorce, with which I have put her away? or to which of my creditors have I sold you? Behold, you were sold for your iniquities, and your mother was put away for your transgressions. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">Why, when I came, was there no one? when I called, why was there no one to answer? Is my hand shortened at all, that it can’t redeem? or have I no power to deliver? Behold, at my rebuke I dry up the sea. I make the rivers a wilderness: their fish stink, because there is no water, and die for thirst. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">I clothe the heavens with blackness, and I make sackcloth their covering.”  </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">The Lord Yahweh has given me the tongue of those who are taught, that I may know how to sustain with words him who is weary. He wakens morning by morning, he wakens my ear to hear as those who are taught. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">The Lord Yahweh has opened my ear, and I was not rebellious. I have not turned back. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">For the Lord Yahweh will help me. Therefore I have not been confounded. Therefore I have set my face like a flint, and I know that I shall not be disappointed. </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">He who justifies me is near. Who will bring charges against me? Let us stand up together. Who is my adversary? Let him come near to me. </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">Behold, the Lord Yahweh will help me! Who is he who will condemn me? Behold, they will all grow old like a garment. The moths will eat them up. </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Who among you fears Yahweh, and obeys the voice of his servant? He who walks in darkness, and has no light, let him trust in Yahweh’s name, and rely on his God. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">Behold, all you who kindle a fire, who adorn yourselves with torches around yourselves; walk in the flame of your fire, and among the torches that you have kindled. You will have this from my hand: You will lie down in sorrow. </span></div>
             </div>
 
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Well-instructed Tongue (le-shōn lim-mū-dhīm):</strong> Literally "The tongue of the learned." In the scrolls, this is the "Communicative Root of Compassion." The "Word" (*De-bhar*) is "Rooted" in "Study" (*Limmud*) to provide "Support" (*Sustain*) for the "Faint" (*Weary*). It signifies "The Messianic Counselor."</p>
-                <p id="fn2"><sup>2</sup> <strong>Wakens my Ear (yā-īr lī ō-zen):</strong> The scrolls highlight the "Aural Root of Obedience." Every "Dawn" (*Morning*) is a "Re-Rooting" of the "Ears" (*Ozen*) in the "Voice of God." It signify "The Continuous Education of the Spirit."</p>
-                <p id="fn3"><sup>3</sup> <strong>Cheeks to those who Pulled (le-yō-re-tīm):</strong> The scrolls highlight the "Passive Root of Submission." The "Body" is "Uprooted" from "Protection" to bear the "Shame" (*Mocking*) of others. It signify "The Submissive Sacrifice."</p>
-                <p id="fn4"><sup>4</sup> <strong>Face like Flint (pe-nay ka-chal-lā-mish):</strong> The scrolls highlight the "Geological Root of Determination." The "Resolution" is "Rooted" in "Hardness" (*Flint*) to withstand the "Assault." It signifies "The Inflexible Will of the Servant."</p>
-                <p id="fn5"><sup>5</sup> <strong>Trust in the Name (yi-be-tach be-shēm Yah-weh):</strong> The scrolls conclude with this "Darkness Root." For the one in the "Deep Night," "Security" is "Rooted" in the "Name" (*Shem*) alone. It marks the transition to "The Call to Zion" in *Isaiah 51*. It is the "Rooted Daily" anthem of "The Instructed Heart." Morning is coming.</p>
-            </div>
-
-            <div class="chapter-nav">
+            <div class="chapter-nav" style="margin-top: 4rem;">
                 <a href="/bible/isaiah/49/" class="nav-btn">← Isaiah 49</a>
                 <a href="/bible/isaiah/51/" class="nav-btn">Isaiah 51 →</a>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
@@ -87,6 +62,10 @@
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
         <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
         <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
     <div id="insight-drawer" class="insight-drawer">
@@ -99,6 +78,7 @@
         </div>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

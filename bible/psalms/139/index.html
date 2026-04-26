@@ -3,103 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psalms 139 | Rooted Daily</title>
-    <meta name="description" content="Read Psalms Chapter 139. Experience the Bible with audio narration and AI reflections on Rooted Daily.">
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSEJQQEFLJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HSEJQQEFLJ');
-</script>
-
-    <link rel="stylesheet" href="../../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Psalms 139 | Rooted Daily Bible (LLT)</title>
+    <meta name="description" content="Read Psalms 139 in the Rooted Daily Bible (LLT).">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="llt-mode">
     <div class="container">
         <header>
             <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
                     <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                     <span class="logo-text">Rooted Daily</span>
                 </a>
             </div>
             <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
                 <a href="#" id="signin-btn" class="nav-link">Sign In</a>
             </nav>
         </header>
 
         <main class="bible-content">
+            <a href="../../" class="nav-btn">← Back to Psalms</a>
+            <h1 style="margin-top: 1rem;">Psalms 139</h1>
+            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
             
-        <a href="/bible/psalms/" class="nav-btn">← Back to Psalms</a>
-        <h1 style="margin-top: 1rem;">Psalms 139</h1>
-        <div style="margin-top: 2rem;">
-          <div class="verse"><span class="verse-num">1</span><b>For the Chief Musician. A Psalm by David. </b>   Yahweh, you have searched me, and you know me. </div><div class="verse"><span class="verse-num">2</span>You know my sitting down and my rising up. You perceive my thoughts from afar. </div><div class="verse"><span class="verse-num">3</span>You search out my path and my lying down, and are acquainted with all my ways. </div><div class="verse"><span class="verse-num">4</span>For there is not a word on my tongue, but, behold, Yahweh, you know it altogether. </div><div class="verse"><span class="verse-num">5</span>You hem me in behind and before. You laid your hand on me. </div><div class="verse"><span class="verse-num">6</span>This knowledge is beyond me. It’s lofty. I can’t attain it. </div><div class="verse"><span class="verse-num">7</span>Where could I go from your Spirit? Or where could I flee from your presence? </div><div class="verse"><span class="verse-num">8</span>If I ascend up into heaven, you are there. If I make my bed in Sheol,  behold, you are there! </div><div class="verse"><span class="verse-num">9</span>If I take the wings of the dawn, and settle in the uttermost parts of the sea; </div><div class="verse"><span class="verse-num">10</span>Even there your hand will lead me, and your right hand will hold me. </div><div class="verse"><span class="verse-num">11</span>If I say, “Surely the darkness will overwhelm me; the light around me will be night”; </div><div class="verse"><span class="verse-num">12</span>even the darkness doesn’t hide from you, but the night shines as the day. The darkness is like light to you. </div><div class="verse"><span class="verse-num">13</span>For you formed my inmost being. You knit me together in my mother’s womb. </div><div class="verse"><span class="verse-num">14</span>I will give thanks to you, for I am fearfully and wonderfully made. Your works are wonderful. My soul knows that very well. </div><div class="verse"><span class="verse-num">15</span>My frame wasn’t hidden from you, when I was made in secret, woven together in the depths of the earth. </div><div class="verse"><span class="verse-num">16</span>Your eyes saw my body. In your book they were all written, the days that were ordained for me, when as yet there were none of them. </div><div class="verse"><span class="verse-num">17</span>How precious to me are your thoughts, God! How vast is their sum! </div><div class="verse"><span class="verse-num">18</span>If I would count them, they are more in number than the sand. When I wake up, I am still with you. </div><div class="verse"><span class="verse-num">19</span>If only you, God, would kill the wicked. Get away from me, you bloodthirsty men! </div><div class="verse"><span class="verse-num">20</span>For they speak against you wickedly. Your enemies take your name in vain. </div><div class="verse"><span class="verse-num">21</span>Yahweh, don’t I hate those who hate you? Am I not grieved with those who rise up against you? </div><div class="verse"><span class="verse-num">22</span>I hate them with perfect hatred. They have become my enemies. </div><div class="verse"><span class="verse-num">23</span>Search me, God, and know my heart. Try me, and know my thoughts. </div><div class="verse"><span class="verse-num">24</span>See if there is any wicked way in me, and lead me in the everlasting way. </div>
-        </div>
-        <div class="chapter-nav">
-          <a href="/bible/psalms/138/" class="nav-btn">← Chapter 138</a>
-          <a href="/bible/psalms/140/" class="nav-btn">Chapter 140 →</a>
-        </div>
-      
+            <div class="ch-nav"></div>
+
+            <div class="verse-container" data-book-slug="psalms" data-chapter="139">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text"><b>For the Chief Musician. A Psalm by David. </b>   Yahweh, you have searched me, and you know me. </span></div>
+<div class="verse"><span class="verse-num">2</span><span class="verse-text">You know my sitting down and my rising up. You perceive my thoughts from afar. </span></div>
+<div class="verse"><span class="verse-num">3</span><span class="verse-text">You search out my path and my lying down, and are acquainted with all my ways. </span></div>
+<div class="verse"><span class="verse-num">4</span><span class="verse-text">For there is not a word on my tongue, but, behold, Yahweh, you know it altogether. </span></div>
+<div class="verse"><span class="verse-num">5</span><span class="verse-text">You hem me in behind and before. You laid your hand on me. </span></div>
+<div class="verse"><span class="verse-num">6</span><span class="verse-text">This knowledge is beyond me. It’s lofty. I can’t attain it. </span></div>
+<div class="verse"><span class="verse-num">7</span><span class="verse-text">Where could I go from your Spirit? Or where could I flee from your presence? </span></div>
+<div class="verse"><span class="verse-num">8</span><span class="verse-text">If I ascend up into heaven, you are there. If I make my bed in Sheol,  behold, you are there! </span></div>
+<div class="verse"><span class="verse-num">9</span><span class="verse-text">If I take the wings of the dawn, and settle in the uttermost parts of the sea; </span></div>
+<div class="verse"><span class="verse-num">10</span><span class="verse-text">Even there your hand will lead me, and your right hand will hold me. </span></div>
+<div class="verse"><span class="verse-num">11</span><span class="verse-text">If I say, “Surely the darkness will overwhelm me; the light around me will be night”; </span></div>
+<div class="verse"><span class="verse-num">12</span><span class="verse-text">even the darkness doesn’t hide from you, but the night shines as the day. The darkness is like light to you. </span></div>
+<div class="verse"><span class="verse-num">13</span><span class="verse-text">For you formed my inmost being. You knit me together in my mother’s womb. </span></div>
+<div class="verse"><span class="verse-num">14</span><span class="verse-text">I will give thanks to you, for I am fearfully and wonderfully made. Your works are wonderful. My soul knows that very well. </span></div>
+<div class="verse"><span class="verse-num">15</span><span class="verse-text">My frame wasn’t hidden from you, when I was made in secret, woven together in the depths of the earth. </span></div>
+<div class="verse"><span class="verse-num">16</span><span class="verse-text">Your eyes saw my body. In your book they were all written, the days that were ordained for me, when as yet there were none of them. </span></div>
+<div class="verse"><span class="verse-num">17</span><span class="verse-text">How precious to me are your thoughts, God! How vast is their sum! </span></div>
+<div class="verse"><span class="verse-num">18</span><span class="verse-text">If I would count them, they are more in number than the sand. When I wake up, I am still with you. </span></div>
+<div class="verse"><span class="verse-num">19</span><span class="verse-text">If only you, God, would kill the wicked. Get away from me, you bloodthirsty men! </span></div>
+<div class="verse"><span class="verse-num">20</span><span class="verse-text">For they speak against you wickedly. Your enemies take your name in vain. </span></div>
+<div class="verse"><span class="verse-num">21</span><span class="verse-text">Yahweh, don’t I hate those who hate you? Am I not grieved with those who rise up against you? </span></div>
+<div class="verse"><span class="verse-num">22</span><span class="verse-text">I hate them with perfect hatred. They have become my enemies. </span></div>
+<div class="verse"><span class="verse-num">23</span><span class="verse-text">Search me, God, and know my heart. Try me, and know my thoughts. </span></div>
+<div class="verse"><span class="verse-num">24</span><span class="verse-text">See if there is any wicked way in me, and lead me in the everlasting way. </span></div>
+            </div>
+
+            <div class="chapter-nav" style="margin-top: 4rem;">
+                <a href="/bible/psalms/138/" class="nav-btn">← Psalms 138</a>
+                <a href="/bible/psalms/140/" class="nav-btn">Psalms 140 →</a>
+            </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
         </footer>
     </div>
 
-    <!-- Interactive Elements -->
+    <!-- AI & Social Tools -->
     <div id="highlight-menu">
         <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 Reflect</button>
+        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
+        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
     </div>
 
     <div id="ai-bubble" class="ai-bubble">
         <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
     </div>
 
-    <div id="ai-chat-window" class="ai-chat-window">
-        <div class="ai-chat-header">
-            <span>Rooted AI</span>
-            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
+    <div id="insight-drawer" class="insight-drawer">
+        <div class="drawer-header">
+            <h3>Community Insights</h3>
+            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
         </div>
-        <div id="chat-messages" class="ai-chat-messages">
-            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
-        </div>
-        <form id="chat-form" class="ai-chat-input">
-            <input type="text" id="chat-input" placeholder="Ask Rooted...">
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-    <div id="auth-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-auth" class="close-modal">✕</button>
-            <h2>Join Rooted Daily</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Sign in to save your highlights and journal entries across devices.</p>
-            <form id="auth-form">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
-                    <button type="button" id="create-account-btn" class="btn" style="width: 100%; background: transparent; border: 1px solid var(--glass-border); color: white;">Create Account</button>
-                </div>
-            </form>
+        <div id="insight-content" class="drawer-content">
+            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
         </div>
     </div>
 
-    <script src="../../../bible-reader.js"></script>
+    <script src="../../../assets/js/bible-reader.js"></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>
