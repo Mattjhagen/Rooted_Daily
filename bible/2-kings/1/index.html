@@ -1,91 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Kings 1 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 2 Kings 1 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2 Kings 1 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 2 Kings 1 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 2 Kings</a>
-            <h1 style="margin-top: 1rem;">2 Kings 1</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="2-kings" data-chapter="1">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Moab rebelled against Israel after the death of Ahab.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">Ahaziah fell down through the lattice in his upper room that was in Samaria, and was sick. So he sent messengers, and said to them, “Go, inquire of Baal Zebub, the god of Ekron, whether I will recover of this sickness.”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">But Yahweh’s  angel said to Elijah the Tishbite, “Arise, go up to meet the messengers of the king of Samaria, and tell them, ‘Is it because there is no God  in Israel, that you go to inquire of Baal Zebub, the god of Ekron?</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Now therefore Yahweh says, “You will not come down from the bed where you have gone up, but you will surely die.”’” Then Elijah departed.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">The messengers returned to him, and he said to them, “Why is it that you have returned?”</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">They said to him, “A man came up to meet us, and said to us, ‘Go, return to the king who sent you, and tell him, “Yahweh says, ‘Is it because there is no God in Israel, that you send to inquire of Baal Zebub, the god of Ekron? Therefore you will not come down from the bed where you have gone up, but you will surely die.’”’”</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">He said to them, “What kind of man was he who came up to meet you, and told you these words?”</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">They answered him, “He was a hairy man, and wearing a leather belt around his waist.” He said, “It’s Elijah the Tishbite.”</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">Then the king sent a captain of fifty with his fifty to him. He went up to him; and behold,  he was sitting on the top of the hill. He said to him, “Man of God, the king has said, ‘Come down!’”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">Elijah answered to the captain of fifty, “If I am a man of God, then let fire come down from the sky, and consume you and your fifty!” Then fire came down from the sky, and consumed him and his fifty.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">Again he sent to him another captain of fifty with his fifty. He answered him, “Man of God, the king has said, ‘Come down quickly!’”</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">Elijah answered them, “If I am a man of God, then let fire come down from the sky, and consume you and your fifty!” Then God’s fire came down from the sky, and consumed him and his fifty.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">Again he sent the captain of a third fifty with his fifty. The third captain of fifty went up, and came and fell on his knees before Elijah, and begged him, and said to him, “Man of God, please let my life, and the life of these fifty of your servants, be precious in your sight.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">Behold, fire came down from the sky, and consumed the last two captains of fifty with their fifties. But now let my life be precious in your sight.”</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">Yahweh’s angel said to Elijah, “Go down with him. Don’t be afraid of him.” Then he arose, and went down with him to the king.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">He said to him, “Yahweh says, ‘Because you have sent messengers to inquire of Baal Zebub, the god of Ekron, is it because there is no God in Israel to inquire of his word? Therefore you will not come down from the bed where you have gone up, but you will surely die.’”</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">So he died according to Yahweh’s word which Elijah had spoken. Jehoram began to reign in his place in the second year of Jehoram the son of Jehoshaphat king of Judah, because he had no son.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">Now the rest of the acts of Ahaziah which he did, aren’t they written in the book of the chronicles of the kings of Israel?</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <span></span>
-                <a href="/bible/2-kings/2/" class="nav-btn">2 Kings 2 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">2 Kings</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>2 Kings 1</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="2-kings" data-chapter="1">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Moab rebelled against Israel after the death of Ahab.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="../../">← Back to 2 Kings</a>
+        <a href="../../" class="center">↑ 2 Kings</a>
+        <a href="/bible/2-kings/2/">2 Kings 2 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

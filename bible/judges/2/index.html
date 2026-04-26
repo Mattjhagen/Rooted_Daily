@@ -1,96 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judges 2 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Judges 2 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judges 2 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Judges 2 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Judges</a>
-            <h1 style="margin-top: 1rem;">Judges 2</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="judges" data-chapter="2">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s angel came up from Gilgal to Bochim. He said, “I brought you out of Egypt, and have brought you to the land which I swore to give your fathers. I said, ‘I will never break my covenant with you.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">You shall make no covenant with the inhabitants of this land. You shall break down their altars.’ But you have not listened to my voice. Why have you done this?</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">Therefore I also said, ‘I will not drive them out from before you; but they shall be in your sides, and their gods will be a snare to you.’”</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">When Yahweh’s angel spoke these words to all the children of Israel, the people lifted up their voice, and wept.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">They called the name of that place Bochim,  and they sacrificed there to Yahweh.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">Now when Joshua had sent the people away, the children of Israel each went to his inheritance to possess the land.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">The people served Yahweh all the days of Joshua, and all the days of the elders who outlived Joshua, who had seen all the great work of Yahweh that he had worked for Israel.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Joshua the son of Nun, the servant of Yahweh, died, being one hundred ten years old.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">They buried him in the border of his inheritance in Timnath Heres, in the hill country of Ephraim, on the north of the mountain of Gaash.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">After all that generation were gathered to their fathers, another generation arose after them, who didn’t know Yahweh, nor the work which he had done for Israel.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">The children of Israel did that which was evil in Yahweh’s sight, and served the Baals.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">They abandoned Yahweh, the God of their fathers, who brought them out of the land of Egypt, and followed other gods, of the gods of the peoples who were around them, and bowed themselves down to them; and they provoked Yahweh to anger.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">They abandoned Yahweh, and served Baal and the Ashtaroth.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">Yahweh’s anger burned against Israel, and he delivered them into the hands of raiders who plundered them. He sold them into the hands of their enemies all around, so that they could no longer stand before their enemies.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">Wherever they went out, Yahweh’s hand was against them for evil, as Yahweh had spoken, and as Yahweh had sworn to them; and they were very distressed.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">Yahweh raised up judges, who saved them out of the hand of those who plundered them.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">Yet they didn’t listen to their judges; for they prostituted themselves to other gods, and bowed themselves down to them. They turned aside quickly out of the way in which their fathers walked, obeying Yahweh’s commandments. They didn’t do so.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">When Yahweh raised up judges for them, then Yahweh was with the judge, and saved them out of the hand of their enemies all the days of the judge; for it grieved Yahweh because of their groaning by reason of those who oppressed them and troubled them.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">But when the judge was dead, they turned back, and dealt more corruptly than their fathers in following other gods to serve them, and to bow down to them. They didn’t cease what they were doing, or give up their stubborn ways.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">Yahweh’s anger burned against Israel; and he said, “Because this nation transgressed my covenant which I commanded their fathers, and has not listened to my voice,</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">I also will no longer drive out any of the nations that Joshua left when he died from before them;</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">that by them I may test Israel, to see if they will keep the Yahweh’s way to walk therein, as their fathers kept it, or not.”</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">So Yahweh left those nations, without driving them out hastily. He didn’t deliver them into Joshua’s hand.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/judges/1/" class="nav-btn">← Judges 1</a>
-                <a href="/bible/judges/3/" class="nav-btn">Judges 3 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Judges</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Judges 2</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="judges" data-chapter="2">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s angel came up from Gilgal to Bochim. He said, “I brought you out of Egypt, and have brought you to the land which I swore to give your fathers. I said, ‘I will never break my covenant with you.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/judges/1/">← Judges 1</a>
+        <a href="../../" class="center">↑ Judges</a>
+        <a href="/bible/judges/3/">Judges 3 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

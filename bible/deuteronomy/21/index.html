@@ -1,96 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deuteronomy 21 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Deuteronomy 21 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deuteronomy 21 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Deuteronomy 21 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Deuteronomy</a>
-            <h1 style="margin-top: 1rem;">Deuteronomy 21</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="deuteronomy" data-chapter="21">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">If someone is found slain in the land which Yahweh your God gives you to possess, lying in the field, and it isn’t known who has struck him;</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">then your elders and your judges shall come out, and they shall measure to the cities which are around him who is slain.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">It shall be that the elders of the city which is nearest to the slain man shall take a heifer of the herd, which hasn’t been worked with, and which has not drawn in the yoke.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">The elders of that city shall bring the heifer down to a valley with running water, which is neither plowed nor sown, and shall break the heifer’s neck there in the valley.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">The priests the sons of Levi shall come near; for them Yahweh your God has chosen to minister to him, and to bless in Yahweh’s name; and according to their word shall every controversy and every assault be decided.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">All the elders of that city, who are nearest to the slain man, shall wash their hands over the heifer whose neck was broken in the valley.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">They shall answer and say, “Our hands have not shed this blood, neither have our eyes seen it.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Forgive, Yahweh, your people Israel, whom you have redeemed, and don’t allow innocent blood among your people Israel.” The blood shall be forgiven them.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">So you shall put away the innocent blood from among you, when you shall do that which is right in Yahweh’s eyes.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">When you go out to battle against your enemies, and Yahweh your God delivers them into your hands, and you carry them away captive,</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">and see among the captives a beautiful woman, and you have a desire to her, and desire to take her as your wife;</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">then you shall bring her home to your house. She shall shave her head and trim her nails.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">She shall take the clothing of her captivity off of herself, and shall remain in your house, and bewail her father and her mother a full month. After that you shall go in to her and be her husband, and she shall be your wife.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">It shall be, if you have no delight in her, then you shall let her go where she desires; but you shall not sell her at all for money. You shall not deal with her as a slave, because you have humbled her.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">If a man has two wives, the one beloved, and the other hated, and they have borne him children, both the beloved and the hated; and if the firstborn son is hers who was hated;</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">then it shall be, in the day that he causes his sons to inherit that which he has, that he may not give the son of the beloved the rights of the firstborn before the son of the hated, who is the firstborn;</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">but he shall acknowledge the firstborn, the son of the hated, by giving him a double portion of all that he has; for he is the beginning of his strength. The right of the firstborn is his.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">If a man has a stubborn and rebellious son, who will not obey the voice of his father or the voice of his mother, and though they chasten him, will not listen to them;</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">then his father and his mother shall take hold of him and bring him out to the elders of his city, and to the gate of his place.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">They shall tell the elders of his city, “This our son is stubborn and rebellious. He will not obey our voice. He is a glutton and a drunkard.”</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">All the men of his city shall stone him to death with stones. So you shall remove the evil from among you. All Israel shall hear, and fear.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">If a man has committed a sin worthy of death, and he is put to death, and you hang him on a tree;</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">his body shall not remain all night on the tree, but you shall surely bury him the same day; for he who is hanged is accursed of God; that you don’t defile your land which Yahweh your God gives you for an inheritance.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/deuteronomy/20/" class="nav-btn">← Deuteronomy 20</a>
-                <a href="/bible/deuteronomy/22/" class="nav-btn">Deuteronomy 22 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Deuteronomy</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Deuteronomy 21</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="deuteronomy" data-chapter="21">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">If someone is found slain in the land which Yahweh your God gives you to possess, lying in the field, and it isn’t known who has struck him;</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/deuteronomy/20/">← Deuteronomy 20</a>
+        <a href="../../" class="center">↑ Deuteronomy</a>
+        <a href="/bible/deuteronomy/22/">Deuteronomy 22 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

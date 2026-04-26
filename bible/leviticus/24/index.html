@@ -1,96 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leviticus 24 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Leviticus 24 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leviticus 24 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Leviticus 24 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Leviticus</a>
-            <h1 style="margin-top: 1rem;">Leviticus 24</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="leviticus" data-chapter="24">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Moses, saying,</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Command the children of Israel, that they bring to you pure olive oil beaten for the light, to cause a lamp to burn continually.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">Outside of the veil of the Testimony, in the Tent of Meeting, shall Aaron keep it in order from evening to morning before Yahweh continually: it shall be a statute forever throughout your generations.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">He shall keep in order the lamps on the pure gold lamp stand before Yahweh continually.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">“You shall take fine flour, and bake twelve cakes of it: two tenths of an ephah  shall be in one cake.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">You shall set them in two rows, six on a row, on the pure gold table before Yahweh.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">You shall put pure frankincense on each row, that it may be to the bread for a memorial, even an offering made by fire to Yahweh.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Every Sabbath day he shall set it in order before Yahweh continually. It is on the behalf of the children of Israel an everlasting covenant.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">It shall be for Aaron and his sons; and they shall eat it in a holy place: for it is most holy to him of the offerings of Yahweh made by fire by a perpetual statute.”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">The son of an Israelite woman, whose father was an Egyptian, went out among the children of Israel; and the son of the Israelite woman and a man of Israel strove together in the camp.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">The son of the Israelite woman blasphemed the Name, and cursed; and they brought him to Moses. His mother’s name was Shelomith, the daughter of Dibri, of the tribe of Dan.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">They put him in custody, until Yahweh’s will should be declared to them.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">Yahweh spoke to Moses, saying,</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">“Bring out of the camp him who cursed; and let all who heard him lay their hands on his head, and let all the congregation stone him.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">You shall speak to the children of Israel, saying, ‘Whoever curses his God shall bear his sin.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">He who blasphemes Yahweh’s name, he shall surely be put to death. All the congregation shall certainly stone him. The foreigner as well as the native-born, when he blasphemes the Name, shall be put to death.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">“‘He who strikes any man mortally shall surely be put to death.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">He who strikes an animal mortally shall make it good, life for life.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">If anyone injures his neighbor; as he has done, so shall it be done to him:</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">fracture for fracture, eye for eye, tooth for tooth; as he has injured someone, so shall it be done to him.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">He who kills an animal shall make it good; and he who kills a man shall be put to death.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">You shall have one kind of law for the foreigner as well as the native-born; for I am Yahweh your God.’”</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">Moses spoke to the children of Israel; and they brought out him who had cursed out of the camp, and stoned him with stones. The children of Israel did as Yahweh commanded Moses.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/leviticus/23/" class="nav-btn">← Leviticus 23</a>
-                <a href="/bible/leviticus/25/" class="nav-btn">Leviticus 25 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Leviticus</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Leviticus 24</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="leviticus" data-chapter="24">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Moses, saying,</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/leviticus/23/">← Leviticus 23</a>
+        <a href="../../" class="center">↑ Leviticus</a>
+        <a href="/bible/leviticus/25/">Leviticus 25 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

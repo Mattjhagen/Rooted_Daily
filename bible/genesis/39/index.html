@@ -1,96 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis 39 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Genesis 39 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis 39 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Genesis 39 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Genesis</a>
-            <h1 style="margin-top: 1rem;">Genesis 39</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="genesis" data-chapter="39">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Joseph was brought down to Egypt. Potiphar, an officer of Pharaoh’s, the captain of the guard, an Egyptian, bought him from the hand of the Ishmaelites that had brought him down there.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">Yahweh was with Joseph, and he was a prosperous man. He was in the house of his master the Egyptian.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">His master saw that Yahweh was with him, and that Yahweh made all that he did prosper in his hand.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Joseph found favor in his sight. He ministered to him, and he made him overseer over his house, and all that he had he put into his hand.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">From the time that he made him overseer in his house, and over all that he had, Yahweh blessed the Egyptian’s house for Joseph’s sake. Yahweh’s blessing was on all that he had, in the house and in the field.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">He left all that he had in Joseph’s hand. He didn’t concern himself with anything, except for the food which he ate. Joseph was well-built and handsome.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">After these things, his master’s wife set her eyes on Joseph; and she said, “Lie with me.”</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">But he refused, and said to his master’s wife, “Behold, my master doesn’t know what is with me in the house, and he has put all that he has into my hand.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">No one is greater in this house than I am, and he has not kept back anything from me but you, because you are his wife. How then can I do this great wickedness, and sin against God?”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">As she spoke to Joseph day by day, he didn’t listen to her, to lie by her, or to be with her.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">About this time, he went into the house to do his work, and there were none of the men of the house inside.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">She caught him by his garment, saying, “Lie with me!” He left his garment in her hand, and ran outside.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">When she saw that he had left his garment in her hand, and had run outside,</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">she called to the men of her house, and spoke to them, saying, “Behold, he has brought in a Hebrew to us to mock us. He came in to me to lie with me, and I cried with a loud voice.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">When he heard that I lifted up my voice and cried, he left his garment by me, and ran outside.”</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">She laid up his garment by her, until his master came home.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">She spoke to him according to these words, saying, “The Hebrew servant, whom you have brought to us, came in to me to mock me,</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">and as I lifted up my voice and cried, he left his garment by me, and ran outside.”</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">When his master heard the words of his wife, which she spoke to him, saying, “This is what your servant did to me,” his wrath was kindled.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">Joseph’s master took him, and put him into the prison, the place where the king’s prisoners were bound, and he was there in custody.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">The keeper of the prison committed to Joseph’s hand all the prisoners who were in the prison. Whatever they did there, he was responsible for it.</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">The keeper of the prison didn’t look after anything that was under his hand, because Yahweh was with him; and that which he did, Yahweh made it prosper.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/genesis/38/" class="nav-btn">← Genesis 38</a>
-                <a href="/bible/genesis/40/" class="nav-btn">Genesis 40 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Genesis</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Genesis 39</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="genesis" data-chapter="39">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Joseph was brought down to Egypt. Potiphar, an officer of Pharaoh’s, the captain of the guard, an Egyptian, bought him from the hand of the Ishmaelites that had brought him down there.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/genesis/38/">← Genesis 38</a>
+        <a href="../../" class="center">↑ Genesis</a>
+        <a href="/bible/genesis/40/">Genesis 40 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

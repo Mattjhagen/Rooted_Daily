@@ -1,101 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1 Kings 9 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 1 Kings 9 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1 Kings 9 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 1 Kings 9 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 1 Kings</a>
-            <h1 style="margin-top: 1rem;">1 Kings 9</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="1-kings" data-chapter="9">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">When Solomon had finished the building of Yahweh’s house, the king’s house, and all Solomon’s desire which he was pleased to do,</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">Yahweh appeared to Solomon the second time, as he had appeared to him at Gibeon.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh said to him, “I have heard your prayer and your supplication, that you have made before me. I have made this house holy, which you have built, to put my name there forever; and my eyes and my heart shall be there perpetually.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">As for you, if you will walk before me, as David your father walked, in integrity of heart, and in uprightness, to do according to all that I have commanded you, and will keep my statutes and my ordinances;</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">then I will establish the throne of your kingdom over Israel forever, as I promised to David your father, saying, ‘There shall not fail from you a man on the throne of Israel.’</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">But if you turn away from following me, you or your children, and not keep my commandments and my statutes which I have set before you, but go and serve other gods, and worship them;</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">then I will cut off Israel out of the land which I have given them; and I will cast this house, which I have made holy for my name, out of my sight; and Israel will be a proverb and a byword among all peoples.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Though this house is so high, yet everyone who passes by it will be astonished and hiss; and they will say, ‘Why has Yahweh done this to this land, and to this house?’</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">and they will answer, ‘Because they abandoned Yahweh their God, who brought their fathers out of the land of Egypt, and laid hold of other gods, and worshiped them, and served them. Therefore Yahweh has brought all this evil on them.’”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">At the end of twenty years, in which Solomon had built the two houses, Yahweh’s house and the king’s house</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">(now Hiram the king of Tyre had furnished Solomon with cedar trees and cypress trees, and with gold, according to all his desire), King Solomon gave Hiram twenty cities in the land of Galilee.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">Hiram came out of Tyre to see the cities which Solomon had given him; and they didn’t please him.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">He said, “What cities are these which you have given me, my brother?” He called them the land of Cabul  to this day.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">Hiram sent to the king one hundred twenty talents  of gold.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">This is the reason of the levy which king Solomon raised, to build Yahweh’s house, his own house, Millo, Jerusalem’s wall, Hazor, Megiddo, and Gezer.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">Pharaoh king of Egypt had gone up, taken Gezer, burned it with fire, killed the Canaanites who lived in the city, and given it for a wedding gift to his daughter, Solomon’s wife.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">Solomon built in the land Gezer, Beth Horon the lower,</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">Baalath, Tamar in the wilderness,</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">all the storage cities that Solomon had, the cities for his chariots, the cities for his horsemen, and that which Solomon desired to build for his pleasure in Jerusalem, and in Lebanon, and in all the land of his dominion.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">As for all the people who were left of the Amorites, the Hittites, the Perizzites, the Hivites, and the Jebusites, who were not of the children of Israel;</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">their children who were left after them in the land, whom the children of Israel were not able utterly to destroy, of them Solomon raised a levy of bondservants to this day.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">But of the children of Israel Solomon made no bondservants; but they were the men of war, his servants, his princes, his captains, and rulers of his chariots and of his horsemen.</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">These were the five hundred fifty chief officers who were over Solomon’s work, who ruled over the people who labored in the work.</span></div>
-<div class="verse"><span class="verse-num">24</span><span class="verse-text">But Pharaoh’s daughter came up out of David’s city to her house which Solomon had built for her. Then he built Millo.</span></div>
-<div class="verse"><span class="verse-num">25</span><span class="verse-text">Solomon offered burnt offerings and peace offerings on the altar which he built to Yahweh three times per year, burning incense with them, on the altar that was before Yahweh. So he finished the house.</span></div>
-<div class="verse"><span class="verse-num">26</span><span class="verse-text">King Solomon made a fleet of ships in Ezion Geber, which is beside Eloth, on the shore of the Red Sea, in the land of Edom.</span></div>
-<div class="verse"><span class="verse-num">27</span><span class="verse-text">Hiram sent in the fleet his servants, sailors who had knowledge of the sea, with the servants of Solomon.</span></div>
-<div class="verse"><span class="verse-num">28</span><span class="verse-text">They came to Ophir, and fetched from there gold, four hundred and twenty talents,  and brought it to king Solomon.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/1-kings/8/" class="nav-btn">← 1 Kings 8</a>
-                <a href="/bible/1-kings/10/" class="nav-btn">1 Kings 10 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">1 Kings</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>1 Kings 9</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="1-kings" data-chapter="9">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">When Solomon had finished the building of Yahweh’s house, the king’s house, and all Solomon’s desire which he was pleased to do,</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/1-kings/8/">← 1 Kings 8</a>
+        <a href="../../" class="center">↑ 1 Kings</a>
+        <a href="/bible/1-kings/10/">1 Kings 10 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

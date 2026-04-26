@@ -1,96 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Samuel 16 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 2 Samuel 16 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2 Samuel 16 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 2 Samuel 16 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 2 Samuel</a>
-            <h1 style="margin-top: 1rem;">2 Samuel 16</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="2-samuel" data-chapter="16">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">When David was a little past the top, behold, Ziba the servant of Mephibosheth met him with a couple of donkeys saddled, and on them two hundred loaves of bread, and one hundred clusters of raisins, and one hundred summer fruits, and a bottle of wine.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">The king said to Ziba, “What do you mean by these?” Ziba said, “The donkeys are for the king’s household to ride on; and the bread and summer fruit for the young men to eat; and the wine, that those who are faint in the wilderness may drink.”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">The king said, “Where is your master’s son?” Ziba said to the king, “Behold, he is staying in Jerusalem; for he said, ‘Today the house of Israel will restore me the kingdom of my father.’”</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Then the king said to Ziba, “Behold, all that belongs to Mephibosheth is yours.” Ziba said, “I bow down. Let me find favor in your sight, my lord, O king.”</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">When king David came to Bahurim, behold, a man of the family of Saul’s house came out, whose name was Shimei, the son of Gera. He came out and cursed as he came.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">He cast stones at David, and at all the servants of king David, and all the people and all the mighty men were on his right hand and on his left.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">Shimei said when he cursed, “Be gone, be gone, you man of blood, and base fellow!</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Yahweh has returned on you all the blood of Saul’s house, in whose place you have reigned! Yahweh has delivered the kingdom into the hand of Absalom your son! Behold, you are caught by your own mischief, because you are a man of blood!”</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">Then Abishai the son of Zeruiah said to the king, “Why should this dead dog curse my lord the king? Please let me go over and take off his head.”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">The king said, “What have I to do with you, you sons of Zeruiah? Because he curses, and because Yahweh has said to him, ‘Curse David;’ who then shall say, ‘Why have you done so?’”</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">David said to Abishai, and to all his servants, “Behold, my son, who came out of my bowels, seeks my life. How much more this Benjamite, now? Leave him alone, and let him curse; for Yahweh has invited him.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">It may be that Yahweh will look on the wrong done to me, and that Yahweh will repay me good for the cursing of me today.”</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">So David and his men went by the way; and Shimei went along on the hillside opposite him, and cursed as he went, threw stones at him, and threw dust.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">The king, and all the people who were with him, came weary; and he refreshed himself there.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">Absalom and all the people, the men of Israel, came to Jerusalem, and Ahithophel with him.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">When Hushai the Archite, David’s friend, had come to Absalom, Hushai said to Absalom, “Long live the king! Long live the king!”</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">Absalom said to Hushai, “Is this your kindness to your friend? Why didn’t you go with your friend?”</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">Hushai said to Absalom, “No; but whomever Yahweh, and this people, and all the men of Israel have chosen, his will I be, and with him I will stay.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">Again, whom should I serve? Shouldn’t I serve in the presence of his son? As I have served in your father’s presence, so will I be in your presence.”</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">Then Absalom said to Ahithophel, “Give your counsel what we shall do.”</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">Ahithophel said to Absalom, “Go in to your father’s concubines that he has left to keep the house. Then all Israel will hear that you are abhorred by your father. Then the hands of all who are with you will be strong.”</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">So they spread a tent for Absalom on the top of the house, and Absalom went in to his father’s concubines in the sight of all Israel.</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">The counsel of Ahithophel, which he gave in those days, was as if a man inquired at the inner sanctuary of God. So was all the counsel of Ahithophel both with David and with Absalom.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/2-samuel/15/" class="nav-btn">← 2 Samuel 15</a>
-                <a href="/bible/2-samuel/17/" class="nav-btn">2 Samuel 17 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">2 Samuel</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>2 Samuel 16</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="2-samuel" data-chapter="16">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">When David was a little past the top, behold, Ziba the servant of Mephibosheth met him with a couple of donkeys saddled, and on them two hundred loaves of bread, and one hundred clusters of raisins, and one hundred summer fruits, and a bottle of wine.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/2-samuel/15/">← 2 Samuel 15</a>
+        <a href="../../" class="center">↑ 2 Samuel</a>
+        <a href="/bible/2-samuel/17/">2 Samuel 17 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

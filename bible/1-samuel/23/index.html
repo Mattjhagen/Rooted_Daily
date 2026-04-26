@@ -1,102 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1 Samuel 23 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 1 Samuel 23 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1 Samuel 23 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 1 Samuel 23 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 1 Samuel</a>
-            <h1 style="margin-top: 1rem;">1 Samuel 23</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="1-samuel" data-chapter="23">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">David was told, “Behold, the Philistines are fighting against Keilah, and are robbing the threshing floors.”</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">Therefore David inquired of Yahweh, saying, “Shall I go and strike these Philistines?” Yahweh said to David, “Go strike the Philistines, and save Keilah.”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">David’s men said to him, “Behold, we are afraid here in Judah. How much more then if we go to Keilah against the armies of the Philistines?”</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Then David inquired of Yahweh yet again. Yahweh answered him, and said, “Arise, go down to Keilah; for I will deliver the Philistines into your hand.”</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">David and his men went to Keilah, and fought with the Philistines, and brought away their livestock, and killed them with a great slaughter. So David saved the inhabitants of Keilah.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">When Abiathar the son of Ahimelech fled to David to Keilah, he came down with an ephod in his hand.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">Saul was told that David had come to Keilah. Saul said, “God has delivered him into my hand; for he is shut in by entering into a town that has gates and bars.”</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Saul summoned all the people to war, to go down to Keilah, to besiege David and his men.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">David knew that Saul was devising mischief against him; and he said to Abiathar the priest, “Bring the ephod here.”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">Then David said, “O Yahweh, the God of Israel, your servant has surely heard that Saul seeks to come to Keilah, to destroy the city for my sake.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">Will the men of Keilah deliver me up into his hand? Will Saul come down, as your servant has heard? Yahweh, the God of Israel, I beg you, tell your servant.” Yahweh said, “He will come down.”</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">Then David said, “Will the men of Keilah deliver me and my men into the hand of Saul?” Yahweh said, “They will deliver you up.”</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">Then David and his men, who were about six hundred, arose and departed out of Keilah, and went wherever they could go. Saul was told that David was escaped from Keilah; and he gave up going there.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">David stayed in the wilderness in the strongholds, and remained in the hill country in the wilderness of Ziph. Saul sought him every day, but God didn’t deliver him into his hand.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">David saw that Saul had come out to seek his life. David was in the wilderness of Ziph in the wood.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">Jonathan, Saul’s son, arose, and went to David into the woods, and strengthened his hand in God.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">He said to him, “Don’t be afraid; for the hand of Saul my father won’t find you; and you will be king over Israel, and I will be next to you; and Saul my father knows that also.”</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">They both made a covenant before Yahweh. Then David stayed in the woods, and Jonathan went to his house.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">Then the Ziphites came up to Saul to Gibeah, saying, “Doesn’t David hide himself with us in the strongholds in the woods, in the hill of Hachilah, which is on the south of the desert?</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">Now therefore, O king, come down. According to all the desire of your soul to come down; and our part will be to deliver him up into the king’s hand.”</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">Saul said, “You are blessed by Yahweh; for you have had compassion on me.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">Please go make yet more sure, and know and see his place where his haunt is, and who has seen him there; for I have been told that he deals very crafty.</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">See therefore, and take knowledge of all the lurking places where he hides himself, and come again to me with certainty, and I will go with you. It shall happen, if he is in the land, that I will search him out among all the thousands of Judah.”</span></div>
-<div class="verse"><span class="verse-num">24</span><span class="verse-text">They arose, and went to Ziph before Saul: but David and his men were in the wilderness of Maon, in the Arabah on the south of the desert.</span></div>
-<div class="verse"><span class="verse-num">25</span><span class="verse-text">Saul and his men went to seek him. When David was told, he went down to the rock, and stayed in the wilderness of Maon. When Saul heard that, he pursued David in the wilderness of Maon.</span></div>
-<div class="verse"><span class="verse-num">26</span><span class="verse-text">Saul went on this side of the mountain, and David and his men on that side of the mountain; and David hurried to get away for fear of Saul; for Saul and his men surrounded David and his men to take them.</span></div>
-<div class="verse"><span class="verse-num">27</span><span class="verse-text">But a messenger came to Saul, saying, “Hurry and come; for the Philistines have made a raid on the land!”</span></div>
-<div class="verse"><span class="verse-num">28</span><span class="verse-text">So Saul returned from pursuing David, and went against the Philistines. Therefore they called that place Sela Hammahlekoth. </span></div>
-<div class="verse"><span class="verse-num">29</span><span class="verse-text">David went up from there, and lived in the strongholds of En Gedi.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/1-samuel/22/" class="nav-btn">← 1 Samuel 22</a>
-                <a href="/bible/1-samuel/24/" class="nav-btn">1 Samuel 24 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">1 Samuel</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>1 Samuel 23</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="1-samuel" data-chapter="23">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">David was told, “Behold, the Philistines are fighting against Keilah, and are robbing the threshing floors.”</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/1-samuel/22/">← 1 Samuel 22</a>
+        <a href="../../" class="center">↑ 1 Samuel</a>
+        <a href="/bible/1-samuel/24/">1 Samuel 24 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

@@ -1,111 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis 42 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Genesis 42 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis 42 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Genesis 42 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Genesis</a>
-            <h1 style="margin-top: 1rem;">Genesis 42</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="genesis" data-chapter="42">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now Jacob saw that there was grain in Egypt, and Jacob said to his sons, “Why do you look at one another?”</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">He said, “Behold, I have heard that there is grain in Egypt. Go down there, and buy for us from there, so that we may live, and not die.”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">Joseph’s ten brothers went down to buy grain from Egypt.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">But Jacob didn’t send Benjamin, Joseph’s brother, with his brothers; for he said, “Lest perhaps harm happen to him.”</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">The sons of Israel came to buy among those who came, for the famine was in the land of Canaan.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">Joseph was the governor over the land. It was he who sold to all the people of the land. Joseph’s brothers came, and bowed themselves down to him with their faces to the earth.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">Joseph saw his brothers, and he recognized them, but acted like a stranger to them, and spoke roughly with them. He said to them, “Where did you come from?” They said, “From the land of Canaan to buy food.”</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Joseph recognized his brothers, but they didn’t recognize him.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">Joseph remembered the dreams which he dreamed about them, and said to them, “You are spies! You have come to see the nakedness of the land.”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">They said to him, “No, my lord, but your servants have come to buy food.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">We are all one man’s sons; we are honest men. Your servants are not spies.”</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">He said to them, “No, but you have come to see the nakedness of the land!”</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">They said, “We, your servants, are twelve brothers, the sons of one man in the land of Canaan; and behold, the youngest is today with our father, and one is no more.”</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">Joseph said to them, “It is like I told you, saying, ‘You are spies!’</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">By this you shall be tested. By the life of Pharaoh, you shall not go out from here, unless your youngest brother comes here.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">Send one of you, and let him get your brother, and you shall be bound, that your words may be tested, whether there is truth in you, or else by the life of Pharaoh surely you are spies.”</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">He put them all together into custody for three days.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">Joseph said to them the third day, “Do this, and live, for I fear God.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">If you are honest men, then let one of your brothers be bound in your prison; but you go, carry grain for the famine of your houses.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">Bring your youngest brother to me; so will your words be verified, and you won’t die.” They did so.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">They said to one another, “We are certainly guilty concerning our brother, in that we saw the distress of his soul, when he begged us, and we wouldn’t listen. Therefore this distress has come upon us.”</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">Reuben answered them, saying, “Didn’t I tell you, saying, ‘Don’t sin against the child,’ and you wouldn’t listen? Therefore also, behold, his blood is required.”</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">They didn’t know that Joseph understood them; for there was an interpreter between them.</span></div>
-<div class="verse"><span class="verse-num">24</span><span class="verse-text">He turned himself away from them, and wept. Then he returned to them, and spoke to them, and took Simeon from among them, and bound him before their eyes.</span></div>
-<div class="verse"><span class="verse-num">25</span><span class="verse-text">Then Joseph gave a command to fill their bags with grain, and to restore each man’s money into his sack, and to give them food for the way. So it was done to them.</span></div>
-<div class="verse"><span class="verse-num">26</span><span class="verse-text">They loaded their donkeys with their grain, and departed from there.</span></div>
-<div class="verse"><span class="verse-num">27</span><span class="verse-text">As one of them opened his sack to give his donkey food in the lodging place, he saw his money. Behold, it was in the mouth of his sack.</span></div>
-<div class="verse"><span class="verse-num">28</span><span class="verse-text">He said to his brothers, “My money is restored! Behold, it is in my sack!” Their hearts failed them, and they turned trembling to one another, saying, “What is this that God has done to us?”</span></div>
-<div class="verse"><span class="verse-num">29</span><span class="verse-text">They came to Jacob their father, to the land of Canaan, and told him all that had happened to them, saying,</span></div>
-<div class="verse"><span class="verse-num">30</span><span class="verse-text">“The man, the lord of the land, spoke roughly with us, and took us for spies of the country.</span></div>
-<div class="verse"><span class="verse-num">31</span><span class="verse-text">We said to him, ‘We are honest men. We are no spies.</span></div>
-<div class="verse"><span class="verse-num">32</span><span class="verse-text">We are twelve brothers, sons of our father; one is no more, and the youngest is today with our father in the land of Canaan.’</span></div>
-<div class="verse"><span class="verse-num">33</span><span class="verse-text">The man, the lord of the land, said to us, ‘By this I will know that you are honest men: leave one of your brothers with me, and take grain for the famine of your houses, and go your way.</span></div>
-<div class="verse"><span class="verse-num">34</span><span class="verse-text">Bring your youngest brother to me. Then I will know that you are not spies, but that you are honest men. So I will deliver your brother to you, and you shall trade in the land.’”</span></div>
-<div class="verse"><span class="verse-num">35</span><span class="verse-text">As they emptied their sacks, behold, each man’s bundle of money was in his sack. When they and their father saw their bundles of money, they were afraid.</span></div>
-<div class="verse"><span class="verse-num">36</span><span class="verse-text">Jacob, their father, said to them, “You have bereaved me of my children! Joseph is no more, Simeon is no more, and you want to take Benjamin away. All these things are against me.”</span></div>
-<div class="verse"><span class="verse-num">37</span><span class="verse-text">Reuben spoke to his father, saying, “Kill my two sons, if I don’t bring him to you. Entrust him to my care, and I will bring him to you again.”</span></div>
-<div class="verse"><span class="verse-num">38</span><span class="verse-text">He said, “My son shall not go down with you; for his brother is dead, and he only is left. If harm happens to him along the way in which you go, then you will bring down my gray hairs with sorrow to Sheol.” </span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/genesis/41/" class="nav-btn">← Genesis 41</a>
-                <a href="/bible/genesis/43/" class="nav-btn">Genesis 43 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Genesis</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Genesis 42</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="genesis" data-chapter="42">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now Jacob saw that there was grain in Egypt, and Jacob said to his sons, “Why do you look at one another?”</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/genesis/41/">← Genesis 41</a>
+        <a href="../../" class="center">↑ Genesis</a>
+        <a href="/bible/genesis/43/">Genesis 43 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

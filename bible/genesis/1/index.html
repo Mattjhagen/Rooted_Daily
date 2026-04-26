@@ -1,104 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis 1 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Genesis 1 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis 1 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Genesis 1 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Genesis</a>
-            <h1 style="margin-top: 1rem;">Genesis 1</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="genesis" data-chapter="1">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In the beginning, God  created the heavens and the earth.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">The earth was formless and empty. Darkness was on the surface of the deep and God’s Spirit was hovering over the surface of the waters.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">God said, “Let there be light,” and there was light.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">God saw the light, and saw that it was good. God divided the light from the darkness.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">God called the light “day”, and the darkness he called “night”. There was evening and there was morning, the first day.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">God said, “Let there be an expanse in the middle of the waters, and let it divide the waters from the waters.”</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">God made the expanse, and divided the waters which were under the expanse from the waters which were above the expanse; and it was so.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">God called the expanse “sky”. There was evening and there was morning, a second day.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">God said, “Let the waters under the sky be gathered together to one place, and let the dry land appear”; and it was so.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">God called the dry land “earth”, and the gathering together of the waters he called “seas”. God saw that it was good.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">God said, “Let the earth yield grass, herbs yielding seeds, and fruit trees bearing fruit after their kind, with their seeds in it, on the earth”; and it was so.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">The earth yielded grass, herbs yielding seed after their kind, and trees bearing fruit, with their seeds in it, after their kind; and God saw that it was good.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">There was evening and there was morning, a third day.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">God said, “Let there be lights in the expanse of the sky to divide the day from the night; and let them be for signs to mark seasons, days, and years;</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">and let them be for lights in the expanse of the sky to give light on the earth”; and it was so.</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">God set them in the expanse of the sky to give light to the earth,</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">and to rule over the day and over the night, and to divide the light from the darkness. God saw that it was good.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">There was evening and there was morning, a fourth day.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">God said, “Let the waters abound with living creatures, and let birds fly above the earth in the open expanse of the sky.”</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good.</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">God blessed them, saying, “Be fruitful, and multiply, and fill the waters in the seas, and let birds multiply on the earth.”</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">There was evening and there was morning, a fifth day.</span></div>
-<div class="verse"><span class="verse-num">24</span><span class="verse-text">God said, “Let the earth produce living creatures after their kind, livestock, creeping things, and animals of the earth after their kind”; and it was so.</span></div>
-<div class="verse"><span class="verse-num">25</span><span class="verse-text">God made the animals of the earth after their kind, and the livestock after their kind, and everything that creeps on the ground after its kind. God saw that it was good.</span></div>
-<div class="verse"><span class="verse-num">26</span><span class="verse-text">God said, “Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the birds of the sky, and over the livestock, and over all the earth, and over every creeping thing that creeps on the earth.”</span></div>
-<div class="verse"><span class="verse-num">27</span><span class="verse-text">God created man in his own image. In God’s image he created him; male and female he created them.</span></div>
-<div class="verse"><span class="verse-num">28</span><span class="verse-text">God blessed them. God said to them, “Be fruitful, multiply, fill the earth, and subdue it. Have dominion over the fish of the sea, over the birds of the sky, and over every living thing that moves on the earth.”</span></div>
-<div class="verse"><span class="verse-num">29</span><span class="verse-text">God said, “Behold,  I have given you every herb yielding seed, which is on the surface of all the earth, and every tree, which bears fruit yielding seed. It will be your food.</span></div>
-<div class="verse"><span class="verse-num">30</span><span class="verse-text">To every animal of the earth, and to every bird of the sky, and to everything that creeps on the earth, in which there is life, I have given every green herb for food;” and it was so.</span></div>
-<div class="verse"><span class="verse-num">31</span><span class="verse-text">God saw everything that he had made, and, behold, it was very good. There was evening and there was morning, a sixth day.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <span></span>
-                <a href="/bible/genesis/2/" class="nav-btn">Genesis 2 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Genesis</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Genesis 1</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="genesis" data-chapter="1">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">In the beginning, God  created the heavens and the earth.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="../../">← Back to Genesis</a>
+        <a href="../../" class="center">↑ Genesis</a>
+        <a href="/bible/genesis/2/">Genesis 2 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

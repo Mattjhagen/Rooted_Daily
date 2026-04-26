@@ -1,94 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Kings 11 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 2 Kings 11 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2 Kings 11 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 2 Kings 11 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 2 Kings</a>
-            <h1 style="margin-top: 1rem;">2 Kings 11</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="2-kings" data-chapter="11">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now when Athaliah the mother of Ahaziah saw that her son was dead, she arose and destroyed all the royal offspring. </span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">But Jehosheba, the daughter of king Joram, sister of Ahaziah, took Joash the son of Ahaziah, and stole him away from among the king’s sons who were slain, even him and his nurse, and put them in the bedroom; and they hid him from Athaliah, so that he was not slain.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">He was with her hidden in Yahweh’s house six years while Athaliah reigned over the land.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">In the seventh year Jehoiada sent and fetched the captains over hundreds of the Carites and of the guard, and brought them to him into Yahweh’s house; and he made a covenant with them, and made a covenant with them in Yahweh’s house, and showed them the king’s son.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">He commanded them, saying, “This is what you must do: a third of you, who come in on the Sabbath, shall be keepers of the watch of the king’s house;</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">a third of you shall be at the gate Sur; and a third of you at the gate behind the guard. So you shall keep the watch of the house, and be a barrier.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">The two companies of you, even all who go out on the Sabbath, shall keep the watch of Yahweh’s house around the king.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">You shall surround the king, every man with his weapons in his hand; and he who comes within the ranks, let him be slain. Be with the king when he goes out, and when he comes in.”</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">The captains over hundreds did according to all that Jehoiada the priest commanded; and they each took his men, those who were to come in on the Sabbath, with those who were to go out on the Sabbath, and came to Jehoiada the priest.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">The priest delivered to the captains over hundreds the spears and shields that had been king David’s, which were in Yahweh’s house.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">The guard stood, every man with his weapons in his hand, from the right side of the house to the left side of the house, along by the altar and the house, around the king.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">Then he brought out the king’s son, and put the crown on him, and gave him the covenant; and they made him king, and anointed him; and they clapped their hands, and said, “Long live the king!”</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">When Athaliah heard the noise of the guard and of the people, she came to the people into Yahweh’s house:</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">and she looked, and behold, the king stood by the pillar, as the tradition was, with the captains and the trumpets by the king; and all the people of the land rejoiced, and blew trumpets. Then Athaliah tore her clothes, and cried, “Treason! Treason!”</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">Jehoiada the priest commanded the captains of hundreds who were set over the army, and said to them, “Bring her out between the ranks. Kill anyone who follows her with the sword.” For the priest said, “Don’t let her be slain in Yahweh’s house.”</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">So they made way for her; and she went by the way of the horses’ entry to the king’s house, and she was slain there.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">Jehoiada made a covenant between Yahweh and the king and the people, that they should be Yahweh’s people; also between the king and the people.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">All the people of the land went to the house of Baal, and broke it down; his altars and his images broke they in pieces thoroughly, and killed Mattan the priest of Baal before the altars. The priest appointed officers over Yahweh’s house.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">He took the captains over hundreds, and the Carites, and the guard, and all the people of the land; and they brought down the king from Yahweh’s house, and came by the way of the gate of the guard to the king’s house. He sat on the throne of the kings.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">So all the people of the land rejoiced, and the city was quiet. They had slain Athaliah with the sword at the king’s house.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">Jehoash was seven years old when he began to reign.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/2-kings/10/" class="nav-btn">← 2 Kings 10</a>
-                <a href="/bible/2-kings/12/" class="nav-btn">2 Kings 12 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">2 Kings</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>2 Kings 11</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="2-kings" data-chapter="11">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now when Athaliah the mother of Ahaziah saw that her son was dead, she arose and destroyed all the royal offspring. </span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/2-kings/10/">← 2 Kings 10</a>
+        <a href="../../" class="center">↑ 2 Kings</a>
+        <a href="/bible/2-kings/12/">2 Kings 12 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

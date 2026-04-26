@@ -1,90 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ezekiel 5 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Ezekiel 5 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ezekiel 5 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Ezekiel 5 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Ezekiel</a>
-            <h1 style="margin-top: 1rem;">Ezekiel 5</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="ezekiel" data-chapter="5">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">“You, son of man, take a sharp sword. You shall take it as a barber’s razor to yourself, and shall cause it to pass over your head and over your beard. Then take balances to weigh and divide the hair.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">A third part you shall burn in the fire in the middle of the city, when the days of the siege are fulfilled. You shall take a third part, and strike with the sword around it. A third part you shall scatter to the wind, and I will draw out a sword after them.</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">You shall take of it a few in number, and bind them in your skirts.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Of these again you shall take, and cast them into the middle of the fire, and burn them in the fire; from it shall a fire come out into all the house of Israel.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">“Thus says the Lord Yahweh: ‘This is Jerusalem. I have set her in the middle of the nations, and countries are around her.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">She has rebelled against my ordinances in doing wickedness more than the nations, and against my statutes more than the countries that are around her; for they have rejected my ordinances, and as for my statutes, they have not walked in them.’</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">“Therefore thus says the Lord Yahweh: ‘Because you are turbulent more than the nations that are around you, and have not walked in my statutes, neither have kept my ordinances, neither have done after the ordinances of the nations that are around you;</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">therefore thus says the Lord Yahweh: ‘Behold, I, even I, am against you; and I will execute judgments among you in the sight of the nations.</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">I will do in you that which I have not done, and which I will not do any more the like, because of all your abominations.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">Therefore the fathers will eat the sons within you, and the sons will eat their fathers. I will execute judgments on you; and I will scatter the whole remnant of you to all the winds.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">Therefore as I live,’ says the Lord Yahweh, ‘surely, because you have defiled my sanctuary with all your detestable things, and with all your abominations, therefore I will also diminish you. My eye won’t spare, and I will have no pity.</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">A third part of you will die with the pestilence, and with famine shall they be consumed within you. A third part will fall by the sword around you. A third part I will scatter to all the winds, and will draw out a sword after them.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">“‘Thus my anger will be accomplished, and I will cause my wrath toward them to rest, and I will be comforted. They will know that I, Yahweh, have spoken in my zeal, when I have accomplished my wrath on them.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">“‘Moreover I will make you a desolation and a reproach among the nations that are around you, in the sight of all that pass by.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">So it shall be a reproach and a taunt, an instruction and an astonishment, to the nations that are around you, when I shall execute judgments on you in anger and in wrath, and in wrathful rebukes — I, Yahweh, have spoken it —</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">when I send on them the evil arrows of famine that are for destruction, which I will send to destroy you. I will increase the famine on you, and will break your staff of bread.</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">I will send on you famine and evil animals, and they will bereave you. Pestilence and blood will pass through you; and I will bring the sword on you. I, Yahweh, have spoken it.’”</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/ezekiel/4/" class="nav-btn">← Ezekiel 4</a>
-                <a href="/bible/ezekiel/6/" class="nav-btn">Ezekiel 6 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Ezekiel</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Ezekiel 5</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="ezekiel" data-chapter="5">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">“You, son of man, take a sharp sword. You shall take it as a barber’s razor to yourself, and shall cause it to pass over your head and over your beard. Then take balances to weigh and divide the hair.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/ezekiel/4/">← Ezekiel 4</a>
+        <a href="../../" class="center">↑ Ezekiel</a>
+        <a href="/bible/ezekiel/6/">Ezekiel 6 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

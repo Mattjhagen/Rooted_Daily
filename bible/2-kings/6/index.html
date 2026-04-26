@@ -1,106 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Kings 6 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read 2 Kings 6 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2 Kings 6 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read 2 Kings 6 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to 2 Kings</a>
-            <h1 style="margin-top: 1rem;">2 Kings 6</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="2-kings" data-chapter="6">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The sons of the prophets said to Elisha, “See now, the place where we live and meet with you is too small for us.</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">Please let us go to the Jordan, and each man take a beam from there, and let us make us a place there, where we may live.” He answered, “Go!”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">One said, “Please be pleased to go with your servants.” He answered, “I will go.”</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">So he went with them. When they came to the Jordan, they cut down wood.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">But as one was cutting down a tree, the ax head fell into the water. Then he cried, and said, “Alas, my master! For it was borrowed.”</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">The man of God asked, “Where did it fall?” He showed him the place. He cut down a stick, threw it in there, and made the iron float.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">He said, “Take it.” So he put out his hand and took it.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">Now the king of Syria was at war against Israel; and he took counsel with his servants, saying, “My camp will be in such and such a place.”</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">The man of God sent to the king of Israel, saying, “Beware that you not pass this place; for the Syrians are coming down there.”</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">The king of Israel sent to the place which the man of God told him and warned him of; and he saved himself there, not once or twice.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">The king of Syria’s heart was very troubled about this. He called his servants, and said to them, “Won’t you show me which of us is for the king of Israel?”</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">One of his servants said, “No, my lord, O king; but Elisha, the prophet who is in Israel, tells the king of Israel the words that you speak in your bedroom.”</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">He said, “Go and see where he is, that I may send and get him.” He was told, “Behold, he is in Dothan.”</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">Therefore he sent horses, chariots, and a great army there. They came by night, and surrounded the city.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">When the servant of the man of God had risen early, and gone out, behold, an army with horses and chariots was around the city. His servant said to him, “Alas, my master! What shall we do?”</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">He answered, “Don’t be afraid; for those who are with us are more than those who are with them.”</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">Elisha prayed, and said, “Yahweh, please open his eyes, that he may see.” Yahweh opened the young man’s eyes; and he saw: and behold, the mountain was full of horses and chariots of fire around Elisha.</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">When they came down to him, Elisha prayed to Yahweh, and said, “Please strike this people with blindness.” He struck them with blindness according to Elishah’s word.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">Elisha said to them, “This is not the way, neither is this the city. Follow me, and I will bring you to the man whom you seek.” He led them to Samaria.</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">When they had come into Samaria, Elisha said, “Yahweh, open these men’s eyes, that they may see.” Yahweh opened their eyes, and they saw; and behold, they were in the middle of Samaria.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">The king of Israel said to Elisha, when he saw them, “My father, shall I strike them? Shall I strike them?”</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">He answered, “You shall not strike them. Would you strike those whom you have taken captive with your sword and with your bow? Set bread and water before them, that they may eat and drink, and go to their master.”</span></div>
-<div class="verse"><span class="verse-num">23</span><span class="verse-text">He prepared great feast for them. When they had eaten and drunk, he sent them away, and they went to their master. So the bands of Syria stopped raiding the land of Israel.</span></div>
-<div class="verse"><span class="verse-num">24</span><span class="verse-text">After this, Benhadad king of Syria gathered all his army, and went up and besieged Samaria.</span></div>
-<div class="verse"><span class="verse-num">25</span><span class="verse-text">There was a great famine in Samaria. Behold, they besieged it, until a donkey’s head was sold for eighty pieces of silver, and the fourth part of a kab  of dove’s dung for five pieces of silver.</span></div>
-<div class="verse"><span class="verse-num">26</span><span class="verse-text">As the king of Israel was passing by on the wall, a woman cried to him, saying, “Help, my lord, O king!”</span></div>
-<div class="verse"><span class="verse-num">27</span><span class="verse-text">He said, “If Yahweh doesn’t help you, where could I get help for you? From of the threshing floor, or from the wine press?”</span></div>
-<div class="verse"><span class="verse-num">28</span><span class="verse-text">The king said to her, “What is your problem?” She answered, “This woman said to me, ‘Give your son, that we may eat him today, and we will eat my son tomorrow.’</span></div>
-<div class="verse"><span class="verse-num">29</span><span class="verse-text">So we boiled my son, and ate him: and I said to her on the next day, ‘Give your son, that we may eat him;’ and she has hidden her son.”</span></div>
-<div class="verse"><span class="verse-num">30</span><span class="verse-text">When the king heard the words of the woman, he tore his clothes. Now he was passing by on the wall, and the people looked, and behold, he had sackcloth underneath on his body.</span></div>
-<div class="verse"><span class="verse-num">31</span><span class="verse-text">Then he said, “God do so to me, and more also, if the head of Elisha the son of Shaphat stays on him today.”</span></div>
-<div class="verse"><span class="verse-num">32</span><span class="verse-text">But Elisha was sitting in his house, and the elders were sitting with him. Then the king sent a man from before him; but before the messenger came to him, he said to the elders, “Do you see how this son of a murderer has sent to take away my head? Behold, when the messenger comes, shut the door, and hold the door shut against him. Isn’t the sound of his master’s feet behind him?”</span></div>
-<div class="verse"><span class="verse-num">33</span><span class="verse-text">While he was still talking with them, behold, the messenger came down to him. Then he said, “Behold, this evil is from Yahweh. Why should I wait for Yahweh any longer?”</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/2-kings/5/" class="nav-btn">← 2 Kings 5</a>
-                <a href="/bible/2-kings/7/" class="nav-btn">2 Kings 7 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">2 Kings</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>2 Kings 6</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="2-kings" data-chapter="6">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">The sons of the prophets said to Elisha, “See now, the place where we live and meet with you is too small for us.</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/2-kings/5/">← 2 Kings 5</a>
+        <a href="../../" class="center">↑ 2 Kings</a>
+        <a href="/bible/2-kings/7/">2 Kings 7 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

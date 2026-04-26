@@ -1,95 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exodus 13 | Rooted Daily Bible (LLT)</title>
-    <meta name="description" content="Read Exodus 13 in the Rooted Daily Bible (LLT).">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../assets/css/heirloom.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exodus 13 | Rooted Daily Bible (LLT)</title>
+  <meta name="description" content="Read Exodus 13 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
+    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
+    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb span{margin:0 0.35rem;}
+    h1{font-size:2rem;margin-bottom:0.3rem;}
+    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
+    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
+    .verse:last-child{border-bottom:none;}
+    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
+    .verse-text{flex:1;font-size:1.05rem;}
+    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
+    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
+    .ch-nav a:hover{background:var(--accent);color:#fff;}
+    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
+    footer a{color:var(--accent);text-decoration:none;}
+    
+    /* Switcher Styles */
+    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
+    .switcher-label{font-size:0.8rem;color:var(--secondary);}
+    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
+    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
+    .switcher-btn.active{background:var(--accent);color:white;}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
 </head>
-<body class="llt-mode">
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="../../../" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="../../../bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
+<body>
+  <div class="container">
+    <header>
+      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
+      <nav>
+        <a href="../../../bible/">Browse Bible</a>
+      </nav>
+    </header>
 
-        <main class="bible-content">
-            <a href="../../" class="nav-btn">← Back to Exodus</a>
-            <h1 style="margin-top: 1rem;">Exodus 13</h1>
-            <p class="translation-tag" style="color: var(--color-text-secondary); font-style: italic; margin-bottom: 2rem;">Living Legacy Translation · Old Testament</p>
-            
-            <div class="ch-nav"></div>
-
-            <div class="verse-container" data-book-slug="exodus" data-chapter="13">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Moses, saying,</span></div>
-<div class="verse"><span class="verse-num">2</span><span class="verse-text">“Sanctify to me all the firstborn, whatever opens the womb among the children of Israel, both of man and of animal. It is mine.”</span></div>
-<div class="verse"><span class="verse-num">3</span><span class="verse-text">Moses said to the people, “Remember this day, in which you came out of Egypt, out of the house of bondage; for by strength of hand Yahweh brought you out from this place. No leavened bread shall be eaten.</span></div>
-<div class="verse"><span class="verse-num">4</span><span class="verse-text">Today you go out in the month Abib.</span></div>
-<div class="verse"><span class="verse-num">5</span><span class="verse-text">It shall be, when Yahweh shall bring you into the land of the Canaanite, and the Hittite, and the Amorite, and the Hivite, and the Jebusite, which he swore to your fathers to give you, a land flowing with milk and honey, that you shall keep this service in this month.</span></div>
-<div class="verse"><span class="verse-num">6</span><span class="verse-text">Seven days you shall eat unleavened bread, and in the seventh day shall be a feast to Yahweh.</span></div>
-<div class="verse"><span class="verse-num">7</span><span class="verse-text">Unleavened bread shall be eaten throughout the seven days; and no leavened bread shall be seen with you. No yeast shall be seen with you, within all your borders.</span></div>
-<div class="verse"><span class="verse-num">8</span><span class="verse-text">You shall tell your son in that day, saying, ‘It is because of that which Yahweh did for me when I came out of Egypt.’</span></div>
-<div class="verse"><span class="verse-num">9</span><span class="verse-text">It shall be for a sign to you on your hand, and for a memorial between your eyes, that Yahweh’s law may be in your mouth; for with a strong hand Yahweh has brought you out of Egypt.</span></div>
-<div class="verse"><span class="verse-num">10</span><span class="verse-text">You shall therefore keep this ordinance in its season from year to year.</span></div>
-<div class="verse"><span class="verse-num">11</span><span class="verse-text">“It shall be, when Yahweh shall bring you into the land of the Canaanite, as he swore to you and to your fathers, and shall give it you,</span></div>
-<div class="verse"><span class="verse-num">12</span><span class="verse-text">that you shall set apart to Yahweh all that opens the womb, and every firstborn which you have that comes from an animal. The males shall be Yahweh’s.</span></div>
-<div class="verse"><span class="verse-num">13</span><span class="verse-text">Every firstborn of a donkey you shall redeem with a lamb; and if you will not redeem it, then you shall break its neck; and you shall redeem all the firstborn of man among your sons.</span></div>
-<div class="verse"><span class="verse-num">14</span><span class="verse-text">It shall be, when your son asks you in time to come, saying, ‘What is this?’ that you shall tell him, ‘By strength of hand Yahweh brought us out from Egypt, from the house of bondage.</span></div>
-<div class="verse"><span class="verse-num">15</span><span class="verse-text">When Pharaoh stubbornly refused to let us go, Yahweh killed all the firstborn in the land of Egypt, both the firstborn of man, and the firstborn of animal. Therefore I sacrifice to Yahweh all that opens the womb, being males; but all the firstborn of my sons I redeem.’</span></div>
-<div class="verse"><span class="verse-num">16</span><span class="verse-text">It shall be for a sign on your hand, and for symbols between your eyes: for by strength of hand Yahweh brought us out of Egypt.”</span></div>
-<div class="verse"><span class="verse-num">17</span><span class="verse-text">When Pharaoh had let the people go, God didn’t lead them by the way of the land of the Philistines, although that was near; for God said, “Lest perhaps the people change their minds when they see war, and they return to Egypt”;</span></div>
-<div class="verse"><span class="verse-num">18</span><span class="verse-text">but God led the people around by the way of the wilderness by the Red Sea; and the children of Israel went up armed out of the land of Egypt.</span></div>
-<div class="verse"><span class="verse-num">19</span><span class="verse-text">Moses took the bones of Joseph with him, for he had made the children of Israel swear, saying, “God will surely visit you, and you shall carry up my bones away from here with you.”</span></div>
-<div class="verse"><span class="verse-num">20</span><span class="verse-text">They took their journey from Succoth, and encamped in Etham, in the edge of the wilderness.</span></div>
-<div class="verse"><span class="verse-num">21</span><span class="verse-text">Yahweh went before them by day in a pillar of cloud, to lead them on their way, and by night in a pillar of fire, to give them light, that they might go by day and by night:</span></div>
-<div class="verse"><span class="verse-num">22</span><span class="verse-text">the pillar of cloud by day, and the pillar of fire by night, didn’t depart from before the people.</span></div>
-            </div>
-
-            <div class="chapter-nav" style="margin-top: 4rem;">
-                <a href="/bible/exodus/12/" class="nav-btn">← Exodus 12</a>
-                <a href="/bible/exodus/14/" class="nav-btn">Exodus 14 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved. · <a href="../../../bible/" style="color:var(--color-accent)">Browse Bible</a></p>
-        </footer>
+    <div class="breadcrumb">
+      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Exodus</a>
     </div>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+    <main>
+      <h1>Exodus 13</h1>
+      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+      
+      <div class="ch-nav"></div>
 
-    <div id="ai-bubble" class="ai-bubble">
-        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
-    </div>
+      <div class="verse-container" data-book-slug="exodus" data-chapter="13">
+        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Moses, saying,</span>
+      </div>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
-        </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
-        </div>
-    </div>
+      <div class="ch-nav" style="margin-top:3rem;">
+        <a href="/bible/exodus/12/">← Exodus 12</a>
+        <a href="../../" class="center">↑ Exodus</a>
+        <a href="/bible/exodus/14/">Exodus 14 →</a>
+      </div>
+    </main>
 
-    <script src="../../../assets/js/bible-reader.js"></script>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <footer>
+      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
+    </footer>
+  </div>
+  <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>
