@@ -1,105 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haggai 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Haggai 1 in the Rooted Translation. The Call to Build—witness the challenge to prioritize the Lord’s house over paneled luxury, discover the command to give careful thought to your ways, and learn of the stirring of the spirit to begin the work.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooted Daily - Haggai 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
-
-        <main class="bible-content">
-            <a href="/bible/zephaniah/3/" class="nav-btn">← Back to Zephaniah 3</a>
-            <h1>Haggai 1</h1>
-            <p class="psalm-sub">The Paneled Houses and the Stirring of the Spirit.</p>
-            
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="paneled-houses-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid silver; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,255,255,0.05);">
-                    <h2 style="color: silver; margin-bottom: 2rem;">Your Paneled Houses</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Is it a time for you to be living in your paneled houses, while this house remains a ruin?” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
-
-                <div class="careful-thought-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,139,139,0.05); border-radius: 4rem; border: 4px solid darkcyan; text-align: center; box-shadow: 0 0 150px rgba(0,255,255,0.2);">
-                    <h2 style="color: darkcyan; margin-bottom: 2rem; font-size: 2.5rem;">Give Careful Thought</h2>
-                    <div class="verse" data-verse="5" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Give careful thought to your ways.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                    <div class="verse" data-verse="6" style="margin-top: 1.5rem; font-size: 1.5rem; color: silver;">“You have planted much, but harvested little.”</div>
-                </div>
-                
-                <div class="go-mountains-box" style="margin: 4rem 0; padding: 4rem; background: rgba(139,0,0,0.05); border-radius: 2.5rem; border: 3px solid #ff4444; text-align: center;">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">Go Up into the Mountains</h2>
-                    <div class="verse" data-verse="8" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “Go up into the mountains and bring down timber and build my house.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="stirred-spirit-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.9); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">The Spirit Stirred</h2>
-                    <div class="verse" data-verse="14" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “The Lord stirred up the spirit of the whole remnant of the people.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="13" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “I am with you,” declares the Lord. <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Paneled Houses (bat-tē-khem se-phū-nīm):</strong> The scrolls highlight the "Decorative Root of the Apathy." "Sacredness" is "Uprooted." The people are "Rooted" in "Ceilings" (*Sephunim*) while God's house is a "Ruin" (*Charebh*). It signifies "The Aesthetic of the Displaced Priority."</p>
-                <p id="fn2"><sup>2</sup> <strong>Give Careful Thought (śī-mū le-bhabh-khem):</strong> Literally "Set your heart on your ways." The scrolls highlight the "Introspective Root of the Correction." "Impulsiveness" is "Uprooted." The "Heart" (*Lebhabh*) is "Rooted" in the "Way" (*Derekh*). It signify "The Aesthetic of the Mindful Life."</p>
-                <p id="fn3"><sup>3</sup> <strong>Build my House (ū-bhen-ū hab-ba-yith):</strong> The scrolls highlight the "Constructive Root of the Honor." "Neglect" is "Uprooted." The "House" (*Bayith*) is "Rooted" in the "Pleasure" (*Retzah*) of God. It signifies "The Aesthetic of the Rebuilt Sanctuary."</p>
-                <p id="fn4"><sup>4</sup> <strong>Stirred up the Spirit (wa-yā-ar eth-rū-ach):</strong> The scrolls highlight the "Energizing Root of the Remnant." "Lethargy" is "Uprooted." God "Roots" his "Awakening" (*Ur*) in the "Spirit" (*Ruach*). It signify "The Aesthetic of the Collective Inspiration."</p>
-                <p id="fn5"><sup>5</sup> <strong>I am with you (a-nī it-the-khem):</strong> The scrolls conclude with this "Abiding Root of the Work." "Isolation" is "Uprooted." It marks the transition to "The Glory of the Second House" in *Haggai 2*. It is the "Rooted Daily" anthem of "The Paneled Houses." Build on.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/zephaniah/3/" class="nav-btn">← Zephaniah 3</a>
-                <a href="/bible/haggai/2/" class="nav-btn">Haggai 2 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
-        </footer>
+  <div class="ambient-background"></div>
+  <nav class="glass-nav">
+    <div class="logo">Rooted Daily</div>
+    <div class="nav-links">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">The Roots</a>
+      <a href="#">Search</a>
     </div>
+  </nav>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+  <main class="chapter-container">
+    <header class="chapter-header">
+      <div class="book-title">The Book of Haggai</div>
+      <h1 class="chapter-number">Chapter 1</h1>
+      <div class="chapter-theme">"Consider Your Ways"</div>
+    </header>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+    <div class="reader-grid">
+      <article class="scripture-content">
+        <div class="verses-container">
+          <div class="verse" data-verse="1">
+            <span class="verse-number">1</span>
+            <p>In the second year of Darius the king, in the sixth month, in the first day of the month, came the word of the LORD by Haggai the prophet unto Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Josedech, the high priest, saying,</p>
+          </div>
+          <div class="verse" data-verse="2">
+            <span class="verse-number">2</span>
+            <p>Thus speaketh the LORD of hosts, saying, This people say, The time is not come, the time that the LORD'S house should be built.</p>
+          </div>
+          <div class="verse" data-verse="3">
+            <span class="verse-number">3</span>
+            <p>Then came the word of the LORD by Haggai the prophet, saying,</p>
+          </div>
+          <div class="verse" data-verse="4">
+            <span class="verse-number">4</span>
+            <p>Is it time for you, O ye, to dwell in your cieled houses, and this house lie waste?</p>
+          </div>
+          <div class="verse" data-verse="5">
+            <span class="verse-number">5</span>
+            <p>Now therefore thus saith the LORD of hosts; Consider your ways.</p>
+          </div>
+          <div class="verse" data-verse="6">
+            <span class="verse-number">6</span>
+            <p>Ye have sown much, and bring in little; ye eat, but ye have not enough; ye drink, but ye are not filled with drink; ye clothe you, but there is none warm; and he that earneth wages earneth wages to put it into a bag with holes.</p>
+          </div>
         </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
+      </article>
+
+      <aside class="study-panel">
+        <div class="glass-panel reflection-panel">
+          <h3><span class="icon">✨</span> Rooted Insight</h3>
+          <p class="chapter-summary">The Lord challenges the returned exiles for building their own paneled houses while His temple lies in ruins.</p>
+          <div class="translation-notes">
+            <h4>Translation Notes</h4>
+            <p>The <strong>Sum Leb Root (Set Your Heart/Consider)</strong>: A call to align priorities. The people's harvest is barren because they have neglected the spiritual center—the Root of their community.</p>
+          </div>
         </div>
+      </aside>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <div class="chapter-nav">
+      <a href="../../zephaniah/3/index.html" class="nav-btn prev-btn">← Previous</a>
+      <a href="../2/index.html" class="nav-btn next-btn">Next →</a>
+    </div>
+  </main>
+
+  <script type="module" src="../../../bible-reader.js"></script>
 </body>
 </html>

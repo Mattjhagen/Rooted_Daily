@@ -1,107 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habakkuk 3 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Habakkuk 3 in the Rooted Translation. The Prayer—witness the majesty of God’s appearance, discover the resolve to rejoice even when the fig tree does not bud, and learn of the strength that enables the soul to tread on the heights.">
-    <link rel="stylesheet" href="../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooted Daily - Habakkuk 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
-                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
-                    <span class="logo-text">Rooted Daily</span>
-                </a>
-            </div>
-            <nav>
-                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
-                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
-            </nav>
-        </header>
-
-        <main class="bible-content">
-            <a href="/bible/habakkuk/2/" class="nav-btn">← Back to Habakkuk 2</a>
-            <h1>Habakkuk 3</h1>
-            <p class="psalm-sub">The Shaking Earth and the Song of the Heights.</p>
-            
-            <div class="verse-container" style="margin-top: 2rem;">
-                <div class="theophany-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,0,0,0.8); border-radius: 2rem; border: 1px solid gold; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(255,215,0,0.1);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.2rem;">Splendor like Sunrise</h2>
-                    <div class="verse" data-verse="4" style="font-size: 1.8rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “His splendor was like the sunrise; rays flashed from his hand.” <a href="#fn1" class="fn"><sup>1</sup></a>
-                    </div>
-                </div>
-
-                <div class="mountains-crumble-box" style="margin: 4rem 0; padding: 4rem; background: rgba(139,0,0,0.1); border-radius: 2.5rem; border: 3px solid #ff4444; text-align: center;">
-                    <h2 style="color: #ff4444; margin-bottom: 2rem; font-size: 2.2rem;">Mountains Crumbled</h2>
-                    <div class="verse" data-verse="6" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4;">
-                        “He stood, and shook the earth; the ancient mountains crumbled.” <a href="#fn2" class="fn"><sup>2</sup></a>
-                    </div>
-                </div>
-                
-                <div class="void-rejoice-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,139,139,0.05); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 200px rgba(0,255,255,0.3);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">Yet I Will Rejoice</h2>
-                    <div class="verse" data-verse="17" style="font-size: 1.8rem; font-weight: 900; color: silver; line-height: 1.4; font-style: italic;">
-                        “Though the fig tree does not bud and there are no grapes on the vines...”
-                    </div>
-                    <div class="verse" data-verse="18" style="margin-top: 1.5rem; font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “Yet I will rejoice in the Lord.” <a href="#fn3" class="fn"><sup>3</sup></a>
-                    </div>
-                </div>
-
-                <div class="feet-deer-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,0,0,0.9); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 150px rgba(255,215,0,0.2);">
-                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2.5rem;">Feet like a Deer</h2>
-                    <div class="verse" data-verse="19" style="font-size: 2.2rem; font-weight: 900; color: gold; line-height: 1.4;">
-                        “He makes my feet like the feet of a deer; he enables me to tread on the heights.” <a href="#fn4" class="fn"><sup>4</sup></a>
-                    </div>
-                    <div class="verse" data-verse="16" style="margin-top: 2rem; font-size: 1.5rem; color: silver; font-weight: 900;">
-                        “I will wait patiently.” <a href="#fn5" class="fn"><sup>5</sup></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
-                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
-                <p id="fn1"><sup>1</sup> <strong>Splendor like Sunrise (nō-ghah ka-ōr):</strong> The scrolls highlight the "Luminous Root of the Appearance." "Darkness" is "Uprooted." God’s "Brightness" (*Noghah*) is "Rooted" in the "Light" (*Or*). It signifies "The Aesthetic of the Divine Radiance."</p>
-                <p id="fn2"><sup>2</sup> <strong>Mountains Crumbled (way-yith-pō-tzē-tzū har-rē-adh):</strong> The scrolls highlight the "Seismic Root of the Presence." "Geologic Permanence" is "Uprooted." The "Everlasting Mountains" (*Harre-Adh*) are "Rooted" in "Shattering" (*Putz*). It signify "The Alchemy of the Shaking."</p>
-                <p id="fn3"><sup>3</sup> <strong>Yet I will Rejoice (wa-a-nī ba-Yhwh e-lō-zāh):</strong> The scrolls highlight the "Resilient Root of the Joy." "Despair" is "Uprooted." The prophet is "Rooted" in "Exultation" (*Alaz*) despite the "Void" (*Ayin*). It signifies "The Spiritual Autonomy of Faith."</p>
-                <p id="fn4"><sup>4</sup> <strong>Feet like a Deer (ragh-lay kay-yal-lōth):</strong> The scrolls highlight the "Agile Root of the Ascent." "Gravity" is "Uprooted." The soul is "Rooted" in the "Deer-step" (*Ayyaloth*) to reach the "High Places" (*Bamoth*). It signify "The Aesthetic of the Heights."</p>
-                <p id="fn5"><sup>5</sup> <strong>Wait Patiently (ā-nū-ach):</strong> The scrolls conclude with this "Restful Root of the Hope." "Anxiety" is "Uprooted." It marks the end of *Habakkuk* and the transition to *Zephaniah 1*. It is the "Rooted Daily" anthem of "The Song of the Heights." Tread on.</p>
-            </div>
-
-            <div class="chapter-nav">
-                <a href="/bible/habakkuk/2/" class="nav-btn">← Habakkuk 2</a>
-                <a href="/bible/zephaniah/1/" class="nav-btn">Zephaniah 1 →</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
-        </footer>
+  <div class="ambient-background"></div>
+  <nav class="glass-nav">
+    <div class="logo">Rooted Daily</div>
+    <div class="nav-links">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">The Roots</a>
+      <a href="#">Search</a>
     </div>
+  </nav>
 
-    <!-- AI & Social Tools -->
-    <div id="highlight-menu">
-        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
-        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
-        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
-    </div>
+  <main class="chapter-container">
+    <header class="chapter-header">
+      <div class="book-title">The Book of Habakkuk</div>
+      <h1 class="chapter-number">Chapter 3</h1>
+      <div class="chapter-theme">"The Prayer of Faith"</div>
+    </header>
 
-    <div id="insight-drawer" class="insight-drawer">
-        <div class="drawer-header">
-            <h3>Community Insights</h3>
-            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+    <div class="reader-grid">
+      <article class="scripture-content">
+        <div class="verses-container">
+          <div class="verse" data-verse="1">
+            <span class="verse-number">1</span>
+            <p>A prayer of Habakkuk the prophet upon Shigionoth.</p>
+          </div>
+          <div class="verse" data-verse="2">
+            <span class="verse-number">2</span>
+            <p>O LORD, I have heard thy speech, and was afraid: O LORD, revive thy work in the midst of the years, in the midst of the years make known; in wrath remember mercy.</p>
+          </div>
+          <div class="verse" data-verse="3">
+            <span class="verse-number">3</span>
+            <p>God came from Teman, and the Holy One from mount Paran. Selah. His glory covered the heavens, and the earth was full of his praise.</p>
+          </div>
+          <div class="verse" data-verse="4">
+            <span class="verse-number">4</span>
+            <p>And his brightness was as the light; he had horns coming out of his hand: and there was the hiding of his power.</p>
+          </div>
+          <div class="verse" data-verse="5">
+            <span class="verse-number">5</span>
+            <p>Although the fig tree shall not blossom, neither shall fruit be in the vines; the labour of the olive shall fail, and the fields shall yield no meat; the flock shall be cut off from the fold, and there shall be no herd in the stalls:</p>
+          </div>
+          <div class="verse" data-verse="6">
+            <span class="verse-number">6</span>
+            <p>Yet I will rejoice in the LORD, I will joy in the God of my salvation.</p>
+          </div>
         </div>
-        <div id="insight-content" class="drawer-content">
-            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
+      </article>
+
+      <aside class="study-panel">
+        <div class="glass-panel reflection-panel">
+          <h3><span class="icon">✨</span> Rooted Insight</h3>
+          <p class="chapter-summary">Habakkuk offers a prayer of praise, remembering God's past deliverance and choosing to rejoice even in barrenness.</p>
+          <div class="translation-notes">
+            <h4>Translation Notes</h4>
+            <p>The <strong>Gilah Root (Rejoice)</strong>: A resilient joy that blossoms even when the visible world is stripped bare, rooted deeply in the God of salvation.</p>
+          </div>
         </div>
+      </aside>
     </div>
 
-    <script src="../../bible-reader.js"></script>
+    <div class="chapter-nav">
+      <a href="../2/index.html" class="nav-btn prev-btn">← Previous</a>
+      <a href="../../zephaniah/1/index.html" class="nav-btn next-btn">Next →</a>
+    </div>
+  </main>
+
+  <script type="module" src="../../../bible-reader.js"></script>
 </body>
 </html>

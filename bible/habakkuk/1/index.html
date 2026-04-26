@@ -4,83 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habakkuk 1 | Rooted Daily Global Bible</title>
-    <meta name="description" content="Read Habakkuk 1 in the Rooted Translation - A scholarly-creative hybrid focused on the metaphors of uprooting and rooting.">
+    <meta name="description" content="The burden that Habakkuk the prophet saw. The Rooted Translation of Habakkuk 1.">
     <link rel="stylesheet" href="../../../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="bible-chapter">
-    <nav class="top-nav">
-        <a href="../../../index.html" class="logo">ROOTED<span>DAILY</span></a>
-        <div class="nav-links">
-            <a href="../../../bible/index.html">Bible</a>
-            <a href="../../../insights.html">Insights</a>
-            <a href="../../../settings.html">Settings</a>
+<body class="bible-chapter-page">
+    <div class="ambient-background">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../../../index.html" class="nav-logo">
+                <i data-lucide="tree-deciduous"></i>
+                <span>Rooted Daily</span>
+            </a>
+            <div class="nav-links">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button id="search-btn" class="icon-btn" title="Search Scriptures">
+                    <i data-lucide="search"></i>
+                </button>
+                <a href="../../../profile.html" class="nav-btn profile-btn">
+                    <i data-lucide="user"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="reader-container">
-        <header class="chapter-header">
-            <div class="breadcrumb">The Prophets / Habakkuk</div>
-            <h1>Habakkuk 1</h1>
-            <p class="chapter-intro">The prophet stands upon the watchtower, crying out from the depths of a tangled soil where injustice grows unchecked. The oracle begins with a complaint that reaches the heavens.</p>
+    <!-- Main Content -->
+    <main class="chapter-container">
+        <!-- Chapter Header -->
+        <header class="chapter-header glass-card">
+            <div class="book-badge">The Book of Habakkuk</div>
+            <h1 class="chapter-title">Chapter 1</h1>
+            <div class="chapter-meta">
+                <span class="meta-item"><i data-lucide="book-open"></i> The Burden</span>
+                <span class="meta-item"><i data-lucide="clock"></i> ~605 BC</span>
+            </div>
         </header>
 
-        <section class="scripture-text" id="habakkuk-1">
-            <div class="verse-block">
-                <span class="verse" data-verse="1"><span class="verse-num">1</span>The oracle which Habakkuk the prophet saw:</span>
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <a href="../../nahum/3/index.html" class="nav-btn prev-btn">
+                <i data-lucide="arrow-left"></i>
+                <div class="nav-text">
+                    <span class="nav-label">Previous</span>
+                    <span class="nav-book">Nahum 3</span>
+                </div>
+            </a>
+            <a href="../2/index.html" class="nav-btn next-btn">
+                <div class="nav-text">
+                    <span class="nav-label">Next</span>
+                    <span class="nav-book">Habakkuk 2</span>
+                </div>
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Scripture Text -->
+        <article class="scripture-text glass-card">
+            <div class="reading-tools">
+                <button class="tool-btn" id="font-decrease" title="Decrease Font Size"><i data-lucide="minus"></i></button>
+                <button class="tool-btn" id="font-increase" title="Increase Font Size"><i data-lucide="plus"></i></button>
+                <div class="divider"></div>
+                <button class="tool-btn" id="toggle-insights" title="Toggle AI Insights"><i data-lucide="sparkles"></i></button>
             </div>
 
-            <h3 class="section-title">The First Complaint</h3>
-            <div class="verse-block">
-                <span class="verse" data-verse="2"><span class="verse-num">2</span>How long, O LORD, have I called for help, and You do not hear? I cry out to You, "Violence!" Yet You do not save.</span>
-                <span class="verse" data-verse="3"><span class="verse-num">3</span>Why do You make me see iniquity, and cause me to look on wickedness? Destruction and violence are before me; strife exists and contention arises.</span>
-                <span class="verse" data-verse="4"><span class="verse-num">4</span>Therefore the law is paralyzed and justice never goes forth. For the wicked surround the righteous; therefore justice comes forth perverted.</span>
+            <div class="text-content">
+                <p class="verse" data-verse="1"><sup class="verse-num">1</sup>The burden which Habakkuk the prophet saw.</p>
+                <p class="verse" data-verse="2"><sup class="verse-num">2</sup>"Yahweh, how long will I cry, and you will not hear? I cry out to you 'Violence!' and will you not save?</p>
+                <p class="verse" data-verse="3"><sup class="verse-num">3</sup>Why do you show me iniquity, and look at perversity? For destruction and violence are before me. There is strife, and contention rises up.</p>
+                <p class="verse" data-verse="4"><sup class="verse-num">4</sup>Therefore the law is paralyzed, and justice never goes out; for the wicked surround the righteous; therefore justice goes out perverted.</p>
+                <p class="verse" data-verse="5"><sup class="verse-num">5</sup>"Look among the nations, watch, and wonder marvelously; for I am working a work in your days, which you will not believe though it is told you.</p>
+                <p class="verse" data-verse="6"><sup class="verse-num">6</sup>For, behold, I raise up the Chaldeans, that bitter and hasty nation, that march through the breadth of the earth, to possess dwelling places that are not theirs.</p>
+                <p class="verse" data-verse="7"><sup class="verse-num">7</sup>They are feared and dreaded. Their judgment and their dignity proceed from themselves.</p>
+                <p class="verse" data-verse="8"><sup class="verse-num">8</sup>Their horses also are swifter than leopards, and are more fierce than the evening wolves. Their horsemen press proudly on. Yes, their horsemen come from afar. They fly as an eagle that hurries to devour.</p>
+                <p class="verse" data-verse="9"><sup class="verse-num">9</sup>All of them come for violence. Their hordes face the desert. He gathers prisoners like sand.</p>
+                <p class="verse" data-verse="10"><sup class="verse-num">10</sup>Yes, he scoffs at kings, and princes are a derision to him. He laughs at every stronghold, for he builds up an earthen ramp, and takes it.</p>
+                <p class="verse" data-verse="11"><sup class="verse-num">11</sup>Then he sweeps by like the wind, and goes on. He is indeed guilty, whose strength is his god."</p>
+                <p class="verse" data-verse="12"><sup class="verse-num">12</sup>Aren't you from everlasting, Yahweh my God, my Holy One? We will not die. Yahweh, you have appointed him for judgment. You, Rock, have established him to punish.</p>
+                <p class="verse" data-verse="13"><sup class="verse-num">13</sup>You who have purer eyes than to see evil, and who cannot look on perversity, why do you tolerate those who deal treacherously, and keep silent when the wicked swallows up the man who is more righteous than he,</p>
+                <p class="verse" data-verse="14"><sup class="verse-num">14</sup>and make men like the fish of the sea, like the creeping things, that have no ruler over them?</p>
+                <p class="verse" data-verse="15"><sup class="verse-num">15</sup>He takes up all of them with the hook. He catches them in his net, and gathers them in his dragnet. Therefore he rejoices and is glad.</p>
+                <p class="verse" data-verse="16"><sup class="verse-num">16</sup>Therefore he sacrifices to his net, and burns incense to his dragnet, because by them his life is luxurious, and his food is good.</p>
+                <p class="verse" data-verse="17"><sup class="verse-num">17</sup>Will he therefore continually empty his net, and kill the nations without mercy?</p>
             </div>
+        </article>
 
-            <h3 class="section-title">The Lord's Answer</h3>
-            <div class="verse-block">
-                <span class="verse" data-verse="5"><span class="verse-num">5</span>"Look among the nations! Observe! Be astonished! Be astounded! Because I am doing a work in your days—you would not believe if you were told.</span>
-                <span class="verse" data-verse="6"><span class="verse-num">6</span>For behold, I am raising up the Chaldeans, that fierce and impetuous nation who march throughout the earth to seize dwelling places which are not theirs.</span>
-                <span class="verse" data-verse="7"><span class="verse-num">7</span>They are dreaded and feared; their justice and authority originate with themselves.</span>
-                <span class="verse" data-verse="8"><span class="verse-num">8</span>Their horses are swifter than leopards and keener than wolves in the evening. Their horsemen come galloping, their horsemen come from afar; they fly like an eagle swooping down to devour.</span>
-                <span class="verse" data-verse="9"><span class="verse-num">9</span>All of them come for violence. Their faces are set like the east wind. They gather captives like sand.</span>
-                <span class="verse" data-verse="10"><span class="verse-num">10</span>They mock at kings and rulers are a laughing matter to them. They laugh at every fortress and heap up rubble to capture it.</span>
-                <span class="verse" data-verse="11"><span class="verse-num">11</span>Then they will sweep through like the wind and pass on. But they will be held guilty, they whose own strength is their god."</span>
+        <!-- Translation Notes -->
+        <aside class="translation-notes glass-card">
+            <h3 class="notes-title"><i data-lucide="library"></i> Rooted Translation Notes</h3>
+            <div class="notes-content">
+                <div class="note-item">
+                    <h4>The Root of Burden (Massa)</h4>
+                    <p>In verse 1, the Hebrew word 'massa' is translated as "burden" or "oracle." It implies a heavy prophetic message that must be lifted and carried. The word uproots the idea of a light, easy message, planting the reality that God's truth is weighty and demanding.</p>
+                </div>
+                <div class="note-item">
+                    <h4>The Chaldean Uprooting</h4>
+                    <p>God uses the Chaldeans (Babylonians) as an instrument of judgment (v. 6). They are a nation that uproots others, sweeping like the wind (v. 11), yet they are deeply rooted in their own pride and violence, worshipping their own strength and weapons (v. 16).</p>
+                </div>
             </div>
-
-            <h3 class="section-title">The Second Complaint</h3>
-            <div class="verse-block">
-                <span class="verse" data-verse="12"><span class="verse-num">12</span>Are You not from everlasting, O LORD, my God, my Holy One? We will not die. You, O LORD, have appointed them to judge; and You, O Rock, have established them to correct.</span>
-                <span class="verse" data-verse="13"><span class="verse-num">13</span>Your eyes are too pure to approve evil, and You cannot look on wickedness with favor. Why do You look with favor on those who deal treacherously? Why are You silent when the wicked swallows up those more righteous than they?</span>
-                <span class="verse" data-verse="14"><span class="verse-num">14</span>Why have You made men like the fish of the sea, like creeping things without a ruler over them?</span>
-                <span class="verse" data-verse="15"><span class="verse-num">15</span>The Chaldeans bring all of them up with a hook, drag them away with their net, and gather them together in their fishing net. Therefore they rejoice and are glad.</span>
-                <span class="verse" data-verse="16"><span class="verse-num">16</span>Therefore they offer a sacrifice to their net and burn incense to their fishing net; because through these things their catch is large, and their food is plentiful.</span>
-                <span class="verse" data-verse="17"><span class="verse-num">17</span>Will they therefore empty their net and continually slay nations without sparing?</span>
-            </div>
-        </section>
-
-        <section class="translation-notes glass-panel">
-            <h2>Rooted Translation Notes</h2>
-            <div class="note-item">
-                <span class="note-term">The Bitter Root</span>
-                <p>The Chaldeans are described as "fierce and impetuous" (Hebrew: <i>hamar</i> - bitter). In the Rooted Translation, this is rendered as a 'bitter root' that has grown into a world-consuming vine, uprooting all other gardens.</p>
-            </div>
-            <div class="note-item">
-                <span class="note-term">The Uprooted Sea</span>
-                <p>Verses 14-17 use the metaphor of fishing. To be caught in the net is to be 'uprooted' from the safety of the depths. The wicked worship their own 'uprooting tools' (their nets) rather than the One who allows the harvest.</p>
-            </div>
-        </section>
-
-        <nav class="chapter-nav">
-            <a href="../../nahum/3/index.html" class="nav-prev">← Nahum 3</a>
-            <a href="../2/index.html" class="nav-next">Habakkuk 2 →</a>
-        </nav>
+        </aside>
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 Rooted Daily. All rights reserved.</p>
-    </footer>
+    <!-- Action Bar -->
+    <div class="action-bar glass-card">
+        <button class="action-btn" id="highlight-btn" disabled>
+            <i data-lucide="highlighter"></i>
+            <span>Highlight</span>
+        </button>
+        <button class="action-btn" id="insight-btn" disabled>
+            <i data-lucide="lightbulb"></i>
+            <span>AI Insight</span>
+        </button>
+        <button class="action-btn" id="share-btn" disabled>
+            <i data-lucide="share-2"></i>
+            <span>Share</span>
+        </button>
+    </div>
+
+    <!-- AI Insight Modal -->
+    <div class="modal-overlay" id="insight-modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3><i data-lucide="sparkles"></i> AI Deep Insight</h3>
+                <button class="close-modal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="insight-content">
+                    <p>Select a verse to generate a profound, spiritually rooted insight.</p>
+                </div>
+                <div class="insight-actions">
+                    <button class="btn-primary generate-insight">
+                        <i data-lucide="refresh-cw"></i> Generate Insight
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../../../bible-reader.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
