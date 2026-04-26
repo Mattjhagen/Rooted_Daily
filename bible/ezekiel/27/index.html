@@ -1,77 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ezekiel 27 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read Ezekiel 27 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezekiel 27 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Ezekiel</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Ezekiel</a>
+            </div>
+            <h1>Ezekiel 27</h1>
+            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+
+            <div class="verse-container" data-book-slug="ezekiel" data-chapter="27">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s word came again to me, saying,</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">You, son of man, take up a lamentation over Tyre;</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">and tell Tyre, you who dwell at the entry of the sea, who are the merchant of the peoples to many islands, thus says the Lord Yahweh: You, Tyre, have said, I am perfect in beauty.</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Your borders are in the heart of the seas; your builders have perfected your beauty.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">They have made all your planks of cypress trees from Senir; they have taken a cedar from Lebanon to make a mast for you.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Of the oaks of Bashan have they made your oars; they have made your benches of ivory inlaid in boxwood, from the islands of Kittim.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Your sail was of fine linen with embroidered work from Egypt, that it might be to you for a banner; blue and purple from the islands of Elishah was your awning.</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">The inhabitants of Sidon and Arvad were your rowers: your wise men, Tyre, were in you, they were your pilots.</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">The old men of Gebal and its wise men were your repairers of ship seams in you: all the ships of the sea with their mariners were in you to deal in your merchandise.</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Persia and Lud and Put were in your army, your men of war: they hanged the shield and helmet in you; they showed your beauty.</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">The men of Arvad with your army were on your walls all around, and valorous men were in your towers; they hung their shields on your walls all around; they have perfected your beauty.</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Tarshish was your merchant by reason of the multitude of all kinds of riches; with silver, iron, tin, and lead, they traded for your wares.</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Javan, Tubal, and Meshech, they were your traffickers; they traded the persons of men and vessels of brass for your merchandise.</span></div>
+                <div class="verse"><span class="verse-num">14</span><span class="verse-text">They of the house of Togarmah traded for your wares with horses and war horses and mules.</span></div>
+                <div class="verse"><span class="verse-num">15</span><span class="verse-text">The men of Dedan were your traffickers; many islands were the market of your hand: they brought you in exchange horns of ivory and ebony.</span></div>
+                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Syria was your merchant by reason of the multitude of your handiworks: they traded for your wares with emeralds, purple, and embroidered work, and fine linen, and coral, and rubies.</span></div>
+                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Judah, and the land of Israel, they were your traffickers: they traded for your merchandise wheat of Minnith, and confections, and honey, and oil, and balm.</span></div>
+                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Damascus was your merchant for the multitude of your handiworks, by reason of the multitude of all kinds of riches, with the wine of Helbon, and white wool.</span></div>
+                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Vedan and Javan traded with yarn for your wares: bright iron, cassia, and calamus, were among your merchandise.</span></div>
+                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Dedan was your trafficker in precious cloths for riding.</span></div>
+                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Arabia, and all the princes of Kedar, they were the merchants of your hand; in lambs, and rams, and goats, in these were they your merchants.</span></div>
+                <div class="verse"><span class="verse-num">22</span><span class="verse-text">The traffickers of Sheba and Raamah, they were your traffickers; they traded for your wares with the chief of all spices, and with all precious stones, and gold.</span></div>
+                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Haran and Canneh and Eden, the traffickers of Sheba, Asshur and Chilmad, were your traffickers.</span></div>
+                <div class="verse"><span class="verse-num">24</span><span class="verse-text">These were your traffickers in choice wares, in wrappings of blue and embroidered work, and in chests of rich clothing, bound with cords and made of cedar, among your merchandise.</span></div>
+                <div class="verse"><span class="verse-num">25</span><span class="verse-text">The ships of Tarshish were your caravans for your merchandise: and you were replenished, and made very glorious in the heart of the seas.</span></div>
+                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Your rowers have brought you into great waters: the east wind has broken you in the heart of the seas.</span></div>
+                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Your riches, and your wares, your merchandise, your mariners, and your pilots, your repairers of ship seams, and the dealers in your merchandise, and all your men of war, who are in you, with all your company which is among you, shall fall into the heart of the seas in the day of your ruin.</span></div>
+                <div class="verse"><span class="verse-num">28</span><span class="verse-text">At the sound of the cry of your pilots the suburbs shall shake.</span></div>
+                <div class="verse"><span class="verse-num">29</span><span class="verse-text">All who handled the oar, the mariners, and all the pilots of the sea, shall come down from their ships; they shall stand on the land,</span></div>
+                <div class="verse"><span class="verse-num">30</span><span class="verse-text">and shall cause their voice to be heard over you, and shall cry bitterly, and shall cast up dust on their heads, they shall wallow themselves in the ashes:</span></div>
+                <div class="verse"><span class="verse-num">31</span><span class="verse-text">and they shall make themselves bald for you, and clothe them with sackcloth, and they shall weep for you in bitterness of soul with bitter mourning.</span></div>
+                <div class="verse"><span class="verse-num">32</span><span class="verse-text">In their wailing they shall take up a lamentation for you, and lament over you, saying, Who is there like Tyre, like her who is brought to silence in the middle of the sea?</span></div>
+                <div class="verse"><span class="verse-num">33</span><span class="verse-text">When your wares went out of the seas, you filled many peoples; you enriched the kings of the earth with the multitude of your riches and of your merchandise.</span></div>
+                <div class="verse"><span class="verse-num">34</span><span class="verse-text">In the time that you were broken by the seas in the depths of the waters, your merchandise and all your company fell within you.</span></div>
+                <div class="verse"><span class="verse-num">35</span><span class="verse-text">All the inhabitants of the islands are astonished at you, and their kings are horribly afraid; they are troubled in their face.</span></div>
+                <div class="verse"><span class="verse-num">36</span><span class="verse-text">The merchants among the peoples hiss at you; you have become a terror, and you will be no more.</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../26/" class="nav-btn">← Chapter 26</a>
+                <a href="../../" class="nav-btn">↑ Ezekiel Index</a>
+                <a href="../28/" class="nav-btn">Chapter 28 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>Ezekiel 27</h1>
-      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="ezekiel" data-chapter="27">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s word came again to me, saying,</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/ezekiel/26/">← Ezekiel 26</a>
-        <a href="../../" class="center">↑ Ezekiel</a>
-        <a href="/bible/ezekiel/28/">Ezekiel 28 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

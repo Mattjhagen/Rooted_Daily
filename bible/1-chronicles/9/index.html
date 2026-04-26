@@ -1,77 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1 Chronicles 9 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read 1 Chronicles 9 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Chronicles 9 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">1 Chronicles</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">1 Chronicles</a>
+            </div>
+            <h1>1 Chronicles 9</h1>
+            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+
+            <div class="verse-container" data-book-slug="1-chronicles" data-chapter="9">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">So all Israel were listed by genealogies; and behold,  they are written in the book of the kings of Israel. Judah was carried away captive to Babylon for their disobedience.</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Now the first inhabitants who lived in their possessions in their cities were Israel, the priests, the Levites, and the temple servants.</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">In Jerusalem lived of the children of Judah, of the children of Benjamin, and of the children of Ephraim and Manasseh:</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Uthai the son of Ammihud, the son of Omri, the son of Imri, the son of Bani, of the children of Perez the son of Judah.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Of the Shilonites: Asaiah the firstborn, and his sons.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Of the sons of Zerah: Jeuel and their brothers, six hundred ninety.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Of the sons of Benjamin: Sallu the son of Meshullam, the son of Hodaviah, the son of Hassenuah,</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">and Ibneiah the son of Jeroham, and Elah the son of Uzzi, the son of Michri, and Meshullam the son of Shephatiah, the son of Reuel, the son of Ibnijah;</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">and their brothers, according to their generations, nine hundred fifty-six. All these men were heads of fathers’ households by their fathers’ houses.</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Of the priests: Jedaiah, Jehoiarib, Jachin,</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">and Azariah the son of Hilkiah, the son of Meshullam, the son of Zadok, the son of Meraioth, the son of Ahitub, the ruler of God’s house;</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">and Adaiah the son of Jeroham, the son of Pashhur, the son of Malchijah, and Maasai the son of Adiel, the son of Jahzerah, the son of Meshullam, the son of Meshillemith, the son of Immer;</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">and their brothers, heads of their fathers’ houses, one thousand seven hundred sixty; very able men for the work of the service of God’s house.</span></div>
+                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Of the Levites: Shemaiah the son of Hasshub, the son of Azrikam, the son of Hashabiah, of the sons of Merari;</span></div>
+                <div class="verse"><span class="verse-num">15</span><span class="verse-text">and Bakbakkar, Heresh, Galal, and Mattaniah the son of Mica, the son of Zichri, the son of Asaph,</span></div>
+                <div class="verse"><span class="verse-num">16</span><span class="verse-text">and Obadiah the son of Shemaiah, the son of Galal, the son of Jeduthun, and Berechiah the son of Asa, the son of Elkanah, who lived in the villages of the Netophathites.</span></div>
+                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The porters: Shallum, Akkub, Talmon, Ahiman, and their brothers (Shallum was the chief),</span></div>
+                <div class="verse"><span class="verse-num">18</span><span class="verse-text">who previously served in the king’s gate eastward. They were the porters for the camp of the children of Levi.</span></div>
+                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Shallum the son of Kore, the son of Ebiasaph, the son of Korah, and his brothers, of his father’s house, the Korahites, were over the work of the service, keepers of the thresholds of the tent. Their fathers had been over Yahweh’s camp, keepers of the entry.</span></div>
+                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Phinehas the son of Eleazar was ruler over them in time past, and Yahweh was with him.</span></div>
+                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Zechariah the son of Meshelemiah was porter of the door of the Tent of Meeting.</span></div>
+                <div class="verse"><span class="verse-num">22</span><span class="verse-text">All these who were chosen to be porters in the thresholds were two hundred twelve. These were listed by genealogy in their villages, whom David and Samuel the seer ordained in their office of trust.</span></div>
+                <div class="verse"><span class="verse-num">23</span><span class="verse-text">So they and their children had the oversight of the gates of Yahweh’s house, even the house of the tent, by wards.</span></div>
+                <div class="verse"><span class="verse-num">24</span><span class="verse-text">On the four sides were the porters, toward the east, west, north, and south.</span></div>
+                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Their brothers, in their villages, were to come in every seven days from time to time to be with them:</span></div>
+                <div class="verse"><span class="verse-num">26</span><span class="verse-text">for the four chief porters, who were Levites, were in an office of trust, and were over the rooms and over the treasuries in God’s house.</span></div>
+                <div class="verse"><span class="verse-num">27</span><span class="verse-text">They stayed around God’s house, because that duty was on them; and to their duty was its opening morning by morning.</span></div>
+                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Certain of them were in charge of the vessels of service; for these were brought in by count, and these were taken out by count.</span></div>
+                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Some of them also were appointed over the furniture, and over all the vessels of the sanctuary, over the fine flour, the wine, the oil, the frankincense, and the spices.</span></div>
+                <div class="verse"><span class="verse-num">30</span><span class="verse-text">Some of the sons of the priests prepared the mixing of the spices.</span></div>
+                <div class="verse"><span class="verse-num">31</span><span class="verse-text">Mattithiah, one of the Levites, who was the firstborn of Shallum the Korahite, had the office of trust over the things that were baked in pans.</span></div>
+                <div class="verse"><span class="verse-num">32</span><span class="verse-text">Some of their brothers, of the sons of the Kohathites, were over the show bread, to prepare it every Sabbath.</span></div>
+                <div class="verse"><span class="verse-num">33</span><span class="verse-text">These are the singers, heads of fathers’ households of the Levites, who lived in the rooms and were free from other service; for they were employed in their work day and night.</span></div>
+                <div class="verse"><span class="verse-num">34</span><span class="verse-text">These were heads of fathers’ households of the Levites, throughout their generations, chief men. These lived at Jerusalem.</span></div>
+                <div class="verse"><span class="verse-num">35</span><span class="verse-text">Jeiel the father of Gibeon, whose wife’s name was Maacah, lived in Gibeon with</span></div>
+                <div class="verse"><span class="verse-num">36</span><span class="verse-text">his firstborn son Abdon, Zur, Kish, Baal, Ner, Nadab,</span></div>
+                <div class="verse"><span class="verse-num">37</span><span class="verse-text">Gedor, Ahio, Zechariah, and Mikloth.</span></div>
+                <div class="verse"><span class="verse-num">38</span><span class="verse-text">Mikloth became the father of Shimeam. They also lived with their brothers in Jerusalem, near their brothers.</span></div>
+                <div class="verse"><span class="verse-num">39</span><span class="verse-text">Ner became the father of Kish. Kish became the father of Saul. Saul became the father of Jonathan, Malchishua, Abinadab, and Eshbaal.</span></div>
+                <div class="verse"><span class="verse-num">40</span><span class="verse-text">The son of Jonathan was Merib Baal. Merib Baal became the father of Micah.</span></div>
+                <div class="verse"><span class="verse-num">41</span><span class="verse-text">The sons of Micah: Pithon, Melech, Tahrea, and Ahaz.</span></div>
+                <div class="verse"><span class="verse-num">42</span><span class="verse-text">Ahaz became the father of Jarah. Jarah became the father of Alemeth, Azmaveth, and Zimri. Zimri became the father of Moza.</span></div>
+                <div class="verse"><span class="verse-num">43</span><span class="verse-text">Moza became the father of Binea; and Rephaiah his son, Eleasah his son, and Azel his son.</span></div>
+                <div class="verse"><span class="verse-num">44</span><span class="verse-text">Azel had six sons, whose names are these: Azrikam, Bocheru, Ishmael, Sheariah, Obadiah, and Hanan. These were the sons of Azel.</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../8/" class="nav-btn">← Chapter 8</a>
+                <a href="../../" class="nav-btn">↑ 1 Chronicles Index</a>
+                <a href="../10/" class="nav-btn">Chapter 10 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>1 Chronicles 9</h1>
-      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="1-chronicles" data-chapter="9">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">So all Israel were listed by genealogies; and behold,  they are written in the book of the kings of Israel. Judah was carried away captive to Babylon for their disobedience.</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/1-chronicles/8/">← 1 Chronicles 8</a>
-        <a href="../../" class="center">↑ 1 Chronicles</a>
-        <a href="/bible/1-chronicles/10/">1 Chronicles 10 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

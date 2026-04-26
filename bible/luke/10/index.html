@@ -1,77 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luke 10 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read Luke 10 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luke 10 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Luke</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Luke</a>
+            </div>
+            <h1>Luke 10</h1>
+            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+
+            <div class="verse-container" data-book-slug="luke" data-chapter="10">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now after these things, the Lord also appointed seventy others, and sent them two by two ahead of him  into every city and place, where he was about to come.</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Then he said to them, “The harvest is indeed plentiful, but the laborers are few. Pray therefore to the Lord of the harvest, that he may send out laborers into his harvest.</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Go your ways. Behold, I send you out as lambs among wolves.</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Carry no purse, nor wallet, nor sandals. Greet no one on the way.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Into whatever house you enter, first say, ‘Peace be to this house.’</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">If a son of peace is there, your peace will rest on him; but if not, it will return to you.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Remain in that same house, eating and drinking the things they give, for the laborer is worthy of his wages. Don’t go from house to house.</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Into whatever city you enter, and they receive you, eat the things that are set before you.</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Heal the sick who are therein, and tell them, ‘God’s Kingdom has come near to you.’</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But into whatever city you enter, and they don’t receive you, go out into its streets and say,</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">‘Even the dust from your city that clings to us, we wipe off against you. Nevertheless know this, that God’s Kingdom has come near to you.’</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">I tell you, it will be more tolerable in that day for Sodom than for that city.</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">“Woe to you, Chorazin! Woe to you, Bethsaida! For if the mighty works had been done in Tyre and Sidon which were done in you, they would have repented long ago, sitting in sackcloth and ashes.</span></div>
+                <div class="verse"><span class="verse-num">14</span><span class="verse-text">But it will be more tolerable for Tyre and Sidon in the judgment than for you.</span></div>
+                <div class="verse"><span class="verse-num">15</span><span class="verse-text">You, Capernaum, who are exalted to heaven, will be brought down to Hades.</span></div>
+                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Whoever listens to you listens to me, and whoever rejects you rejects me. Whoever rejects me rejects him who sent me.”</span></div>
+                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The seventy returned with joy, saying, “Lord, even the demons are subject to us in your name!”</span></div>
+                <div class="verse"><span class="verse-num">18</span><span class="verse-text">He said to them, “I saw Satan having fallen like lightning from heaven.</span></div>
+                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Behold, I give you authority to tread on serpents and scorpions, and over all the power of the enemy. Nothing will in any way hurt you.</span></div>
+                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Nevertheless, don’t rejoice in this, that the spirits are subject to you, but rejoice that your names are written in heaven.”</span></div>
+                <div class="verse"><span class="verse-num">21</span><span class="verse-text">In that same hour Jesus rejoiced in the Holy Spirit, and said, “I thank you, O Father, Lord of heaven and earth, that you have hidden these things from the wise and understanding, and revealed them to little children. Yes, Father, for so it was well-pleasing in your sight.”</span></div>
+                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Turning to the disciples, he said, “All things have been delivered to me by my Father. No one knows who the Son is, except the Father, and who the Father is, except the Son, and he to whomever the Son desires to reveal him.”</span></div>
+                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Turning to the disciples, he said privately, “Blessed are the eyes which see the things that you see,</span></div>
+                <div class="verse"><span class="verse-num">24</span><span class="verse-text">for I tell you that many prophets and kings desired to see the things which you see, and didn’t see them, and to hear the things which you hear, and didn’t hear them.”</span></div>
+                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Behold, a certain lawyer stood up and tested him, saying, “Teacher, what shall I do to inherit eternal life?”</span></div>
+                <div class="verse"><span class="verse-num">26</span><span class="verse-text">He said to him, “What is written in the law? How do you read it?”</span></div>
+                <div class="verse"><span class="verse-num">27</span><span class="verse-text">He answered, “You shall love the Lord your God with all your heart, with all your soul, with all your strength, and with all your mind;  and your neighbor as yourself.”</span></div>
+                <div class="verse"><span class="verse-num">28</span><span class="verse-text">He said to him, “You have answered correctly. Do this, and you will live.”</span></div>
+                <div class="verse"><span class="verse-num">29</span><span class="verse-text">But he, desiring to justify himself, asked Jesus, “Who is my neighbor?”</span></div>
+                <div class="verse"><span class="verse-num">30</span><span class="verse-text">Jesus answered, “A certain man was going down from Jerusalem to Jericho, and he fell among robbers, who both stripped him and beat him, and departed, leaving him half dead.</span></div>
+                <div class="verse"><span class="verse-num">31</span><span class="verse-text">By chance a certain priest was going down that way. When he saw him, he passed by on the other side.</span></div>
+                <div class="verse"><span class="verse-num">32</span><span class="verse-text">In the same way a Levite also, when he came to the place, and saw him, passed by on the other side.</span></div>
+                <div class="verse"><span class="verse-num">33</span><span class="verse-text">But a certain Samaritan, as he traveled, came where he was. When he saw him, he was moved with compassion,</span></div>
+                <div class="verse"><span class="verse-num">34</span><span class="verse-text">came to him, and bound up his wounds, pouring on oil and wine. He set him on his own animal, and brought him to an inn, and took care of him.</span></div>
+                <div class="verse"><span class="verse-num">35</span><span class="verse-text">On the next day, when he departed, he took out two denarii, and gave them to the host, and said to him, ‘Take care of him. Whatever you spend beyond that, I will repay you when I return.’</span></div>
+                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Now which of these three do you think seemed to be a neighbor to him who fell among the robbers?”</span></div>
+                <div class="verse"><span class="verse-num">37</span><span class="verse-text">He said, “He who showed mercy on him.” Then Jesus said to him, “Go and do likewise.”</span></div>
+                <div class="verse"><span class="verse-num">38</span><span class="verse-text">As they went on their way, he entered into a certain village, and a certain woman named Martha received him into her house.</span></div>
+                <div class="verse"><span class="verse-num">39</span><span class="verse-text">She had a sister called Mary, who also sat at Jesus’ feet, and heard his word.</span></div>
+                <div class="verse"><span class="verse-num">40</span><span class="verse-text">But Martha was distracted with much serving, and she came up to him, and said, “Lord, don’t you care that my sister left me to serve alone? Ask her therefore to help me.”</span></div>
+                <div class="verse"><span class="verse-num">41</span><span class="verse-text">Jesus answered her, “Martha, Martha, you are anxious and troubled about many things,</span></div>
+                <div class="verse"><span class="verse-num">42</span><span class="verse-text">but one thing is needed. Mary has chosen the good part, which will not be taken away from her.”</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../9/" class="nav-btn">← Chapter 9</a>
+                <a href="../../" class="nav-btn">↑ Luke Index</a>
+                <a href="../11/" class="nav-btn">Chapter 11 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>Luke 10</h1>
-      <span class="translation-tag">Living Legacy Translation · New Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="luke" data-chapter="10">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">Now after these things, the Lord also appointed seventy others, and sent them two by two ahead of him  into every city and place, where he was about to come.</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/luke/9/">← Luke 9</a>
-        <a href="../../" class="center">↑ Luke</a>
-        <a href="/bible/luke/11/">Luke 11 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

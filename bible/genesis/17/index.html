@@ -1,77 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Genesis 17 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read Genesis 17 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis 17 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Genesis</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Genesis</a>
+            </div>
+            <h1>Genesis 17</h1>
+            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+
+            <div class="verse-container" data-book-slug="genesis" data-chapter="17">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">When Abram was ninety-nine years old, Yahweh appeared to Abram and said to him, “I am God Almighty. Walk before me, and be blameless.</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">I will make my covenant between me and you, and will multiply you exceedingly.”</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Abram fell on his face. God talked with him, saying,</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">“As for me, behold, my covenant is with you. You will be the father of a multitude of nations.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Your name will no more be called Abram, but your name will be Abraham; for I have made you the father of a multitude of nations.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">I will make you exceedingly fruitful, and I will make nations of you. Kings will come out of you.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">I will establish my covenant between me and you and your offspring  after you throughout their generations for an everlasting covenant, to be a God to you and to your offspring  after you.</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">I will give to you, and to your offspring  after you, the land where you are traveling, all the land of Canaan, for an everlasting possession. I will be their God.”</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">God said to Abraham, “As for you, you will keep my covenant, you and your offspring  after you throughout their generations.</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">This is my covenant, which you shall keep, between me and you and your offspring  after you. Every male among you shall be circumcised.</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">You shall be circumcised in the flesh of your foreskin. It will be a token of the covenant between me and you.</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">He who is eight days old will be circumcised among you, every male throughout your generations, he who is born in the house, or bought with money from any foreigner who is not of your offspring.</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He who is born in your house, and he who is bought with your money, must be circumcised. My covenant will be in your flesh for an everlasting covenant.</span></div>
+                <div class="verse"><span class="verse-num">14</span><span class="verse-text">The uncircumcised male who is not circumcised in the flesh of his foreskin, that soul shall be cut off from his people. He has broken my covenant.”</span></div>
+                <div class="verse"><span class="verse-num">15</span><span class="verse-text">God said to Abraham, “As for Sarai your wife, you shall not call her name Sarai, but her name will be Sarah.</span></div>
+                <div class="verse"><span class="verse-num">16</span><span class="verse-text">I will bless her, and moreover I will give you a son by her. Yes, I will bless her, and she will be a mother of nations. Kings of peoples will come from her.”</span></div>
+                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Then Abraham fell on his face, and laughed, and said in his heart, “Will a child be born to him who is one hundred years old? Will Sarah, who is ninety years old, give birth?”</span></div>
+                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Abraham said to God, “Oh that Ishmael might live before you!”</span></div>
+                <div class="verse"><span class="verse-num">19</span><span class="verse-text">God said, “No, but Sarah, your wife, will bear you a son. You shall call his name Isaac.  I will establish my covenant with him for an everlasting covenant for his offspring  after him.</span></div>
+                <div class="verse"><span class="verse-num">20</span><span class="verse-text">As for Ishmael, I have heard you. Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly. He will become the father of twelve princes, and I will make him a great nation.</span></div>
+                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But my covenant I establish with Isaac, whom Sarah will bear to you at this set time next year.”</span></div>
+                <div class="verse"><span class="verse-num">22</span><span class="verse-text">When he finished talking with him, God went up from Abraham.</span></div>
+                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Abraham took Ishmael his son, all who were born in his house, and all who were bought with his money; every male among the men of Abraham’s house, and circumcised the flesh of their foreskin in the same day, as God had said to him.</span></div>
+                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Abraham was ninety-nine years old, when he was circumcised in the flesh of his foreskin.</span></div>
+                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Ishmael, his son, was thirteen years old when he was circumcised in the flesh of his foreskin.</span></div>
+                <div class="verse"><span class="verse-num">26</span><span class="verse-text">In the same day both Abraham and Ishmael, his son, were circumcised.</span></div>
+                <div class="verse"><span class="verse-num">27</span><span class="verse-text">All the men of his house, those born in the house, and those bought with money from a foreigner, were circumcised with him.</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../16/" class="nav-btn">← Chapter 16</a>
+                <a href="../../" class="nav-btn">↑ Genesis Index</a>
+                <a href="../18/" class="nav-btn">Chapter 18 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>Genesis 17</h1>
-      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="genesis" data-chapter="17">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">When Abram was ninety-nine years old, Yahweh appeared to Abram and said to him, “I am God Almighty. Walk before me, and be blameless.</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/genesis/16/">← Genesis 16</a>
-        <a href="../../" class="center">↑ Genesis</a>
-        <a href="/bible/genesis/18/">Genesis 18 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

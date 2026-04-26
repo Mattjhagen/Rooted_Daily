@@ -1,77 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judges 17 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read Judges 17 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judges 17 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Judges</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Judges</a>
+            </div>
+            <h1>Judges 17</h1>
+            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+
+            <div class="verse-container" data-book-slug="judges" data-chapter="17">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">There was a man of the hill country of Ephraim, whose name was Micah.</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">He said to his mother, “The eleven hundred pieces of silver that were taken from you, about which you uttered a curse, and also spoke it in my ears, behold, the silver is with me. I took it.” His mother said, “May Yahweh bless my son!”</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">He restored the eleven hundred pieces of silver to his mother, then his mother said, “I most certainly dedicate the silver to Yahweh from my hand for my son, to make an engraved image and a molten image. Now therefore I will restore it to you.”</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">When he restored the money to his mother, his mother took two hundred pieces of silver, and gave them to a silversmith, who made an engraved image and a molten image out of it. It was in the house of Micah.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">The man Micah had a house of gods, and he made an ephod, and teraphim,  and consecrated one of his sons, who became his priest.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">In those days there was no king in Israel. Everyone did that which was right in his own eyes.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">There was a young man out of Bethlehem Judah, of the family of Judah, who was a Levite; and he lived there.</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">The man departed out of the city, out of Bethlehem Judah, to live where he could find a place, and he came to the hill country of Ephraim, to the house of Micah, as he traveled.</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Micah said to him, “Where did you come from?” He said to him, “I am a Levite of Bethlehem Judah, and I am looking for a place to live.”</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Micah said to him, “Dwell with me, and be to me a father and a priest, and I will give you ten pieces of silver per year, a suit of clothing, and your food.” So the Levite went in.</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">The Levite was content to dwell with the man; and the young man was to him as one of his sons.</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Micah consecrated the Levite, and the young man became his priest, and was in the house of Micah.</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Then Micah said, “Now know I that Yahweh will do good to me, since I have a Levite as my priest.”</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../16/" class="nav-btn">← Chapter 16</a>
+                <a href="../../" class="nav-btn">↑ Judges Index</a>
+                <a href="../18/" class="nav-btn">Chapter 18 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>Judges 17</h1>
-      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="judges" data-chapter="17">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">There was a man of the hill country of Ephraim, whose name was Micah.</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/judges/16/">← Judges 16</a>
-        <a href="../../" class="center">↑ Judges</a>
-        <a href="/bible/judges/18/">Judges 18 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>

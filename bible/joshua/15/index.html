@@ -1,77 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joshua 15 | Rooted Daily Bible (LLT)</title>
-  <meta name="description" content="Read Joshua 15 in the Rooted Daily Bible (LLT) — a modern, faithful English Bible.">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fdf6ec;--text:#2c1f0e;--accent:#3d6b4f;--accent-light:#e8f0eb;--secondary:#6b5040;--border:#d4c0a8;--font:'Lora',Georgia,serif;--sans:system-ui,sans-serif;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:740px;margin:0 auto;padding:1.5rem;flex:1;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-    .logo{text-decoration:none;color:var(--text);font-weight:700;font-size:1.1rem;}
-    nav a{color:var(--accent);text-decoration:none;font-family:var(--sans);font-size:0.85rem;margin-left:1rem;}
-    .breadcrumb{font-family:var(--sans);font-size:0.82rem;color:var(--secondary);margin-bottom:1.2rem;}
-    .breadcrumb a{color:var(--accent);text-decoration:none;}
-    .breadcrumb span{margin:0 0.35rem;}
-    h1{font-size:2rem;margin-bottom:0.3rem;}
-    .translation-tag{font-style:italic;color:var(--secondary);font-size:0.9rem;margin-bottom:2rem;display:block;}
-    .verse{padding:0.6rem 0;border-bottom:1px solid #f0e6d8;display:flex;gap:0.8rem;align-items:baseline;}
-    .verse:last-child{border-bottom:none;}
-    .verse-num{font-family:var(--sans);font-size:0.72rem;font-weight:700;color:var(--accent);min-width:1.8rem;padding-top:0.15rem;user-select:none;}
-    .verse-text{flex:1;font-size:1.05rem;}
-    .ch-nav{display:flex;justify-content:space-between;align-items:center;margin:2.5rem 0 1rem;font-family:var(--sans);font-size:0.85rem;flex-wrap:wrap;gap:0.5rem;}
-    .ch-nav a{color:var(--accent);text-decoration:none;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;padding:0.45rem 1rem;transition:all 0.2s;}
-    .ch-nav a:hover{background:var(--accent);color:#fff;}
-    footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center;font-family:var(--sans);font-size:0.78rem;color:var(--secondary);}
-    footer a{color:var(--accent);text-decoration:none;}
-    
-    /* Switcher Styles */
-    .translation-switcher{margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;font-family:var(--sans);}
-    .switcher-label{font-size:0.8rem;color:var(--secondary);}
-    .switcher-toggle{display:flex;background:var(--accent-light);border:1px solid var(--border);border-radius:20px;padding:2px;}
-    .switcher-btn{border:none;background:none;padding:4px 12px;border-radius:18px;font-size:0.75rem;font-weight:600;cursor:pointer;color:var(--secondary);transition:all 0.2s;}
-    .switcher-btn.active{background:var(--accent);color:white;}
-  </style>
-  <link rel="stylesheet" href="../../../assets/css/heirloom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua 15 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0C150E;
+            --color-bg-light: #142116;
+            --color-accent: #4A7C59;
+            --color-accent-hover: #5d8f6c;
+            --color-text: #F4F1DE;
+            --color-text-secondary: rgba(244, 241, 222, 0.7);
+            --color-surface: rgba(255, 255, 255, 0.05);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
+        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
+        nav a:hover { color: var(--color-text); }
+        
+        .bible-reader {
+            max-width: 800px;
+            margin: 2rem auto 5rem;
+            padding: 3rem;
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
+        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
+        
+        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
+        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
+        .verse-text { font-size: 1.15rem; color: var(--color-text); }
+        
+        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
+        
+        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
+        
+        /* Switcher Styling */
+        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
+        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <a href="../../../" class="logo">📖 Rooted Daily Bible</a>
-      <nav>
-        <a href="../../../bible/">Browse Bible</a>
-      </nav>
-    </header>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <nav>
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+            </nav>
+        </header>
 
-    <div class="breadcrumb">
-      <a href="../../../">Home</a><span>›</span><a href="../../../bible/">Bible</a><span>›</span><a href="../../">Joshua</a>
+        <main class="bible-reader">
+            <div class="breadcrumb">
+                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Joshua</a>
+            </div>
+            <h1>Joshua 15</h1>
+            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+
+            <div class="verse-container" data-book-slug="joshua" data-chapter="15">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The lot for the tribe of the children of Judah according to their families was to the border of Edom, even to the wilderness of Zin southward, at the uttermost part of the south.</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Their south border was from the uttermost part of the Salt Sea, from the bay that looks southward;</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">and it went out southward of the ascent of Akrabbim, and passed along to Zin, and went up by the south of Kadesh Barnea, and passed along by Hezron, went up to Addar, and turned towards Karka;</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">and it passed along to Azmon, went out at the brook of Egypt; and the border ended at the sea. This shall be your south border.</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">The east border was the Salt Sea, even to the end of the Jordan. The border of the north quarter was from the bay of the sea at the end of the Jordan.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">The border went up to Beth Hoglah, and passed along by the north of Beth Arabah; and the border went up to the stone of Bohan the son of Reuben.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">The border went up to Debir from the valley of Achor, and so northward, looking toward Gilgal, that faces the ascent of Adummim, which is on the south side of the river. The border passed along to the waters of En Shemesh, and ended at En Rogel.</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">The border went up by the valley of the son of Hinnom to the side of the Jebusite (also called Jerusalem) southward; and the border went up to the top of the mountain that lies before the valley of Hinnom westward, which is at the farthest part of the valley of Rephaim northward.</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">The border extended from the top of the mountain to the spring of the waters of Nephtoah, and went out to the cities of Mount Ephron; and the border extended to Baalah (also called Kiriath Jearim);</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">and the border turned about from Baalah westward to Mount Seir, and passed along to the side of Mount Jearim (also called Chesalon) on the north, and went down to Beth Shemesh, and passed along by Timnah;</span></div>
+                <div class="verse"><span class="verse-num">11</span><span class="verse-text">and the border went out to the side of Ekron northward; and the border extended to Shikkeron, and passed along to Mount Baalah, and went out at Jabneel; and the goings out of the border were at the sea.</span></div>
+                <div class="verse"><span class="verse-num">12</span><span class="verse-text">The west border was to the shore of the great sea. This is the border of the children of Judah according to their families.</span></div>
+                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He gave to Caleb the son of Jephunneh a portion among the children of Judah, according to the commandment of Yahweh to Joshua, even Kiriath Arba, named after the father of Anak (also called Hebron).</span></div>
+                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Caleb drove out the three sons of Anak: Sheshai, and Ahiman, and Talmai, the children of Anak.</span></div>
+                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He went up against the inhabitants of Debir: now the name of Debir before was Kiriath Sepher.</span></div>
+                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Caleb said, “He who strikes Kiriath Sepher, and takes it, to him I will give Achsah my daughter as wife.”</span></div>
+                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Othniel the son of Kenaz, the brother of Caleb, took it: and he gave him Achsah his daughter as wife.</span></div>
+                <div class="verse"><span class="verse-num">18</span><span class="verse-text">When she came, she had him ask her father for a field. She got off of her donkey, and Caleb said, “What do you want?”</span></div>
+                <div class="verse"><span class="verse-num">19</span><span class="verse-text">She said, “Give me a blessing. Because you have set me in the land of the South, give me also springs of water.” So he gave her the upper springs and the lower springs.</span></div>
+                <div class="verse"><span class="verse-num">20</span><span class="verse-text">This is the inheritance of the tribe of the children of Judah according to their families.</span></div>
+                <div class="verse"><span class="verse-num">21</span><span class="verse-text">The farthest cities of the tribe of the children of Judah toward the border of Edom in the South were Kabzeel, Eder, Jagur,</span></div>
+                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Kinah, Dimonah, Adadah,</span></div>
+                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Kedesh, Hazor, Ithnan,</span></div>
+                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Ziph, Telem, Bealoth,</span></div>
+                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Hazor Hadattah, Kerioth Hezron (also called Hazor),</span></div>
+                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Amam, Shema, Moladah,</span></div>
+                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Hazar Gaddah, Heshmon, Beth Pelet,</span></div>
+                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Hazar Shual, Beersheba, Biziothiah,</span></div>
+                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Baalah, Iim, Ezem,</span></div>
+                <div class="verse"><span class="verse-num">30</span><span class="verse-text">Eltolad, Chesil, Hormah,</span></div>
+                <div class="verse"><span class="verse-num">31</span><span class="verse-text">Ziklag, Madmannah, Sansannah,</span></div>
+                <div class="verse"><span class="verse-num">32</span><span class="verse-text">Lebaoth, Shilhim, Ain, and Rimmon. All the cities are twenty-nine, with their villages.</span></div>
+                <div class="verse"><span class="verse-num">33</span><span class="verse-text">In the lowland, Eshtaol, Zorah, Ashnah,</span></div>
+                <div class="verse"><span class="verse-num">34</span><span class="verse-text">Zanoah, En Gannim, Tappuah, Enam,</span></div>
+                <div class="verse"><span class="verse-num">35</span><span class="verse-text">Jarmuth, Adullam, Socoh, Azekah,</span></div>
+                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Shaaraim, Adithaim and Gederah (or Gederothaim); fourteen cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">37</span><span class="verse-text">Zenan, Hadashah, Migdal Gad,</span></div>
+                <div class="verse"><span class="verse-num">38</span><span class="verse-text">Dilean, Mizpah, Joktheel,</span></div>
+                <div class="verse"><span class="verse-num">39</span><span class="verse-text">Lachish, Bozkath, Eglon,</span></div>
+                <div class="verse"><span class="verse-num">40</span><span class="verse-text">Cabbon, Lahmam, Chitlish,</span></div>
+                <div class="verse"><span class="verse-num">41</span><span class="verse-text">Gederoth, Beth Dagon, Naamah, and Makkedah; sixteen cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">42</span><span class="verse-text">Libnah, Ether, Ashan,</span></div>
+                <div class="verse"><span class="verse-num">43</span><span class="verse-text">Iphtah, Ashnah, Nezib,</span></div>
+                <div class="verse"><span class="verse-num">44</span><span class="verse-text">Keilah, Achzib, and Mareshah; nine cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">45</span><span class="verse-text">Ekron, with its towns and its villages;</span></div>
+                <div class="verse"><span class="verse-num">46</span><span class="verse-text">from Ekron even to the sea, all that were by the side of Ashdod, with their villages.</span></div>
+                <div class="verse"><span class="verse-num">47</span><span class="verse-text">Ashdod, its towns and its villages; Gaza, its towns and its villages; to the brook of Egypt, and the great sea with its coastline.</span></div>
+                <div class="verse"><span class="verse-num">48</span><span class="verse-text">In the hill country, Shamir, Jattir, Socoh,</span></div>
+                <div class="verse"><span class="verse-num">49</span><span class="verse-text">Dannah, Kiriath Sannah (which is Debir),</span></div>
+                <div class="verse"><span class="verse-num">50</span><span class="verse-text">Anab, Eshtemoh, Anim,</span></div>
+                <div class="verse"><span class="verse-num">51</span><span class="verse-text">Goshen, Holon, and Giloh; eleven cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">52</span><span class="verse-text">Arab, Dumah, Eshan,</span></div>
+                <div class="verse"><span class="verse-num">53</span><span class="verse-text">Janim, Beth Tappuah, Aphekah,</span></div>
+                <div class="verse"><span class="verse-num">54</span><span class="verse-text">Humtah, Kiriath Arba (also called Hebron), and Zior; nine cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">55</span><span class="verse-text">Maon, Carmel, Ziph, Jutah,</span></div>
+                <div class="verse"><span class="verse-num">56</span><span class="verse-text">Jezreel, Jokdeam, Zanoah,</span></div>
+                <div class="verse"><span class="verse-num">57</span><span class="verse-text">Kain, Gibeah, and Timnah; ten cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">58</span><span class="verse-text">Halhul, Beth Zur, Gedor,</span></div>
+                <div class="verse"><span class="verse-num">59</span><span class="verse-text">Maarath, Beth Anoth, and Eltekon; six cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">60</span><span class="verse-text">Kiriath Baal (also called Kiriath Jearim), and Rabbah; two cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">61</span><span class="verse-text">In the wilderness, Beth Arabah, Middin, Secacah,</span></div>
+                <div class="verse"><span class="verse-num">62</span><span class="verse-text">Nibshan, the City of Salt, and En Gedi; six cities with their villages.</span></div>
+                <div class="verse"><span class="verse-num">63</span><span class="verse-text">As for the Jebusites, the inhabitants of Jerusalem, the children of Judah couldn’t drive them out; but the Jebusites live with the children of Judah at Jerusalem to this day.</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../14/" class="nav-btn">← Chapter 14</a>
+                <a href="../../" class="nav-btn">↑ Joshua Index</a>
+                <a href="../16/" class="nav-btn">Chapter 16 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
     </div>
-
-    <main>
-      <h1>Joshua 15</h1>
-      <span class="translation-tag">Living Legacy Translation · Old Testament</span>
-      
-      <div class="ch-nav"></div>
-
-      <div class="verse-container" data-book-slug="joshua" data-chapter="15">
-        <div class="verse"><span class="verse-num">1</span><span class="verse-text">The lot for the tribe of the children of Judah according to their families was to the border of Edom, even to the wilderness of Zin southward, at the uttermost part of the south.</span>
-      </div>
-
-      <div class="ch-nav" style="margin-top:3rem;">
-        <a href="/bible/joshua/14/">← Joshua 14</a>
-        <a href="../../" class="center">↑ Joshua</a>
-        <a href="/bible/joshua/16/">Joshua 16 →</a>
-      </div>
-    </main>
-
-    <footer>
-      <p>&copy; 2026 PacMac Mobile LLC · <a href="../../../bible/">Browse Bible</a></p>
-    </footer>
-  </div>
-  <script src="../../../assets/js/translation-switcher.js" defer></script>
+    <script src="../../../assets/js/translation-switcher.js" defer></script>
 </body>
 </html>
