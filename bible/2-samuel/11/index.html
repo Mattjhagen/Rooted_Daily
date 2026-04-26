@@ -4,131 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2 Samuel 11 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">2 Samuel</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>2 Samuel 11</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="2-samuel" data-chapter="11">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">At the return of the year, at the time when kings go out, David sent Joab, and his servants with him, and all Israel; and they destroyed the children of Ammon, and besieged Rabbah. But David stayed at Jerusalem.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">At evening, David arose from his bed and walked on the roof of the king’s house. From the roof, he saw a woman bathing, and the woman was very beautiful to look at.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">David sent and inquired after the woman. One said, “Isn’t this Bathsheba, the daughter of Eliam, Uriah the Hittite’s wife?”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">David sent messengers, and took her; and she came in to him, and he lay with her (for she was purified from her uncleanness); and she returned to her house.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">The woman conceived; and she sent and told David, and said, “I am with child.”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">David sent to Joab, “Send me Uriah the Hittite.” Joab sent Uriah to David.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">When Uriah had come to him, David asked him how Joab did, and how the people fared, and how the war prospered.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">David said to Uriah, “Go down to your house and wash your feet.” Uriah departed out of the king’s house, and a gift from the king was sent after him.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">But Uriah slept at the door of the king’s house with all the servants of his lord, and didn’t go down to his house.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">When they had told David, saying, “Uriah didn’t go down to his house,” David said to Uriah, “Haven’t you come from a journey? Why didn’t you go down to your house?”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Uriah said to David, “The ark, Israel, and Judah, are staying in tents; and my lord Joab and the servants of my lord, are encamped in the open field. Shall I then go into my house to eat and to drink, and to lie with my wife? As you live, and as your soul lives, I will not do this thing!”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">David said to Uriah, “Stay here today also, and tomorrow I will let you depart.” So Uriah stayed in Jerusalem that day, and the next day.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">When David had called him, he ate and drink before him; and he made him drunk. At evening, he went out to lie on his bed with the servants of his lord, but didn’t go down to his house.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">In the morning, David wrote a letter to Joab, and sent it by the hand of Uriah.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He wrote in the letter, saying, “Send Uriah to the forefront of the hottest battle, and retreat from him, that he may be struck, and die.”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">When Joab kept watch on the city, he assigned Uriah to the place where he knew that valiant men were.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The men of the city went out, and fought with Joab. Some of the people fell, even of David’s servants; and Uriah the Hittite died also.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Then Joab sent and told David all the things concerning the war;</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">and he commanded the messenger, saying, “When you have finished telling all the things concerning the war to the king,</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">it shall be that, if the king’s wrath arise, and he asks you, ‘Why did you go so near to the city to fight? Didn’t you know that they would shoot from the wall?</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Who struck Abimelech the son of Jerubbesheth? Didn’t a woman cast an upper millstone on him from the wall, so that he died at Thebez? Why did you go so near the wall?’ then you shall say, ‘Your servant Uriah the Hittite is also dead.’”</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">So the messenger went, and came and showed David all that Joab had sent him for.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The messenger said to David, “The men prevailed against us, and came out to us into the field, and we were on them even to the entrance of the gate.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The shooters shot at your servants from off the wall; and some of the king’s servants are dead, and your servant Uriah the Hittite is also dead.”</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Then David said to the messenger, “Tell Joab, ‘Don’t let this thing displease you, for the sword devours one as well as another. Make your battle stronger against the city, and overthrow it.’ Encourage him.”</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">When Uriah’s wife heard that Uriah her husband was dead, she mourned for her husband.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When the mourning was past, David sent and took her home to his house, and she became his wife, and bore him a son. But the thing that David had done displeased Yahweh.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">At the return of the year, at the time when kings go out, David sent Joab, and his servants with him, and all Israel; and they destroyed the children of Ammon, and besieged Rabbah. But David stayed at Jerusalem.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">At evening, David arose from his bed and walked on the roof of the king’s house. From the roof, he saw a woman bathing, and the woman was very beautiful to look at.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">David sent and inquired after the woman. One said, “Isn’t this Bathsheba, the daughter of Eliam, Uriah the Hittite’s wife?”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">David sent messengers, and took her; and she came in to him, and he lay with her (for she was purified from her uncleanness); and she returned to her house.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">The woman conceived; and she sent and told David, and said, “I am with child.”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">David sent to Joab, “Send me Uriah the Hittite.” Joab sent Uriah to David.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">When Uriah had come to him, David asked him how Joab did, and how the people fared, and how the war prospered.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">David said to Uriah, “Go down to your house and wash your feet.” Uriah departed out of the king’s house, and a gift from the king was sent after him.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">But Uriah slept at the door of the king’s house with all the servants of his lord, and didn’t go down to his house.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">When they had told David, saying, “Uriah didn’t go down to his house,” David said to Uriah, “Haven’t you come from a journey? Why didn’t you go down to your house?”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Uriah said to David, “The ark, Israel, and Judah, are staying in tents; and my lord Joab and the servants of my lord, are encamped in the open field. Shall I then go into my house to eat and to drink, and to lie with my wife? As you live, and as your soul lives, I will not do this thing!”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">David said to Uriah, “Stay here today also, and tomorrow I will let you depart.” So Uriah stayed in Jerusalem that day, and the next day.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">When David had called him, he ate and drink before him; and he made him drunk. At evening, he went out to lie on his bed with the servants of his lord, but didn’t go down to his house.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">In the morning, David wrote a letter to Joab, and sent it by the hand of Uriah.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He wrote in the letter, saying, “Send Uriah to the forefront of the hottest battle, and retreat from him, that he may be struck, and die.”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">When Joab kept watch on the city, he assigned Uriah to the place where he knew that valiant men were.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The men of the city went out, and fought with Joab. Some of the people fell, even of David’s servants; and Uriah the Hittite died also.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Then Joab sent and told David all the things concerning the war;</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">and he commanded the messenger, saying, “When you have finished telling all the things concerning the war to the king,</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">it shall be that, if the king’s wrath arise, and he asks you, ‘Why did you go so near to the city to fight? Didn’t you know that they would shoot from the wall?</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Who struck Abimelech the son of Jerubbesheth? Didn’t a woman cast an upper millstone on him from the wall, so that he died at Thebez? Why did you go so near the wall?’ then you shall say, ‘Your servant Uriah the Hittite is also dead.’”</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">So the messenger went, and came and showed David all that Joab had sent him for.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The messenger said to David, “The men prevailed against us, and came out to us into the field, and we were on them even to the entrance of the gate.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The shooters shot at your servants from off the wall; and some of the king’s servants are dead, and your servant Uriah the Hittite is also dead.”</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Then David said to the messenger, “Tell Joab, ‘Don’t let this thing displease you, for the sword devours one as well as another. Make your battle stronger against the city, and overthrow it.’ Encourage him.”</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">When Uriah’s wife heard that Uriah her husband was dead, she mourned for her husband.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When the mourning was past, David sent and took her home to his house, and she became his wife, and bore him a son. But the thing that David had done displeased Yahweh.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../10/" class="nav-btn">← Chapter 10</a>
-                <a href="../../" class="nav-btn">↑ 2 Samuel Index</a>
-                <a href="../12/" class="nav-btn">Chapter 12 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -136,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

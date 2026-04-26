@@ -4,146 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2 Chronicles 6 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">2 Chronicles</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>2 Chronicles 6</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="2-chronicles" data-chapter="6">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Then Solomon said, “Yahweh has said that he would dwell in the thick darkness.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">But I have built you a house and home, a place for you to dwell in forever.”</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">The king turned his face, and blessed all the assembly of Israel: and all the assembly of Israel stood.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">He said, “Blessed be Yahweh, the God of Israel, who spoke with his mouth to David my father, and has with his hands fulfilled it, saying,</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">‘Since the day that I brought my people out of the land of Egypt, I chose no city out of all the tribes of Israel to build a house in, that my name might be there and I chose no man to be prince over my people Israel;</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">but now I have chosen Jerusalem, that my name might be there; and I have chosen David to be over my people Israel.’</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Now it was in the heart of David my father to build a house for the name of Yahweh, the God of Israel.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">But Yahweh said to David my father, ‘Whereas it was in your heart to build a house for my name, you did well that it was in your heart;</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">nevertheless you shall not build the house; but your son who will come out of your body, he shall build the house for my name.’</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">“Yahweh has performed his word that he spoke; for I have risen up in the place of David my father, and sit on the throne of Israel, as Yahweh promised, and have built the house for the name of Yahweh, the God of Israel.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">There I have set the ark, in which is Yahweh’s covenant, which he made with the children of Israel.”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">He stood before Yahweh’s altar in the presence of all the assembly of Israel, and spread out his hands</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">(for Solomon had made a bronze scaffold, five cubits  long, and five cubits wide, and three cubits high, and had set it in the middle of the court; and he stood on it, and knelt down on his knees before all the assembly of Israel, and spread out his hands toward heaven)</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">and he said, “Yahweh, the God of Israel, there is no God like you in heaven or on earth; you who keep covenant and loving kindness with your servants who walk before you with all their heart;</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">who have kept with your servant David my father that which you promised him. Yes, you spoke with your mouth, and have fulfilled it with your hand, as it is today.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">“Now therefore, Yahweh, the God of Israel, keep with your servant David my father that which you have promised him, saying, ‘There shall not fail you a man in my sight to sit on the throne of Israel, if only your children take heed to their way, to walk in my law as you have walked before me.’</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Now therefore, Yahweh, the God of Israel, let your word be verified, which you spoke to your servant David.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">“But will God indeed dwell with men on the earth? Behold, heaven and the heaven of heavens can’t contain you; how much less this house which I have built!</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Yet have respect for the prayer of your servant, and to his supplication, Yahweh my God, to listen to the cry and to the prayer which your servant prays before you;</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">that your eyes may be open toward this house day and night, even toward the place where you have said that you would put your name; to listen to the prayer which your servant will pray toward this place.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Listen to the petitions of your servant, and of your people Israel, when they pray toward this place. Yes, hear from your dwelling place, even from heaven; and when you hear, forgive.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">“If a man sins against his neighbor, and an oath is laid on him to cause him to swear, and he comes and swears before your altar in this house;</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">then hear from heaven, act, and judge your servants, bringing retribution to the wicked, to bring his way on his own head; and justifying the righteous, to give him according to his righteousness.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">“If your people Israel are struck down before the enemy because they have sinned against you, and they turn again and confess your name, and pray and make supplication before you in this house;</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">then hear from heaven, and forgive the sin of your people Israel, and bring them again to the land which you gave to them and to their fathers.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">“When the sky is shut up, and there is no rain, because they have sinned against you; if they pray toward this place, and confess your name, and turn from their sin, when you afflict them;</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">then hear in heaven, and forgive the sin of your servants of your people Israel, when you teach them the good way in which they should walk; and send rain on your land, which you have given to your people for an inheritance.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">“If there is famine in the land, if there is pestilence, if there is blight or mildew, locust or caterpillar; if their enemies besiege them in the land of their cities; whatever plague or whatever sickness there is;</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">whatever prayer and supplication is made by any man, or by all your people Israel, who will each know his own plague and his own sorrow, and shall spread out his hands toward this house;</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">then hear from heaven your dwelling place and forgive, and render to every man according to all his ways, whose heart you know (for you, even you only, know the hearts of the children of men)</span></div>
-                <div class="verse"><span class="verse-num">31</span><span class="verse-text">that they may fear you, to walk in your ways, so long as they live in the land which you gave to our fathers.</span></div>
-                <div class="verse"><span class="verse-num">32</span><span class="verse-text">“Moreover concerning the foreigner, who is not of your people Israel, when he comes from a far country for your great name’s sake, and your mighty hand, and your outstretched arm; when they come and pray toward this house;</span></div>
-                <div class="verse"><span class="verse-num">33</span><span class="verse-text">then hear from heaven, even from your dwelling place, and do according to all that the foreigner calls to you for; that all the peoples of the earth may know your name and fear you, as do your people Israel, and that they may know that this house which I have built is called by your name.</span></div>
-                <div class="verse"><span class="verse-num">34</span><span class="verse-text">“If your people go out to battle against their enemies, by whatever way you send them, and they pray to you toward this city which you have chosen, and the house which I have built for your name;</span></div>
-                <div class="verse"><span class="verse-num">35</span><span class="verse-text">then hear from heaven their prayer and their supplication, and maintain their cause.</span></div>
-                <div class="verse"><span class="verse-num">36</span><span class="verse-text">“If they sin against you (for there is no man who doesn’t sin), and you are angry with them, and deliver them to the enemy, so that they carry them away captive to a land far off or near;</span></div>
-                <div class="verse"><span class="verse-num">37</span><span class="verse-text">yet if they come to their senses in the land where they are carried captive, and turn again, and make supplication to you in the land of their captivity, saying, ‘We have sinned, we have done perversely, and have dealt wickedly;’</span></div>
-                <div class="verse"><span class="verse-num">38</span><span class="verse-text">if they return to you with all their heart and with all their soul in the land of their captivity, where they have carried them captive, and pray toward their land, which you gave to their fathers, and the city which you have chosen, and toward the house which I have built for your name;</span></div>
-                <div class="verse"><span class="verse-num">39</span><span class="verse-text">then hear from heaven, even from your dwelling place, their prayer and their petitions, and maintain their cause, and forgive your people who have sinned against you.</span></div>
-                <div class="verse"><span class="verse-num">40</span><span class="verse-text">“Now, my God, let, I beg you, your eyes be open, and let your ears be attentive, to the prayer that is made in this place.</span></div>
-                <div class="verse"><span class="verse-num">41</span><span class="verse-text">“Now therefore arise, Yahweh God, into your resting place, you, and the ark of your strength. Let your priests, Yahweh God, be clothed with salvation, and let your saints rejoice in goodness.</span></div>
-                <div class="verse"><span class="verse-num">42</span><span class="verse-text">“Yahweh God, don’t turn away the face of your anointed. Remember your loving kindnesses to David your servant.”</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Then Solomon said, “Yahweh has said that he would dwell in the thick darkness.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">But I have built you a house and home, a place for you to dwell in forever.”</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">The king turned his face, and blessed all the assembly of Israel: and all the assembly of Israel stood.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">He said, “Blessed be Yahweh, the God of Israel, who spoke with his mouth to David my father, and has with his hands fulfilled it, saying,</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">‘Since the day that I brought my people out of the land of Egypt, I chose no city out of all the tribes of Israel to build a house in, that my name might be there and I chose no man to be prince over my people Israel;</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">but now I have chosen Jerusalem, that my name might be there; and I have chosen David to be over my people Israel.’</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Now it was in the heart of David my father to build a house for the name of Yahweh, the God of Israel.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">But Yahweh said to David my father, ‘Whereas it was in your heart to build a house for my name, you did well that it was in your heart;</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">nevertheless you shall not build the house; but your son who will come out of your body, he shall build the house for my name.’</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">“Yahweh has performed his word that he spoke; for I have risen up in the place of David my father, and sit on the throne of Israel, as Yahweh promised, and have built the house for the name of Yahweh, the God of Israel.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">There I have set the ark, in which is Yahweh’s covenant, which he made with the children of Israel.”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">He stood before Yahweh’s altar in the presence of all the assembly of Israel, and spread out his hands</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">(for Solomon had made a bronze scaffold, five cubits  long, and five cubits wide, and three cubits high, and had set it in the middle of the court; and he stood on it, and knelt down on his knees before all the assembly of Israel, and spread out his hands toward heaven)</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">and he said, “Yahweh, the God of Israel, there is no God like you in heaven or on earth; you who keep covenant and loving kindness with your servants who walk before you with all their heart;</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">who have kept with your servant David my father that which you promised him. Yes, you spoke with your mouth, and have fulfilled it with your hand, as it is today.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">“Now therefore, Yahweh, the God of Israel, keep with your servant David my father that which you have promised him, saying, ‘There shall not fail you a man in my sight to sit on the throne of Israel, if only your children take heed to their way, to walk in my law as you have walked before me.’</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Now therefore, Yahweh, the God of Israel, let your word be verified, which you spoke to your servant David.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">“But will God indeed dwell with men on the earth? Behold, heaven and the heaven of heavens can’t contain you; how much less this house which I have built!</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Yet have respect for the prayer of your servant, and to his supplication, Yahweh my God, to listen to the cry and to the prayer which your servant prays before you;</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">that your eyes may be open toward this house day and night, even toward the place where you have said that you would put your name; to listen to the prayer which your servant will pray toward this place.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Listen to the petitions of your servant, and of your people Israel, when they pray toward this place. Yes, hear from your dwelling place, even from heaven; and when you hear, forgive.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">“If a man sins against his neighbor, and an oath is laid on him to cause him to swear, and he comes and swears before your altar in this house;</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">then hear from heaven, act, and judge your servants, bringing retribution to the wicked, to bring his way on his own head; and justifying the righteous, to give him according to his righteousness.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">“If your people Israel are struck down before the enemy because they have sinned against you, and they turn again and confess your name, and pray and make supplication before you in this house;</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">then hear from heaven, and forgive the sin of your people Israel, and bring them again to the land which you gave to them and to their fathers.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">“When the sky is shut up, and there is no rain, because they have sinned against you; if they pray toward this place, and confess your name, and turn from their sin, when you afflict them;</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">then hear in heaven, and forgive the sin of your servants of your people Israel, when you teach them the good way in which they should walk; and send rain on your land, which you have given to your people for an inheritance.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">“If there is famine in the land, if there is pestilence, if there is blight or mildew, locust or caterpillar; if their enemies besiege them in the land of their cities; whatever plague or whatever sickness there is;</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">whatever prayer and supplication is made by any man, or by all your people Israel, who will each know his own plague and his own sorrow, and shall spread out his hands toward this house;</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">then hear from heaven your dwelling place and forgive, and render to every man according to all his ways, whose heart you know (for you, even you only, know the hearts of the children of men)</span></div>\n                <div class="verse"><span class="verse-num">31</span><span class="verse-text">that they may fear you, to walk in your ways, so long as they live in the land which you gave to our fathers.</span></div>\n                <div class="verse"><span class="verse-num">32</span><span class="verse-text">“Moreover concerning the foreigner, who is not of your people Israel, when he comes from a far country for your great name’s sake, and your mighty hand, and your outstretched arm; when they come and pray toward this house;</span></div>\n                <div class="verse"><span class="verse-num">33</span><span class="verse-text">then hear from heaven, even from your dwelling place, and do according to all that the foreigner calls to you for; that all the peoples of the earth may know your name and fear you, as do your people Israel, and that they may know that this house which I have built is called by your name.</span></div>\n                <div class="verse"><span class="verse-num">34</span><span class="verse-text">“If your people go out to battle against their enemies, by whatever way you send them, and they pray to you toward this city which you have chosen, and the house which I have built for your name;</span></div>\n                <div class="verse"><span class="verse-num">35</span><span class="verse-text">then hear from heaven their prayer and their supplication, and maintain their cause.</span></div>\n                <div class="verse"><span class="verse-num">36</span><span class="verse-text">“If they sin against you (for there is no man who doesn’t sin), and you are angry with them, and deliver them to the enemy, so that they carry them away captive to a land far off or near;</span></div>\n                <div class="verse"><span class="verse-num">37</span><span class="verse-text">yet if they come to their senses in the land where they are carried captive, and turn again, and make supplication to you in the land of their captivity, saying, ‘We have sinned, we have done perversely, and have dealt wickedly;’</span></div>\n                <div class="verse"><span class="verse-num">38</span><span class="verse-text">if they return to you with all their heart and with all their soul in the land of their captivity, where they have carried them captive, and pray toward their land, which you gave to their fathers, and the city which you have chosen, and toward the house which I have built for your name;</span></div>\n                <div class="verse"><span class="verse-num">39</span><span class="verse-text">then hear from heaven, even from your dwelling place, their prayer and their petitions, and maintain their cause, and forgive your people who have sinned against you.</span></div>\n                <div class="verse"><span class="verse-num">40</span><span class="verse-text">“Now, my God, let, I beg you, your eyes be open, and let your ears be attentive, to the prayer that is made in this place.</span></div>\n                <div class="verse"><span class="verse-num">41</span><span class="verse-text">“Now therefore arise, Yahweh God, into your resting place, you, and the ark of your strength. Let your priests, Yahweh God, be clothed with salvation, and let your saints rejoice in goodness.</span></div>\n                <div class="verse"><span class="verse-num">42</span><span class="verse-text">“Yahweh God, don’t turn away the face of your anointed. Remember your loving kindnesses to David your servant.”</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../5/" class="nav-btn">← Chapter 5</a>
-                <a href="../../" class="nav-btn">↑ 2 Chronicles Index</a>
-                <a href="../7/" class="nav-btn">Chapter 7 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -151,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

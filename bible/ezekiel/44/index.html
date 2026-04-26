@@ -4,135 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ezekiel 44 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Ezekiel</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>Ezekiel 44</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="ezekiel" data-chapter="44">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Then he brought me back by the way of the outer gate of the sanctuary, which looks toward the east; and it was shut.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Yahweh said to me, This gate shall be shut; it shall not be opened, neither shall any man enter in by it; for Yahweh, the God of Israel, has entered in by it; therefore it shall be shut.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">As for the prince, he shall sit therein as prince to eat bread before Yahweh; he shall enter by the way of the porch of the gate, and shall go out by the way of the same.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Then he brought me by the way of the north gate before the house; and I looked, and behold, Yahweh’s glory filled Yahweh’s house: and I fell on my face.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Yahweh said to me, Son of man, mark well, and see with your eyes, and hear with your ears all that I tell you concerning all the ordinances of Yahweh’s house, and all its laws; and mark well the entrance of the house, with every exit of the sanctuary.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">You shall tell the rebellious, even to the house of Israel, Thus says the Lord Yahweh: you house of Israel, let it suffice you of all your abominations,</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">in that you have brought in foreigners, uncircumcised in heart and uncircumcised in flesh, to be in my sanctuary, to profane it, even my house, when you offer my bread, the fat and the blood, and they have broken my covenant, to add to all your abominations.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">You have not performed the duty of my holy things; but you have set performers of my duty in my sanctuary for yourselves.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Thus says the Lord Yahweh, No foreigner, uncircumcised in heart and uncircumcised in flesh, shall enter into my sanctuary, of any foreigners who are among the children of Israel.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But the Levites who went far from me, when Israel went astray, who went astray from me after their idols, they shall bear their iniquity.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Yet they shall be ministers in my sanctuary, having oversight at the gates of the house, and ministering in the house: they shall kill the burnt offering and the sacrifice for the people, and they shall stand before them to minister to them.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Because they ministered to them before their idols, and became a stumbling block of iniquity to the house of Israel; therefore I have lifted up my hand against them, says the Lord Yahweh, and they shall bear their iniquity.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">They shall not come near to me, to execute the office of priest to me, nor to come near to any of my holy things, to the things that are most holy; but they shall bear their shame, and their abominations which they have committed.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Yet will I make them performers of the duty of the house, for all its service, and for all that shall be done therein.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">But the priests the Levites, the sons of Zadok, who performed the duty of my sanctuary when the children of Israel went astray from me, they shall come near to me to minister to me; and they shall stand before me to offer to me the fat and the blood, says the Lord Yahweh:</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">they shall enter into my sanctuary, and they shall come near to my table, to minister to me, and they shall keep my instruction.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">It shall be that, when they enter in at the gates of the inner court, they shall be clothed with linen garments; and no wool shall come on them, while they minister in the gates of the inner court, and within.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">They shall have linen tires on their heads, and shall have linen breeches on their waists; they shall not clothe themselves with anything that makes them sweat.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">When they go out into the outer court, even into the outer court to the people, they shall put off their garments in which they minister, and lay them in the holy rooms; and they shall put on other garments, that they not sanctify the people with their garments.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Neither shall they shave their heads, nor allow their locks to grow long; they shall only cut off the hair of their heads.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Neither shall any of the priests drink wine, when they enter into the inner court.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Neither shall they take for their wives a widow, nor her who is put away; but they shall take virgins of the offspring  of the house of Israel, or a widow who is the widow of a priest.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">They shall teach my people the difference between the holy and the common, and cause them to discern between the unclean and the clean.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">In a controversy they shall stand to judge; according to my ordinances shall they judge it: and they shall keep my laws and my statutes in all my appointed feasts; and they shall make my Sabbaths holy.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">They shall go in to no dead person to defile themselves; but for father, or for mother, or for son, or for daughter, for brother, or for sister who has had no husband, they may defile themselves.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">After he is cleansed, they shall reckon to him seven days.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">In the day that he goes into the sanctuary, into the inner court, to minister in the sanctuary, he shall offer his sin offering, says the Lord Yahweh.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">They shall have an inheritance: I am their inheritance; and you shall give them no possession in Israel; I am their possession.</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">They shall eat the meal offering, and the sin offering, and the trespass offering; and every devoted thing in Israel shall be theirs.</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">The first of all the first fruits of every thing, and every offering of everything, of all your offerings, shall be for the priest: you shall also give to the priests the first of your dough, to cause a blessing to rest on your house.</span></div>
-                <div class="verse"><span class="verse-num">31</span><span class="verse-text">The priests shall not eat of anything that dies of itself, or is torn, whether it is bird or animal.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Then he brought me back by the way of the outer gate of the sanctuary, which looks toward the east; and it was shut.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Yahweh said to me, This gate shall be shut; it shall not be opened, neither shall any man enter in by it; for Yahweh, the God of Israel, has entered in by it; therefore it shall be shut.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">As for the prince, he shall sit therein as prince to eat bread before Yahweh; he shall enter by the way of the porch of the gate, and shall go out by the way of the same.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Then he brought me by the way of the north gate before the house; and I looked, and behold, Yahweh’s glory filled Yahweh’s house: and I fell on my face.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Yahweh said to me, Son of man, mark well, and see with your eyes, and hear with your ears all that I tell you concerning all the ordinances of Yahweh’s house, and all its laws; and mark well the entrance of the house, with every exit of the sanctuary.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">You shall tell the rebellious, even to the house of Israel, Thus says the Lord Yahweh: you house of Israel, let it suffice you of all your abominations,</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">in that you have brought in foreigners, uncircumcised in heart and uncircumcised in flesh, to be in my sanctuary, to profane it, even my house, when you offer my bread, the fat and the blood, and they have broken my covenant, to add to all your abominations.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">You have not performed the duty of my holy things; but you have set performers of my duty in my sanctuary for yourselves.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Thus says the Lord Yahweh, No foreigner, uncircumcised in heart and uncircumcised in flesh, shall enter into my sanctuary, of any foreigners who are among the children of Israel.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But the Levites who went far from me, when Israel went astray, who went astray from me after their idols, they shall bear their iniquity.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Yet they shall be ministers in my sanctuary, having oversight at the gates of the house, and ministering in the house: they shall kill the burnt offering and the sacrifice for the people, and they shall stand before them to minister to them.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Because they ministered to them before their idols, and became a stumbling block of iniquity to the house of Israel; therefore I have lifted up my hand against them, says the Lord Yahweh, and they shall bear their iniquity.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">They shall not come near to me, to execute the office of priest to me, nor to come near to any of my holy things, to the things that are most holy; but they shall bear their shame, and their abominations which they have committed.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Yet will I make them performers of the duty of the house, for all its service, and for all that shall be done therein.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">But the priests the Levites, the sons of Zadok, who performed the duty of my sanctuary when the children of Israel went astray from me, they shall come near to me to minister to me; and they shall stand before me to offer to me the fat and the blood, says the Lord Yahweh:</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">they shall enter into my sanctuary, and they shall come near to my table, to minister to me, and they shall keep my instruction.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">It shall be that, when they enter in at the gates of the inner court, they shall be clothed with linen garments; and no wool shall come on them, while they minister in the gates of the inner court, and within.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">They shall have linen tires on their heads, and shall have linen breeches on their waists; they shall not clothe themselves with anything that makes them sweat.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">When they go out into the outer court, even into the outer court to the people, they shall put off their garments in which they minister, and lay them in the holy rooms; and they shall put on other garments, that they not sanctify the people with their garments.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Neither shall they shave their heads, nor allow their locks to grow long; they shall only cut off the hair of their heads.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Neither shall any of the priests drink wine, when they enter into the inner court.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Neither shall they take for their wives a widow, nor her who is put away; but they shall take virgins of the offspring  of the house of Israel, or a widow who is the widow of a priest.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">They shall teach my people the difference between the holy and the common, and cause them to discern between the unclean and the clean.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">In a controversy they shall stand to judge; according to my ordinances shall they judge it: and they shall keep my laws and my statutes in all my appointed feasts; and they shall make my Sabbaths holy.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">They shall go in to no dead person to defile themselves; but for father, or for mother, or for son, or for daughter, for brother, or for sister who has had no husband, they may defile themselves.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">After he is cleansed, they shall reckon to him seven days.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">In the day that he goes into the sanctuary, into the inner court, to minister in the sanctuary, he shall offer his sin offering, says the Lord Yahweh.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">They shall have an inheritance: I am their inheritance; and you shall give them no possession in Israel; I am their possession.</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">They shall eat the meal offering, and the sin offering, and the trespass offering; and every devoted thing in Israel shall be theirs.</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">The first of all the first fruits of every thing, and every offering of everything, of all your offerings, shall be for the priest: you shall also give to the priests the first of your dough, to cause a blessing to rest on your house.</span></div>\n                <div class="verse"><span class="verse-num">31</span><span class="verse-text">The priests shall not eat of anything that dies of itself, or is torn, whether it is bird or animal.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../43/" class="nav-btn">← Chapter 43</a>
-                <a href="../../" class="nav-btn">↑ Ezekiel Index</a>
-                <a href="../45/" class="nav-btn">Chapter 45 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -140,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

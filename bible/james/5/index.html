@@ -4,123 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James 5 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">James</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>James 5</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="james" data-chapter="5">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Come now, you rich, weep and howl for your miseries that are coming on you.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Your riches are corrupted and your garments are moth-eaten.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Your gold and your silver are corroded, and their corrosion will be for a testimony against you, and will eat your flesh like fire. You have laid up your treasure in the last days.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Behold, the wages of the laborers who mowed your fields, which you have kept back by fraud, cry out, and the cries of those who reaped have entered into the ears of the Lord of Armies.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">You have lived delicately on the earth, and taken your pleasure. You have nourished your hearts as in a day of slaughter.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">You have condemned, you have murdered the righteous one. He doesn’t resist you.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Be patient therefore, brothers, until the coming of the Lord. Behold, the farmer waits for the precious fruit of the earth, being patient over it, until it receives the early and late rain.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">You also be patient. Establish your hearts, for the coming of the Lord is at hand.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Don’t grumble, brothers, against one another, so that you won’t be judged. Behold, the judge stands at the door.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Take, brothers, for an example of suffering and of perseverance, the prophets who spoke in the name of the Lord.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Behold, we call them blessed who endured. You have heard of the perseverance of Job, and have seen the Lord in the outcome, and how the Lord is full of compassion and mercy.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">But above all things, my brothers, don’t swear — not by heaven, or by the earth, or by any other oath; but let your “yes” be “yes”, and your “no”, “no”; so that you don’t fall into hypocrisy.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Is any among you suffering? Let him pray. Is any cheerful? Let him sing praises.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Is any among you sick? Let him call for the elders of the assembly, and let them pray over him, anointing him with oil in the name of the Lord,</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">and the prayer of faith will heal him who is sick, and the Lord will raise him up. If he has committed sins, he will be forgiven.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Confess your offenses to one another, and pray for one another, that you may be healed. The insistent prayer of a righteous person is powerfully effective.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Elijah was a man with a nature like ours, and he prayed earnestly that it might not rain, and it didn’t rain on the earth for three years and six months.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">He prayed again, and the sky gave rain, and the earth produced its fruit.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Brothers, if any among you wanders from the truth and someone turns him back,</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">let him know that he who turns a sinner from the error of his way will save a soul from death and will cover a multitude of sins.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Come now, you rich, weep and howl for your miseries that are coming on you.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Your riches are corrupted and your garments are moth-eaten.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Your gold and your silver are corroded, and their corrosion will be for a testimony against you, and will eat your flesh like fire. You have laid up your treasure in the last days.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Behold, the wages of the laborers who mowed your fields, which you have kept back by fraud, cry out, and the cries of those who reaped have entered into the ears of the Lord of Armies.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">You have lived delicately on the earth, and taken your pleasure. You have nourished your hearts as in a day of slaughter.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">You have condemned, you have murdered the righteous one. He doesn’t resist you.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Be patient therefore, brothers, until the coming of the Lord. Behold, the farmer waits for the precious fruit of the earth, being patient over it, until it receives the early and late rain.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">You also be patient. Establish your hearts, for the coming of the Lord is at hand.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Don’t grumble, brothers, against one another, so that you won’t be judged. Behold, the judge stands at the door.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Take, brothers, for an example of suffering and of perseverance, the prophets who spoke in the name of the Lord.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Behold, we call them blessed who endured. You have heard of the perseverance of Job, and have seen the Lord in the outcome, and how the Lord is full of compassion and mercy.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">But above all things, my brothers, don’t swear — not by heaven, or by the earth, or by any other oath; but let your “yes” be “yes”, and your “no”, “no”; so that you don’t fall into hypocrisy.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Is any among you suffering? Let him pray. Is any cheerful? Let him sing praises.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Is any among you sick? Let him call for the elders of the assembly, and let them pray over him, anointing him with oil in the name of the Lord,</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">and the prayer of faith will heal him who is sick, and the Lord will raise him up. If he has committed sins, he will be forgiven.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Confess your offenses to one another, and pray for one another, that you may be healed. The insistent prayer of a righteous person is powerfully effective.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Elijah was a man with a nature like ours, and he prayed earnestly that it might not rain, and it didn’t rain on the earth for three years and six months.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">He prayed again, and the sky gave rain, and the earth produced its fruit.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Brothers, if any among you wanders from the truth and someone turns him back,</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">let him know that he who turns a sinner from the error of his way will save a soul from death and will cover a multitude of sins.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../4/" class="nav-btn">← Chapter 4</a>
-                <a href="../../" class="nav-btn">↑ James Index</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
                 <span></span>
             </div>
         </main>
@@ -129,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

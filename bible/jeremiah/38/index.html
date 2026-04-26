@@ -4,132 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeremiah 38 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Jeremiah</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>Jeremiah 38</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="jeremiah" data-chapter="38">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Shephatiah the son of Mattan, and Gedaliah the son of Pashhur, and Jucal the son of Shelemiah, and Pashhur the son of Malchijah, heard the words that Jeremiah spoke to all the people, saying,</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">“Yahweh says, ‘He who remains in this city shall die by the sword, by the famine, and by the pestilence; but he who goes out to the Chaldeans shall live, and his life shall be to him for a prey, and he shall live.’</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh says, ‘This city will surely be given into the hand of the army of the king of Babylon, and he will take it.’”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Then the princes said to the king, “Please let this man be put to death; because he weakens the hands of the men of war who remain in this city, and the hands of all the people, in speaking such words to them: for this man doesn’t seek the welfare of this people, but harm.”</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Zedekiah the king said, “Behold, he is in your hand; for the king can’t do anything to oppose you.”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Then took they Jeremiah, and cast him into the dungeon of Malchijah the king’s son, that was in the court of the guard. They let down Jeremiah with cords. In the dungeon there was no water, but mire; and Jeremiah sank in the mire.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Now when Ebedmelech the Ethiopian, a eunuch, who was in the king’s house, heard that they had put Jeremiah in the dungeon (the king was then sitting in the gate of Benjamin),</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Ebedmelech went out of the king’s house, and spoke to the king, saying,</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">“My lord the king, these men have done evil in all that they have done to Jeremiah the prophet, whom they have cast into the dungeon. He is likely to die in the place where he is, because of the famine; for there is no more bread in the city.”</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Then the king commanded Ebedmelech the Ethiopian, saying, “Take from here thirty men with you, and take up Jeremiah the prophet out of the dungeon, before he dies.”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">So Ebedmelech took the men with him, and went into the house of the king under the treasury, and took there rags and worn-out garments, and let them down by cords into the dungeon to Jeremiah.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Ebedmelech the Ethiopian said to Jeremiah, “Now put these rags and worn-out garments under your armpits under the cords.” Jeremiah did so.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">So they drew up Jeremiah with the cords, and took him up out of the dungeon; and Jeremiah remained in the court of the guard.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Then Zedekiah the king sent, and took Jeremiah the prophet to himself into the third entry that is in Yahweh’s house. Then the king said to Jeremiah, “I will ask you something. Hide nothing from me.”</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">Then Jeremiah said to Zedekiah, “If I declare it to you, will you not surely put me to death? If I give you counsel, you will not listen to me.”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">So Zedekiah the king swore secretly to Jeremiah, saying, “As Yahweh lives, who made us this soul, I will not put you to death, neither will I give you into the hand of these men who seek your life.”</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Then Jeremiah said to Zedekiah, “Yahweh, the God of Armies, the God of Israel, says: ‘If you will go out to the king of Babylon’s princes, then your soul will live, and this city will not be burned with fire. You will live, along with your house.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">But if you will not go out to the king of Babylon’s princes, then this city will be given into the hand of the Chaldeans, and they will burn it with fire, and you won’t escape out of their hand.’”</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Zedekiah the king said to Jeremiah, “I am afraid of the Jews who have defected to the Chaldeans, lest they deliver me into their hand, and they mock me.”</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But Jeremiah said, “They won’t deliver you. Obey, I beg you, Yahweh’s voice, in that which I speak to you; so it will be well with you, and your soul shall live.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But if you refuse to go out, this is the word that Yahweh has shown me:</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">‘Behold, all the women who are left in the king of Judah’s house will be brought out to the king of Babylon’s princes, and those women will say, “Your familiar friends have turned on you, and have prevailed over you. Your feet are sunk in the mire, they have turned away from you.”</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">They will bring out all your wives and your children to the Chaldeans. You won’t escape out of their hand, but will be taken by the hand of the king of Babylon. You will cause this city to be burned with fire.’”</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Then Zedekiah said to Jeremiah, “Let no man know of these words, and you won’t die.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But if the princes hear that I have talked with you, and they come to you, and tell you, ‘Declare to us now what you have said to the king; don’t hide it from us, and we will not put you to death; also what the king said to you;’</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">then you shall tell them, ‘I presented my supplication before the king, that he would not cause me to return to Jonathan’s house, to die there.’”</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Then came all the princes to Jeremiah, and asked him; and he told them according to all these words that the king had commanded. So they stopped speaking with him; for the matter was not perceived.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">So Jeremiah stayed in the court of the guard until the day that Jerusalem was taken.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Shephatiah the son of Mattan, and Gedaliah the son of Pashhur, and Jucal the son of Shelemiah, and Pashhur the son of Malchijah, heard the words that Jeremiah spoke to all the people, saying,</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">“Yahweh says, ‘He who remains in this city shall die by the sword, by the famine, and by the pestilence; but he who goes out to the Chaldeans shall live, and his life shall be to him for a prey, and he shall live.’</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Yahweh says, ‘This city will surely be given into the hand of the army of the king of Babylon, and he will take it.’”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Then the princes said to the king, “Please let this man be put to death; because he weakens the hands of the men of war who remain in this city, and the hands of all the people, in speaking such words to them: for this man doesn’t seek the welfare of this people, but harm.”</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Zedekiah the king said, “Behold, he is in your hand; for the king can’t do anything to oppose you.”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Then took they Jeremiah, and cast him into the dungeon of Malchijah the king’s son, that was in the court of the guard. They let down Jeremiah with cords. In the dungeon there was no water, but mire; and Jeremiah sank in the mire.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Now when Ebedmelech the Ethiopian, a eunuch, who was in the king’s house, heard that they had put Jeremiah in the dungeon (the king was then sitting in the gate of Benjamin),</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Ebedmelech went out of the king’s house, and spoke to the king, saying,</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">“My lord the king, these men have done evil in all that they have done to Jeremiah the prophet, whom they have cast into the dungeon. He is likely to die in the place where he is, because of the famine; for there is no more bread in the city.”</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Then the king commanded Ebedmelech the Ethiopian, saying, “Take from here thirty men with you, and take up Jeremiah the prophet out of the dungeon, before he dies.”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">So Ebedmelech took the men with him, and went into the house of the king under the treasury, and took there rags and worn-out garments, and let them down by cords into the dungeon to Jeremiah.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Ebedmelech the Ethiopian said to Jeremiah, “Now put these rags and worn-out garments under your armpits under the cords.” Jeremiah did so.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">So they drew up Jeremiah with the cords, and took him up out of the dungeon; and Jeremiah remained in the court of the guard.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Then Zedekiah the king sent, and took Jeremiah the prophet to himself into the third entry that is in Yahweh’s house. Then the king said to Jeremiah, “I will ask you something. Hide nothing from me.”</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">Then Jeremiah said to Zedekiah, “If I declare it to you, will you not surely put me to death? If I give you counsel, you will not listen to me.”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">So Zedekiah the king swore secretly to Jeremiah, saying, “As Yahweh lives, who made us this soul, I will not put you to death, neither will I give you into the hand of these men who seek your life.”</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Then Jeremiah said to Zedekiah, “Yahweh, the God of Armies, the God of Israel, says: ‘If you will go out to the king of Babylon’s princes, then your soul will live, and this city will not be burned with fire. You will live, along with your house.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">But if you will not go out to the king of Babylon’s princes, then this city will be given into the hand of the Chaldeans, and they will burn it with fire, and you won’t escape out of their hand.’”</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Zedekiah the king said to Jeremiah, “I am afraid of the Jews who have defected to the Chaldeans, lest they deliver me into their hand, and they mock me.”</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But Jeremiah said, “They won’t deliver you. Obey, I beg you, Yahweh’s voice, in that which I speak to you; so it will be well with you, and your soul shall live.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But if you refuse to go out, this is the word that Yahweh has shown me:</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">‘Behold, all the women who are left in the king of Judah’s house will be brought out to the king of Babylon’s princes, and those women will say, “Your familiar friends have turned on you, and have prevailed over you. Your feet are sunk in the mire, they have turned away from you.”</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">They will bring out all your wives and your children to the Chaldeans. You won’t escape out of their hand, but will be taken by the hand of the king of Babylon. You will cause this city to be burned with fire.’”</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Then Zedekiah said to Jeremiah, “Let no man know of these words, and you won’t die.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But if the princes hear that I have talked with you, and they come to you, and tell you, ‘Declare to us now what you have said to the king; don’t hide it from us, and we will not put you to death; also what the king said to you;’</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">then you shall tell them, ‘I presented my supplication before the king, that he would not cause me to return to Jonathan’s house, to die there.’”</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Then came all the princes to Jeremiah, and asked him; and he told them according to all these words that the king had commanded. So they stopped speaking with him; for the matter was not perceived.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">So Jeremiah stayed in the court of the guard until the day that Jerusalem was taken.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../37/" class="nav-btn">← Chapter 37</a>
-                <a href="../../" class="nav-btn">↑ Jeremiah Index</a>
-                <a href="../39/" class="nav-btn">Chapter 39 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -137,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

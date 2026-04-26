@@ -4,133 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genesis 35 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Genesis</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>Genesis 35</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="genesis" data-chapter="35">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">God said to Jacob, “Arise, go up to Bethel, and live there. Make there an altar to God, who appeared to you when you fled from the face of Esau your brother.”</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Then Jacob said to his household, and to all who were with him, “Put away the foreign gods that are among you, purify yourselves, change your garments.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Let us arise, and go up to Bethel. I will make there an altar to God, who answered me in the day of my distress, and was with me on the way which I went.”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">They gave to Jacob all the foreign gods which were in their hands, and the rings which were in their ears; and Jacob hid them under the oak which was by Shechem.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">They traveled, and a terror of God was on the cities that were around them, and they didn’t pursue the sons of Jacob.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">So Jacob came to Luz (that is, Bethel), which is in the land of Canaan, he and all the people who were with him.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">He built an altar there, and called the place El Beth El; because there God was revealed to him, when he fled from the face of his brother.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Deborah, Rebekah’s nurse, died, and she was buried below Bethel under the oak; and its name was called Allon Bacuth.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">God appeared to Jacob again, when he came from Paddan Aram, and blessed him.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">God said to him, “Your name is Jacob. Your name shall not be Jacob any more, but your name will be Israel.” He named him Israel.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">God said to him, “I am God Almighty. Be fruitful and multiply. A nation and a company of nations will be from you, and kings will come out of your body.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">The land which I gave to Abraham and Isaac, I will give it to you, and to your offspring  after you will I give the land.”</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">God went up from him in the place where he spoke with him.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Jacob set up a pillar in the place where he spoke with him, a pillar of stone. He poured out a drink offering on it, and poured oil on it.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">Jacob called the name of the place where God spoke with him “Bethel”.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">They traveled from Bethel. There was still some distance to come to Ephrath, and Rachel travailed. She had hard labor.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">When she was in hard labor, the midwife said to her, “Don’t be afraid, for now you will have another son.”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">As her soul was departing (for she died), she named him Benoni,  but his father named him Benjamin.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Rachel died, and was buried on the way to Ephrath (also called Bethlehem).</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Jacob set up a pillar on her grave. The same is the Pillar of Rachel’s grave to this day.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Israel traveled, and spread his tent beyond the tower of Eder.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">While Israel lived in that land, Reuben went and lay with Bilhah, his father’s concubine, and Israel heard of it. Now the sons of Jacob were twelve.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The sons of Leah: Reuben (Jacob’s firstborn), Simeon, Levi, Judah, Issachar, and Zebulun.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The sons of Rachel: Joseph and Benjamin.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">The sons of Bilhah (Rachel’s servant): Dan and Naphtali.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">The sons of Zilpah (Leah’s servant): Gad and Asher. These are the sons of Jacob, who were born to him in Paddan Aram.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Jacob came to Isaac his father, to Mamre, to Kiriath Arba (which is Hebron), where Abraham and Isaac lived as foreigners.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">The days of Isaac were one hundred eighty years.</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Isaac gave up the spirit, and died, and was gathered to his people, old and full of days. Esau and Jacob, his sons, buried him.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">God said to Jacob, “Arise, go up to Bethel, and live there. Make there an altar to God, who appeared to you when you fled from the face of Esau your brother.”</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Then Jacob said to his household, and to all who were with him, “Put away the foreign gods that are among you, purify yourselves, change your garments.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Let us arise, and go up to Bethel. I will make there an altar to God, who answered me in the day of my distress, and was with me on the way which I went.”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">They gave to Jacob all the foreign gods which were in their hands, and the rings which were in their ears; and Jacob hid them under the oak which was by Shechem.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">They traveled, and a terror of God was on the cities that were around them, and they didn’t pursue the sons of Jacob.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">So Jacob came to Luz (that is, Bethel), which is in the land of Canaan, he and all the people who were with him.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">He built an altar there, and called the place El Beth El; because there God was revealed to him, when he fled from the face of his brother.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Deborah, Rebekah’s nurse, died, and she was buried below Bethel under the oak; and its name was called Allon Bacuth.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">God appeared to Jacob again, when he came from Paddan Aram, and blessed him.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">God said to him, “Your name is Jacob. Your name shall not be Jacob any more, but your name will be Israel.” He named him Israel.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">God said to him, “I am God Almighty. Be fruitful and multiply. A nation and a company of nations will be from you, and kings will come out of your body.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">The land which I gave to Abraham and Isaac, I will give it to you, and to your offspring  after you will I give the land.”</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">God went up from him in the place where he spoke with him.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Jacob set up a pillar in the place where he spoke with him, a pillar of stone. He poured out a drink offering on it, and poured oil on it.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">Jacob called the name of the place where God spoke with him “Bethel”.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">They traveled from Bethel. There was still some distance to come to Ephrath, and Rachel travailed. She had hard labor.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">When she was in hard labor, the midwife said to her, “Don’t be afraid, for now you will have another son.”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">As her soul was departing (for she died), she named him Benoni,  but his father named him Benjamin.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Rachel died, and was buried on the way to Ephrath (also called Bethlehem).</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Jacob set up a pillar on her grave. The same is the Pillar of Rachel’s grave to this day.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Israel traveled, and spread his tent beyond the tower of Eder.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">While Israel lived in that land, Reuben went and lay with Bilhah, his father’s concubine, and Israel heard of it. Now the sons of Jacob were twelve.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The sons of Leah: Reuben (Jacob’s firstborn), Simeon, Levi, Judah, Issachar, and Zebulun.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The sons of Rachel: Joseph and Benjamin.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">The sons of Bilhah (Rachel’s servant): Dan and Naphtali.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">The sons of Zilpah (Leah’s servant): Gad and Asher. These are the sons of Jacob, who were born to him in Paddan Aram.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Jacob came to Isaac his father, to Mamre, to Kiriath Arba (which is Hebron), where Abraham and Isaac lived as foreigners.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">The days of Isaac were one hundred eighty years.</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Isaac gave up the spirit, and died, and was gathered to his people, old and full of days. Esau and Jacob, his sons, buried him.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../34/" class="nav-btn">← Chapter 34</a>
-                <a href="../../" class="nav-btn">↑ Genesis Index</a>
-                <a href="../36/" class="nav-btn">Chapter 36 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -138,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

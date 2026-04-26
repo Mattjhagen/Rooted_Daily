@@ -4,132 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acts 14 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Acts</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>Acts 14</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="acts" data-chapter="14">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In Iconium, they entered together into the synagogue of the Jews, and so spoke that a great multitude both of Jews and of Greeks believed.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">But the disbelieving  Jews stirred up and embittered the souls of the Gentiles against the brothers.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Therefore they stayed there a long time, speaking boldly in the Lord, who testified to the word of his grace, granting signs and wonders to be done by their hands.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">But the multitude of the city was divided. Part sided with the Jews, and part with the apostles.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">When some of both the Gentiles and the Jews, with their rulers, made a violent attempt to mistreat and stone them,</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">they became aware of it, and fled to the cities of Lycaonia, Lystra, Derbe, and the surrounding region.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">There they preached the Good News.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">At Lystra a certain man sat, impotent in his feet, a cripple from his mother’s womb, who never had walked.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">He was listening to Paul speaking, who, fastening eyes on him, and seeing that he had faith to be made whole,</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">said with a loud voice, “Stand upright on your feet!” He leaped up and walked.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">When the multitude saw what Paul had done, they lifted up their voice, saying in the language of Lycaonia, “The gods have come down to us in the likeness of men!”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">They called Barnabas “Jupiter”, and Paul “Mercury”, because he was the chief speaker.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The priest of Jupiter, whose temple was in front of their city, brought oxen and garlands to the gates, and would have made a sacrifice along with the multitudes.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">But when the apostles, Barnabas and Paul, heard of it, they tore their clothes, and sprang into the multitude, crying out,</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">“Men, why are you doing these things? We also are men of like passions with you, and bring you good news, that you should turn from these vain things to the living God, who made the sky, the earth, the sea, and all that is in them;</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">who in the generations gone by allowed all the nations to walk in their own ways.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Yet he didn’t leave himself without witness, in that he did good and gave you  rains from the sky and fruitful seasons, filling our hearts with food and gladness.”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Even saying these things, they hardly stopped the multitudes from making a sacrifice to them.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">But some Jews from Antioch and Iconium came there, and having persuaded the multitudes, they stoned Paul, and dragged him out of the city, supposing that he was dead.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But as the disciples stood around him, he rose up, and entered into the city. On the next day he went out with Barnabas to Derbe.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">When they had preached the Good News to that city, and had made many disciples, they returned to Lystra, Iconium, and Antioch,</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">confirming the souls of the disciples, exhorting them to continue in the faith, and that through many afflictions we must enter into God’s Kingdom.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">When they had appointed elders for them in every assembly, and had prayed with fasting, they commended them to the Lord, on whom they had believed.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">They passed through Pisidia, and came to Pamphylia.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">When they had spoken the word in Perga, they went down to Attalia.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">From there they sailed to Antioch, from where they had been committed to the grace of God for the work which they had fulfilled.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When they had arrived, and had gathered the assembly together, they reported all the things that God had done with them, and that he had opened a door of faith to the nations.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">They stayed there with the disciples for a long time.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In Iconium, they entered together into the synagogue of the Jews, and so spoke that a great multitude both of Jews and of Greeks believed.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">But the disbelieving  Jews stirred up and embittered the souls of the Gentiles against the brothers.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Therefore they stayed there a long time, speaking boldly in the Lord, who testified to the word of his grace, granting signs and wonders to be done by their hands.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">But the multitude of the city was divided. Part sided with the Jews, and part with the apostles.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">When some of both the Gentiles and the Jews, with their rulers, made a violent attempt to mistreat and stone them,</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">they became aware of it, and fled to the cities of Lycaonia, Lystra, Derbe, and the surrounding region.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">There they preached the Good News.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">At Lystra a certain man sat, impotent in his feet, a cripple from his mother’s womb, who never had walked.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">He was listening to Paul speaking, who, fastening eyes on him, and seeing that he had faith to be made whole,</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">said with a loud voice, “Stand upright on your feet!” He leaped up and walked.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">When the multitude saw what Paul had done, they lifted up their voice, saying in the language of Lycaonia, “The gods have come down to us in the likeness of men!”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">They called Barnabas “Jupiter”, and Paul “Mercury”, because he was the chief speaker.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The priest of Jupiter, whose temple was in front of their city, brought oxen and garlands to the gates, and would have made a sacrifice along with the multitudes.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">But when the apostles, Barnabas and Paul, heard of it, they tore their clothes, and sprang into the multitude, crying out,</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">“Men, why are you doing these things? We also are men of like passions with you, and bring you good news, that you should turn from these vain things to the living God, who made the sky, the earth, the sea, and all that is in them;</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">who in the generations gone by allowed all the nations to walk in their own ways.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Yet he didn’t leave himself without witness, in that he did good and gave you  rains from the sky and fruitful seasons, filling our hearts with food and gladness.”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Even saying these things, they hardly stopped the multitudes from making a sacrifice to them.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">But some Jews from Antioch and Iconium came there, and having persuaded the multitudes, they stoned Paul, and dragged him out of the city, supposing that he was dead.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But as the disciples stood around him, he rose up, and entered into the city. On the next day he went out with Barnabas to Derbe.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">When they had preached the Good News to that city, and had made many disciples, they returned to Lystra, Iconium, and Antioch,</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">confirming the souls of the disciples, exhorting them to continue in the faith, and that through many afflictions we must enter into God’s Kingdom.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">When they had appointed elders for them in every assembly, and had prayed with fasting, they commended them to the Lord, on whom they had believed.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">They passed through Pisidia, and came to Pamphylia.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">When they had spoken the word in Perga, they went down to Attalia.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">From there they sailed to Antioch, from where they had been committed to the grace of God for the work which they had fulfilled.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When they had arrived, and had gathered the assembly together, they reported all the things that God had done with them, and that he had opened a door of faith to the nations.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">They stayed there with the disciples for a long time.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../13/" class="nav-btn">← Chapter 13</a>
-                <a href="../../" class="nav-btn">↑ Acts Index</a>
-                <a href="../15/" class="nav-btn">Chapter 15 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -137,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

@@ -4,131 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John 15 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">John</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>John 15</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="john" data-chapter="15">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">“I am the true vine, and my Father is the farmer.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Every branch in me that doesn’t bear fruit, he takes away. Every branch that bears fruit, he prunes, that it may bear more fruit.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">You are already pruned clean because of the word which I have spoken to you.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Remain in me, and I in you. As the branch can’t bear fruit by itself, unless it remains in the vine, so neither can you, unless you remain in me.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">I am the vine. You are the branches. He who remains in me, and I in him, the same bears much fruit, for apart from me you can do nothing.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">If a man doesn’t remain in me, he is thrown out as a branch, and is withered; and they gather them, throw them into the fire, and they are burned.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">If you remain in me, and my words remain in you, you will ask whatever you desire, and it will be done for you.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">“In this is my Father glorified, that you bear much fruit; and so you will be my disciples.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Even as the Father has loved me, I also have loved you. Remain in my love.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">If you keep my commandments, you will remain in my love; even as I have kept my Father’s commandments, and remain in his love.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">I have spoken these things to you, that my joy may remain in you, and that your joy may be made full.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">“This is my commandment, that you love one another, even as I have loved you.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Greater love has no one than this, that someone lay down his life for his friends.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">You are my friends, if you do whatever I command you.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">No longer do I call you servants, for the servant doesn’t know what his lord does. But I have called you friends, for everything that I heard from my Father, I have made known to you.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">You didn’t choose me, but I chose you, and appointed you, that you should go and bear fruit, and that your fruit should remain; that whatever you will ask of the Father in my name, he may give it to you.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">“I command these things to you, that you may love one another.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">If the world hates you, you know that it has hated me before it hated you.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">If you were of the world, the world would love its own. But because you are not of the world, since I chose you out of the world, therefore the world hates you.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Remember the word that I said to you: ‘A servant is not greater than his lord.’  If they persecuted me, they will also persecute you. If they kept my word, they will also keep yours.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But all these things will they do to you for my name’s sake, because they don’t know him who sent me.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">If I had not come and spoken to them, they would not have had sin; but now they have no excuse for their sin.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">He who hates me, hates my Father also.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">If I hadn’t done among them the works which no one else did, they wouldn’t have had sin. But now have they seen and also hated both me and my Father.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But this happened so that the word may be fulfilled which was written in their law, ‘They hated me without a cause.’</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">“When the Counselor  has come, whom I will send to you from the Father, the Spirit of truth, who proceeds from the Father, he will testify about me.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">You will also testify, because you have been with me from the beginning.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">“I am the true vine, and my Father is the farmer.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Every branch in me that doesn’t bear fruit, he takes away. Every branch that bears fruit, he prunes, that it may bear more fruit.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">You are already pruned clean because of the word which I have spoken to you.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Remain in me, and I in you. As the branch can’t bear fruit by itself, unless it remains in the vine, so neither can you, unless you remain in me.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">I am the vine. You are the branches. He who remains in me, and I in him, the same bears much fruit, for apart from me you can do nothing.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">If a man doesn’t remain in me, he is thrown out as a branch, and is withered; and they gather them, throw them into the fire, and they are burned.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">If you remain in me, and my words remain in you, you will ask whatever you desire, and it will be done for you.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">“In this is my Father glorified, that you bear much fruit; and so you will be my disciples.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Even as the Father has loved me, I also have loved you. Remain in my love.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">If you keep my commandments, you will remain in my love; even as I have kept my Father’s commandments, and remain in his love.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">I have spoken these things to you, that my joy may remain in you, and that your joy may be made full.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">“This is my commandment, that you love one another, even as I have loved you.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Greater love has no one than this, that someone lay down his life for his friends.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">You are my friends, if you do whatever I command you.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">No longer do I call you servants, for the servant doesn’t know what his lord does. But I have called you friends, for everything that I heard from my Father, I have made known to you.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">You didn’t choose me, but I chose you, and appointed you, that you should go and bear fruit, and that your fruit should remain; that whatever you will ask of the Father in my name, he may give it to you.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">“I command these things to you, that you may love one another.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">If the world hates you, you know that it has hated me before it hated you.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">If you were of the world, the world would love its own. But because you are not of the world, since I chose you out of the world, therefore the world hates you.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Remember the word that I said to you: ‘A servant is not greater than his lord.’  If they persecuted me, they will also persecute you. If they kept my word, they will also keep yours.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But all these things will they do to you for my name’s sake, because they don’t know him who sent me.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">If I had not come and spoken to them, they would not have had sin; but now they have no excuse for their sin.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">He who hates me, hates my Father also.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">If I hadn’t done among them the works which no one else did, they wouldn’t have had sin. But now have they seen and also hated both me and my Father.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But this happened so that the word may be fulfilled which was written in their law, ‘They hated me without a cause.’</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">“When the Counselor  has come, whom I will send to you from the Father, the Spirit of truth, who proceeds from the Father, he will testify about me.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">You will also testify, because you have been with me from the beginning.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../14/" class="nav-btn">← Chapter 14</a>
-                <a href="../../" class="nav-btn">↑ John Index</a>
-                <a href="../16/" class="nav-btn">Chapter 16 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -136,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

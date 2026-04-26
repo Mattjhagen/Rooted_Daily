@@ -4,134 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Judges 19 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Judges</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>Judges 19</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="judges" data-chapter="19">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In those days, when there was no king in Israel, there was a certain Levite living on the farther side of the hill country of Ephraim, who took for himself a concubine out of Bethlehem Judah.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">His concubine played the prostitute against him, and went away from him to her father’s house to Bethlehem Judah, and was there for four months.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Her husband arose, and went after her, to speak kindly to her, to bring her again, having his servant with him, and a couple of donkeys. She brought him into her father’s house; and when the father of the young lady saw him, he rejoiced to meet him.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">His father-in-law, the young lady’s father, kept him there; and he stayed with him three days. So they ate and drank, and stayed there.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">On the fourth day, they got up early in the morning, and he rose up to depart. The young lady’s father said to his son-in-law, “Strengthen your heart with a morsel of bread, and afterward you shall go your way.”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">So they sat down, ate, and drank, both of them together. Then the young lady’s father said to the man, “Please be pleased to stay all night, and let your heart be merry.”</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">The man rose up to depart; but his father-in-law urged him, and he stayed there again.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He arose early in the morning on the fifth day to depart; and the young lady’s father said, “Please strengthen your heart and stay until the day declines”; and they both ate.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">When the man rose up to depart, he, and his concubine, and his servant, his father-in-law, the young lady’s father, said to him, “Behold, now the day draws toward evening, please stay all night. Behold, the day is ending. Stay here, that your heart may be merry; and tomorrow go on your way early, that you may go home.”</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But the man wouldn’t stay that night, but he rose up and departed, and toward Jebus (also called Jerusalem). With him were a couple of saddled donkeys. His concubine also was with him.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">When they were by Jebus, the day was far spent; and the servant said to his master, “Please come and let us turn aside into this city of the Jebusites, and stay in it.”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">His master said to him, “We won’t turn aside into the city of a foreigner that is not of the children of Israel; but we will pass over to Gibeah.”</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He said to his servant, “Come and let us draw near to one of these places; and we will lodge in Gibeah, or in Ramah.”</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">So they passed on and went their way; and the sun went down on them near Gibeah, which belongs to Benjamin.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">They turned aside there, to go in to stay in Gibeah. He went in, and sat down in the street of the city; for there was no one who took them into his house to stay.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Behold, an old man came from his work out of the field at evening. Now the man was from the hill country of Ephraim, and he lived in Gibeah; but the men of the place were Benjamites.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">He lifted up his eyes, and saw the wayfaring man in the street of the city; and the old man said, “Where are you going? Where did you come from?”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">He said to him, “We are passing from Bethlehem Judah to the farther side of the hill country of Ephraim. I am from there, and I went to Bethlehem Judah. I am going to Yahweh’s house; and there is no one who has taken me into his house.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Yet there is both straw and feed for our donkeys; and there is bread and wine also for me, and for your servant, and for the young man who is with your servants. There is no lack of anything.”</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">The old man said, “Peace be to you; how ever let me supply all your needs. Just don’t sleep in the street.”</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">So he brought him into his house, and gave the donkeys fodder. Then they washed their feet, and ate and drank.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">As they were making their hearts merry, behold, the men of the city, certain base fellows, surrounded the house, beating at the door; and they spoke to the master of the house, the old man, saying, “Bring out the man who came into your house, that we can have sex with him!”</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The man, the master of the house, went out to them, and said to them, “No, my brothers, please don’t act so wickedly; since this man has come into my house, don’t do this folly.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Behold, here is my virgin daughter and his concubine. I will bring them out now. Humble them, and do with them what seems good to you; but to this man don’t do any such folly.”</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But the men wouldn’t listen to him: so the man laid hold of his concubine, and brought her out to them; and they had sex with her, and abused her all night until the morning. When the day began to dawn, they let her go.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Then the woman came in the dawning of the day, and fell down at the door of the man’s house where her lord was, until it was light.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Her lord rose up in the morning, and opened the doors of the house, and went out to go his way; and behold, the woman his concubine had fallen down at the door of the house, with her hands on the threshold.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">He said to her, “Get up, and let us be going!” but no one answered. Then he took her up on the donkey; and the man rose up, and went to his place.</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">When he had come into his house, he took a knife, and cut up his concubine, and divided her, limb by limb, into twelve pieces, and sent her throughout all the borders of Israel.</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">It was so, that all who saw it said, “Such a deed has not been done or seen from the day that the children of Israel came up out of the land of Egypt to this day! Consider it, take counsel, and speak.”</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">In those days, when there was no king in Israel, there was a certain Levite living on the farther side of the hill country of Ephraim, who took for himself a concubine out of Bethlehem Judah.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">His concubine played the prostitute against him, and went away from him to her father’s house to Bethlehem Judah, and was there for four months.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Her husband arose, and went after her, to speak kindly to her, to bring her again, having his servant with him, and a couple of donkeys. She brought him into her father’s house; and when the father of the young lady saw him, he rejoiced to meet him.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">His father-in-law, the young lady’s father, kept him there; and he stayed with him three days. So they ate and drank, and stayed there.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">On the fourth day, they got up early in the morning, and he rose up to depart. The young lady’s father said to his son-in-law, “Strengthen your heart with a morsel of bread, and afterward you shall go your way.”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">So they sat down, ate, and drank, both of them together. Then the young lady’s father said to the man, “Please be pleased to stay all night, and let your heart be merry.”</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">The man rose up to depart; but his father-in-law urged him, and he stayed there again.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He arose early in the morning on the fifth day to depart; and the young lady’s father said, “Please strengthen your heart and stay until the day declines”; and they both ate.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">When the man rose up to depart, he, and his concubine, and his servant, his father-in-law, the young lady’s father, said to him, “Behold, now the day draws toward evening, please stay all night. Behold, the day is ending. Stay here, that your heart may be merry; and tomorrow go on your way early, that you may go home.”</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But the man wouldn’t stay that night, but he rose up and departed, and toward Jebus (also called Jerusalem). With him were a couple of saddled donkeys. His concubine also was with him.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">When they were by Jebus, the day was far spent; and the servant said to his master, “Please come and let us turn aside into this city of the Jebusites, and stay in it.”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">His master said to him, “We won’t turn aside into the city of a foreigner that is not of the children of Israel; but we will pass over to Gibeah.”</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He said to his servant, “Come and let us draw near to one of these places; and we will lodge in Gibeah, or in Ramah.”</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">So they passed on and went their way; and the sun went down on them near Gibeah, which belongs to Benjamin.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">They turned aside there, to go in to stay in Gibeah. He went in, and sat down in the street of the city; for there was no one who took them into his house to stay.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Behold, an old man came from his work out of the field at evening. Now the man was from the hill country of Ephraim, and he lived in Gibeah; but the men of the place were Benjamites.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">He lifted up his eyes, and saw the wayfaring man in the street of the city; and the old man said, “Where are you going? Where did you come from?”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">He said to him, “We are passing from Bethlehem Judah to the farther side of the hill country of Ephraim. I am from there, and I went to Bethlehem Judah. I am going to Yahweh’s house; and there is no one who has taken me into his house.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Yet there is both straw and feed for our donkeys; and there is bread and wine also for me, and for your servant, and for the young man who is with your servants. There is no lack of anything.”</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">The old man said, “Peace be to you; how ever let me supply all your needs. Just don’t sleep in the street.”</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">So he brought him into his house, and gave the donkeys fodder. Then they washed their feet, and ate and drank.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">As they were making their hearts merry, behold, the men of the city, certain base fellows, surrounded the house, beating at the door; and they spoke to the master of the house, the old man, saying, “Bring out the man who came into your house, that we can have sex with him!”</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">The man, the master of the house, went out to them, and said to them, “No, my brothers, please don’t act so wickedly; since this man has come into my house, don’t do this folly.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">Behold, here is my virgin daughter and his concubine. I will bring them out now. Humble them, and do with them what seems good to you; but to this man don’t do any such folly.”</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But the men wouldn’t listen to him: so the man laid hold of his concubine, and brought her out to them; and they had sex with her, and abused her all night until the morning. When the day began to dawn, they let her go.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Then the woman came in the dawning of the day, and fell down at the door of the man’s house where her lord was, until it was light.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Her lord rose up in the morning, and opened the doors of the house, and went out to go his way; and behold, the woman his concubine had fallen down at the door of the house, with her hands on the threshold.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">He said to her, “Get up, and let us be going!” but no one answered. Then he took her up on the donkey; and the man rose up, and went to his place.</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">When he had come into his house, he took a knife, and cut up his concubine, and divided her, limb by limb, into twelve pieces, and sent her throughout all the borders of Israel.</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">It was so, that all who saw it said, “Such a deed has not been done or seen from the day that the children of Israel came up out of the land of Egypt to this day! Consider it, take counsel, and speak.”</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../18/" class="nav-btn">← Chapter 18</a>
-                <a href="../../" class="nav-btn">↑ Judges Index</a>
-                <a href="../20/" class="nav-btn">Chapter 20 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -139,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

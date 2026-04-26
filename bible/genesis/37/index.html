@@ -4,140 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genesis 37 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Genesis</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>Genesis 37</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="genesis" data-chapter="37">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Jacob lived in the land of his father’s travels, in the land of Canaan.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">This is the history of the generations of Jacob. Joseph, being seventeen years old, was feeding the flock with his brothers. He was a boy with the sons of Bilhah and Zilpah, his father’s wives. Joseph brought an evil report of them to their father.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a coat of many colors.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">His brothers saw that their father loved him more than all his brothers, and they hated him, and couldn’t speak peaceably to him.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Joseph dreamed a dream, and he told it to his brothers, and they hated him all the more.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to them, “Please hear this dream which I have dreamed:</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">for behold, we were binding sheaves in the field, and behold, my sheaf arose and also stood upright; and behold, your sheaves came around, and bowed down to my sheaf.”</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">His brothers said to him, “Will you indeed reign over us? Or will you indeed have dominion over us?” They hated him all the more for his dreams and for his words.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">He dreamed yet another dream, and told it to his brothers, and said, “Behold, I have dreamed yet another dream: and behold, the sun and the moon and eleven stars bowed down to me.”</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">He told it to his father and to his brothers. His father rebuked him, and said to him, “What is this dream that you have dreamed? Will I and your mother and your brothers indeed come to bow ourselves down to you to the earth?”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">His brothers envied him, but his father kept this saying in mind.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">His brothers went to feed their father’s flock in Shechem.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Israel said to Joseph, “Aren’t your brothers feeding the flock in Shechem? Come, and I will send you to them.” He said to him, “Here I am.”</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">He said to him, “Go now, see whether it is well with your brothers, and well with the flock; and bring me word again.” So he sent him out of the valley of Hebron, and he came to Shechem.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">A certain man found him, and behold, he was wandering in the field. The man asked him, “What are you looking for?”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">He said, “I am looking for my brothers. Tell me, please, where they are feeding the flock.”</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The man said, “They have left here, for I heard them say, ‘Let us go to Dothan.’” Joseph went after his brothers, and found them in Dothan.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">They saw him afar off, and before he came near to them, they conspired against him to kill him.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">They said to one another, “Behold, this dreamer comes.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Come now therefore, and let’s kill him, and cast him into one of the pits, and we will say, ‘An evil animal has devoured him.’ We will see what will become of his dreams.”</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Reuben heard it, and delivered him out of their hand, and said, “Let’s not take his life.”</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Reuben said to them, “Shed no blood. Throw him into this pit that is in the wilderness, but lay no hand on him” — that he might deliver him out of their hand, to restore him to his father.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">When Joseph came to his brothers, they stripped Joseph of his coat, the coat of many colors that was on him;</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">and they took him, and threw him into the pit. The pit was empty. There was no water in it.</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">They sat down to eat bread, and they lifted up their eyes and looked, and saw a caravan of Ishmaelites was coming from Gilead, with their camels bearing spices and balm and myrrh, going to carry it down to Egypt.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Judah said to his brothers, “What profit is it if we kill our brother and conceal his blood?</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Come, and let’s sell him to the Ishmaelites, and not let our hand be on him; for he is our brother, our flesh.” His brothers listened to him.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Midianites who were merchants passed by, and they drew and lifted up Joseph out of the pit, and sold Joseph to the Ishmaelites for twenty pieces of silver. They brought Joseph into Egypt.</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Reuben returned to the pit; and saw that Joseph wasn’t in the pit; and he tore his clothes.</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">He returned to his brothers, and said, “The child is no more; and I, where will I go?”</span></div>
-                <div class="verse"><span class="verse-num">31</span><span class="verse-text">They took Joseph’s coat, and killed a male goat, and dipped the coat in the blood.</span></div>
-                <div class="verse"><span class="verse-num">32</span><span class="verse-text">They took the coat of many colors, and they brought it to their father, and said, “We have found this. Examine it, now, whether it is your son’s coat or not.”</span></div>
-                <div class="verse"><span class="verse-num">33</span><span class="verse-text">He recognized it, and said, “It is my son’s coat. An evil animal has devoured him. Joseph is without doubt torn in pieces.”</span></div>
-                <div class="verse"><span class="verse-num">34</span><span class="verse-text">Jacob tore his clothes, and put sackcloth on his waist, and mourned for his son many days.</span></div>
-                <div class="verse"><span class="verse-num">35</span><span class="verse-text">All his sons and all his daughters rose up to comfort him, but he refused to be comforted. He said, “For I will go down to Sheol  to my son mourning.” His father wept for him.</span></div>
-                <div class="verse"><span class="verse-num">36</span><span class="verse-text">The Midianites sold him into Egypt to Potiphar, an officer of Pharaoh’s, the captain of the guard.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Jacob lived in the land of his father’s travels, in the land of Canaan.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">This is the history of the generations of Jacob. Joseph, being seventeen years old, was feeding the flock with his brothers. He was a boy with the sons of Bilhah and Zilpah, his father’s wives. Joseph brought an evil report of them to their father.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a coat of many colors.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">His brothers saw that their father loved him more than all his brothers, and they hated him, and couldn’t speak peaceably to him.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Joseph dreamed a dream, and he told it to his brothers, and they hated him all the more.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to them, “Please hear this dream which I have dreamed:</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">for behold, we were binding sheaves in the field, and behold, my sheaf arose and also stood upright; and behold, your sheaves came around, and bowed down to my sheaf.”</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">His brothers said to him, “Will you indeed reign over us? Or will you indeed have dominion over us?” They hated him all the more for his dreams and for his words.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">He dreamed yet another dream, and told it to his brothers, and said, “Behold, I have dreamed yet another dream: and behold, the sun and the moon and eleven stars bowed down to me.”</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">He told it to his father and to his brothers. His father rebuked him, and said to him, “What is this dream that you have dreamed? Will I and your mother and your brothers indeed come to bow ourselves down to you to the earth?”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">His brothers envied him, but his father kept this saying in mind.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">His brothers went to feed their father’s flock in Shechem.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">Israel said to Joseph, “Aren’t your brothers feeding the flock in Shechem? Come, and I will send you to them.” He said to him, “Here I am.”</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">He said to him, “Go now, see whether it is well with your brothers, and well with the flock; and bring me word again.” So he sent him out of the valley of Hebron, and he came to Shechem.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">A certain man found him, and behold, he was wandering in the field. The man asked him, “What are you looking for?”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">He said, “I am looking for my brothers. Tell me, please, where they are feeding the flock.”</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">The man said, “They have left here, for I heard them say, ‘Let us go to Dothan.’” Joseph went after his brothers, and found them in Dothan.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">They saw him afar off, and before he came near to them, they conspired against him to kill him.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">They said to one another, “Behold, this dreamer comes.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Come now therefore, and let’s kill him, and cast him into one of the pits, and we will say, ‘An evil animal has devoured him.’ We will see what will become of his dreams.”</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Reuben heard it, and delivered him out of their hand, and said, “Let’s not take his life.”</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Reuben said to them, “Shed no blood. Throw him into this pit that is in the wilderness, but lay no hand on him” — that he might deliver him out of their hand, to restore him to his father.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">When Joseph came to his brothers, they stripped Joseph of his coat, the coat of many colors that was on him;</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">and they took him, and threw him into the pit. The pit was empty. There was no water in it.</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">They sat down to eat bread, and they lifted up their eyes and looked, and saw a caravan of Ishmaelites was coming from Gilead, with their camels bearing spices and balm and myrrh, going to carry it down to Egypt.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">Judah said to his brothers, “What profit is it if we kill our brother and conceal his blood?</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Come, and let’s sell him to the Ishmaelites, and not let our hand be on him; for he is our brother, our flesh.” His brothers listened to him.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Midianites who were merchants passed by, and they drew and lifted up Joseph out of the pit, and sold Joseph to the Ishmaelites for twenty pieces of silver. They brought Joseph into Egypt.</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Reuben returned to the pit; and saw that Joseph wasn’t in the pit; and he tore his clothes.</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">He returned to his brothers, and said, “The child is no more; and I, where will I go?”</span></div>\n                <div class="verse"><span class="verse-num">31</span><span class="verse-text">They took Joseph’s coat, and killed a male goat, and dipped the coat in the blood.</span></div>\n                <div class="verse"><span class="verse-num">32</span><span class="verse-text">They took the coat of many colors, and they brought it to their father, and said, “We have found this. Examine it, now, whether it is your son’s coat or not.”</span></div>\n                <div class="verse"><span class="verse-num">33</span><span class="verse-text">He recognized it, and said, “It is my son’s coat. An evil animal has devoured him. Joseph is without doubt torn in pieces.”</span></div>\n                <div class="verse"><span class="verse-num">34</span><span class="verse-text">Jacob tore his clothes, and put sackcloth on his waist, and mourned for his son many days.</span></div>\n                <div class="verse"><span class="verse-num">35</span><span class="verse-text">All his sons and all his daughters rose up to comfort him, but he refused to be comforted. He said, “For I will go down to Sheol  to my son mourning.” His father wept for him.</span></div>\n                <div class="verse"><span class="verse-num">36</span><span class="verse-text">The Midianites sold him into Egypt to Potiphar, an officer of Pharaoh’s, the captain of the guard.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../36/" class="nav-btn">← Chapter 36</a>
-                <a href="../../" class="nav-btn">↑ Genesis Index</a>
-                <a href="../38/" class="nav-btn">Chapter 38 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -145,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

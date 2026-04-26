@@ -4,133 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1 Kings 21 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">1 Kings</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>1 Kings 21</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="1-kings" data-chapter="21">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">After these things, Naboth the Jezreelite had a vineyard, which was in Jezreel, next to the palace of Ahab king of Samaria.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Ahab spoke to Naboth, saying, “Give me your vineyard, that I may have it for a garden of herbs, because it is near my house; and I will give you for it a better vineyard than it. Or, if it seems good to you, I will give you its worth in money.”</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Naboth said to Ahab, “May Yahweh forbid me, that I should give the inheritance of my fathers to you!”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Ahab came into his house sullen and angry because of the word which Naboth the Jezreelite had spoken to him; for he had said, “I will not give you the inheritance of my fathers.” He laid himself down on his bed, and turned away his face, and would eat no bread.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">But Jezebel his wife came to him, and said to him, “Why is your spirit so sad, that you eat no bread?”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to her, “Because I spoke to Naboth the Jezreelite, and said to him, ‘Give me your vineyard for money; or else, if it pleases you, I will give you another vineyard for it.’ He answered, ‘I will not give you my vineyard.’”</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Jezebel his wife said to him, “Do you now govern the kingdom of Israel? Arise, and eat bread, and let your heart be merry. I will give you the vineyard of Naboth the Jezreelite.”</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">So she wrote letters in Ahab’s name, and sealed them with his seal, and sent the letters to the elders and to the nobles who were in his city, who lived with Naboth.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">She wrote in the letters, saying, “Proclaim a fast, and set Naboth on high among the people.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Set two men, base fellows, before him, and let them testify against him, saying, ‘You cursed God and the king!’ Then carry him out, and stone him to death.”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">The men of his city, even the elders and the nobles who lived in his city, did as Jezebel had instructed them in the letters which she had written and sent to them.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">They proclaimed a fast, and set Naboth on high among the people.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The two men, the base fellows, came in and sat before him. The base fellows testified against him, even against Naboth, in the presence of the people, saying, “Naboth cursed God and the king!” Then they carried him out of the city and stoned him to death with stones.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Then they sent to Jezebel, saying, “Naboth has been stoned, and is dead.”</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">When Jezebel heard that Naboth had been stoned, and was dead, Jezebel said to Ahab, “Arise, take possession of the vineyard of Naboth the Jezreelite, which he refused to give you for money; for Naboth is not alive, but dead.”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">When Ahab heard that Naboth was dead, Ahab rose up to go down to the vineyard of Naboth the Jezreelite, to take possession of it.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Yahweh’s word came to Elijah the Tishbite, saying,</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">“Arise, go down to meet Ahab king of Israel, who dwells in Samaria. Behold, he is in the vineyard of Naboth, where he has gone down to take possession of it.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">You shall speak to him, saying, ‘Yahweh says, “Have you killed and also taken possession?”’ You shall speak to him, saying, ‘Yahweh says, “In the place where dogs licked the blood of Naboth, dogs will lick your blood, even yours.”’”</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Ahab said to Elijah, “Have you found me, my enemy?” He answered, “I have found you, because you have sold yourself to do that which is evil in Yahweh’s sight.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Behold, I will bring evil on you, and will utterly sweep you away and will cut off from Ahab everyone who urinates against a wall,  and him who is shut up and him who is left at large in Israel.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">I will make your house like the house of Jeroboam the son of Nebat, and like the house of Baasha the son of Ahijah for the provocation with which you have provoked me to anger, and have made Israel to sin.”</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Yahweh also spoke of Jezebel, saying, “The dogs will eat Jezebel by the rampart of Jezreel.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The dogs will eat he who dies of Ahab in the city; and the birds of the sky will eat he who dies in the field.”</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But there was no one like Ahab, who sold himself to do that which was evil in Yahweh’s sight, whom Jezebel his wife stirred up.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">He did very abominably in following idols, according to all that the Amorites did, whom Yahweh cast out before the children of Israel.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When Ahab heard those words, he tore his clothes, and put sackcloth on his flesh, and fasted, and lay in sackcloth, and went softly.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Yahweh’s word came to Elijah the Tishbite, saying,</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">“See how Ahab humbles himself before me? Because he humbles himself before me, I will not bring the evil in his days; but I will bring the evil on his house in his son’s day.”</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">After these things, Naboth the Jezreelite had a vineyard, which was in Jezreel, next to the palace of Ahab king of Samaria.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Ahab spoke to Naboth, saying, “Give me your vineyard, that I may have it for a garden of herbs, because it is near my house; and I will give you for it a better vineyard than it. Or, if it seems good to you, I will give you its worth in money.”</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Naboth said to Ahab, “May Yahweh forbid me, that I should give the inheritance of my fathers to you!”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Ahab came into his house sullen and angry because of the word which Naboth the Jezreelite had spoken to him; for he had said, “I will not give you the inheritance of my fathers.” He laid himself down on his bed, and turned away his face, and would eat no bread.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">But Jezebel his wife came to him, and said to him, “Why is your spirit so sad, that you eat no bread?”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to her, “Because I spoke to Naboth the Jezreelite, and said to him, ‘Give me your vineyard for money; or else, if it pleases you, I will give you another vineyard for it.’ He answered, ‘I will not give you my vineyard.’”</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Jezebel his wife said to him, “Do you now govern the kingdom of Israel? Arise, and eat bread, and let your heart be merry. I will give you the vineyard of Naboth the Jezreelite.”</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">So she wrote letters in Ahab’s name, and sealed them with his seal, and sent the letters to the elders and to the nobles who were in his city, who lived with Naboth.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">She wrote in the letters, saying, “Proclaim a fast, and set Naboth on high among the people.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Set two men, base fellows, before him, and let them testify against him, saying, ‘You cursed God and the king!’ Then carry him out, and stone him to death.”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">The men of his city, even the elders and the nobles who lived in his city, did as Jezebel had instructed them in the letters which she had written and sent to them.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">They proclaimed a fast, and set Naboth on high among the people.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The two men, the base fellows, came in and sat before him. The base fellows testified against him, even against Naboth, in the presence of the people, saying, “Naboth cursed God and the king!” Then they carried him out of the city and stoned him to death with stones.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Then they sent to Jezebel, saying, “Naboth has been stoned, and is dead.”</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">When Jezebel heard that Naboth had been stoned, and was dead, Jezebel said to Ahab, “Arise, take possession of the vineyard of Naboth the Jezreelite, which he refused to give you for money; for Naboth is not alive, but dead.”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">When Ahab heard that Naboth was dead, Ahab rose up to go down to the vineyard of Naboth the Jezreelite, to take possession of it.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Yahweh’s word came to Elijah the Tishbite, saying,</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">“Arise, go down to meet Ahab king of Israel, who dwells in Samaria. Behold, he is in the vineyard of Naboth, where he has gone down to take possession of it.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">You shall speak to him, saying, ‘Yahweh says, “Have you killed and also taken possession?”’ You shall speak to him, saying, ‘Yahweh says, “In the place where dogs licked the blood of Naboth, dogs will lick your blood, even yours.”’”</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Ahab said to Elijah, “Have you found me, my enemy?” He answered, “I have found you, because you have sold yourself to do that which is evil in Yahweh’s sight.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Behold, I will bring evil on you, and will utterly sweep you away and will cut off from Ahab everyone who urinates against a wall,  and him who is shut up and him who is left at large in Israel.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">I will make your house like the house of Jeroboam the son of Nebat, and like the house of Baasha the son of Ahijah for the provocation with which you have provoked me to anger, and have made Israel to sin.”</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Yahweh also spoke of Jezebel, saying, “The dogs will eat Jezebel by the rampart of Jezreel.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The dogs will eat he who dies of Ahab in the city; and the birds of the sky will eat he who dies in the field.”</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">But there was no one like Ahab, who sold himself to do that which was evil in Yahweh’s sight, whom Jezebel his wife stirred up.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">He did very abominably in following idols, according to all that the Amorites did, whom Yahweh cast out before the children of Israel.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">When Ahab heard those words, he tore his clothes, and put sackcloth on his flesh, and fasted, and lay in sackcloth, and went softly.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Yahweh’s word came to Elijah the Tishbite, saying,</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">“See how Ahab humbles himself before me? Because he humbles himself before me, I will not bring the evil in his days; but I will bring the evil on his house in his son’s day.”</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../20/" class="nav-btn">← Chapter 20</a>
-                <a href="../../" class="nav-btn">↑ 1 Kings Index</a>
-                <a href="../22/" class="nav-btn">Chapter 22 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -138,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

@@ -4,129 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John 2 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">John</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>John 2</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="john" data-chapter="2">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The third day, there was a marriage in Cana of Galilee. Jesus’ mother was there.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Jesus also was invited, with his disciples, to the marriage.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">When the wine ran out, Jesus’ mother said to him, “They have no wine.”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Jesus said to her, “Woman, what does that have to do with you and me? My hour has not yet come.”</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">His mother said to the servants, “Whatever he says to you, do it.”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Now there were six water pots of stone set there after the Jews’ way of purifying, containing two or three metretes  apiece.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Jesus said to them, “Fill the water pots with water.” They filled them up to the brim.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He said to them, “Now draw some out, and take it to the ruler of the feast.” So they took it.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">When the ruler of the feast tasted the water now become wine, and didn’t know where it came from (but the servants who had drawn the water knew), the ruler of the feast called the bridegroom,</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">and said to him, “Everyone serves the good wine first, and when the guests have drunk freely, then that which is worse. You have kept the good wine until now!”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">This beginning of his signs Jesus did in Cana of Galilee, and revealed his glory; and his disciples believed in him.</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">After this, he went down to Capernaum, he, and his mother, his brothers, and his disciples; and they stayed there a few days.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The Passover of the Jews was at hand, and Jesus went up to Jerusalem.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">He found in the temple those who sold oxen, sheep, and doves, and the changers of money sitting.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He made a whip of cords, and threw all out of the temple, both the sheep and the oxen; and he poured out the changers’ money, and overthrew their tables.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">To those who sold the doves, he said, “Take these things out of here! Don’t make my Father’s house a marketplace!”</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">His disciples remembered that it was written, “Zeal for your house will eat me up.”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">The Jews therefore answered him, “What sign do you show us, seeing that you do these things?”</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Jesus answered them, “Destroy this temple, and in three days I will raise it up.”</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">The Jews therefore said, “It took forty-six years to build this temple! Will you raise it up in three days?”</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But he spoke of the temple of his body.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">When therefore he was raised from the dead, his disciples remembered that he said this, and they believed the Scripture, and the word which Jesus had said.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Now when he was in Jerusalem at the Passover, during the feast, many believed in his name, observing his signs which he did.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">But Jesus didn’t trust himself to them, because he knew everyone,</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">and because he didn’t need for anyone to testify concerning man; for he himself knew what was in man.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The third day, there was a marriage in Cana of Galilee. Jesus’ mother was there.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Jesus also was invited, with his disciples, to the marriage.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">When the wine ran out, Jesus’ mother said to him, “They have no wine.”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Jesus said to her, “Woman, what does that have to do with you and me? My hour has not yet come.”</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">His mother said to the servants, “Whatever he says to you, do it.”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">Now there were six water pots of stone set there after the Jews’ way of purifying, containing two or three metretes  apiece.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">Jesus said to them, “Fill the water pots with water.” They filled them up to the brim.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He said to them, “Now draw some out, and take it to the ruler of the feast.” So they took it.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">When the ruler of the feast tasted the water now become wine, and didn’t know where it came from (but the servants who had drawn the water knew), the ruler of the feast called the bridegroom,</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">and said to him, “Everyone serves the good wine first, and when the guests have drunk freely, then that which is worse. You have kept the good wine until now!”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">This beginning of his signs Jesus did in Cana of Galilee, and revealed his glory; and his disciples believed in him.</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">After this, he went down to Capernaum, he, and his mother, his brothers, and his disciples; and they stayed there a few days.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">The Passover of the Jews was at hand, and Jesus went up to Jerusalem.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">He found in the temple those who sold oxen, sheep, and doves, and the changers of money sitting.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He made a whip of cords, and threw all out of the temple, both the sheep and the oxen; and he poured out the changers’ money, and overthrew their tables.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">To those who sold the doves, he said, “Take these things out of here! Don’t make my Father’s house a marketplace!”</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">His disciples remembered that it was written, “Zeal for your house will eat me up.”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">The Jews therefore answered him, “What sign do you show us, seeing that you do these things?”</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Jesus answered them, “Destroy this temple, and in three days I will raise it up.”</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">The Jews therefore said, “It took forty-six years to build this temple! Will you raise it up in three days?”</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">But he spoke of the temple of his body.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">When therefore he was raised from the dead, his disciples remembered that he said this, and they believed the Scripture, and the word which Jesus had said.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Now when he was in Jerusalem at the Passover, during the feast, many believed in his name, observing his signs which he did.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">But Jesus didn’t trust himself to them, because he knew everyone,</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">and because he didn’t need for anyone to testify concerning man; for he himself knew what was in man.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../1/" class="nav-btn">← Chapter 1</a>
-                <a href="../../" class="nav-btn">↑ John Index</a>
-                <a href="../3/" class="nav-btn">Chapter 3 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -134,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

@@ -4,125 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1 Chronicles 28 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">1 Chronicles</a>
-            </div>
+            <div class="meta-top">Old Testament</div>
             <h1>1 Chronicles 28</h1>
-            <span class="translation-tag">Living Legacy Translation · Old Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="1-chronicles" data-chapter="28">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">David assembled all the princes of Israel, the princes of the tribes, the captains of the companies who served the king by division, the captains of thousands, the captains of hundreds, and the rulers over all the substance and possessions of the king and of his sons, with the officers and the mighty men, even all the mighty men of valor, to Jerusalem.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Then David the king stood up on his feet, and said, “Hear me, my brothers, and my people! As for me, it was in my heart to build a house of rest for the ark of Yahweh’s covenant, and for the footstool of our God; and I had prepared for the building.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">But God said to me, ‘You shall not build a house for my name, because you are a man of war, and have shed blood.’</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">However Yahweh, the God of Israel, chose me out of all the house of my father to be king over Israel forever. For he has chosen Judah to be prince; and in the house of Judah, the house of my father; and among the sons of my father he took pleasure in me to make me king over all Israel.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Of all my sons (for Yahweh has given me many sons), he has chosen Solomon my son to sit on the throne of Yahweh’s kingdom over Israel.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to me, ‘Solomon, your son, shall build my house and my courts; for I have chosen him to be my son, and I will be his father.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">I will establish his kingdom forever if he continues to do my commandments and my ordinances, as it is today.’</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Now therefore, in the sight of all Israel, Yahweh’s assembly, and in the audience of our God, observe and seek out all the commandments of Yahweh your God; that you may possess this good land, and leave it for an inheritance to your children after you forever.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">You, Solomon my son, know the God of your father, and serve him with a perfect heart and with a willing mind; for Yahweh searches all hearts, and understands all the imaginations of the thoughts. If you seek him, he will be found by you; but if you forsake him, he will cast you off forever.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Take heed now; for Yahweh has chosen you to build a house for the sanctuary. Be strong, and do it.”</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Then David gave to Solomon his son the plans for the porch of the temple, for its houses, for its treasuries, for its upper rooms, for its inner rooms, for the place of the mercy seat;</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">and the plans of all that he had by the Spirit, for the courts of Yahweh’s house, for all the surrounding rooms, for the treasuries of God’s house, and for the treasuries of the dedicated things;</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">also for the divisions of the priests and the Levites, for all the work of the service of Yahweh’s house, and for all the vessels of service in Yahweh’s house;</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">of gold by weight for the gold, for all vessels of every kind of service; for all the vessels of silver by weight, for all vessels of every kind of service;</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">by weight also for the lamp stands of gold, and for its lamps, of gold, by weight for every lamp stand and for its lamps; and for the lamp stands of silver, by weight for every lamp stand and for its lamps, according to the use of every lamp stand;</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">and the gold by weight for the tables of show bread, for every table; and silver for the tables of silver;</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">and the forks, the basins, and the cups, of pure gold; and for the golden bowls by weight for every bowl; and for the silver bowls by weight for every bowl;</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">and for the altar of incense refined gold by weight; and gold for the plans for the chariot, and the cherubim that spread out and cover the ark of Yahweh’s covenant.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">“All this”, said David, “I have been made to understand in writing from Yahweh’s hand, even all the works of this pattern.”</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">David said to Solomon his son, “Be strong and courageous, and do it. Don’t be afraid, nor be dismayed; for Yahweh God, even my God, is with you. He will not fail you, nor forsake you, until all the work for the service of Yahweh’s house is finished.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Behold, there are the divisions of the priests and the Levites, for all the service of God’s house. Every willing man who has skill, for any kind of service, shall be with you in all kinds of work. Also the captains and all the people will be entirely at your command.”</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">David assembled all the princes of Israel, the princes of the tribes, the captains of the companies who served the king by division, the captains of thousands, the captains of hundreds, and the rulers over all the substance and possessions of the king and of his sons, with the officers and the mighty men, even all the mighty men of valor, to Jerusalem.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Then David the king stood up on his feet, and said, “Hear me, my brothers, and my people! As for me, it was in my heart to build a house of rest for the ark of Yahweh’s covenant, and for the footstool of our God; and I had prepared for the building.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">But God said to me, ‘You shall not build a house for my name, because you are a man of war, and have shed blood.’</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">However Yahweh, the God of Israel, chose me out of all the house of my father to be king over Israel forever. For he has chosen Judah to be prince; and in the house of Judah, the house of my father; and among the sons of my father he took pleasure in me to make me king over all Israel.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Of all my sons (for Yahweh has given me many sons), he has chosen Solomon my son to sit on the throne of Yahweh’s kingdom over Israel.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He said to me, ‘Solomon, your son, shall build my house and my courts; for I have chosen him to be my son, and I will be his father.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">I will establish his kingdom forever if he continues to do my commandments and my ordinances, as it is today.’</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Now therefore, in the sight of all Israel, Yahweh’s assembly, and in the audience of our God, observe and seek out all the commandments of Yahweh your God; that you may possess this good land, and leave it for an inheritance to your children after you forever.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">You, Solomon my son, know the God of your father, and serve him with a perfect heart and with a willing mind; for Yahweh searches all hearts, and understands all the imaginations of the thoughts. If you seek him, he will be found by you; but if you forsake him, he will cast you off forever.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Take heed now; for Yahweh has chosen you to build a house for the sanctuary. Be strong, and do it.”</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">Then David gave to Solomon his son the plans for the porch of the temple, for its houses, for its treasuries, for its upper rooms, for its inner rooms, for the place of the mercy seat;</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">and the plans of all that he had by the Spirit, for the courts of Yahweh’s house, for all the surrounding rooms, for the treasuries of God’s house, and for the treasuries of the dedicated things;</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">also for the divisions of the priests and the Levites, for all the work of the service of Yahweh’s house, and for all the vessels of service in Yahweh’s house;</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">of gold by weight for the gold, for all vessels of every kind of service; for all the vessels of silver by weight, for all vessels of every kind of service;</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">by weight also for the lamp stands of gold, and for its lamps, of gold, by weight for every lamp stand and for its lamps; and for the lamp stands of silver, by weight for every lamp stand and for its lamps, according to the use of every lamp stand;</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">and the gold by weight for the tables of show bread, for every table; and silver for the tables of silver;</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">and the forks, the basins, and the cups, of pure gold; and for the golden bowls by weight for every bowl; and for the silver bowls by weight for every bowl;</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">and for the altar of incense refined gold by weight; and gold for the plans for the chariot, and the cherubim that spread out and cover the ark of Yahweh’s covenant.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">“All this”, said David, “I have been made to understand in writing from Yahweh’s hand, even all the works of this pattern.”</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">David said to Solomon his son, “Be strong and courageous, and do it. Don’t be afraid, nor be dismayed; for Yahweh God, even my God, is with you. He will not fail you, nor forsake you, until all the work for the service of Yahweh’s house is finished.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Behold, there are the divisions of the priests and the Levites, for all the service of God’s house. Every willing man who has skill, for any kind of service, shall be with you in all kinds of work. Also the captains and all the people will be entirely at your command.”</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../27/" class="nav-btn">← Chapter 27</a>
-                <a href="../../" class="nav-btn">↑ 1 Chronicles Index</a>
-                <a href="../29/" class="nav-btn">Chapter 29 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -130,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

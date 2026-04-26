@@ -4,132 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark 2 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Mark</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>Mark 2</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="mark" data-chapter="2">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">When he entered again into Capernaum after some days, it was heard that he was in the house.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Immediately many were gathered together, so that there was no more room, not even around the door; and he spoke the word to them.</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Four people came, carrying a paralytic to him.</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">When they could not come near to him for the crowd, they removed the roof where he was. When they had broken it up, they let down the mat that the paralytic was lying on.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Jesus, seeing their faith, said to the paralytic, “Son, your sins are forgiven you.”</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">But there were some of the scribes sitting there, and reasoning in their hearts,</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">“Why does this man speak blasphemies like that? Who can forgive sins but God alone?”</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Immediately Jesus, perceiving in his spirit that they so reasoned within themselves, said to them, “Why do you reason these things in your hearts?</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Which is easier, to tell the paralytic, ‘Your sins are forgiven;’ or to say, ‘Arise, and take up your bed, and walk?’</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But that you may know that the Son of Man has authority on earth to forgive sins” — he said to the paralytic —</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">“I tell you, arise, take up your mat, and go to your house.”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">He arose, and immediately took up the mat, and went out in front of them all; so that they were all amazed, and glorified God, saying, “We never saw anything like this!”</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He went out again by the seaside. All the multitude came to him, and he taught them.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">As he passed by, he saw Levi, the son of Alphaeus, sitting at the tax office, and he said to him, “Follow me.” And he arose and followed him.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He was reclining at the table in his house, and many tax collectors and sinners sat down with Jesus and his disciples, for there were many, and they followed him.</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">The scribes and the Pharisees, when they saw that he was eating with the sinners and tax collectors, said to his disciples, “Why is it that he eats and drinks with tax collectors and sinners?”</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">When Jesus heard it, he said to them, “Those who are healthy have no need for a physician, but those who are sick. I came not to call the righteous, but sinners to repentance.”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">John’s disciples and the Pharisees were fasting, and they came and asked him, “Why do John’s disciples and the disciples of the Pharisees fast, but your disciples don’t fast?”</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Jesus said to them, “Can the groomsmen fast while the bridegroom is with them? As long as they have the bridegroom with them, they can’t fast.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But the days will come when the bridegroom will be taken away from them, and then will they fast in that day.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">No one sews a piece of unshrunk cloth on an old garment, or else the patch shrinks and the new tears away from the old, and a worse hole is made.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">No one puts new wine into old wineskins, or else the new wine will burst the skins, and the wine pours out, and the skins will be destroyed; but they put new wine into fresh wineskins.”</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">He was going on the Sabbath day through the grain fields, and his disciples began, as they went, to pluck the ears of grain.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The Pharisees said to him, “Behold, why do they do that which is not lawful on the Sabbath day?”</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">He said to them, “Did you never read what David did, when he had need, and was hungry — he, and those who were with him?</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">How he entered into God’s house when Abiathar was high priest, and ate the show bread, which is not lawful to eat except for the priests, and gave also to those who were with him?”</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">He said to them, “The Sabbath was made for man, not man for the Sabbath.</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Therefore the Son of Man is lord even of the Sabbath.”</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">When he entered again into Capernaum after some days, it was heard that he was in the house.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">Immediately many were gathered together, so that there was no more room, not even around the door; and he spoke the word to them.</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">Four people came, carrying a paralytic to him.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">When they could not come near to him for the crowd, they removed the roof where he was. When they had broken it up, they let down the mat that the paralytic was lying on.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">Jesus, seeing their faith, said to the paralytic, “Son, your sins are forgiven you.”</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">But there were some of the scribes sitting there, and reasoning in their hearts,</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">“Why does this man speak blasphemies like that? Who can forgive sins but God alone?”</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Immediately Jesus, perceiving in his spirit that they so reasoned within themselves, said to them, “Why do you reason these things in your hearts?</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Which is easier, to tell the paralytic, ‘Your sins are forgiven;’ or to say, ‘Arise, and take up your bed, and walk?’</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">But that you may know that the Son of Man has authority on earth to forgive sins” — he said to the paralytic —</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">“I tell you, arise, take up your mat, and go to your house.”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">He arose, and immediately took up the mat, and went out in front of them all; so that they were all amazed, and glorified God, saying, “We never saw anything like this!”</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He went out again by the seaside. All the multitude came to him, and he taught them.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">As he passed by, he saw Levi, the son of Alphaeus, sitting at the tax office, and he said to him, “Follow me.” And he arose and followed him.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">He was reclining at the table in his house, and many tax collectors and sinners sat down with Jesus and his disciples, for there were many, and they followed him.</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">The scribes and the Pharisees, when they saw that he was eating with the sinners and tax collectors, said to his disciples, “Why is it that he eats and drinks with tax collectors and sinners?”</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">When Jesus heard it, he said to them, “Those who are healthy have no need for a physician, but those who are sick. I came not to call the righteous, but sinners to repentance.”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">John’s disciples and the Pharisees were fasting, and they came and asked him, “Why do John’s disciples and the disciples of the Pharisees fast, but your disciples don’t fast?”</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Jesus said to them, “Can the groomsmen fast while the bridegroom is with them? As long as they have the bridegroom with them, they can’t fast.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">But the days will come when the bridegroom will be taken away from them, and then will they fast in that day.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">No one sews a piece of unshrunk cloth on an old garment, or else the patch shrinks and the new tears away from the old, and a worse hole is made.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">No one puts new wine into old wineskins, or else the new wine will burst the skins, and the wine pours out, and the skins will be destroyed; but they put new wine into fresh wineskins.”</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">He was going on the Sabbath day through the grain fields, and his disciples began, as they went, to pluck the ears of grain.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">The Pharisees said to him, “Behold, why do they do that which is not lawful on the Sabbath day?”</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">He said to them, “Did you never read what David did, when he had need, and was hungry — he, and those who were with him?</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">How he entered into God’s house when Abiathar was high priest, and ate the show bread, which is not lawful to eat except for the priests, and gave also to those who were with him?”</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">He said to them, “The Sabbath was made for man, not man for the Sabbath.</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">Therefore the Son of Man is lord even of the Sabbath.”</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../1/" class="nav-btn">← Chapter 1</a>
-                <a href="../../" class="nav-btn">↑ Mark Index</a>
-                <a href="../3/" class="nav-btn">Chapter 3 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -137,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

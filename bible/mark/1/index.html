@@ -4,149 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark 1 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Mark</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>Mark 1</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="mark" data-chapter="1">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The beginning of the Good News of Jesus Christ, the Son of God.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">As it is written in the prophets, “Behold,  I send my messenger before your face, who will prepare your way before you:</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">the voice of one crying in the wilderness, ‘Make ready the way of the Lord! Make his paths straight!’”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">John came baptizing  in the wilderness and preaching the baptism of repentance for forgiveness of sins.</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">All the country of Judea and all those of Jerusalem went out to him. They were baptized by him in the Jordan river, confessing their sins.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">John was clothed with camel’s hair and a leather belt around his waist. He ate locusts and wild honey.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">He preached, saying, “After me comes he who is mightier than I, the thong of whose sandals I am not worthy to stoop down and loosen.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">I baptized you in  water, but he will baptize you in the Holy Spirit.”</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">In those days, Jesus came from Nazareth of Galilee, and was baptized by John in the Jordan.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Immediately coming up from the water, he saw the heavens parting, and the Spirit descending on him like a dove.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">A voice came out of the sky, “You are my beloved Son, in whom I am well pleased.”</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Immediately the Spirit drove him out into the wilderness.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He was there in the wilderness forty days tempted by Satan. He was with the wild animals; and the angels were serving him.</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Now after John was taken into custody, Jesus came into Galilee, preaching the Good News of God’s Kingdom,</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">and saying, “The time is fulfilled, and God’s Kingdom is at hand! Repent, and believe in the Good News.”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Passing along by the sea of Galilee, he saw Simon and Andrew the brother of Simon casting a net into the sea, for they were fishermen.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Jesus said to them, “Come after me, and I will make you into fishers for men.”</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Immediately they left their nets, and followed him.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Going on a little further from there, he saw James the son of Zebedee, and John, his brother, who were also in the boat mending the nets.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Immediately he called them, and they left their father, Zebedee, in the boat with the hired servants, and went after him.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">They went into Capernaum, and immediately on the Sabbath day he entered into the synagogue and taught.</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">They were astonished at his teaching, for he taught them as having authority, and not as the scribes.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Immediately there was in their synagogue a man with an unclean spirit, and he cried out,</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">saying, “Ha! What do we have to do with you, Jesus, you Nazarene? Have you come to destroy us? I know you who you are: the Holy One of God!”</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Jesus rebuked him, saying, “Be quiet, and come out of him!”</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">The unclean spirit, convulsing him and crying with a loud voice, came out of him.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">They were all amazed, so that they questioned among themselves, saying, “What is this? A new teaching? For with authority he commands even the unclean spirits, and they obey him!”</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">The report of him went out immediately everywhere into all the region of Galilee and its surrounding area.</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Immediately, when they had come out of the synagogue, they came into the house of Simon and Andrew, with James and John.</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">Now Simon’s wife’s mother lay sick with a fever, and immediately they told him about her.</span></div>
-                <div class="verse"><span class="verse-num">31</span><span class="verse-text">He came and took her by the hand, and raised her up. The fever left her, and she served them.</span></div>
-                <div class="verse"><span class="verse-num">32</span><span class="verse-text">At evening, when the sun had set, they brought to him all who were sick, and those who were possessed by demons.</span></div>
-                <div class="verse"><span class="verse-num">33</span><span class="verse-text">All the city was gathered together at the door.</span></div>
-                <div class="verse"><span class="verse-num">34</span><span class="verse-text">He healed many who were sick with various diseases, and cast out many demons. He didn’t allow the demons to speak, because they knew him.</span></div>
-                <div class="verse"><span class="verse-num">35</span><span class="verse-text">Early in the morning, while it was still dark, he rose up and went out, and departed into a deserted place, and prayed there.</span></div>
-                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Simon and those who were with him followed after him;</span></div>
-                <div class="verse"><span class="verse-num">37</span><span class="verse-text">and they found him, and told him, “Everyone is looking for you.”</span></div>
-                <div class="verse"><span class="verse-num">38</span><span class="verse-text">He said to them, “Let’s go elsewhere into the next towns, that I may preach there also, because I came out for this reason.”</span></div>
-                <div class="verse"><span class="verse-num">39</span><span class="verse-text">He went into their synagogues throughout all Galilee, preaching and casting out demons.</span></div>
-                <div class="verse"><span class="verse-num">40</span><span class="verse-text">A leper came to him, begging him, kneeling down to him, and saying to him, “If you want to, you can make me clean.”</span></div>
-                <div class="verse"><span class="verse-num">41</span><span class="verse-text">Being moved with compassion, he stretched out his hand, and touched him, and said to him, “I want to. Be made clean.”</span></div>
-                <div class="verse"><span class="verse-num">42</span><span class="verse-text">When he had said this, immediately the leprosy departed from him, and he was made clean.</span></div>
-                <div class="verse"><span class="verse-num">43</span><span class="verse-text">He strictly warned him, and immediately sent him out,</span></div>
-                <div class="verse"><span class="verse-num">44</span><span class="verse-text">and said to him, “See you say nothing to anybody, but go show yourself to the priest, and offer for your cleansing the things which Moses commanded, for a testimony to them.”</span></div>
-                <div class="verse"><span class="verse-num">45</span><span class="verse-text">But he went out, and began to proclaim it much, and to spread about the matter, so that Jesus could no more openly enter into a city, but was outside in desert places: and they came to him from everywhere.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">The beginning of the Good News of Jesus Christ, the Son of God.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">As it is written in the prophets, “Behold,  I send my messenger before your face, who will prepare your way before you:</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">the voice of one crying in the wilderness, ‘Make ready the way of the Lord! Make his paths straight!’”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">John came baptizing  in the wilderness and preaching the baptism of repentance for forgiveness of sins.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">All the country of Judea and all those of Jerusalem went out to him. They were baptized by him in the Jordan river, confessing their sins.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">John was clothed with camel’s hair and a leather belt around his waist. He ate locusts and wild honey.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">He preached, saying, “After me comes he who is mightier than I, the thong of whose sandals I am not worthy to stoop down and loosen.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">I baptized you in  water, but he will baptize you in the Holy Spirit.”</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">In those days, Jesus came from Nazareth of Galilee, and was baptized by John in the Jordan.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">Immediately coming up from the water, he saw the heavens parting, and the Spirit descending on him like a dove.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">A voice came out of the sky, “You are my beloved Son, in whom I am well pleased.”</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">Immediately the Spirit drove him out into the wilderness.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">He was there in the wilderness forty days tempted by Satan. He was with the wild animals; and the angels were serving him.</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">Now after John was taken into custody, Jesus came into Galilee, preaching the Good News of God’s Kingdom,</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">and saying, “The time is fulfilled, and God’s Kingdom is at hand! Repent, and believe in the Good News.”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">Passing along by the sea of Galilee, he saw Simon and Andrew the brother of Simon casting a net into the sea, for they were fishermen.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">Jesus said to them, “Come after me, and I will make you into fishers for men.”</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Immediately they left their nets, and followed him.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Going on a little further from there, he saw James the son of Zebedee, and John, his brother, who were also in the boat mending the nets.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">Immediately he called them, and they left their father, Zebedee, in the boat with the hired servants, and went after him.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">They went into Capernaum, and immediately on the Sabbath day he entered into the synagogue and taught.</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">They were astonished at his teaching, for he taught them as having authority, and not as the scribes.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">Immediately there was in their synagogue a man with an unclean spirit, and he cried out,</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">saying, “Ha! What do we have to do with you, Jesus, you Nazarene? Have you come to destroy us? I know you who you are: the Holy One of God!”</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">Jesus rebuked him, saying, “Be quiet, and come out of him!”</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">The unclean spirit, convulsing him and crying with a loud voice, came out of him.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">They were all amazed, so that they questioned among themselves, saying, “What is this? A new teaching? For with authority he commands even the unclean spirits, and they obey him!”</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">The report of him went out immediately everywhere into all the region of Galilee and its surrounding area.</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">Immediately, when they had come out of the synagogue, they came into the house of Simon and Andrew, with James and John.</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">Now Simon’s wife’s mother lay sick with a fever, and immediately they told him about her.</span></div>\n                <div class="verse"><span class="verse-num">31</span><span class="verse-text">He came and took her by the hand, and raised her up. The fever left her, and she served them.</span></div>\n                <div class="verse"><span class="verse-num">32</span><span class="verse-text">At evening, when the sun had set, they brought to him all who were sick, and those who were possessed by demons.</span></div>\n                <div class="verse"><span class="verse-num">33</span><span class="verse-text">All the city was gathered together at the door.</span></div>\n                <div class="verse"><span class="verse-num">34</span><span class="verse-text">He healed many who were sick with various diseases, and cast out many demons. He didn’t allow the demons to speak, because they knew him.</span></div>\n                <div class="verse"><span class="verse-num">35</span><span class="verse-text">Early in the morning, while it was still dark, he rose up and went out, and departed into a deserted place, and prayed there.</span></div>\n                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Simon and those who were with him followed after him;</span></div>\n                <div class="verse"><span class="verse-num">37</span><span class="verse-text">and they found him, and told him, “Everyone is looking for you.”</span></div>\n                <div class="verse"><span class="verse-num">38</span><span class="verse-text">He said to them, “Let’s go elsewhere into the next towns, that I may preach there also, because I came out for this reason.”</span></div>\n                <div class="verse"><span class="verse-num">39</span><span class="verse-text">He went into their synagogues throughout all Galilee, preaching and casting out demons.</span></div>\n                <div class="verse"><span class="verse-num">40</span><span class="verse-text">A leper came to him, begging him, kneeling down to him, and saying to him, “If you want to, you can make me clean.”</span></div>\n                <div class="verse"><span class="verse-num">41</span><span class="verse-text">Being moved with compassion, he stretched out his hand, and touched him, and said to him, “I want to. Be made clean.”</span></div>\n                <div class="verse"><span class="verse-num">42</span><span class="verse-text">When he had said this, immediately the leprosy departed from him, and he was made clean.</span></div>\n                <div class="verse"><span class="verse-num">43</span><span class="verse-text">He strictly warned him, and immediately sent him out,</span></div>\n                <div class="verse"><span class="verse-num">44</span><span class="verse-text">and said to him, “See you say nothing to anybody, but go show yourself to the priest, and offer for your cleansing the things which Moses commanded, for a testimony to them.”</span></div>\n                <div class="verse"><span class="verse-num">45</span><span class="verse-text">But he went out, and began to proclaim it much, and to spread about the matter, so that Jesus could no more openly enter into a city, but was outside in desert places: and they came to him from everywhere.</span></div>
             </div>
 
             <div class="ch-nav">
                 <span></span>
-                <a href="../../" class="nav-btn">↑ Mark Index</a>
-                <a href="../2/" class="nav-btn">Chapter 2 →</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -154,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>

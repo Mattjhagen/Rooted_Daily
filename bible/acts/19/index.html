@@ -4,145 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acts 19 | Rooted Daily</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #0C150E;
-            --color-bg-light: #142116;
-            --color-accent: #4A7C59;
-            --color-accent-hover: #5d8f6c;
-            --color-text: #F4F1DE;
-            --color-text-secondary: rgba(244, 241, 222, 0.7);
-            --color-surface: rgba(255, 255, 255, 0.05);
-            --color-border: rgba(255, 255, 255, 0.1);
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Lora', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--color-bg);
-            background-image: radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 2rem;
-        }
-        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
-        .logo-img { width: 40px; height: 40px; border-radius: 10px; }
-        .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; }
-        nav a { color: var(--color-text-secondary); text-decoration: none; font-family: var(--font-heading); font-weight: 500; margin-left: 2rem; transition: 0.3s; }
-        nav a:hover { color: var(--color-text); }
-        
-        .bible-reader {
-            max-width: 800px;
-            margin: 2rem auto 5rem;
-            padding: 3rem;
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .breadcrumb { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-        .breadcrumb a { color: var(--color-accent); text-decoration: none; }
-        h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .translation-tag { color: var(--color-text-secondary); font-style: italic; margin-bottom: 2.5rem; display: block; }
-        
-        .verse { margin-bottom: 1.2rem; display: flex; gap: 1.2rem; align-items: baseline; }
-        .verse-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--color-accent); min-width: 1.8rem; text-align: right; }
-        .verse-text { font-size: 1.15rem; color: var(--color-text); }
-        
-        .ch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
-        .nav-btn { color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
-        .nav-btn:hover { color: var(--color-text); background: var(--color-accent); }
-        
-        footer { text-align: center; padding: 4rem 0; color: var(--color-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--color-border); }
-        
-        /* Switcher Styling */
-        .switcher { display: flex; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 12px; border: 1px solid var(--color-border); }
-        .switch-btn { border: none; background: none; padding: 6px 12px; border-radius: 8px; color: var(--color-text-secondary); font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .switch-btn.active { background: var(--color-accent); color: var(--color-text); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="llt-mode">
     <div class="container">
         <header>
-            <a href="../../../" class="logo-container">
+            <a href="../../../" class="logo-link">
                 <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
             </a>
-            <nav>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <div class="switcher">
                     <button class="switch-btn" data-translation="web">WEB</button>
                     <button class="switch-btn active" data-translation="llt">LLT</button>
                 </div>
-            </nav>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
         </header>
 
         <main class="bible-reader">
-            <div class="breadcrumb">
-                <a href="../../../">Home</a> / <a href="../../../bible/">Bible</a> / <a href="../../">Acts</a>
-            </div>
+            <div class="meta-top">New Testament</div>
             <h1>Acts 19</h1>
-            <span class="translation-tag">Living Legacy Translation · New Testament</span>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="acts" data-chapter="19">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">While Apollos was at Corinth, Paul, having passed through the upper country, came to Ephesus, and found certain disciples.</span></div>
-                <div class="verse"><span class="verse-num">2</span><span class="verse-text">He said to them, “Did you receive the Holy Spirit when you believed?” They said to him, “No, we haven’t even heard that there is a Holy Spirit.”</span></div>
-                <div class="verse"><span class="verse-num">3</span><span class="verse-text">He said, “Into what then were you baptized?” They said, “Into John’s baptism.”</span></div>
-                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Paul said, “John indeed baptized with the baptism of repentance, saying to the people that they should believe in the one who would come after him, that is, in Jesus.”</span></div>
-                <div class="verse"><span class="verse-num">5</span><span class="verse-text">When they heard this, they were baptized in the name of the Lord Jesus.</span></div>
-                <div class="verse"><span class="verse-num">6</span><span class="verse-text">When Paul had laid his hands on them, the Holy Spirit came on them, and they spoke with other languages and prophesied.</span></div>
-                <div class="verse"><span class="verse-num">7</span><span class="verse-text">They were about twelve men in all.</span></div>
-                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He entered into the synagogue, and spoke boldly for a period of three months, reasoning and persuading about the things concerning God’s Kingdom.</span></div>
-                <div class="verse"><span class="verse-num">9</span><span class="verse-text">But when some were hardened and disobedient, speaking evil of the Way before the multitude, he departed from them, and separated the disciples, reasoning daily in the school of Tyrannus.</span></div>
-                <div class="verse"><span class="verse-num">10</span><span class="verse-text">This continued for two years, so that all those who lived in Asia heard the word of the Lord Jesus, both Jews and Greeks.</span></div>
-                <div class="verse"><span class="verse-num">11</span><span class="verse-text">God worked special miracles by the hands of Paul,</span></div>
-                <div class="verse"><span class="verse-num">12</span><span class="verse-text">so that even handkerchiefs or aprons were carried away from his body to the sick, and the diseases departed from them, and the evil spirits went out.</span></div>
-                <div class="verse"><span class="verse-num">13</span><span class="verse-text">But some of the itinerant Jews, exorcists, took on themselves to invoke over those who had the evil spirits the name of the Lord Jesus, saying, “We adjure you by Jesus whom Paul preaches.”</span></div>
-                <div class="verse"><span class="verse-num">14</span><span class="verse-text">There were seven sons of one Sceva, a Jewish chief priest, who did this.</span></div>
-                <div class="verse"><span class="verse-num">15</span><span class="verse-text">The evil spirit answered, “Jesus I know, and Paul I know, but who are you?”</span></div>
-                <div class="verse"><span class="verse-num">16</span><span class="verse-text">The man in whom the evil spirit was leaped on them, and overpowered them, and prevailed against them, so that they fled out of that house naked and wounded.</span></div>
-                <div class="verse"><span class="verse-num">17</span><span class="verse-text">This became known to all, both Jews and Greeks, who lived at Ephesus. Fear fell on them all, and the name of the Lord Jesus was magnified.</span></div>
-                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Many also of those who had believed came, confessing, and declaring their deeds.</span></div>
-                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Many of those who practiced magical arts brought their books together and burned them in the sight of all. They counted their price, and found it to be fifty thousand pieces of silver.</span></div>
-                <div class="verse"><span class="verse-num">20</span><span class="verse-text">So the word of the Lord was growing and becoming mighty.</span></div>
-                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Now after these things had ended, Paul determined in the spirit, when he had passed through Macedonia and Achaia, to go to Jerusalem, saying, “After I have been there, I must also see Rome.”</span></div>
-                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Having sent into Macedonia two of those who served him, Timothy and Erastus, he himself stayed in Asia for a while.</span></div>
-                <div class="verse"><span class="verse-num">23</span><span class="verse-text">About that time there arose no small stir concerning the Way.</span></div>
-                <div class="verse"><span class="verse-num">24</span><span class="verse-text">For a certain man named Demetrius, a silversmith, who made silver shrines of Artemis, brought no little business to the craftsmen,</span></div>
-                <div class="verse"><span class="verse-num">25</span><span class="verse-text">whom he gathered together, with the workmen of like occupation, and said, “Sirs, you know that by this business we have our wealth.</span></div>
-                <div class="verse"><span class="verse-num">26</span><span class="verse-text">You see and hear, that not at Ephesus alone, but almost throughout all Asia, this Paul has persuaded and turned away many people, saying that they are no gods, that are made with hands.</span></div>
-                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Not only is there danger that this our trade come into disrepute, but also that the temple of the great goddess Artemis will be counted as nothing, and her majesty destroyed, whom all Asia and the world worships.”</span></div>
-                <div class="verse"><span class="verse-num">28</span><span class="verse-text">When they heard this they were filled with anger, and cried out, saying, “Great is Artemis of the Ephesians!”</span></div>
-                <div class="verse"><span class="verse-num">29</span><span class="verse-text">The whole city was filled with confusion, and they rushed with one accord into the theater, having seized Gaius and Aristarchus, men of Macedonia, Paul’s companions in travel.</span></div>
-                <div class="verse"><span class="verse-num">30</span><span class="verse-text">When Paul wanted to enter in to the people, the disciples didn’t allow him.</span></div>
-                <div class="verse"><span class="verse-num">31</span><span class="verse-text">Certain also of the Asiarchs, being his friends, sent to him and begged him not to venture into the theater.</span></div>
-                <div class="verse"><span class="verse-num">32</span><span class="verse-text">Some therefore cried one thing, and some another, for the assembly was in confusion. Most of them didn’t know why they had come together.</span></div>
-                <div class="verse"><span class="verse-num">33</span><span class="verse-text">They brought Alexander out of the multitude, the Jews putting him forward. Alexander beckoned with his hand, and would have made a defense to the people.</span></div>
-                <div class="verse"><span class="verse-num">34</span><span class="verse-text">But when they perceived that he was a Jew, all with one voice for a time of about two hours cried out, “Great is Artemis of the Ephesians!”</span></div>
-                <div class="verse"><span class="verse-num">35</span><span class="verse-text">When the town clerk had quieted the multitude, he said, “You men of Ephesus, what man is there who doesn’t know that the city of the Ephesians is temple keeper of the great goddess Artemis, and of the image which fell down from Zeus?</span></div>
-                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Seeing then that these things can’t be denied, you ought to be quiet, and to do nothing rash.</span></div>
-                <div class="verse"><span class="verse-num">37</span><span class="verse-text">For you have brought these men here, who are neither robbers of temples nor blasphemers of your goddess.</span></div>
-                <div class="verse"><span class="verse-num">38</span><span class="verse-text">If therefore Demetrius and the craftsmen who are with him have a matter against anyone, the courts are open, and there are proconsuls. Let them press charges against one another.</span></div>
-                <div class="verse"><span class="verse-num">39</span><span class="verse-text">But if you seek anything about other matters, it will be settled in the regular assembly.</span></div>
-                <div class="verse"><span class="verse-num">40</span><span class="verse-text">For indeed we are in danger of being accused concerning today’s riot, there being no cause. Concerning it, we wouldn’t be able to give an account of this commotion.”</span></div>
-                <div class="verse"><span class="verse-num">41</span><span class="verse-text">When he had thus spoken, he dismissed the assembly.</span></div>
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">While Apollos was at Corinth, Paul, having passed through the upper country, came to Ephesus, and found certain disciples.</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">He said to them, “Did you receive the Holy Spirit when you believed?” They said to him, “No, we haven’t even heard that there is a Holy Spirit.”</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">He said, “Into what then were you baptized?” They said, “Into John’s baptism.”</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Paul said, “John indeed baptized with the baptism of repentance, saying to the people that they should believe in the one who would come after him, that is, in Jesus.”</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">When they heard this, they were baptized in the name of the Lord Jesus.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">When Paul had laid his hands on them, the Holy Spirit came on them, and they spoke with other languages and prophesied.</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">They were about twelve men in all.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">He entered into the synagogue, and spoke boldly for a period of three months, reasoning and persuading about the things concerning God’s Kingdom.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">But when some were hardened and disobedient, speaking evil of the Way before the multitude, he departed from them, and separated the disciples, reasoning daily in the school of Tyrannus.</span></div>\n                <div class="verse"><span class="verse-num">10</span><span class="verse-text">This continued for two years, so that all those who lived in Asia heard the word of the Lord Jesus, both Jews and Greeks.</span></div>\n                <div class="verse"><span class="verse-num">11</span><span class="verse-text">God worked special miracles by the hands of Paul,</span></div>\n                <div class="verse"><span class="verse-num">12</span><span class="verse-text">so that even handkerchiefs or aprons were carried away from his body to the sick, and the diseases departed from them, and the evil spirits went out.</span></div>\n                <div class="verse"><span class="verse-num">13</span><span class="verse-text">But some of the itinerant Jews, exorcists, took on themselves to invoke over those who had the evil spirits the name of the Lord Jesus, saying, “We adjure you by Jesus whom Paul preaches.”</span></div>\n                <div class="verse"><span class="verse-num">14</span><span class="verse-text">There were seven sons of one Sceva, a Jewish chief priest, who did this.</span></div>\n                <div class="verse"><span class="verse-num">15</span><span class="verse-text">The evil spirit answered, “Jesus I know, and Paul I know, but who are you?”</span></div>\n                <div class="verse"><span class="verse-num">16</span><span class="verse-text">The man in whom the evil spirit was leaped on them, and overpowered them, and prevailed against them, so that they fled out of that house naked and wounded.</span></div>\n                <div class="verse"><span class="verse-num">17</span><span class="verse-text">This became known to all, both Jews and Greeks, who lived at Ephesus. Fear fell on them all, and the name of the Lord Jesus was magnified.</span></div>\n                <div class="verse"><span class="verse-num">18</span><span class="verse-text">Many also of those who had believed came, confessing, and declaring their deeds.</span></div>\n                <div class="verse"><span class="verse-num">19</span><span class="verse-text">Many of those who practiced magical arts brought their books together and burned them in the sight of all. They counted their price, and found it to be fifty thousand pieces of silver.</span></div>\n                <div class="verse"><span class="verse-num">20</span><span class="verse-text">So the word of the Lord was growing and becoming mighty.</span></div>\n                <div class="verse"><span class="verse-num">21</span><span class="verse-text">Now after these things had ended, Paul determined in the spirit, when he had passed through Macedonia and Achaia, to go to Jerusalem, saying, “After I have been there, I must also see Rome.”</span></div>\n                <div class="verse"><span class="verse-num">22</span><span class="verse-text">Having sent into Macedonia two of those who served him, Timothy and Erastus, he himself stayed in Asia for a while.</span></div>\n                <div class="verse"><span class="verse-num">23</span><span class="verse-text">About that time there arose no small stir concerning the Way.</span></div>\n                <div class="verse"><span class="verse-num">24</span><span class="verse-text">For a certain man named Demetrius, a silversmith, who made silver shrines of Artemis, brought no little business to the craftsmen,</span></div>\n                <div class="verse"><span class="verse-num">25</span><span class="verse-text">whom he gathered together, with the workmen of like occupation, and said, “Sirs, you know that by this business we have our wealth.</span></div>\n                <div class="verse"><span class="verse-num">26</span><span class="verse-text">You see and hear, that not at Ephesus alone, but almost throughout all Asia, this Paul has persuaded and turned away many people, saying that they are no gods, that are made with hands.</span></div>\n                <div class="verse"><span class="verse-num">27</span><span class="verse-text">Not only is there danger that this our trade come into disrepute, but also that the temple of the great goddess Artemis will be counted as nothing, and her majesty destroyed, whom all Asia and the world worships.”</span></div>\n                <div class="verse"><span class="verse-num">28</span><span class="verse-text">When they heard this they were filled with anger, and cried out, saying, “Great is Artemis of the Ephesians!”</span></div>\n                <div class="verse"><span class="verse-num">29</span><span class="verse-text">The whole city was filled with confusion, and they rushed with one accord into the theater, having seized Gaius and Aristarchus, men of Macedonia, Paul’s companions in travel.</span></div>\n                <div class="verse"><span class="verse-num">30</span><span class="verse-text">When Paul wanted to enter in to the people, the disciples didn’t allow him.</span></div>\n                <div class="verse"><span class="verse-num">31</span><span class="verse-text">Certain also of the Asiarchs, being his friends, sent to him and begged him not to venture into the theater.</span></div>\n                <div class="verse"><span class="verse-num">32</span><span class="verse-text">Some therefore cried one thing, and some another, for the assembly was in confusion. Most of them didn’t know why they had come together.</span></div>\n                <div class="verse"><span class="verse-num">33</span><span class="verse-text">They brought Alexander out of the multitude, the Jews putting him forward. Alexander beckoned with his hand, and would have made a defense to the people.</span></div>\n                <div class="verse"><span class="verse-num">34</span><span class="verse-text">But when they perceived that he was a Jew, all with one voice for a time of about two hours cried out, “Great is Artemis of the Ephesians!”</span></div>\n                <div class="verse"><span class="verse-num">35</span><span class="verse-text">When the town clerk had quieted the multitude, he said, “You men of Ephesus, what man is there who doesn’t know that the city of the Ephesians is temple keeper of the great goddess Artemis, and of the image which fell down from Zeus?</span></div>\n                <div class="verse"><span class="verse-num">36</span><span class="verse-text">Seeing then that these things can’t be denied, you ought to be quiet, and to do nothing rash.</span></div>\n                <div class="verse"><span class="verse-num">37</span><span class="verse-text">For you have brought these men here, who are neither robbers of temples nor blasphemers of your goddess.</span></div>\n                <div class="verse"><span class="verse-num">38</span><span class="verse-text">If therefore Demetrius and the craftsmen who are with him have a matter against anyone, the courts are open, and there are proconsuls. Let them press charges against one another.</span></div>\n                <div class="verse"><span class="verse-num">39</span><span class="verse-text">But if you seek anything about other matters, it will be settled in the regular assembly.</span></div>\n                <div class="verse"><span class="verse-num">40</span><span class="verse-text">For indeed we are in danger of being accused concerning today’s riot, there being no cause. Concerning it, we wouldn’t be able to give an account of this commotion.”</span></div>\n                <div class="verse"><span class="verse-num">41</span><span class="verse-text">When he had thus spoken, he dismissed the assembly.</span></div>
             </div>
 
             <div class="ch-nav">
-                <a href="../18/" class="nav-btn">← Chapter 18</a>
-                <a href="../../" class="nav-btn">↑ Acts Index</a>
-                <a href="../20/" class="nav-btn">Chapter 20 →</a>
+                <a href="../{prev_chapter}/" class="nav-link">← Chapter {prev_chapter}</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../{next_chapter}/" class="nav-link">Chapter {next_chapter} →</a>
             </div>
         </main>
 
@@ -150,6 +44,49 @@
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-    <script src="../../../assets/js/translation-switcher.js" defer></script>
+
+    <!-- AI Chat bubble & window -->
+    <div id="ai-bubble" class="ai-bubble">
+        <img src="https://rootedapp.space/logo_dark_light.png" alt="AI">
+    </div>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <span>Rooted AI</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="chat-messages" class="ai-chat-messages">
+            <div class="message ai">Hi! I'm Rooted. How can I help you with your reading today?</div>
+        </div>
+        <form id="chat-form" class="ai-chat-input">
+            <input type="text" id="chat-input" placeholder="Ask Rooted...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-auth" class="close-modal">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" style="color: var(--color-accent);">Create one</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js" defer></script>
 </body>
 </html>
