@@ -15,7 +15,7 @@
                 <span class="logo-text">Rooted Daily</span>
             </a>
             <nav>
-                <a href="/bible/" class="nav-link">Read Bible</a>
+                <a href="/bible/" class="nav-link">Bible Index</a>
             </nav>
         </header>
 
@@ -23,33 +23,39 @@
             <h1>Stay Rooted in the Word</h1>
             <p>Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling.</p>
             
-            <div class="app-buttons" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <div class="app-btn" style="background: #F4F1DE; color: #0C150E; padding: 1rem 2rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem; cursor: pointer;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 40px;">
+            <div class="button-grid">
+                <!-- Web Reader Button (Primary CTA) -->
+                <a href="/bible/" class="app-btn primary">
+                    <span style="font-size: 1.5rem;">📖</span>
                     <div style="text-align: left;">
-                        <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; opacity: 0.7;">Get it on</div>
-                        <div style="font-size: 1.2rem; font-weight: 700;">Google Play</div>
+                        <span class="btn-text-small">Launch Now</span>
+                        <span class="btn-text-large">Web Reader</span>
                     </div>
-                </div>
-                
-                <div class="app-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--color-text-secondary); padding: 1rem 2rem; border-radius: 16px; display: flex; align-items: center; gap: 1rem; opacity: 0.5;">
-                    <div style="text-align: left;">
-                        <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Coming Soon to</div>
-                        <div style="font-size: 1.2rem; font-weight: 700;">App Store</div>
-                    </div>
-                </div>
-            </div>
+                </a>
 
-            <div style="margin-top: 4rem;">
-                <a href="/bible/" class="nav-link" style="font-size: 1.1rem; text-decoration: underline; color: var(--color-accent);">Launch Web App Read Bible Online</a>
+                <!-- Google Play -->
+                <a href="#" class="app-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="btn-icon">
+                    <div style="text-align: left;">
+                        <span class="btn-text-small">Get it on</span>
+                        <span class="btn-text-large">Google Play</span>
+                    </div>
+                </a>
+                
+                <!-- App Store -->
+                <a href="#" class="app-btn" style="opacity: 0.6; cursor: not-allowed;">
+                    <span style="font-size: 1.5rem;">🍎</span>
+                    <div style="text-align: left;">
+                        <span class="btn-text-small">Coming Soon</span>
+                        <span class="btn-text-large">App Store</span>
+                    </div>
+                </a>
             </div>
         </section>
 
-        <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 0.85rem; text-align: center;">
+        <footer>
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
         </footer>
     </div>
-
-    <script src="assets/js/bible-reader.js"></script>
 </body>
 </html>

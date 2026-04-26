@@ -1,30 +1,28 @@
-/* style.css - Dark Forest Aesthetic */
+/* style.css - Enhanced Dark Forest Aesthetic */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap');
 
 :root {
   --color-bg: #0C150E;
-  --color-bg-light: #142116;
   --color-accent: #4A7C59;
   --color-accent-hover: #5d8f6c;
   --color-text: #F4F1DE;
   --color-text-secondary: rgba(244, 241, 222, 0.7);
-  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface: rgba(255, 255, 255, 0.08);
   --color-border: rgba(255, 255, 255, 0.1);
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Lora', serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background-color: var(--color-bg);
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(74, 124, 89, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(74, 124, 89, 0.05) 0%, transparent 40%);
+    linear-gradient(to bottom, rgba(12, 21, 14, 0.8), rgba(12, 21, 14, 0.9)),
+    url('../images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.7;
@@ -32,12 +30,11 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* Header */
 header {
   height: 100px;
   display: flex;
@@ -54,104 +51,86 @@ header {
   color: inherit;
 }
 
-.logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-}
-
-.logo-text {
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.nav-link {
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  color: var(--color-text);
-}
+.logo-img { width: 40px; height: 40px; border-radius: 10px; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
 
 /* Hero Section */
 .hero {
-  padding: 8rem 0;
+  padding: 10rem 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hero p {
   font-size: 1.25rem;
   color: var(--color-text-secondary);
   max-width: 700px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 4rem;
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  border-radius: 12px;
-  font-family: var(--font-heading);
-  font-weight: 700;
+/* Uniform Buttons */
+.button-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.app-btn {
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   text-decoration: none;
   transition: 0.3s;
-  cursor: pointer;
+  min-width: 240px;
 }
 
-.btn.primary {
-  background-color: var(--color-accent);
-  color: var(--color-text);
+.app-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.btn.primary:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
+.btn-icon { height: 32px; width: 32px; object-fit: contain; }
+.btn-text-small { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; opacity: 0.6; display: block; }
+.btn-text-large { font-size: 1.15rem; font-weight: 700; font-family: var(--font-heading); display: block; }
+
+/* Web Reader Button specific */
+.app-btn.primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.app-btn.primary:hover {
+  background: var(--color-accent-hover);
 }
 
 /* Bible Reader View */
 .bible-content {
-  max-width: 800px;
+  max-width: 850px;
   margin: 4rem auto;
-  padding: 3rem;
-  background: var(--color-surface);
-  backdrop-filter: blur(10px);
+  padding: 4rem;
+  background: rgba(12, 21, 14, 0.85);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--color-border);
-  border-radius: 24px;
+  border-radius: 32px;
 }
-
-.verse {
-  margin-bottom: 1rem;
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.verse-num {
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  min-width: 1.5rem;
-}
-
-.verse-text {
-  font-size: 1.15rem;
-}
-
-/* ... existing switcher styles ... */
