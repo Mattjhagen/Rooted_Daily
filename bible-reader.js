@@ -13,6 +13,7 @@ if (SUPABASE_ANON_KEY) {
 document.addEventListener('DOMContentLoaded', () => {
     initAuth();
     initHighlighting();
+    initInsights();
     initAI();
     checkUser();
 });
@@ -131,7 +132,16 @@ function initHighlighting() {
         if (selectedVerse) {
             selectedVerse.classList.toggle('highlighted');
             menu.style.display = 'none';
-            saveHighlight(selectedVerse.querySelector('.verse-num').textContent, selectedVerse.textContent);
+            saveHighlight(selectedVerse.dataset.verse || selectedVerse.querySelector('.verse-num').textContent, selectedVerse.textContent);
+        }
+    });
+
+    document.getElementById('btn-insight').addEventListener('click', () => {
+        if (selectedVerse) {
+            const verseNum = selectedVerse.dataset.verse || selectedVerse.querySelector('.verse-num').textContent;
+            const text = selectedVerse.textContent;
+            promptForInsight(verseNum, text);
+            menu.style.display = 'none';
         }
     });
 
@@ -249,11 +259,175 @@ function openAIChat(initialMessage) {
     }
 }
 
-function addMessage(text, sender) {
-    const messages = document.getElementById('chat-messages');
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('message', sender);
-    msgDiv.textContent = text;
-    messages.appendChild(msgDiv);
-    messages.scrollTop = messages.scrollHeight;
+
+// --- Social Insights Logic ---
+function initInsights() {
+    const drawer = document.getElementById('insight-drawer');
+    const closeBtn = document.getElementById('close-drawer');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            drawer.classList.remove('open');
+        });
+    }
+
+    // Load indicators for current chapter
+    loadCommunityInsights();
+}
+
+async function promptForInsight(verseNum, verseText) {
+    if (!supabaseClient) {
+        alert("Please sign in to share insights with the community.");
+        return;
+    }
+
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) {
+        document.getElementById('auth-modal').style.display = 'flex';
+        return;
+    }
+
+    const insight = prompt(`Share an AI-powered insight or reflection for Verse ${verseNum}:`);
+    if (insight) {
+        saveInsight(verseNum, insight);
+    }
+}
+
+async function saveInsight(verseNum, content) {
+    const titleParts = document.title.split('|')[0].trim().split(' ');
+    const book = titleParts.slice(0, -1).join(' ');
+    const chapter = titleParts[titleParts.length - 1];
+
+    try {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        
+        // Check if banned
+        const { data: profile } = await supabaseClient
+            .from('profiles')
+            .select('is_banned')
+            .eq('id', user.id)
+            .single();
+        
+        if (profile?.is_banned) {
+            alert("This account has been banned for violating community guidelines.");
+            return;
+        }
+
+        const { error } = await supabaseClient
+            .from('community_notes')
+            .insert({
+                user_id: user.id,
+                book: book,
+                chapter: parseInt(chapter),
+                verse: parseInt(verseNum),
+                content: content,
+                type: 'ai_insight'
+            });
+
+        if (error) throw error;
+        alert("Insight shared! It's now part of the Global Bible.");
+        loadCommunityInsights();
+    } catch (err) {
+        console.error("Error saving insight:", err);
+        alert("Failed to share insight. Please try again.");
+    }
+}
+
+async function loadCommunityInsights() {
+    if (!supabaseClient) return;
+
+    const titleParts = document.title.split('|')[0].trim().split(' ');
+    const book = titleParts.slice(0, -1).join(' ');
+    const chapter = titleParts[titleParts.length - 1];
+
+    const { data, error } = await supabaseClient
+        .from('community_notes')
+        .select('*, profiles(email)')
+        .eq('book', book)
+        .eq('chapter', parseInt(chapter));
+
+    if (data) {
+        // Group by verse
+        const insightsByVerse = data.reduce((acc, note) => {
+            if (!acc[note.verse]) acc[note.verse] = [];
+            acc[note.verse].push(note);
+            return acc;
+        }, {});
+
+        // Add indicators to verses
+        Object.keys(insightsByVerse).forEach(verseNum => {
+            const verseEl = document.querySelector(`.verse[data-verse="${verseNum}"], .verse:nth-child(${verseNum})`);
+            if (verseEl) {
+                let actionArea = verseEl.querySelector('.verse-actions');
+                if (!actionArea) {
+                    actionArea = document.createElement('span');
+                    actionArea.className = 'verse-actions';
+                    verseEl.appendChild(actionArea);
+                }
+                
+                if (!actionArea.querySelector('.insight-indicator')) {
+                    const indicator = document.createElement('span');
+                    indicator.className = 'indicator insight-indicator';
+                    indicator.innerHTML = '💡';
+                    indicator.title = `${insightsByVerse[verseNum].length} community insights`;
+                    indicator.onclick = (e) => {
+                        e.stopPropagation();
+                        showInsightsForVerse(verseNum, insightsByVerse[verseNum]);
+                    };
+                    actionArea.appendChild(indicator);
+                }
+            }
+        });
+    }
+}
+
+function showInsightsForVerse(verseNum, insights) {
+    const drawer = document.getElementById('insight-drawer');
+    const content = document.getElementById('insight-content');
+    const header = drawer.querySelector('h3');
+    
+    header.textContent = `Insights for Verse ${verseNum}`;
+    content.innerHTML = insights.map(note => `
+        <div class="insight-card" data-note-id="${note.id}">
+            <div class="insight-user">
+                <span>👤 ${note.profiles?.email || 'A Seeker'}</span>
+                <span class="insight-tag">AI Insight</span>
+            </div>
+            <div class="insight-text">${note.content}</div>
+            <div style="margin-top: 0.5rem; display: flex; justify-content: flex-end;">
+                <button class="report-btn" onclick="reportInsight('${note.id}')">🚩 Report</button>
+            </div>
+        </div>
+    `).join('');
+    
+    drawer.classList.add('open');
+}
+
+async function reportInsight(noteId) {
+    if (!supabaseClient) return;
+
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (!user) {
+        alert("Please sign in to report content.");
+        return;
+    }
+
+    const reason = prompt("Why are you reporting this insight? (e.g., Harassment, Inaccurate, Spam)");
+    if (!reason) return;
+
+    try {
+        const { error } = await supabaseClient
+            .from('community_reports')
+            .insert({
+                reporter_id: user.id,
+                note_id: noteId,
+                reason: reason
+            });
+
+        if (error) throw error;
+        alert("Thank you. This insight has been flagged for moderation.");
+    } catch (err) {
+        console.error("Error reporting:", err);
+        alert("Failed to send report. Please try again.");
+    }
 }

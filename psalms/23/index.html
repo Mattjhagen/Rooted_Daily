@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psalm 23 | Rooted Daily Global Bible</title>
+    <meta name="description" content="Read Psalm 23 in the Rooted Translation. Enter the green pastures of the soul—follow the Shepherd as He leads you beside quiet waters, prepares a table in the presence of your enemies, and ensures that goodness and mercy follow you all the days of your life.">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                    <span class="logo-text">Rooted Daily</span>
+                </a>
+            </div>
+            <nav>
+                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </nav>
+        </header>
+
+        <main class="bible-content">
+            <a href="/bible/psalms/" class="nav-btn">← Back to Psalms Index</a>
+            <h1>Psalm 23</h1>
+            <p class="psalm-sub">A psalm of David.</p>
+            
+            <div class="verse-container" style="margin-top: 2rem;">
+                <div class="shepherd-box" style="margin: 2rem 0; padding: 3rem; background: rgba(0,128,0,0.05); border-radius: 2rem; border: 2px solid mediumseagreen; text-align: center; font-family: 'Lora', serif;">
+                    <h2 style="color: mediumseagreen; margin-bottom: 2rem;">The Good Shepherd</h2>
+                    <div class="verse" data-verse="1" style="font-size: 1.6rem; font-weight: 900; color: mediumseagreen; line-height: 1.4;">
+                        “The Lord is my shepherd, I lack nothing.” <a href="#fn1" class="fn"><sup>1</sup></a>
+                    </div>
+                </div>
+
+                <div class="rest-box" style="margin: 3rem 0; padding: 4rem; background: rgba(255,255,255,0.02); border-radius: 2.5rem; border-left: 5px solid gold; text-align: center;">
+                    <h3 style="color: gold; margin-bottom: 2rem;">The Quiet Waters</h3>
+                    <div class="verse" data-verse="2">“He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul.” <a href="#fn2" class="fn"><sup>2</sup></a></div>
+                    <div class="verse" data-verse="3" style="margin-top: 1.5rem; font-weight: 700; color: gold;">“He guides me along the right paths for his name’s sake.”</div>
+                </div>
+                
+                <div class="valley-box" style="margin: 4rem 0; padding: 4rem; background: rgba(0,0,0,0.6); border-radius: 3rem; border: 3px solid #ff4444; text-align: center; box-shadow: 0 0 80px rgba(255,0,0,0.15);">
+                    <h2 style="color: #ff4444; margin-bottom: 2rem;">The Shadow Valley</h2>
+                    <div class="verse" data-verse="4" style="font-size: 1.5rem; font-weight: 900; color: white; line-height: 1.4;">
+                        “Even though I walk through the darkest valley, I will fear no evil, for you are with me.” <a href="#fn3" class="fn"><sup>3</sup></a>
+                    </div>
+                    <div class="verse" data-verse="4" style="margin-top: 2rem; font-style: italic;">“Your rod and your staff, they comfort me.”</div>
+                </div>
+
+                <div class="table-box" style="margin: 4rem 0; padding: 4rem; background: rgba(255,215,0,0.1); border-radius: 3rem; border: 4px solid gold; text-align: center;">
+                    <h2 style="color: gold; margin-bottom: 2rem;">The Overflowing Cup</h2>
+                    <div class="verse" data-verse="5">“You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.” <a href="#fn4" class="fn"><sup>4</sup></a></div>
+                </div>
+
+                <div class="mercy-box" style="margin: 4rem 0; padding: 5rem; background: rgba(0,255,127,0.05); border-radius: 4rem; border: 5px solid mediumspringgreen; text-align: center;">
+                    <h2 style="color: mediumspringgreen; margin-bottom: 2rem; font-size: 2rem;">The Pursuit of Goodness</h2>
+                    <div class="verse" data-verse="6" style="font-size: 1.6rem; font-weight: 900; color: mediumspringgreen; line-height: 1.4;">
+                        “Surely your goodness and love will follow me all the days of my life, and I will dwell in the house of the Lord forever.” <a href="#fn5" class="fn"><sup>5</sup></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
+                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
+                <p id="fn1"><sup>1</sup> <strong>Lord is my Shepherd (YHWH Ro-i):</strong> In the scrolls, this is the "Root of Care." David is "Rooting" his "Survival" in the "Divine Shepherd." To "Lack Nothing" (*lo Ech-sar*) is the "Final Result" of "Trusting the Source." It is the "Rooted Daily" motto.</p>
+                <p id="fn2"><sup>2</sup> <strong>Quiet Waters (Me Me-nu-choth):</strong> Literally in the scrolls, "Waters of resting-places." This is the "Uprooting of Anxiety." The "Soul" (*Naphesh*) is "Refreshed/Returned" (*Ye-sho-be-eb*). It is the "Spiritual Irrigation" of the "Rooted Tree."</p>
+                <p id="fn3"><sup>3</sup> <strong>Darkest Valley (be-Ge Tzal-ma-weth):</strong> Literally "The valley of the shadow-of-death" or "Deep darkness." The scrolls highlight the "Presence in the Pit." Even when the "Environment" is "Uprooted," the "Shepherd" is "With Me" (*Imma-di*). The "Rod" and "Staff" are "Symbols of Authority and Protection."</p>
+                <p id="fn4"><sup>4</sup> <strong>Table... in the Presence of my Enemies (Shul-chan Ne-ged Tzor-e-ray):</strong> This is a "Stunning Root of Security." God doesn't "Remove" the enemies; He "Serves a Feast" in front of them. It is the "Uprooting of Fear through Fellowship." The "Overflowing Cup" (*Re-wa-yah*) signifies "Abundant Life."</p>
+                <p id="fn5"><sup>5</sup> <strong>Goodness and Love will Follow me (Tob wa-Chesed Yir-de-phu-ni):</strong> Literally in the scrolls, "Goodness and Love will pursue/hunt me." This is a "Divine Reversal." Usually, "Enemies" pursue (*Chapter 7*), but for the "Rooted," "Grace" is the "Hunter." It signifies that the "House of the Lord" (*Beth-YHWH*) is our "Final and Eternal Root." It marks the transition from "Wanderer" to "Dweller."</p>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="/bible/psalms/22/" class="nav-btn">← Psalm 22</a>
+                <a href="/bible/psalms/24/" class="nav-btn">Psalm 24 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- AI & Social Tools -->
+    <div id="highlight-menu">
+        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
+        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
+        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="insight-drawer" class="insight-drawer">
+        <div class="drawer-header">
+            <h3>Community Insights</h3>
+            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="insight-content" class="drawer-content">
+            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
+        </div>
+    </div>
+
+    <script src="../../bible-reader.js"></script>
+</body>
+</html>

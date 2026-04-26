@@ -510,3 +510,130 @@ footer {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+/* Social Insights Drawer */
+.insight-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #1A202C;
+    border-left: 1px solid var(--glass-border);
+    transition: right 0.3s ease;
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+}
+
+.insight-drawer.open {
+    right: 0;
+}
+
+.drawer-header {
+    padding: 1.5rem;
+    background: var(--color-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.insight-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.insight-user {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #A4C3B2;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.insight-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.insight-tag {
+    font-size: 0.7rem;
+    background: var(--color-accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+    margin-left: auto;
+}
+
+/* Footnote & Insight Indicators */
+.verse-actions {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
+    font-size: 0.9rem;
+}
+
+.indicator:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.fn {
+    color: var(--color-accent);
+    font-weight: bold;
+    cursor: help;
+    text-decoration: none;
+    padding: 0 2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .insight-drawer {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+.report-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: rgba(255, 100, 100, 0.8);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.report-btn:hover {
+    background: rgba(255, 0, 0, 0.1);
+    color: white;
+    border-color: red;
+}
+
