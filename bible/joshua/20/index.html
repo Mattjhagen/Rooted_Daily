@@ -30,7 +30,7 @@
             <span class="translation-info">Living Legacy Translation · Study Edition</span>
 
             <div class="verse-container" data-book-slug="joshua" data-chapter="20">
-                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh spoke to Joshua, saying,</span></div>\n                <div class="verse"><span class="verse-num">2</span><span class="verse-text">“Speak to the children of Israel, saying, ‘Assign the cities of refuge, of which I spoke to you by Moses,</span></div>\n                <div class="verse"><span class="verse-num">3</span><span class="verse-text">that the man slayer who kills any person accidentally or unintentionally may flee there. They shall be to you for a refuge from the avenger of blood.</span></div>\n                <div class="verse"><span class="verse-num">4</span><span class="verse-text">He shall flee to one of those cities, and shall stand at the entrance of the gate of the city, and declare his case in the ears of the elders of that city. They shall take him into the city with them, and give him a place, that he may live among them.</span></div>\n                <div class="verse"><span class="verse-num">5</span><span class="verse-text">If the avenger of blood pursues him, then they shall not deliver up the man slayer into his hand; because he struck his neighbor unintentionally, and didn’t hate him before.</span></div>\n                <div class="verse"><span class="verse-num">6</span><span class="verse-text">He shall dwell in that city until he stands before the congregation for judgment, until the death of the high priest that shall be in those days. Then the man slayer shall return, and come to his own city, and to his own house, to the city he fled from.’”</span></div>\n                <div class="verse"><span class="verse-num">7</span><span class="verse-text">They set apart Kedesh in Galilee in the hill country of Naphtali, Shechem in the hill country of Ephraim, and Kiriath Arba (also called Hebron) in the hill country of Judah.</span></div>\n                <div class="verse"><span class="verse-num">8</span><span class="verse-text">Beyond the Jordan at Jericho eastward, they assigned Bezer in the wilderness in the plain out of the tribe of Reuben, Ramoth in Gilead out of the tribe of Gad, and Golan in Bashan out of the tribe of Manasseh.</span></div>\n                <div class="verse"><span class="verse-num">9</span><span class="verse-text">These were the appointed cities for all the children of Israel, and for the alien who lives among them, that whoever kills any person unintentionally might flee there, and not die by the hand of the avenger of blood, until he stands trial before the congregation.</span></div>
+                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>\n                <div class="verse"><span class="verse-num">{v.get("number")}</span><span class="verse-text">{v.get("text")}</span></div>
             </div>
 
             <div class="ch-nav">
@@ -45,31 +45,18 @@
         </footer>
     </div>
 
-    <!-- Updated Features Screen (Social Bible Vision) -->
+    <!-- Updated Features Screen -->
     <div id="features-screen" class="features-overlay">
         <div class="features-content">
-            <div class="features-header">
-                <p>Welcome to the Future of Scripture</p>
-                <h2>The Social Bible</h2>
-            </div>
-
+            <div class="features-header"><p>Welcome to the Future of Scripture</p><h2>The Social Bible</h2></div>
             <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Digital Marginalia</h3>
-                    <p>Grandmothers scribbled prayers in Bibles for generations. We've digitized those scribbles. The Word is the foundation; the "Living Legacy" is the layer of human experience written on top of it.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Living Heirlooms</h3>
-                    <p>Every insight is persistent and time-stamped. Ten years from now, your children can read the same verse and see exactly what you were feeling in this moment.</p>
-                </div>
+                <div class="feature-item"><h3>Digital Marginalia</h3><p>Grandmothers scribbled prayers in Bibles for generations. We've digitized those scribbles. The Word is the foundation; the "Living Legacy" is the layer of human experience written on top of it.</p></div>
+                <div class="feature-item"><h3>Living Heirlooms</h3><p>Every insight is persistent and time-stamped. Ten years from now, your children can read the same verse and see exactly what you were feeling in this moment.</p></div>
             </div>
-
             <div style="text-align: center; margin-top: 2rem;">
                 <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem;">The Shared Legacy</h3>
                 <table class="legacy-table">
-                    <thead>
-                        <tr><th>Layer</th><th>Type</th><th>Who can see it?</th></tr>
-                    </thead>
+                    <thead><tr><th>Layer</th><th>Type</th><th>Who can see it?</th></tr></thead>
                     <tbody>
                         <tr><td><b>The Foundation</b></td><td>The Rooted Translation (RT)</td><td>Everyone</td></tr>
                         <tr><td><b>Personal Journal</b></td><td>Private Insights</td><td>Only You</td></tr>
@@ -77,18 +64,12 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="mission-quote">
-                "We aren't changing the Word; we are changing how we remember our journey with it. The Rooted Translation is your family's spiritual DNA."
-            </div>
-
-            <div class="features-actions">
-                <button id="btn-close-features" class="btn-get-started">Start My Journey</button>
-            </div>
+            <div class="mission-quote">"We aren't changing the Word; we are changing how we remember our journey with it. The Rooted Translation is your family's spiritual DNA."</div>
+            <div class="features-actions"><button id="btn-close-features" class="btn-get-started">Start My Journey</button></div>
         </div>
     </div>
 
-    <!-- Interactive Elements (AI Chat, Auth) ... -->
+    <!-- AI Chat bubble & window -->
     <div id="ai-bubble" class="ai-bubble"><img src="https://rootedapp.space/logo_dark_light.png" alt="AI"></div>
     <div id="ai-chat-window" class="ai-chat-window">
         <div class="ai-chat-header"><span>Rooted AI</span><button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button></div>
@@ -96,15 +77,19 @@
         <form id="chat-form" class="ai-chat-input"><input type="text" id="chat-input" placeholder="Ask Rooted..."><button type="submit">Send</button></form>
     </div>
 
+    <!-- Auth Modal -->
     <div id="auth-modal" class="modal-overlay">
         <div class="modal-content">
             <button id="close-auth" class="close-modal">✕</button>
             <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Join Rooted Daily</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">Sign in to sync your growth across devices.</p>
             <form id="auth-form">
                 <div class="form-group"><label>Email Address</label><input type="email" id="email" required placeholder="you@example.com"></div>
                 <div class="form-group"><label>Password</label><input type="password" id="password" required placeholder="••••••••"></div>
                 <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary);">
+                    Don't have an account? <a href="#" id="toggle-auth-mode" style="color: var(--color-accent);">Create one</a>
+                </p>
             </form>
         </div>
     </div>
