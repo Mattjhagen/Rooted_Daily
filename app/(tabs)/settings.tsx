@@ -10,11 +10,13 @@ import { requestNotificationPermissions, scheduleDailyReminder, cancelAllReminde
 import { useToast } from '../../src/context/ToastContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { HelpCircle, Heart, Mail, ExternalLink } from 'lucide-react-native';
+import { HelpCircle, Heart, Mail, ExternalLink, Sparkles } from 'lucide-react-native';
 import * as Linking from 'expo-linking';
 import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
 import { useAudioStore } from '../../src/features/audio/audioStore';
 import { useRouter } from 'expo-router';
+import { AuthService } from '../../src/services/auth/AuthService';
+import { User, LogIn, LogOut, UserCircle } from 'lucide-react-native';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
@@ -27,10 +29,33 @@ export default function SettingsScreen() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [date, setDate] = useState(new Date(new Date().setHours(7, 0, 0, 0)));
   const [showPicker, setShowPicker] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    AuthService.getCurrentUser().then(setUser);
+    const { data: { subscription } } = AuthService.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await AuthService.signOut();
+      showToast({ message: 'Signed out successfully', type: 'info' });
+    } catch (err: any) {
+      showToast({ message: err.message, type: 'error' });
+    }
+  };
 
   const handleReplayTutorial = () => {
     setHasSeenTutorial(false);
     showToast({ message: 'Tutorial will show on next Home visit!', type: 'success' });
+  };
+
+  const handleShowWhatsNew = () => {
+    usePersistenceStore.getState().setLastSeenVersion('');
+    showToast({ message: 'Update notes will show on next restart', type: 'success' });
   };
 
   const handleDonate = () => {
@@ -87,6 +112,46 @@ export default function SettingsScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <View style={styles.header}>
         <Text style={[styles.title, { color: themeColors.text }]}>Settings</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Account</Text>
+        {user ? (
+          <>
+            <View style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+              <View style={styles.rowLabel}>
+                <UserCircle size={20} color={themeColors.accent} />
+                <View style={{ marginLeft: spacing.md }}>
+                  <Text style={[styles.rowText, { color: themeColors.text, marginLeft: 0 }]}>{user.email}</Text>
+                  <TouchableOpacity onPress={handleSignOut}>
+                    <Text style={{ color: colors.danger, fontSize: 12, marginTop: 2, fontFamily: 'DMSans_600SemiBold' }}>Sign Out</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity 
+              style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
+              onPress={() => router.push('/chat/inbox')}
+            >
+              <View style={styles.rowLabel}>
+                <MessageSquare size={20} color={themeColors.accent} />
+                <Text style={[styles.rowText, { color: themeColors.text }]}>Messages</Text>
+              </View>
+              <ChevronRight size={18} color={themeColors.textSecondary} />
+            </TouchableOpacity>
+          </>
+        ) : (
+          <TouchableOpacity 
+            style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+            onPress={() => router.push('/auth/login')}
+          >
+            <View style={styles.rowLabel}>
+              <LogIn size={20} color={themeColors.accent} />
+              <Text style={[styles.rowText, { color: themeColors.text }]}>Sign In / Create Account</Text>
+            </View>
+            <ChevronRight size={18} color={themeColors.textSecondary} />
+          </TouchableOpacity>
+        )}
       </View>
 
       <View style={styles.section}>
@@ -189,15 +254,26 @@ export default function SettingsScreen() {
           onPress={handleReplayTutorial}
         >
           <View style={styles.rowLabel}>
-            <HelpCircle size={20} color={themeColors.accent} />
+            <Sparkles size={20} color={themeColors.accent} />
             <Text style={[styles.rowText, { color: themeColors.text }]}>Replay Tutorial</Text>
+          </View>
+          <ChevronRight size={18} color={themeColors.textSecondary} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
+          onPress={handleShowWhatsNew}
+        >
+          <View style={styles.rowLabel}>
+            <Sparkles size={20} color={colors.gold} />
+            <Text style={[styles.rowText, { color: themeColors.text }]}>What's New in v0.0.8</Text>
           </View>
           <ChevronRight size={18} color={themeColors.textSecondary} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.footer}>
-        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v0.0.3</Text>
+        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v0.0.8</Text>
       </View>
     </SafeAreaView>
   );

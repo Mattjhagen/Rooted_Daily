@@ -31,6 +31,7 @@ import { FullPlayerModal } from '../src/components/FullPlayerModal';
 import { audioService } from '../src/services/audio/AudioService';
 import { ToastProvider } from '../src/context/ToastContext';
 import { Toast } from '../src/components/Toast';
+import { WhatsNewModal } from '../src/components/WhatsNewModal';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -125,13 +126,16 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="chat/[ref]" options={{ title: 'Reflection' }} />
+        <Stack.Screen name="chat/[ref]" options={{ title: 'AI Reflection' }} />
+        <Stack.Screen name="chat/inbox" options={{ title: 'Messages' }} />
+        <Stack.Screen name="chat/dm/[id]" options={{ title: 'Chat' }} />
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
       <MiniPlayer />
       <FullPlayerModal />
       <Toast />
+      <WhatsNewModal />
     </ToastProvider>
   );
 }

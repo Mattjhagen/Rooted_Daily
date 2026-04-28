@@ -131,11 +131,11 @@ const styles = StyleSheet.create({
   itemRef: {
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 16,
+    flexShrink: 1,
   },
   itemText: {
     ...typography.scriptureMD,
     marginBottom: spacing.sm,
-    flexShrink: 1,
   },
   itemNote: {
     ...typography.body,
@@ -174,6 +174,8 @@ const styles = StyleSheet.create({
   headerTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+    marginRight: spacing.md,
   },
   actionIcons: {
     flexDirection: 'row',

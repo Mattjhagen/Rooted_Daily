@@ -17,12 +17,14 @@ interface PersistenceState {
   lastCheckInDate: string | null;
   hasSeenTutorial: boolean;
   interests: string[];
+  lastSeenVersion: string | null;
   updateLastReadRef: (ref: string) => void;
   updateDevotionalProgress: (date: string, updates: Partial<DevotionalProgress>) => void;
   getDevotionalProgress: (date: string) => DevotionalProgress;
   performCheckIn: () => { pointsEarned: number; newStreak: number } | null;
   setHasSeenTutorial: (seen: boolean) => void;
   toggleInterest: (id: string) => void;
+  setLastSeenVersion: (version: string) => void;
 }
 
 export const usePersistenceStore = create<PersistenceState>()(
@@ -35,6 +37,7 @@ export const usePersistenceStore = create<PersistenceState>()(
       lastCheckInDate: null,
       hasSeenTutorial: false,
       interests: [],
+      lastSeenVersion: null,
       
       updateLastReadRef: (lastReadRef) => set({ lastReadRef }),
       
@@ -45,6 +48,8 @@ export const usePersistenceStore = create<PersistenceState>()(
           ? state.interests.filter(i => i !== id)
           : [...state.interests, id]
       })),
+
+      setLastSeenVersion: (lastSeenVersion) => set({ lastSeenVersion }),
       
       updateDevotionalProgress: (date, updates) => {
         const current = get().getDevotionalProgress(date);

@@ -9,6 +9,7 @@ import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { getVerse, getChapter, Verse } from '../../src/features/bible/bibleService';
 import { MessageCircle, Share2, Bookmark, ChevronLeft, BookOpen } from 'lucide-react-native';
+import { CommunityInsights } from '../../src/components/CommunityInsights';
 
 export default function VerseDetailScreen() {
   const { ref } = useLocalSearchParams<{ ref: string }>();
@@ -118,6 +119,12 @@ export default function VerseDetailScreen() {
             ))}
           </View>
         </View>
+
+        <CommunityInsights 
+          book={mainVerse.book} 
+          chapter={mainVerse.chapter} 
+          verse={mainVerse.verse} 
+        />
       </ScrollView>
     </SafeAreaView>
   );

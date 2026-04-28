@@ -196,6 +196,13 @@ export default function AdminDevotionalsScreen() {
         <Text style={[styles.countText, { color: themeColors.textSecondary }]}>
           {pendingList.length} submissions pending
         </Text>
+        <TouchableOpacity 
+          style={[styles.safetyBtn, { backgroundColor: colors.danger + '22' }]} 
+          onPress={() => router.push('/admin/moderation')}
+        >
+          <ShieldAlert size={14} color={colors.danger} />
+          <Text style={[styles.safetyText, { color: colors.danger }]}>Safety Dashboard</Text>
+        </TouchableOpacity>
       </View>
 
       {loading ? (
@@ -446,5 +453,17 @@ const styles = StyleSheet.create({
   modalBtnText: {
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 16,
+  },
+  safetyBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: 8,
+    gap: 6,
+  },
+  safetyText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 12,
   },
 });
