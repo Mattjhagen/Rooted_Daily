@@ -12,11 +12,13 @@ interface ReaderSettingsState {
   fontFamily: ReaderFont;
   isPublicMode: boolean;
   selectedVersion: BibleVersion;
+  customVoiceId: string | null;
   setTheme: (theme: ReaderTheme) => void;
   setFontSize: (size: number) => void;
   setFontFamily: (font: ReaderFont) => void;
   setPublicMode: (isPublic: boolean) => void;
   setSelectedVersion: (version: BibleVersion) => void;
+  setCustomVoiceId: (id: string | null) => void;
 }
 
 export const useReaderSettings = create<ReaderSettingsState>()(
@@ -27,11 +29,13 @@ export const useReaderSettings = create<ReaderSettingsState>()(
       fontFamily: 'serif',
       isPublicMode: false,
       selectedVersion: 'RT',
+      customVoiceId: null,
       setTheme: (theme) => set({ theme }),
       setFontSize: (fontSize) => set({ fontSize }),
       setFontFamily: (fontFamily) => set({ fontFamily }),
       setPublicMode: (isPublicMode) => set({ isPublicMode }),
       setSelectedVersion: (selectedVersion) => set({ selectedVersion }),
+      setCustomVoiceId: (customVoiceId) => set({ customVoiceId }),
     }),
     {
       name: 'reader-settings',

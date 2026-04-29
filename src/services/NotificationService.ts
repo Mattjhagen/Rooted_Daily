@@ -101,50 +101,91 @@ export const requestNotificationPermissions = async () => {
   }
 };
 
+import { supabase } from './supabase';
+
+/**
+ * Registers for push notifications and saves the token to the user's profile.
+ */
+export const registerForPushNotificationsAsync = async () => {
+  try {
+    const Notifications = getNotifications();
+    if (!Notifications) return null;
+
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    
+    if (finalStatus !== 'granted') return null;
+
+    const tokenData = await Notifications.getExpoPushTokenAsync({
+      projectId: Constants.expoConfig?.extra?.eas?.projectId,
+    });
+    const token = tokenData.data;
+
+    // Save token to Supabase profile
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      await supabase
+        .from('profiles')
+        .update({ push_token: token })
+        .eq('id', user.id);
+    }
+
+    return token;
+  } catch (err) {
+    console.error('[NotificationService] Error registering for push notifications:', err);
+    return null;
+  }
+};
+
 /**
  * Schedules a daily reminder at the specified time.
  */
 export const scheduleDailyReminder = async (hour: number, minute: number) => {
-  try {
-    const Notifications = getNotifications();
-    if (!Notifications) return;
+    try {
+        const Notifications = getNotifications();
+        if (!Notifications) return;
 
-    ensureHandler();
+        ensureHandler();
 
-    // Cancel all existing notifications first to avoid duplicates
-    await Notifications.cancelAllScheduledNotificationsAsync();
+        // Cancel all existing notifications first to avoid duplicates
+        await Notifications.cancelAllScheduledNotificationsAsync();
 
-    // Get the trigger type safely
-    const triggerType = Notifications.SchedulableTriggerInputTypes?.DAILY || 'daily';
+        // Get the trigger type safely
+        const triggerType = Notifications.SchedulableTriggerInputTypes?.DAILY || 'daily';
 
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: "Rooted Daily Reminder",
-        body: "It's time for your daily reflection. Open the app to continue your journey through the Word.",
-        data: { url: '/(tabs)' },
-      },
-      trigger: {
-        hour,
-        minute,
-        type: triggerType
-      } as any,
-    });
-    console.log(`[NotificationService] Daily reminder scheduled for ${hour}:${minute}`);
-  } catch (err) {
-    console.error('[NotificationService] Failed to schedule daily reminder:', err);
-  }
+        await Notifications.scheduleNotificationAsync({
+            content: {
+                title: "Rooted Daily Reminder",
+                body: "It's time for your daily reflection. Open the app to continue your journey through the Word.",
+                data: { url: '/(tabs)' },
+            },
+            trigger: {
+                hour,
+                minute,
+                type: triggerType
+            } as any,
+        });
+        console.log(`[NotificationService] Daily reminder scheduled for ${hour}:${minute}`);
+    } catch (err) {
+        console.error('[NotificationService] Failed to schedule daily reminder:', err);
+    }
 };
 
 /**
  * Cancels all scheduled reminders.
  */
 export const cancelAllReminders = async () => {
-  try {
-    const Notifications = getNotifications();
-    if (!Notifications) return;
-    await Notifications.cancelAllScheduledNotificationsAsync();
-    console.log('[NotificationService] All reminders cancelled.');
-  } catch (err) {
-    console.error('[NotificationService] Failed to cancel reminders:', err);
-  }
+    try {
+        const Notifications = getNotifications();
+        if (!Notifications) return;
+        await Notifications.cancelAllScheduledNotificationsAsync();
+        console.log('[NotificationService] All reminders cancelled.');
+    } catch (err) {
+        console.error('[NotificationService] Failed to cancel reminders:', err);
+    }
 };

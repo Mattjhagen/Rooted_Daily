@@ -47,6 +47,23 @@ export default function LoginScreen() {
     }
   };
 
+  const handleResetPassword = async () => {
+    if (!email) {
+      showToast({ message: 'Please enter your email address first', type: 'error' });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await AuthService.resetPassword(email);
+      showToast({ message: 'Password reset email sent!', type: 'success' });
+    } catch (err: any) {
+      showToast({ message: err.message, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <KeyboardAvoidingView 
@@ -106,6 +123,12 @@ export default function LoginScreen() {
                 <Text style={styles.authBtnText}>{isSignUp ? 'Sign Up' : 'Sign In'}</Text>
               )}
             </TouchableOpacity>
+
+            {!isSignUp && (
+              <TouchableOpacity onPress={handleResetPassword} style={styles.forgotBtn}>
+                <Text style={[styles.forgotText, { color: themeColors.accent }]}>Forgot Password?</Text>
+              </TouchableOpacity>
+            )}
 
             <TouchableOpacity 
               style={styles.toggleBtn}
@@ -183,6 +206,14 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     ...typography.caption,
+    fontSize: 14,
+  },
+  forgotBtn: {
+    alignItems: 'center',
+    marginTop: spacing.sm,
+  },
+  forgotText: {
+    fontFamily: 'DMSans_600SemiBold',
     fontSize: 14,
   },
 });

@@ -32,6 +32,8 @@ import { audioService } from '../src/services/audio/AudioService';
 import { ToastProvider } from '../src/context/ToastContext';
 import { Toast } from '../src/components/Toast';
 import { WhatsNewModal } from '../src/components/WhatsNewModal';
+import { AuthService } from '../src/services/auth/AuthService';
+import { useJournalStore } from '../src/features/journal/journalStore';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -93,6 +95,27 @@ export default function RootLayout() {
       init();
     }
   }, [fontsLoaded, fontError]);
+
+  // Auth & Sync Listener
+  useEffect(() => {
+    const sync = useJournalStore.getState().syncEntries;
+    
+    // Initial sync
+    sync();
+
+    // Listen for sign-ins
+    const { data: { subscription } } = AuthService.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN') {
+        sync();
+      } else if (event === 'SIGNED_OUT') {
+        // Optionally clear entries or keep them (they are local anyway)
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   if (!fontsLoaded && !fontError) {
     return null;

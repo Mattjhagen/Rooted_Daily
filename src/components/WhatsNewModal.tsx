@@ -6,7 +6,7 @@ import { spacing } from '../theme/spacing';
 import { usePersistenceStore } from '../features/persistence/persistenceStore';
 import { MessageSquare, Users, ShieldCheck, UserCircle, Sparkles } from 'lucide-react-native';
 
-const CURRENT_VERSION = '0.0.8';
+const CURRENT_VERSION = '0.0.9';
 
 export const WhatsNewModal = () => {
   const colorScheme = useColorScheme();
@@ -33,23 +33,18 @@ export const WhatsNewModal = () => {
 
   const features = [
     {
-      title: 'Community Insights',
-      description: 'Share your reflections and read notes from others directly on any verse.',
+      title: 'Use Your Own Voice',
+      description: 'Clone your voice on ElevenLabs and hear Scripture in your own voice.',
+      icon: <Sparkles size={24} color={colors.gold} />
+    },
+    {
+      title: 'Heirloom Insights',
+      description: 'Look for the glowing ✦ markers to discover deep theological study notes.',
       icon: <Users size={24} color={themeColors.accent} />
     },
     {
-      title: 'Direct Messaging',
-      description: 'Connect with other users to discuss Scripture and build friendships.',
-      icon: <MessageSquare size={24} color={themeColors.accent} />
-    },
-    {
-      title: 'Sync Across Devices',
-      description: 'Create an account to keep your journal and chats synced on any device.',
-      icon: <UserCircle size={24} color={themeColors.accent} />
-    },
-    {
-      title: 'Community Safety',
-      description: 'New tools to block and report content, ensuring a healthy environment for all.',
+      title: 'Real-time Sync',
+      description: 'Your journal and legacy notes now sync instantly across web and mobile.',
       icon: <ShieldCheck size={24} color={themeColors.accent} />
     }
   ];
