@@ -1,6 +1,6 @@
 {
   "name": "deen-buddy",
-  "main": "expo-router/entry",
+  "main": "index.js",
   "version": "0.0.3",
   "scripts": {
     "start": "expo start",
@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/caveat": "^0.4.2",
     "@expo-google-fonts/dm-sans": "^0.4.2",
     "@expo-google-fonts/eb-garamond": "^0.4.2",
     "@expo-google-fonts/inter": "^0.4.2",

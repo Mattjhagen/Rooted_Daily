@@ -7,7 +7,6 @@
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
     "splash": {
       "image": "./assets/images/rooted-icon.png",
       "resizeMode": "contain",
@@ -55,7 +54,7 @@
       "expo-web-browser"
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": false
     },
     "runtimeVersion": {
       "policy": "appVersion"

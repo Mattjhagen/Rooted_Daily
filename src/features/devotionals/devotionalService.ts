@@ -1,6 +1,7 @@
 // src/features/devotionals/devotionalService.ts
 
 import { Devotional, DevotionalSubmission } from './types';
+export { supabase } from '../../services/supabase';
 import { supabase } from '../../services/supabase';
 import { createClient } from '@supabase/supabase-js';
 

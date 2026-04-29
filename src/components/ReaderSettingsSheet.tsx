@@ -14,6 +14,7 @@ interface ReaderSettingsSheetProps {
 export const ReaderSettingsSheet: React.FC<ReaderSettingsSheetProps> = ({ visible, onClose }) => {
   const { theme, fontSize, fontFamily, setTheme, setFontSize, setFontFamily } = useReaderSettings();
   
+
   const themeOptions: { id: ReaderTheme; label: string; color: string; textColor: string }[] = [
     { id: 'parchment', label: 'Parchment', color: '#FAF8F4', textColor: '#1C1917' },
     { id: 'white', label: 'White', color: '#FFFFFF', textColor: '#000000' },

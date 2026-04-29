@@ -24,8 +24,42 @@ web-build/
 Library/
 AndroidStudio/
 rooted.env/
-v0.0.1/
+v0.0.1
 brain/
 temp_icon.png
 logo_dark_light.png
-v0.0.1/
+
+# Bible data (static site versions)
+bible/
+1-chronicles/
+1-kings/
+2-chronicles/
+2-kings/
+2-samuel/
+psalms/
+daniel/
+esther/
+ezra/
+job/
+nehemiah/
+
+# Other non-app files
+backend/
+supabase/
+scripts/
+scratch/
+support/
+json/
+privacy/
+constants/Colors.ts
+generate_*.js
+bible-reader.js
+index.html
+style.css
+robots.txt
+sitemap.xml
+CommunityDirectMessaging.md
+logo_dark_light.png
+rooted_app_icon.svg
+rooted_icon_512.png
+# (Keep assets/ for app icons, but these root files seem extra)

@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
-import { Bell, Clock, ChevronRight, Mic } from 'lucide-react-native';
+import { Bell, Clock, ChevronRight, Mic, MessageSquare } from 'lucide-react-native';
 import { requestNotificationPermissions, scheduleDailyReminder, cancelAllReminders } from '../../src/services/NotificationService';
 import { useToast } from '../../src/context/ToastContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -22,6 +22,7 @@ export default function SettingsScreen() {
   const themeColors = isDark ? colors.dark : colors;
   const { setHasSeenTutorial } = usePersistenceStore();
   const { preferredVoiceIdentifier } = useAudioStore();
+  const { showToast } = useToast();
   const router = useRouter();
 
   const [isEnabled, setIsEnabled] = useState(false);

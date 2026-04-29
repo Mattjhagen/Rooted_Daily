@@ -509,6 +509,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginTop: spacing.lg,
   },
+  sectionHeader: {
+    marginBottom: spacing.md,
+  },
+  caption: {
+    ...typography.caption,
+    fontSize: 14,
+  },
   finishBtnText: {
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 16,

@@ -29,7 +29,7 @@ export default function PersonalVoiceWizard() {
   const fetchVoices = async () => {
     try {
       setLoadingVoices(true);
-      const availableVoices = await Speech.getVoicesAsync();
+      const availableVoices = await Speech.getAvailableVoicesAsync();
       // Filter for English voices or the user's locale
       const enVoices = availableVoices.filter(v => v.language.startsWith('en'));
       setVoices(enVoices);
