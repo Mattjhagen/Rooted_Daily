@@ -30,7 +30,7 @@ temp_icon.png
 logo_dark_light.png
 
 # Bible data (static site versions)
-bible/
+/bible/
 1-chronicles/
 1-kings/
 2-chronicles/
