@@ -4,7 +4,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
 import { usePersistenceStore } from '../features/persistence/persistenceStore';
-import { MessageSquare, Users, ShieldCheck, UserCircle, Sparkles } from 'lucide-react-native';
+import { MessageSquare, Users, ShieldCheck, UserCircle, Zap } from 'lucide-react-native';
 
 const CURRENT_VERSION = '0.0.9';
 
@@ -35,7 +35,7 @@ export const WhatsNewModal = () => {
     {
       title: 'Use Your Own Voice',
       description: 'Clone your voice on ElevenLabs and hear Scripture in your own voice.',
-      icon: <Sparkles size={24} color={colors.gold} />
+      icon: <Zap size={24} color={colors.gold} />
     },
     {
       title: 'Heirloom Insights',
@@ -60,7 +60,7 @@ export const WhatsNewModal = () => {
         <View style={[styles.content, { backgroundColor: themeColors.surface }]}>
           <View style={styles.header}>
             <View style={[styles.sparkleBox, { backgroundColor: colors.gold + '22' }]}>
-              <Sparkles size={32} color={colors.gold} />
+              <Zap size={32} color={colors.gold} />
             </View>
             <Text style={[styles.title, { color: themeColors.text }]}>What's New</Text>
             <Text style={[styles.subtitle, { color: themeColors.textSecondary }]}>
