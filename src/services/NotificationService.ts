@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
+import { supabase } from './supabase';
 
 /**
  * Detect if we are running in Expo Go (Store Client)
@@ -101,7 +102,6 @@ export const requestNotificationPermissions = async () => {
   }
 };
 
-import { supabase } from './supabase';
 
 /**
  * Registers for push notifications and saves the token to the user's profile.
