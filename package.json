@@ -23,13 +23,8 @@
     "@supabase/supabase-js": "^2.103.0",
     "@types/crypto-js": "^4.2.2",
     "crypto-js": "^4.2.0",
-<<<<<<< HEAD
-    "expo": "~55.0.0",
-    "expo-audio": "~55.0.14",
-=======
     "expo": "~55.0.18",
-    "expo-audio": "^55.0.14",
->>>>>>> main
+    "expo-audio": "~55.0.14",
     "expo-blur": "^55.0.13",
     "expo-clipboard": "~55.0.13",
     "expo-constants": "~55.0.13",
