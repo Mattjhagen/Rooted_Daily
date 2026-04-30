@@ -1,0 +1,23 @@
+name: Heartbeat Notifications
+on:
+  schedule:
+    - cron: '0 14 * * *' # 9 AM EST
+    - cron: '0 19 * * *' # 2 PM EST
+    - cron: '0 0 * * *'  # 7 PM EST
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  send-notifications:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm install node-fetch
+      - name: Run Heartbeat
+        env:
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node backend/heartbeat.js

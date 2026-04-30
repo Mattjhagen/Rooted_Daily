@@ -22,50 +22,29 @@ class AudioService {
   async play(uri: string, title: string, subtitle?: string) {
     try {
       const store = useAudioStore.getState();
-
-      // Stop current if playing
       if (this.player) {
         await this.stop();
       }
-
-      // Ensure Audio Mode is active (fixes silent playback issues)
       await setAudioModeAsync({
         playsInSilentMode: true,
         shouldPlayInBackground: true,
         interruptionMode: 'doNotMix',
         shouldRouteThroughEarpiece: false,
       });
-
-      // Use existing track text if we're just updating the URI
       const existingText = store.currentTrack?.text;
       store.setTrack({ id: uri, title, subtitle, url: uri, text: existingText });
       store.setPlaybackState('loading');
-
       if (uri.startsWith('speech://')) {
         const text = uri.replace('speech://', '');
         await this.playNativeSpeech(text);
         return;
       }
-
-      // Create player with the audio source
-      this.player = createAudioPlayer({ uri }, {
-        updateInterval: 500,
-      });
-
-      // Listen for status updates (progress, didJustFinish, etc.)
-      this.statusSubscription = this.player.addListener(
-        'playbackStatusUpdate',
-        this.onPlaybackStatusUpdate
-      );
-
-      // Set playback rate and volume
+      this.player = createAudioPlayer({ uri }, { updateInterval: 500 });
+      this.statusSubscription = this.player.addListener('playbackStatusUpdate', this.onPlaybackStatusUpdate);
       this.player.setPlaybackRate(store.playbackRate, 'high');
       this.player.volume = 1.0;
-
-      // Start playing
       this.player.play();
       store.setPlaybackState('playing');
-
     } catch (error) {
       console.error('Playback failed', error);
       useAudioStore.getState().setPlaybackState('error');
@@ -75,7 +54,6 @@ class AudioService {
   async setPlaybackRate(rate: number) {
     const store = useAudioStore.getState();
     store.setPlaybackRate(rate);
-
     if (this.player) {
       this.player.setPlaybackRate(rate, 'high');
     }
@@ -132,14 +110,10 @@ class AudioService {
     this.currentSpeechText = text;
     const store = useAudioStore.getState();
     store.setPlaybackState('playing');
-
-    // Estimate duration: ~150 words per minute -> 2.5 words per sec
     const words = text.split(/\s+/).length;
     const estimatedDuration = (words / 2.5) * 1000;
     store.setProgress(0, estimatedDuration);
-
     this.startSpeechProgressTimer(estimatedDuration);
-
     Speech.speak(text, {
       voice: store.preferredVoiceIdentifier || undefined,
       rate: store.playbackRate,
@@ -168,7 +142,6 @@ class AudioService {
         this.stop();
       } else {
         store.setPlaybackState(status.playing ? 'playing' : 'paused');
-        // expo-audio reports time in seconds; convert to milliseconds for store compatibility
         store.setProgress(status.currentTime * 1000, (status.duration || 0) * 1000);
       }
     }

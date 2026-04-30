@@ -4,61 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooted Daily | Your Bible Companion</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo-container">
-                <img src="rooted_icon_512.png" alt="Rooted Icon" class="logo-img">
+            <a href="/" class="logo-container">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
                 <span class="logo-text">Rooted Daily</span>
-            </div>
+            </a>
+            <nav>
+                <a href="/bible/" class="nav-link">Bible Index</a>
+            </nav>
         </header>
 
         <section class="hero">
             <h1>Stay Rooted in the Word</h1>
             <p>Experience the Bible through high-quality audio narration, AI-powered reflections, and personal journaling.</p>
             
-            <div class="download-card">
-                <a href="#" class="btn">
-                    <img src="https://img.icons8.com/ios-filled/24/000000/google-play.png" alt="Play Store">
-                    <div class="btn-content">
-                        <span class="btn-small">Get it on</span>
-                        Google Play
+            <div class="button-grid">
+                <!-- Web Reader Button (Primary CTA) -->
+                <a href="/bible/" class="app-btn primary">
+                    <span style="font-size: 1.5rem;">📖</span>
+                    <div style="text-align: left;">
+                        <span class="btn-text-small">Launch Now</span>
+                        <span class="btn-text-large">Web Reader</span>
+                    </div>
+                </a>
+
+                <!-- Google Play -->
+                <a href="#" class="app-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="btn-icon">
+                    <div style="text-align: left;">
+                        <span class="btn-text-small">Get it on</span>
+                        <span class="btn-text-large">Google Play</span>
                     </div>
                 </a>
                 
-                <a href="#" class="btn disabled">
-                    <img src="https://img.icons8.com/ios-filled/24/97A89B/app-store-ios--v1.png" alt="App Store">
-                    <div class="btn-content">
-                        <span class="btn-small">Coming Soon to</span>
-                        App Store
+                <!-- App Store -->
+                <a href="#" class="app-btn" style="opacity: 0.6; cursor: not-allowed;">
+                    <span style="font-size: 1.5rem;">🍎</span>
+                    <div style="text-align: left;">
+                        <span class="btn-text-small">Coming Soon</span>
+                        <span class="btn-text-large">App Store</span>
                     </div>
                 </a>
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="feature-card">
-                <h3>📖 Interactive Reader</h3>
-                <p>Highlight, share, and dive deep into scripture with a fluid, horizontal reader.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🎙️ Natural Narration</h3>
-                <p>Listen to any verse or AI reflection with our premium, human-like audio narration.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🪴 Deep Reflections</h3>
-                <p>Engage with Rooted, your AI companion, for context, application, and guidance.</p>
             </div>
         </section>
 
         <footer>
             <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                <a href="support/index.html" style="color: var(--color-text-secondary); text-decoration: none; margin-right: 1.5rem;">Support</a>
-                <a href="privacy/index.html" style="color: var(--color-text-secondary); text-decoration: none;">Privacy Policy</a>
-            </p>
         </footer>
     </div>
 </body>

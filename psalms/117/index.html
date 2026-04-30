@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psalm 117 | Rooted Daily Global Bible</title>
+    <meta name="description" content="Read Psalm 117 in the Rooted Translation. The shortest chapter in the Bible—follow the universal call for all nations and peoples to praise the Lord for His great love and enduring faithfulness that remains forever.">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                    <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                    <span class="logo-text">Rooted Daily</span>
+                </a>
+            </div>
+            <nav>
+                <a href="/bible/" class="nav-link" style="margin-right: 1.5rem;">Bible Index</a>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </nav>
+        </header>
+
+        <main class="bible-content">
+            <a href="/bible/psalms/" class="nav-btn">← Back to Psalms Index</a>
+            <h1>Psalm 117</h1>
+            
+            <div class="verse-container" style="margin-top: 2rem;">
+                <div class="universal-box" style="margin: 2rem 0; padding: 4rem; background: rgba(0,139,139,0.05); border-radius: 2rem; border: 3px solid darkcyan; text-align: center; font-family: 'Lora', serif; box-shadow: 0 0 70px rgba(0,255,255,0.15);">
+                    <h2 style="color: darkcyan; margin-bottom: 2rem;">All You Nations</h2>
+                    <div class="verse" data-verse="1" style="font-size: 1.6rem; font-weight: 900; color: darkcyan; line-height: 1.4;">
+                        “Praise the Lord, all you nations; extol him, all you peoples.” <a href="#fn1" class="fn"><sup>1</sup></a>
+                    </div>
+                </div>
+
+                <div class="love-box" style="margin: 4rem 0; padding: 5rem; background: rgba(255,215,0,0.1); border-radius: 4rem; border: 4px solid gold; text-align: center; box-shadow: 0 0 100px rgba(255,215,0,0.2);">
+                    <h2 style="color: gold; margin-bottom: 2rem; font-size: 2rem;">Endures Forever</h2>
+                    <div class="verse" data-verse="2" style="font-size: 1.6rem; font-weight: 900; color: gold; line-height: 1.4;">
+                        “For great is his love toward us, and the faithfulness of the Lord endures forever.” <a href="#fn2" class="fn"><sup>2</sup></a>
+                    </div>
+                    <div class="verse" data-verse="2" style="margin-top: 2rem; font-size: 1.8rem; font-weight: 900; color: darkcyan;">“Praise the Lord.” <a href="#fn3" class="fn"><sup>3</sup></a></div>
+                </div>
+            </div>
+
+            <div class="footnotes-section" style="margin-top: 4rem; padding: 2rem; background: rgba(255,255,255,0.02); border-radius: 1rem; border: 1px solid var(--glass-border);">
+                <h3 style="margin-bottom: 1rem; font-family: var(--font-heading);">Translation Notes</h3>
+                <p id="fn1"><sup>1</sup> <strong>All you Nations (Kol-Go-yim):</strong> In the scrolls, this is the "Universal Expansion Root." The praise of God is not "Rooted" in one ethnicity, but "Uproots" all national barriers to include "All Peoples" (*Kol ha-Um-mim*). It is the "Shortest Call with the Largest Scope."</p>
+                <p id="fn2"><sup>2</sup> <strong>Great is His Love (Ga-bar a-ley-nu Chas-do):</strong> Literally "His love has prevailed over us." The scrolls highlight the "Overwhelming Root." God’s "Chesed" and "Faithfulness" (*Emeth*) are "Fixed" (*Forever*). It signify "Unstoppable Grace."</p>
+                <p id="fn3"><sup>3</sup> <strong>Praise the Lord (Hal-le-lu-Yah):</strong> The scrolls conclude the shortest chapter with the "Standard Seal." It marks the transition to the "Festive Victory" in *Psalm 118*. It is the "Rooted Daily" anthem of "Global Unity." Short, but infinite.</p>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="/bible/psalms/116/" class="nav-btn">← Psalm 116</a>
+                <a href="/bible/psalms/118/" class="nav-btn">Psalm 118 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- AI & Social Tools -->
+    <div id="highlight-menu">
+        <button id="btn-highlight" class="menu-btn">🖍️ Highlight</button>
+        <button id="btn-insight" class="menu-btn">💡 Share Insight</button>
+        <button id="btn-reflect" class="menu-btn">🪴 AI Reflect</button>
+    </div>
+
+    <div id="insight-drawer" class="insight-drawer">
+        <div class="drawer-header">
+            <h3>Community Insights</h3>
+            <button id="close-drawer" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <div id="insight-content" class="drawer-content">
+            <p style="color: var(--color-text-secondary); text-align: center; margin-top: 2rem;">Loading community insights...</p>
+        </div>
+    </div>
+
+    <script src="../../bible-reader.js"></script>
+</body>
+</html>

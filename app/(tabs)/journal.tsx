@@ -1,7 +1,7 @@
 // app/(tabs)/journal.tsx
 
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
@@ -16,7 +16,7 @@ export default function JournalScreen() {
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
 
-  const { entries, toggleFavorite } = useJournalStore();
+  const { entries, toggleFavorite, syncEntries, loading } = useJournalStore();
 
   const handleResumeChat = (item: JournalEntry) => {
     router.push({
@@ -35,7 +35,7 @@ export default function JournalScreen() {
     >
       <View style={styles.itemHeader}>
         <View style={styles.headerTitleRow}>
-          <Text style={[styles.itemRef, { color: themeColors.accent }]}>{item.verseRef}</Text>
+          <Text style={[styles.itemRef, { color: themeColors.accent }]} numberOfLines={1} ellipsizeMode="tail">{item.verseRef}</Text>
           <View style={[styles.typeBadge, { backgroundColor: item.type === 'prayer' ? themeColors.goldLight : themeColors.accentLight, marginLeft: spacing.sm }]}>
             <Text style={[styles.typeText, { color: item.type === 'prayer' ? themeColors.gold : themeColors.accent }]}>
               {item.type}
@@ -88,6 +88,14 @@ export default function JournalScreen() {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
+          refreshControl={
+            <RefreshControl 
+              refreshing={loading} 
+              onRefresh={syncEntries} 
+              tintColor={themeColors.accent}
+              colors={[themeColors.accent]}
+            />
+          }
           ListFooterComponent={
             <View style={styles.disclaimerContainer}>
               <Text style={[styles.disclaimerText, { color: themeColors.textSecondary }]}>
@@ -131,11 +139,11 @@ const styles = StyleSheet.create({
   itemRef: {
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 16,
+    flexShrink: 1,
   },
   itemText: {
     ...typography.scriptureMD,
     marginBottom: spacing.sm,
-    flexShrink: 1,
   },
   itemNote: {
     ...typography.body,
@@ -174,6 +182,9 @@ const styles = StyleSheet.create({
   headerTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+    marginRight: spacing.md,
+    overflow: 'hidden',
   },
   actionIcons: {
     flexDirection: 'row',

@@ -20,6 +20,7 @@ import { EBGaramond_400Regular, EBGaramond_600SemiBold } from '@expo-google-font
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 import { Montserrat_400Regular, Montserrat_600SemiBold } from '@expo-google-fonts/montserrat';
+import { Caveat_400Regular, Caveat_700Bold } from '@expo-google-fonts/caveat';
 import { colors } from '../src/theme/colors';
 
 import { useState } from 'react';
@@ -30,6 +31,9 @@ import { FullPlayerModal } from '../src/components/FullPlayerModal';
 import { audioService } from '../src/services/audio/AudioService';
 import { ToastProvider } from '../src/context/ToastContext';
 import { Toast } from '../src/components/Toast';
+import { WhatsNewModal } from '../src/components/WhatsNewModal';
+import { AuthService } from '../src/services/auth/AuthService';
+import { useJournalStore } from '../src/features/journal/journalStore';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -57,6 +61,8 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Montserrat_400Regular,
     Montserrat_600SemiBold,
+    Caveat_400Regular,
+    Caveat_700Bold,
   });
 
   useEffect(() => {
@@ -90,6 +96,27 @@ export default function RootLayout() {
     }
   }, [fontsLoaded, fontError]);
 
+  // Auth & Sync Listener
+  useEffect(() => {
+    const sync = useJournalStore.getState().syncEntries;
+    
+    // Initial sync
+    sync();
+
+    // Listen for sign-ins
+    const { data: { subscription } } = AuthService.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN') {
+        sync();
+      } else if (event === 'SIGNED_OUT') {
+        // Optionally clear entries or keep them (they are local anyway)
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   if (!fontsLoaded && !fontError) {
     return null;
   }
@@ -122,13 +149,16 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="chat/[ref]" options={{ title: 'Reflection' }} />
+        <Stack.Screen name="chat/[ref]" options={{ title: 'AI Reflection' }} />
+        <Stack.Screen name="chat/inbox" options={{ title: 'Messages' }} />
+        <Stack.Screen name="chat/dm/[id]" options={{ title: 'Chat' }} />
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
       <MiniPlayer />
       <FullPlayerModal />
       <Toast />
+      <WhatsNewModal />
     </ToastProvider>
   );
 }
