@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rooted Daily",
     "slug": "rooted-daily-bible-buddy",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "orientation": "portrait",
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
@@ -15,10 +15,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rooteddaily.bible",
-      "buildNumber": "9",
+      "buildNumber": "10",
       "infoPlist": {
         "UIBackgroundModes": [
-          "audio",
           "audio"
         ],
         "ITSAppUsesNonExemptEncryption": false
@@ -51,7 +50,8 @@
       ],
       "@react-native-community/datetimepicker",
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": false

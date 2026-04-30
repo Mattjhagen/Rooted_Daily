@@ -1,0 +1,12 @@
+name: local
+
+models:
+  - name: Phi-4 Mini
+    provider: openai
+    model: phi4-mini:latest
+    apiBase: http://192.168.1.106:11434/v1
+    apiKey: ollama
+    roles:
+      - chat
+      - edit
+      - apply
