@@ -50,12 +50,16 @@ export default function DevotionalsScreen() {
       setGeneratingAI(true);
       const devotion = await PersonalizedDevotionalService.generatePersonalizedDevotional(interests);
       
-      // Save to Supabase so it persists and others can join
-      const themeString = interests.join(', ');
-      await savePersonalizedDevotional(devotion, themeString);
+      // Attempt to save to Supabase, but don't block the UI if it fails
+      try {
+        const themeString = interests.join(', ');
+        await savePersonalizedDevotional(devotion, themeString);
+      } catch (saveErr) {
+        console.warn('Failed to save AI devotional to cloud, but displaying locally:', saveErr);
+      }
       
       setPersonalizedDevotional(devotion);
-      // Refresh list to show the new one in the main feed
+      // Refresh list to show the new one in the main feed if it was saved
       fetchDevotionals(true);
       showToast({ message: 'Your personalized devotional is ready!', type: 'success' });
     } catch (err) {

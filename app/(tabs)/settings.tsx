@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform, ActivityIndicator, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
@@ -172,21 +172,22 @@ export default function SettingsScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
-      <View style={styles.header}>
-        <Text style={[styles.title, { color: themeColors.text }]}>Settings</Text>
-      </View>
+    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]} edges={['top']}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <Text style={[styles.title, { color: themeColors.text }]}>Settings</Text>
+        </View>
 
-      <View style={styles.section}>
-        <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Account</Text>
-        {user ? (
-          <>
-            <View style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
-              <View style={styles.rowLabel}>
-                <TouchableOpacity onPress={pickImage} disabled={uploading}>
-                  {profile?.avatar_url ? (
-                    <Image source={{ uri: profile.avatar_url }} style={styles.avatar} />
-                  ) : (
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Account</Text>
+          {user ? (
+            <>
+              <View style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+                <View style={styles.rowLabel}>
+                  <TouchableOpacity onPress={pickImage} disabled={uploading}>
+                    {profile?.avatar_url ? (
+                      <Image source={{ uri: profile.avatar_url }} style={styles.avatar} />
+                    ) : (
                     <View style={[styles.avatarPlaceholder, { backgroundColor: themeColors.accent + '20' }]}>
                       <UserCircle size={40} color={themeColors.accent} />
                     </View>
@@ -356,9 +357,10 @@ export default function SettingsScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.footer}>
-        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v1.0.1</Text>
-      </View>
+        <View style={styles.footer}>
+          <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v1.0.1</Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -433,10 +435,8 @@ const styles = StyleSheet.create({
     padding: spacing.md,
   },
   footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
+    paddingVertical: spacing.xxl,
     alignItems: 'center',
-    paddingBottom: spacing.xxl,
   },
   versionText: {
     ...typography.caption,

@@ -120,7 +120,7 @@ export async function savePersonalizedDevotional(devotional: Devotional, theme: 
   const { data: { user } } = await supabase.auth.getUser();
   
   // 1. Get or create the AI organization
-  const { data: org } = await supabase
+  const { data: org, error: orgError } = await supabase
     .from('organizations')
     .upsert({ 
       name: 'Rooted AI Buddy', 
@@ -129,6 +129,10 @@ export async function savePersonalizedDevotional(devotional: Devotional, theme: 
     }, { onConflict: 'contact_email' })
     .select()
     .single();
+
+  if (orgError) {
+    console.error('[devotionalService] Error getting AI organization:', orgError);
+  }
 
   // 2. Insert into devotionals
   const { data, error } = await supabase.from('devotionals').insert({
@@ -148,6 +152,7 @@ export async function savePersonalizedDevotional(devotional: Devotional, theme: 
 
   if (error) {
     console.error('[devotionalService] Error saving AI devotional:', error);
+    // Don't re-throw here if it's just a permission issue, let the caller decide
     throw error;
   }
 
