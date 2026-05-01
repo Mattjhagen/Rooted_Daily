@@ -23,7 +23,7 @@ export const COMMON_THEMES: UserInterest[] = [
   { id: 'patience', label: 'Patience', selected: false },
 ];
 
-import { DAILY_VERSES } from '../data/dailyVerses';
+import { DAILY_VERSES } from '../../data/dailyVerses';
 
 export class PersonalizedDevotionalService {
   /**
@@ -34,7 +34,7 @@ export class PersonalizedDevotionalService {
    */
   static async generatePersonalizedDevotional(selectedThemes: string[]): Promise<Devotional> {
     // 1. Find a relevant "anchor" verse from our local library
-    const anchorVerse = DAILY_VERSES.find(v => 
+    const anchorVerse = DAILY_VERSES.find((v: any) => 
       selectedThemes.some(theme => v.theme.toLowerCase().includes(theme.toLowerCase()))
     ) || DAILY_VERSES[Math.floor(Math.random() * DAILY_VERSES.length)];
 

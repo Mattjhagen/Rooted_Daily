@@ -30,6 +30,7 @@ export default function ConversationScreen() {
   const [user, setUser] = useState<any>(null);
   const [otherUser, setOtherUser] = useState<any>(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [content, setContent] = useState('');
 
   const flatListRef = useRef<FlatList>(null);
 

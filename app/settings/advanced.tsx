@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
-import { ChevronLeft, Key, ExternalLink, HelpCircle, Check, Info } from 'lucide-react-native';
+import { ChevronLeft, Key, ExternalLink, HelpCircle, Check, Info, Shield } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useAudioStore } from '../../src/features/audio/audioStore';
 import * as Linking from 'expo-linking';

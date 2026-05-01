@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   verseContainer: {
     alignItems: 'center',
-    marginBottom: spacing.xxxl,
+    marginBottom: spacing.xxl,
   },
   verseText: {
     ...typography.scriptureLG,

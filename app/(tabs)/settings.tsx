@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
@@ -19,6 +19,7 @@ import { useAudioStore } from '../../src/features/audio/audioStore';
 import { useRouter } from 'expo-router';
 import { AuthService } from '../../src/services/auth/AuthService';
 import { User, LogIn, LogOut, UserCircle, Settings } from 'lucide-react-native';
+import { supabase } from '../../src/services/supabase';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
@@ -349,14 +350,14 @@ export default function SettingsScreen() {
         >
           <View style={styles.rowLabel}>
             <Sparkles size={20} color={colors.gold} />
-            <Text style={[styles.rowText, { color: themeColors.text }]}>What's New in v1.0.0</Text>
+            <Text style={[styles.rowText, { color: themeColors.text }]}>What's New in v1.0.1</Text>
           </View>
           <ChevronRight size={18} color={themeColors.textSecondary} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.footer}>
-        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v1.0.0</Text>
+        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v1.0.1</Text>
       </View>
     </SafeAreaView>
   );

@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   },
   featureList: {
     width: '100%',
-    marginBottom: spacing.xxxl,
+    marginBottom: spacing.xxl,
     gap: spacing.md,
   },
   featureItem: {
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     width: '100%',
     alignItems: 'center',
-    marginBottom: spacing.xxxl,
+    marginBottom: spacing.xxl,
   },
   input: {
     width: '80%',
