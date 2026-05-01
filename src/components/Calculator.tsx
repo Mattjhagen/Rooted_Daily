@@ -56,7 +56,7 @@ export const Calculator: React.FC = () => {
       // 2. Perform normal calculation
       try {
         const fullExpr = expression + display;
-        const result = eval(fullExpr.replace('×', '*').replace('÷', '/').replace('−', '-'));
+        const result = calculateExpression(fullExpr.replace('×', '*').replace('÷', '/').replace('−', '-'));
         setDisplay(String(result));
         setExpression('');
         setInputHistory('');
@@ -65,6 +65,25 @@ export const Calculator: React.FC = () => {
         setExpression('');
         setInputHistory('');
       }
+    }
+  };
+
+  // Safe alternative to eval() for Hermes compatibility
+  const calculateExpression = (expr: string): number => {
+    // Basic parser for "number operator number"
+    const parts = expr.trim().split(' ');
+    if (parts.length < 3) return parseFloat(expr);
+    
+    const num1 = parseFloat(parts[0]);
+    const operator = parts[1];
+    const num2 = parseFloat(parts[2]);
+
+    switch (operator) {
+      case '+': return num1 + num2;
+      case '-': return num1 - num2;
+      case '*': return num1 * num2;
+      case '/': return num1 / num2;
+      default: return num2;
     }
   };
 
