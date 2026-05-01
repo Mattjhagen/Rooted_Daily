@@ -3,6 +3,7 @@ const path = require('path');
 
 const bibleDataPath = path.join(__dirname, '..', 'src', 'data', 'bibleFull.json');
 const bibleOutDir = path.join(__dirname, '..', 'bible');
+const DOMAIN = 'https://rootedapp.space';
 
 const mapping = {
   'gn': { name: 'Genesis', slug: 'genesis' },
@@ -85,7 +86,8 @@ const googleTag = `
 </script>
 `;
 
-function getTemplate(title, description, content, relativePathToRoot) {
+function getTemplate(title, description, content, relativePathToRoot, path = '') {
+  const canonicalUrl = `${DOMAIN}${path}`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,10 +95,36 @@ function getTemplate(title, description, content, relativePathToRoot) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} | Rooted Daily</title>
     <meta name="description" content="${description}">
+    <link rel="canonical" href="${canonicalUrl}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="${title} | Rooted Daily">
+    <meta property="og:description" content="${description}">
+    <meta property="og:url" content="${canonicalUrl}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Rooted Daily">
+    <meta property="og:image" content="${DOMAIN}/logo_dark_light.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${title} | Rooted Daily">
+    <meta name="twitter:description" content="${description}">
+    <meta name="twitter:image" content="${DOMAIN}/logo_dark_light.png">
+
     ${googleTag}
     <link rel="stylesheet" href="${relativePathToRoot}style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "${title}",
+      "description": "${description}",
+      "url": "${canonicalUrl}"
+    }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -202,7 +230,13 @@ async function generate() {
 
     fs.writeFileSync(
       path.join(bookDir, 'index.html'),
-      getTemplate(bookInfo.name, `Read the book of ${bookInfo.name} on Rooted Daily.`, bookIndexContent, '../../')
+      getTemplate(
+        bookInfo.name, 
+        `Read the book of ${bookInfo.name} on Rooted Daily.`, 
+        bookIndexContent, 
+        '../../',
+        `/bible/${bookInfo.slug}/`
+      )
     );
     totalPages++;
 
@@ -237,7 +271,8 @@ async function generate() {
           `${bookInfo.name} ${chapterNum}`,
           `Read ${bookInfo.name} Chapter ${chapterNum}. Experience the Bible with audio narration and AI reflections on Rooted Daily.`,
           chapterContent,
-          '../../../'
+          '../../../',
+          `/bible/${bookInfo.slug}/${chapterNum}/`
         )
       );
       totalPages++;

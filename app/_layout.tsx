@@ -34,6 +34,10 @@ import { Toast } from '../src/components/Toast';
 import { WhatsNewModal } from '../src/components/WhatsNewModal';
 import { AuthService } from '../src/services/auth/AuthService';
 import { useJournalStore } from '../src/features/journal/journalStore';
+import { useStealthStore } from '../src/features/stealth/stealthStore';
+import { Calculator } from '../src/components/Calculator';
+import { PanicButton } from '../src/components/PanicButton';
+import { AppState, View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,6 +46,8 @@ export default function RootLayout() {
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
   
+  const { isLocked, mode, resetToCalculator } = useStealthStore();
+
   const [bibleReady, setBibleReady] = useState(false);
   const [initProgress, setInitProgress] = useState(0);
   const [initMessage, setInitMessage] = useState('Preparing your Bible...');
@@ -65,11 +71,23 @@ export default function RootLayout() {
     Caveat_700Bold,
   });
 
+  // Stealth AppState Listener
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'background' || nextAppState === 'inactive') {
+        resetToCalculator();
+      }
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   useEffect(() => {
     async function startApp() {
       if (fontsLoaded || fontError) {
         // Only hide splash when we are ready to show something (either loading screen or app)
-        // SplashScreen.hideAsync(); // Move this down
       }
     }
     startApp();
@@ -130,6 +148,11 @@ export default function RootLayout() {
     );
   }
 
+  // If locked, only show calculator
+  if (isLocked) {
+    return <Calculator />;
+  }
+
   return (
     <ToastProvider>
       <StatusBar style={isDark ? 'light' : 'dark'} />
@@ -154,11 +177,13 @@ export default function RootLayout() {
         <Stack.Screen name="chat/dm/[id]" options={{ title: 'Chat' }} />
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
+        <Stack.Screen name="settings/stealth" options={{ title: 'Stealth Mode', headerShown: false }} />
       </Stack>
       <MiniPlayer />
       <FullPlayerModal />
       <Toast />
       <WhatsNewModal />
+      <PanicButton />
     </ToastProvider>
   );
 }

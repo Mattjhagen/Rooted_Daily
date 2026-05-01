@@ -30,6 +30,7 @@ interface ChapterData {
   book: string;
   chapter: number;
   verses: BibleVerse[];
+  footnotes: any[];
 }
 
 export default function ReaderScreen() {
@@ -105,7 +106,8 @@ export default function ReaderScreen() {
 
     for (let i = start; i <= end; i++) {
       const verses = await BibleEngine.getChapter(book, i, selectedVersion);
-      loaded.push({ book, chapter: i, verses });
+      const footnotes = await BibleEngine.getFootnotes(book, i);
+      loaded.push({ book, chapter: i, verses, footnotes });
     }
     setChapters(loaded);
     
@@ -228,9 +230,14 @@ export default function ReaderScreen() {
               {/* Heirloom Marginalia (Footnotes) */}
               {selectedVersion === 'RT' && (
                 <View style={styles.footnoteContainer}>
-                   <Text style={styles.rtFootnote}>
-                     {v.verse === 1 ? "The Hebrew 'bereshit' opens Scripture with a declaration of absolute origin." : ""}
-                   </Text>
+                   {item.footnotes
+                     .filter(f => f.verse === v.verse)
+                     .map((f, idx) => (
+                       <Text key={idx} style={styles.rtFootnote}>
+                         {f.content}
+                       </Text>
+                     ))
+                   }
                 </View>
               )}
             </TouchableOpacity>

@@ -78,5 +78,16 @@ export const BibleEngine = {
       // In private mode, show only personal notes and AI insights
       return notes.filter(n => n.user_id === userId || n.author === 'LLT Insight');
     }
+  },
+
+  /**
+   * Fetches all footnotes for a specific chapter.
+   */
+  async getFootnotes(book: string, chapter: number): Promise<any[]> {
+    return await db.getAllAsync(
+      'SELECT verse, content, author, type FROM footnotes WHERE book = ? AND chapter = ? ORDER BY verse ASC',
+      [book, chapter]
+    );
   }
 };
+

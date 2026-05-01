@@ -114,3 +114,42 @@ export async function rejectDevotional(id: string, reason: string): Promise<void
     throw error;
   }
 }
+
+// --- AI Generated: save and share ---
+export async function savePersonalizedDevotional(devotional: Devotional, theme: string): Promise<string> {
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  // 1. Get or create the AI organization
+  const { data: org } = await supabase
+    .from('organizations')
+    .upsert({ 
+      name: 'Rooted AI Buddy', 
+      contact_email: 'ai@rootedapp.space',
+      is_verified: true 
+    }, { onConflict: 'contact_email' })
+    .select()
+    .single();
+
+  // 2. Insert into devotionals
+  const { data, error } = await supabase.from('devotionals').insert({
+    org_id: org?.id,
+    user_id: user?.id,
+    title: devotional.title,
+    body: devotional.body,
+    verse_ref: devotional.verseRef,
+    verse_text: devotional.verseText,
+    author_name: devotional.authorName,
+    author_title: devotional.authorTitle,
+    theme: theme,
+    status: 'approved', // AI devotionals are auto-approved for the creator
+    is_public: true,    // Allow others to join
+    approved_at: new Date().toISOString(),
+  }).select().single();
+
+  if (error) {
+    console.error('[devotionalService] Error saving AI devotional:', error);
+    throw error;
+  }
+
+  return data.id;
+}

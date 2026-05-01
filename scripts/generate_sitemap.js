@@ -3,6 +3,8 @@ const path = require('path');
 
 const bibleDataPath = path.join(__dirname, '..', 'src', 'data', 'bibleFull.json');
 const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+const sitemapNotesPath = path.join(__dirname, '..', 'sitemap-notes.xml');
+const lltDataDir = path.join(__dirname, '..', 'json', 'llt');
 
 const mapping = {
   'gn': 'genesis', 'ex': 'exodus', 'lv': 'leviticus', 'nm': 'numbers', 'dt': 'deuteronomy',
@@ -22,36 +24,74 @@ const mapping = {
   're': 'revelation'
 };
 
-function generateSitemap() {
+const DOMAIN = 'https://rootedapp.space';
+const today = new Date().toISOString().split('T')[0];
+
+function generateSitemaps() {
   const data = JSON.parse(fs.readFileSync(bibleDataPath, 'utf8'));
-  const urls = [
-    'https://rootedapp.space/',
-    'https://rootedapp.space/support/',
-    'https://rootedapp.space/privacy/',
-    'https://rootedapp.space/bible/'
+  const allUrls = [
+    DOMAIN + '/',
+    DOMAIN + '/support/',
+    DOMAIN + '/privacy/',
+    DOMAIN + '/bible/'
   ];
+
+  const notesUrls = [];
 
   for (const bookData of data.books) {
     const slug = mapping[bookData.abbrev];
     if (!slug) continue;
 
-    urls.push(`https://rootedapp.space/bible/${slug}/`);
+    const bookUrl = `${DOMAIN}/bible/${slug}/`;
+    allUrls.push(bookUrl);
+
     bookData.chapters.forEach((_, i) => {
-      urls.push(`https://rootedapp.space/bible/${slug}/${i + 1}/`);
+      const chapterNum = i + 1;
+      const chapterUrl = `${DOMAIN}/bible/${slug}/${chapterNum}/`;
+      allUrls.push(chapterUrl);
+
+      // Check if this chapter has LLT notes
+      const lltFilePath = path.join(lltDataDir, slug, `${chapterNum}.json`);
+      if (fs.existsSync(lltFilePath)) {
+        try {
+          const lltData = JSON.parse(fs.readFileSync(lltFilePath, 'utf8'));
+          const hasNotes = lltData.footnotes && lltData.footnotes.some(fn => fn.content && fn.content.trim().length > 0);
+          if (hasNotes) {
+            notesUrls.push(chapterUrl);
+          }
+        } catch (e) {
+          console.warn(`Error reading LLT data for ${slug} ${chapterNum}:`, e.message);
+        }
+      }
     });
   }
 
+  // Generate sitemap.xml
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(url => `  <url>
+${allUrls.map(url => `  <url>
     <loc>${url}</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>${today}</lastmod>
     <priority>${url.split('/').length <= 4 ? '1.00' : (url.split('/').length <= 5 ? '0.80' : '0.60')}</priority>
   </url>`).join('\n')}
 </urlset>`;
 
   fs.writeFileSync(sitemapPath, sitemapContent);
-  console.log(`Sitemap generated with ${urls.length} URLs.`);
+  console.log(`sitemap.xml generated with ${allUrls.length} URLs.`);
+
+  // Generate sitemap-notes.xml
+  const notesSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${notesUrls.map(url => `  <url>
+    <loc>${url}</loc>
+    <lastmod>${today}</lastmod>
+    <priority>0.70</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  fs.writeFileSync(sitemapNotesPath, notesSitemapContent);
+  console.log(`sitemap-notes.xml generated with ${notesUrls.length} URLs.`);
 }
 
-generateSitemap();
+generateSitemaps();
+

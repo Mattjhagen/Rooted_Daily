@@ -18,16 +18,18 @@ import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { Devotional } from '../../src/features/devotionals/types';
-import { getApprovedDevotionals } from '../../src/features/devotionals/devotionalService';
+import { getApprovedDevotionals, savePersonalizedDevotional } from '../../src/features/devotionals/devotionalService';
 import { DevotionalCard } from '../../src/components/DevotionalCard';
 import { InterestsModal } from '../../src/components/InterestsModal';
 import { PersonalizedDevotionalService } from '../../src/features/devotionals/PersonalizedDevotionalService';
 import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
+import { useToast } from '../../src/context/ToastContext';
 
 const PAGE_SIZE = 10;
 
 export default function DevotionalsScreen() {
   const router = useRouter();
+  const { showToast } = useToast();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const themeColors = isDark ? colors.dark : colors;
@@ -47,9 +49,18 @@ export default function DevotionalsScreen() {
     try {
       setGeneratingAI(true);
       const devotion = await PersonalizedDevotionalService.generatePersonalizedDevotional(interests);
+      
+      // Save to Supabase so it persists and others can join
+      const themeString = interests.join(', ');
+      await savePersonalizedDevotional(devotion, themeString);
+      
       setPersonalizedDevotional(devotion);
+      // Refresh list to show the new one in the main feed
+      fetchDevotionals(true);
+      showToast({ message: 'Your personalized devotional is ready!', type: 'success' });
     } catch (err) {
       console.error('AI Devotion failed:', err);
+      showToast({ message: 'Failed to generate devotional. Please try again.', type: 'error' });
     } finally {
       setGeneratingAI(false);
     }

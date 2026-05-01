@@ -6,7 +6,7 @@ import { spacing } from '../theme/spacing';
 import { usePersistenceStore } from '../features/persistence/persistenceStore';
 import { MessageSquare, Users, ShieldCheck, UserCircle, Zap } from 'lucide-react-native';
 
-const CURRENT_VERSION = '0.0.9';
+const CURRENT_VERSION = '1.0.0';
 
 export const WhatsNewModal = () => {
   const colorScheme = useColorScheme();
@@ -33,18 +33,23 @@ export const WhatsNewModal = () => {
 
   const features = [
     {
+      title: 'Community Messaging',
+      description: 'Connect with other believers, share insights, and encourage one another directly in the app.',
+      icon: <MessageSquare size={24} color={themeColors.accent} />
+    },
+    {
       title: 'Use Your Own Voice',
       description: 'Clone your voice on ElevenLabs and hear Scripture in your own voice.',
       icon: <Zap size={24} color={colors.gold} />
     },
     {
       title: 'Heirloom Insights',
-      description: 'Look for the glowing ✦ markers to discover deep theological study notes.',
+      description: 'Look for the ✦ markers in the Bible reader to discover deep theological study notes.',
       icon: <Users size={24} color={themeColors.accent} />
     },
     {
       title: 'Real-time Sync',
-      description: 'Your journal and legacy notes now sync instantly across web and mobile.',
+      description: 'Your journal and legacy notes now sync instantly across all your devices.',
       icon: <ShieldCheck size={24} color={themeColors.accent} />
     }
   ];

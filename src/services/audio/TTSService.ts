@@ -1,10 +1,11 @@
 // src/services/audio/TTSService.ts
 
 import * as FileSystem from 'expo-file-system/legacy';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import CryptoJS from 'crypto-js';
 
 const OPENAI_API_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
-const ELEVENLABS_API_KEY = process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY;
+const DEFAULT_ELEVENLABS_API_KEY = process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY;
 // @ts-ignore
 const AUDIO_CACHE_DIR = `${FileSystem.cacheDirectory}audio_cache/`;
 
@@ -44,9 +45,12 @@ export class TTSService {
    */
   static async getAudio(text: string, voice?: string): Promise<string> {
     // 1. Try ElevenLabs (highest quality)
-    if (ELEVENLABS_API_KEY) {
+    const userApiKey = await AsyncStorage.getItem('elevenlabs_api_key');
+    const apiKey = userApiKey || DEFAULT_ELEVENLABS_API_KEY;
+
+    if (apiKey) {
       try {
-        const url = await this.getElevenLabsAudio(text, voice || ELEVENLABS_VOICE_ID);
+        const url = await this.getElevenLabsAudio(text, voice || ELEVENLABS_VOICE_ID, apiKey);
         if (url) return url;
       } catch (e) {
         console.warn('ElevenLabs unavailable, trying OpenAI TTS.');
@@ -68,7 +72,7 @@ export class TTSService {
     return `speech://${cleanedText}`;
   }
 
-  private static async getElevenLabsAudio(text: string, voiceId: string): Promise<string | null> {
+  private static async getElevenLabsAudio(text: string, voiceId: string, apiKey: string): Promise<string | null> {
     const cleanedText = this.cleanText(text);
     const hash = CryptoJS.MD5(cleanedText + voiceId).toString();
     const filePath = `${AUDIO_CACHE_DIR}${hash}.mp3`;
@@ -83,7 +87,7 @@ export class TTSService {
       filePath,
       {
         headers: {
-          'xi-api-key': ELEVENLABS_API_KEY!,
+          'xi-api-key': apiKey,
           'Content-Type': 'application/json',
         },
         // @ts-ignore

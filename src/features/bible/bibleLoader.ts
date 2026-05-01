@@ -23,8 +23,10 @@ const db = SQLite.openDatabaseSync('rooted.db');
 export const initializeBible = async (onProgress: (p: number) => void) => {
   try {
     const check = db.getFirstSync<{ count: number }>('SELECT count(*) as count FROM verses');
-    if (check && check.count > 30000) {
-      console.log('Bible already initialized');
+    const checkFootnotes = db.getFirstSync<{ count: number }>('SELECT count(*) as count FROM sqlite_master WHERE type="table" AND name="footnotes"');
+    
+    if (check && check.count > 30000 && checkFootnotes && checkFootnotes.count > 0) {
+      console.log('Bible and footnotes already initialized');
       onProgress(1);
       return;
     }
@@ -35,7 +37,7 @@ export const initializeBible = async (onProgress: (p: number) => void) => {
 
   console.log('Starting Bible initialization...');
   
-  // Create table
+  // Create tables
   db.execSync(`
     CREATE TABLE IF NOT EXISTS verses (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,6 +48,17 @@ export const initializeBible = async (onProgress: (p: number) => void) => {
       translation TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_verse_ref ON verses(book, chapter, verse);
+
+    CREATE TABLE IF NOT EXISTS footnotes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      book TEXT,
+      chapter INTEGER,
+      verse INTEGER,
+      content TEXT,
+      author TEXT,
+      type TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_footnote_ref ON footnotes(book, chapter, verse);
   `);
 
   const totalBooks = bibleData.length;
@@ -73,9 +86,27 @@ export const initializeBible = async (onProgress: (p: number) => void) => {
     // Yield to the event loop so the UI (LoadingScreen) can re-render
     await new Promise(resolve => setTimeout(resolve, 0));
   }
+
+  // Load Footnotes
+  console.log('Loading footnotes...');
+  try {
+    const footnotesData = require('../../data/allFootnotes.json');
+    db.withTransactionSync(() => {
+      footnotesData.forEach((f: any) => {
+        db.runSync(
+          'INSERT INTO footnotes (book, chapter, verse, content, author, type) VALUES (?, ?, ?, ?, ?, ?)',
+          [f.book, f.chapter, f.verse, f.content, f.author, f.type]
+        );
+      });
+    });
+    console.log('Footnotes loaded.');
+  } catch (e) {
+    console.error('Error loading footnotes:', e);
+  }
   
   console.log('Bible initialization complete.');
 };
+
 
 export const getChapterCount = (bookName: string): number => {
   const book = bibleData.find((b: any) => {

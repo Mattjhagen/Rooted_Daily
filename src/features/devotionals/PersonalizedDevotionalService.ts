@@ -23,37 +23,50 @@ export const COMMON_THEMES: UserInterest[] = [
   { id: 'patience', label: 'Patience', selected: false },
 ];
 
+import { DAILY_VERSES } from '../data/dailyVerses';
+
 export class PersonalizedDevotionalService {
   /**
    * Generates a personalized devotional based on selected themes
    */
+  /**
+   * Generates a personalized devotional based on selected themes
+   */
   static async generatePersonalizedDevotional(selectedThemes: string[]): Promise<Devotional> {
+    // 1. Find a relevant "anchor" verse from our local library
+    const anchorVerse = DAILY_VERSES.find(v => 
+      selectedThemes.some(theme => v.theme.toLowerCase().includes(theme.toLowerCase()))
+    ) || DAILY_VERSES[Math.floor(Math.random() * DAILY_VERSES.length)];
+
     const themeString = selectedThemes.length > 0 
       ? selectedThemes.join(', ') 
       : 'spiritual growth and daily encouragement';
 
-    const systemPrompt = `You are Rooted Daily's AI Bible Buddy. 
-Your goal is to create a deeply personal, encouraging, and scripture-centered daily devotional.
+    const systemPrompt = `You are Rooted Daily's AI Pastoral Counselor. 
+Your goal is to provide deeply personal, empathetic, and scripture-centered guidance.
+Tone: Warm, wise, pastoral, and authentic. Avoid "AI-speak."
 
 User Interests/Themes: ${themeString}
-
-Current Time: ${new Date().toLocaleDateString()}
+Anchor Verse: ${anchorVerse.ref} - "${anchorVerse.reflection}"
 
 INSTRUCTIONS:
-1. Select ONE powerful Bible verse exactly matching the user's themes.
-2. Write a 3-paragraph reflection. Paragraph 1: Connect with the struggle/theme. Paragraph 2: Explain the Biblical truth. Paragraph 3: Practical application for today.
-3. Write a short, heartfelt "Heart Check" prayer.
-4. Keep the tone warm, pastoral, and authentic.
-5. Provide a title for the devotion.
+1. Use the Anchor Verse provided as the foundation of your counsel.
+2. Write a 3-paragraph reflection:
+   - Para 1: Empathetic connection to the user's current heart state (${themeString}).
+   - Para 2: Biblical wisdom and context from ${anchorVerse.ref}.
+   - Para 3: Gentle, practical steps for applying this truth today.
+3. Write a short "Heart Check" prayer (1-2 sentences).
+4. Provide a comforting title.
 
-Format your response as a JSON object:
+RESPONSE FORMAT (Strict JSON):
 {
-  "title": "String",
-  "verseRef": "String (e.g. Psalm 23:1)",
-  "verseText": "String",
-  "body": "String (3 paragraphs)",
-  "prayer": "String"
+  "title": "Title here",
+  "body": "3 paragraphs of text",
+  "prayer": "Short prayer here"
 }`;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
 
     try {
       const response = await fetch(AI_PROXY_URL, {
@@ -62,34 +75,53 @@ Format your response as a JSON object:
         body: JSON.stringify({
           messages: [
             { role: 'system', content: systemPrompt },
-            { role: 'user', content: `Please create my daily devotion for today focusing on ${themeString}.` }
+            { role: 'user', content: `I'm struggling with ${themeString}. Please provide some Biblical counsel using ${anchorVerse.ref}.` }
           ]
         }),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) throw new Error('AI Generation failed');
 
       const data = await response.json();
-      const content = data.choices[0].message.content;
+      const content = data.choices?.[0]?.message?.content || '';
       
-      // Extract JSON from potential markdown blocks
-      const jsonStr = content.match(/\{[\s\S]*\}/)?.[0] || content;
-      const parsed = JSON.parse(jsonStr);
+      // Extract JSON from potential markdown blocks or preamble
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error('No valid JSON found in AI response');
+      
+      const parsed = JSON.parse(jsonMatch[0]);
 
       return {
         id: `ai_${Date.now()}`,
-        title: parsed.title,
-        body: parsed.body + '\n\n' + '**Heart Check:**\n' + parsed.prayer,
-        verseRef: parsed.verseRef,
-        verseText: parsed.verseText,
+        title: parsed.title || `Reflections on ${anchorVerse.ref}`,
+        body: (parsed.body || 'Thinking on God\'s word...') + '\n\n' + '**Heart Check:**\n' + (parsed.prayer || 'Lord, guide my heart today.'),
+        verseRef: anchorVerse.ref,
+        verseText: anchorVerse.reflection,
         authorName: 'Rooted AI Buddy',
-        authorTitle: 'Personalized Guide',
+        authorTitle: 'Personalized Counselor',
         status: 'approved',
         createdAt: new Date().toISOString(),
       };
     } catch (error) {
       console.error('Personalized Devotional Generation Error:', error);
-      throw error;
+      clearTimeout(timeoutId);
+      
+      // Fallback: Return a locally generated "devotional" if AI fails
+      // This ensures the user isn't stuck with an error screen.
+      return {
+        id: `fb_${Date.now()}`,
+        title: `A Moment of Peace: ${anchorVerse.ref}`,
+        body: `Today, we focus on ${themeString.toLowerCase()}. Even when technology fails us, God's Word remains constant.\n\n${anchorVerse.reflection}\n\nTake a moment to sit with this truth. Consider how God is calling you to trust Him in the midst of your current situation.\n\n**Heart Check:**\nLord, thank You for being our constant refuge. Help me to hear Your voice above the noise of the world today. Amen.`,
+        verseRef: anchorVerse.ref,
+        verseText: anchorVerse.reflection,
+        authorName: 'Rooted Daily',
+        authorTitle: 'Daily Encouragement',
+        status: 'approved',
+        createdAt: new Date().toISOString(),
+      };
     }
   }
 }

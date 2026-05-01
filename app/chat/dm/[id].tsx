@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, useColorScheme, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { supabase } from '../../../src/services/supabase';
 import { colors } from '../../../src/theme/colors';
 import { typography } from '../../../src/theme/typography';
 import { spacing } from '../../../src/theme/spacing';
-import { Send, ChevronLeft, MoreVertical, ShieldAlert, UserX } from 'lucide-react-native';
+import { Send, ChevronLeft, MoreVertical, ShieldAlert, UserX, UserCircle } from 'lucide-react-native';
 import { useToast } from '../../../src/context/ToastContext';
 
 interface Message {
@@ -26,15 +26,20 @@ export default function ConversationScreen() {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
-  const [content, setContent] = useState('');
   const [sending, setSending] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [otherUser, setOtherUser] = useState<any>(null);
   const [showMenu, setShowMenu] = useState(false);
 
   const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const init = async () => {
+      const { data: { user: currUser } } = await supabase.auth.getUser();
+      setUser(currUser);
+      if (currUser) fetchConversation(currUser.id);
+    };
+    init();
     fetchMessages();
 
     // Realtime subscription
@@ -54,6 +59,28 @@ export default function ConversationScreen() {
       supabase.removeChannel(channel);
     };
   }, [id]);
+
+  const fetchConversation = async (currentUserId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('conversations')
+        .select(`
+          user1_id,
+          user2_id,
+          user1:user1_id(display_name, username, avatar_url),
+          user2:user2_id(display_name, username, avatar_url)
+        `)
+        .eq('id', id)
+        .single();
+
+      if (data) {
+        const other = data.user1_id === currentUserId ? data.user2 : data.user1;
+        setOtherUser(other);
+      }
+    } catch (err) {
+      console.error('Fetch conversation error:', err);
+    }
+  };
 
   const fetchMessages = async () => {
     try {
@@ -151,14 +178,27 @@ export default function ConversationScreen() {
     const isMe = item.sender_id === user?.id;
     return (
       <View style={[styles.messageRow, isMe ? styles.myMessageRow : styles.otherMessageRow]}>
-        <View style={[styles.bubble, isMe ? [styles.myBubble, { backgroundColor: themeColors.accent }] : [styles.otherBubble, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]]}>
-          <Text style={[styles.messageText, { color: isMe ? 'white' : themeColors.text }]}>
-            {item.content}
+        {!isMe && (
+          <View style={styles.avatarContainer}>
+            {otherUser?.avatar_url ? (
+              <Image source={{ uri: otherUser.avatar_url }} style={styles.chatAvatar} />
+            ) : (
+              <View style={[styles.chatAvatarPlaceholder, { backgroundColor: themeColors.accent + '20' }]}>
+                <UserCircle size={12} color={themeColors.accent} />
+              </View>
+            )}
+          </View>
+        )}
+        <View style={isMe ? styles.myBubbleContent : styles.otherBubbleContent}>
+          <View style={[styles.bubble, isMe ? [styles.myBubble, { backgroundColor: themeColors.accent }] : [styles.otherBubble, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]]}>
+            <Text style={[styles.messageText, { color: isMe ? 'white' : themeColors.text }]}>
+              {item.content}
+            </Text>
+          </View>
+          <Text style={[styles.time, { color: themeColors.textSecondary, textAlign: isMe ? 'right' : 'left' }]}>
+            {new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </Text>
         </View>
-        <Text style={[styles.time, { color: themeColors.textSecondary }]}>
-          {new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </Text>
       </View>
     );
   };
@@ -242,16 +282,40 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl,
   },
   messageRow: {
+    flexDirection: 'row',
     marginBottom: spacing.md,
-    maxWidth: '80%',
+    maxWidth: '85%',
   },
   myMessageRow: {
     alignSelf: 'flex-end',
-    alignItems: 'flex-end',
   },
   otherMessageRow: {
     alignSelf: 'flex-start',
+  },
+  avatarContainer: {
+    marginRight: 8,
+    alignSelf: 'flex-end',
+    marginBottom: 16,
+  },
+  chatAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+  },
+  chatAvatarPlaceholder: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  myBubbleContent: {
+    alignItems: 'flex-end',
+    flex: 1,
+  },
+  otherBubbleContent: {
     alignItems: 'flex-start',
+    flex: 1,
   },
   bubble: {
     paddingHorizontal: spacing.md,

@@ -35,7 +35,13 @@ export default function JournalScreen() {
     >
       <View style={styles.itemHeader}>
         <View style={styles.headerTitleRow}>
-          <Text style={[styles.itemRef, { color: themeColors.accent }]} numberOfLines={1} ellipsizeMode="tail">{item.verseRef}</Text>
+          <Text 
+            style={[styles.itemRef, { color: themeColors.accent }]} 
+            numberOfLines={2} 
+            ellipsizeMode="tail"
+          >
+            {item.verseRef}
+          </Text>
           <View style={[styles.typeBadge, { backgroundColor: item.type === 'prayer' ? themeColors.goldLight : themeColors.accentLight, marginLeft: spacing.sm }]}>
             <Text style={[styles.typeText, { color: item.type === 'prayer' ? themeColors.gold : themeColors.accent }]}>
               {item.type}
@@ -47,20 +53,20 @@ export default function JournalScreen() {
             onPress={() => router.push(`/reader/${encodeURIComponent(item.verseRef)}`)} 
             style={styles.iconBtn}
           >
-            <BookOpen size={20} color={themeColors.accent} />
+            <BookOpen size={18} color={themeColors.accent} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handleResumeChat(item)} style={styles.iconBtn}>
-            <MessageSquare size={20} color={themeColors.accent} />
+            <MessageSquare size={18} color={themeColors.accent} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.iconBtn}>
-            <Heart size={20} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
+            <Heart size={18} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={2} ellipsizeMode="tail">
+      <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={5} ellipsizeMode="tail">
         {item.verseText}
       </Text>
-      <Text style={[styles.itemNote, { color: themeColors.textSecondary }]} numberOfLines={3} ellipsizeMode="tail">
+      <Text style={[styles.itemNote, { color: themeColors.textSecondary }]} numberOfLines={20} ellipsizeMode="tail">
         {item.note}
       </Text>
       <View style={styles.itemFooter}>
@@ -125,10 +131,16 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   item: {
-    borderRadius: 16,
-    padding: spacing.md,
+    borderRadius: 20,
+    padding: spacing.lg,
     borderWidth: 1,
     marginBottom: spacing.md,
+    // Add subtle shadow for premium feel
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 2,
   },
   itemHeader: {
     flexDirection: 'row',
@@ -138,35 +150,50 @@ const styles = StyleSheet.create({
   },
   itemRef: {
     fontFamily: 'DMSans_600SemiBold',
-    fontSize: 16,
+    fontSize: 17,
     flexShrink: 1,
+    lineHeight: 24,
+    letterSpacing: -0.3,
   },
   itemText: {
     ...typography.scriptureMD,
+    fontSize: 16,
+    lineHeight: 26,
     marginBottom: spacing.sm,
+    fontStyle: 'italic',
+    opacity: 0.9,
   },
   itemNote: {
     ...typography.body,
+    fontSize: 16,
+    lineHeight: 26,
     marginBottom: spacing.md,
     flexShrink: 1,
+    letterSpacing: 0.2,
   },
   itemFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: 'transparent', // Placeholder for potential border
   },
   itemDate: {
     ...typography.caption,
+    fontSize: 12,
+    opacity: 0.5,
   },
   typeBadge: {
     paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: 4,
+    paddingVertical: 3,
+    borderRadius: 6,
   },
   typeText: {
-    fontFamily: 'DMSans_600SemiBold',
-    fontSize: 11,
-    textTransform: 'capitalize',
+    fontFamily: 'DMSans_700Bold',
+    fontSize: 10,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   emptyState: {
     flex: 1,

@@ -81,6 +81,15 @@ export const useJournalStore = create<JournalState>()(
 
         if (user) {
           try {
+            // Robust parsing of "Book Chapter:Verse"
+            // Handles "John 3:16", "1 John 1:9", "Genesis 1:1-3", "Psalm 119:105"
+            const refRegex = /^(.+)\s(\d+):(\d+)/;
+            const match = entry.verseRef.match(refRegex);
+            
+            const book = match ? match[1] : entry.verseRef.split(' ').slice(0, -1).join(' ') || 'General';
+            const chapter = match ? parseInt(match[2]) : parseInt(entry.verseRef.split(' ').pop()?.split(':')[0] || '0');
+            const verse = match ? parseInt(match[3]) : parseInt(entry.verseRef.split(':').pop() || '0');
+
             const { data, error } = await supabase
               .from('journal')
               .insert({
@@ -91,10 +100,9 @@ export const useJournalStore = create<JournalState>()(
                 type: entry.type,
                 is_favorite: entry.isFavorite || false,
                 is_public: entry.isPublic || false,
-                // For web compatibility
-                book: entry.verseRef.split(' ').slice(0, -1).join(' '),
-                chapter: parseInt(entry.verseRef.split(' ').pop()?.split(':')[0] || '0'),
-                verse: parseInt(entry.verseRef.split(':').pop() || '0'),
+                book,
+                chapter,
+                verse,
               })
               .select()
               .single();

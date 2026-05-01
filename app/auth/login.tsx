@@ -8,6 +8,7 @@ import { spacing } from '../../src/theme/spacing';
 import { AuthService } from '../../src/services/auth/AuthService';
 import { useToast } from '../../src/context/ToastContext';
 import { Mail, Lock, ChevronLeft, Eye, EyeOff } from 'lucide-react-native';
+import { AuthLoadingSplash } from '../../src/components/AuthLoadingSplash';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -66,6 +67,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
+      <AuthLoadingSplash isVisible={loading} />
       <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
@@ -119,9 +121,7 @@ export default function LoginScreen() {
               onPress={handleAuth}
               disabled={loading}
             >
-              {loading ? <ActivityIndicator color="white" /> : (
-                <Text style={styles.authBtnText}>{isSignUp ? 'Sign Up' : 'Sign In'}</Text>
-              )}
+              <Text style={styles.authBtnText}>{isSignUp ? 'Sign Up' : 'Sign In'}</Text>
             </TouchableOpacity>
 
             {!isSignUp && (

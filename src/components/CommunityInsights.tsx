@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, useColorScheme, Image } from 'react-native';
 import { supabase } from '../services/supabase';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
-import { Heart, Send, MessageSquare } from 'lucide-react-native';
+import { Heart, Send, MessageSquare, UserCircle } from 'lucide-react-native';
 import { useToast } from '../context/ToastContext';
 import { useRouter } from 'expo-router';
 
@@ -15,6 +15,9 @@ interface Insight {
   content: string;
   likes_count: number;
   created_at: string;
+  profiles?: {
+    avatar_url: string | null;
+  };
 }
 
 interface Props {
@@ -37,12 +40,19 @@ export const CommunityInsights: React.FC<Props> = ({ book, chapter, verse }) => 
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
+    let isActive = true;
     checkUser();
+    
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
+      if (isActive) setUser(session?.user || null);
     });
-    loadInsights();
-    return () => subscription.unsubscribe();
+
+    loadInsights(isActive);
+    
+    return () => {
+      isActive = false;
+      subscription.unsubscribe();
+    };
   }, [book, chapter, verse]);
 
   const checkUser = async () => {
@@ -50,21 +60,22 @@ export const CommunityInsights: React.FC<Props> = ({ book, chapter, verse }) => 
     setUser(user);
   };
 
-  const loadInsights = async () => {
+  const loadInsights = async (isActive = true) => {
     setLoading(true);
+    setInsights([]); // Clear old insights while loading
     try {
       const { data, error } = await supabase
         .from('community_insights')
-        .select('*')
+        .select('*, profiles:user_id(avatar_url)')
         .match({ book, chapter, verse, is_approved: true })
         .order('likes_count', { ascending: false });
 
       if (error) throw error;
-      setInsights(data || []);
+      if (isActive) setInsights(data || []);
     } catch (err) {
       console.error('Load insights error:', err);
     } finally {
-      setLoading(false);
+      if (isActive) setLoading(false);
     }
   };
 
@@ -163,7 +174,16 @@ export const CommunityInsights: React.FC<Props> = ({ book, chapter, verse }) => 
       {insights.map((ins) => (
         <View key={ins.id} style={[styles.card, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
           <View style={styles.cardHeader}>
-            <Text style={[styles.author, { color: themeColors.accent }]}>{ins.user_name}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {ins.profiles?.avatar_url ? (
+                <Image source={{ uri: ins.profiles.avatar_url }} style={styles.insightAvatar} />
+              ) : (
+                <View style={[styles.insightAvatarPlaceholder, { backgroundColor: themeColors.accent + '20' }]}>
+                  <UserCircle size={14} color={themeColors.accent} />
+                </View>
+              )}
+              <Text style={[styles.author, { color: themeColors.accent, marginLeft: spacing.xs }]}>{ins.user_name}</Text>
+            </View>
             <Text style={[styles.date, { color: themeColors.textSecondary }]}>{new Date(ins.created_at).toLocaleDateString()}</Text>
           </View>
           <Text style={[styles.content, { color: themeColors.text }]}>{ins.content}</Text>
@@ -236,7 +256,20 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: spacing.xs,
+  },
+  insightAvatar: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+  },
+  insightAvatarPlaceholder: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   author: {
     fontFamily: 'DMSans_600SemiBold',

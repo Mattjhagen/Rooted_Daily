@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rootedapp.space/sitemap.xml
+Sitemap: https://rootedapp.space/sitemap_index.xml
+

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rooted Daily",
     "slug": "rooted-daily-bible-buddy",
-    "version": "0.0.9",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "deenbuddy",
@@ -15,7 +15,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rooteddaily.bible",
-      "buildNumber": "10",
+      "buildNumber": "12",
       "infoPlist": {
         "UIBackgroundModes": [
           "audio"
@@ -31,7 +31,7 @@
       "softwareKeyboardLayoutMode": "resize",
       "predictiveBackGestureEnabled": false,
       "package": "com.rooteddaily.bible",
-      "versionCode": 10
+      "versionCode": 11
     },
     "web": {
       "bundler": "metro",

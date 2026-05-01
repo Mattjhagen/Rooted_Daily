@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+import { Image } from 'react-native';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
@@ -16,7 +18,7 @@ import { usePersistenceStore } from '../../src/features/persistence/persistenceS
 import { useAudioStore } from '../../src/features/audio/audioStore';
 import { useRouter } from 'expo-router';
 import { AuthService } from '../../src/services/auth/AuthService';
-import { User, LogIn, LogOut, UserCircle } from 'lucide-react-native';
+import { User, LogIn, LogOut, UserCircle, Settings } from 'lucide-react-native';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
@@ -31,14 +33,25 @@ export default function SettingsScreen() {
   const [date, setDate] = useState(new Date(new Date().setHours(7, 0, 0, 0)));
   const [showPicker, setShowPicker] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [profile, setProfile] = useState<any>(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    AuthService.getCurrentUser().then(setUser);
+    AuthService.getCurrentUser().then(currUser => {
+      setUser(currUser);
+      if (currUser) fetchProfile(currUser.id);
+    });
     const { data: { subscription } } = AuthService.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
+      if (session?.user) fetchProfile(session.user.id);
     });
     return () => subscription.unsubscribe();
   }, []);
+
+  const fetchProfile = async (userId: string) => {
+    const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
+    if (data) setProfile(data);
+  };
 
   const handleSignOut = async () => {
     try {
@@ -109,6 +122,54 @@ export default function SettingsScreen() {
     await AsyncStorage.setItem('notifications_time', currentDate.toISOString());
   };
 
+  const pickImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.5,
+      });
+
+      if (!result.canceled && result.assets[0].uri) {
+        uploadAvatar(result.assets[0].uri);
+      }
+    } catch (err) {
+      showToast({ message: 'Failed to pick image', type: 'error' });
+    }
+  };
+
+  const uploadAvatar = async (uri: string) => {
+    if (!user) return;
+    setUploading(true);
+    try {
+      const fileName = `${user.id}-${Date.now()}.jpg`;
+      const formData = new FormData();
+      formData.append('file', {
+        uri,
+        name: fileName,
+        type: 'image/jpeg',
+      } as any);
+
+      // Using direct fetch/upload if a custom service isn't defined
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, formData);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(fileName);
+
+      await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', user.id);
+      setProfile({ ...profile, avatar_url: publicUrl });
+      showToast({ message: 'Profile picture updated!', type: 'success' });
+    } catch (err: any) {
+      showToast({ message: 'Failed to upload photo. Ensure "avatars" bucket exists.', type: 'error' });
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
       <View style={styles.header}>
@@ -121,11 +182,21 @@ export default function SettingsScreen() {
           <>
             <View style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
               <View style={styles.rowLabel}>
-                <UserCircle size={20} color={themeColors.accent} />
-                <View style={{ marginLeft: spacing.md }}>
-                  <Text style={[styles.rowText, { color: themeColors.text, marginLeft: 0 }]}>{user.email}</Text>
+                <TouchableOpacity onPress={pickImage} disabled={uploading}>
+                  {profile?.avatar_url ? (
+                    <Image source={{ uri: profile.avatar_url }} style={styles.avatar} />
+                  ) : (
+                    <View style={[styles.avatarPlaceholder, { backgroundColor: themeColors.accent + '20' }]}>
+                      <UserCircle size={40} color={themeColors.accent} />
+                    </View>
+                  )}
+                  {uploading && <ActivityIndicator style={styles.avatarLoader} size="small" color={themeColors.accent} />}
+                </TouchableOpacity>
+                <View style={{ marginLeft: spacing.md, flex: 1 }}>
+                  <Text style={[styles.rowText, { color: themeColors.text, marginLeft: 0 }]} numberOfLines={1}>{user.email}</Text>
+                  <Text style={{ color: themeColors.textSecondary, fontSize: 11, fontFamily: 'DMSans_700Bold' }}>CODE: {profile?.unique_code || 'ROOT-USER'}</Text>
                   <TouchableOpacity onPress={handleSignOut}>
-                    <Text style={{ color: colors.danger, fontSize: 12, marginTop: 2, fontFamily: 'DMSans_600SemiBold' }}>Sign Out</Text>
+                    <Text style={{ color: colors.danger, fontSize: 12, marginTop: 4, fontFamily: 'DMSans_600SemiBold' }}>Sign Out</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -220,6 +291,17 @@ export default function SettingsScreen() {
             <ChevronRight size={18} color={themeColors.textSecondary} />
           </View>
         </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
+          onPress={() => router.push('/settings/advanced')}
+        >
+          <View style={styles.rowLabel}>
+            <Settings size={20} color={themeColors.accent} />
+            <Text style={[styles.rowText, { color: themeColors.text }]}>Advanced</Text>
+          </View>
+          <ChevronRight size={18} color={themeColors.textSecondary} />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
@@ -267,14 +349,14 @@ export default function SettingsScreen() {
         >
           <View style={styles.rowLabel}>
             <Sparkles size={20} color={colors.gold} />
-            <Text style={[styles.rowText, { color: themeColors.text }]}>What's New in v0.0.8</Text>
+            <Text style={[styles.rowText, { color: themeColors.text }]}>What's New in v1.0.0</Text>
           </View>
           <ChevronRight size={18} color={themeColors.textSecondary} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.footer}>
-        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v0.0.8</Text>
+        <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v1.0.0</Text>
       </View>
     </SafeAreaView>
   );
@@ -313,6 +395,24 @@ const styles = StyleSheet.create({
   rowLabel: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  avatarPlaceholder: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  avatarLoader: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
   rowText: {
     ...typography.body,

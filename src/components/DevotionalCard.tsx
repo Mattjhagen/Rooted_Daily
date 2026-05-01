@@ -6,8 +6,11 @@ import {
   Text, 
   StyleSheet, 
   TouchableOpacity, 
-  useColorScheme 
+  useColorScheme,
+  Share,
+  Alert 
 } from 'react-native';
+import { Share2 } from 'lucide-react-native';
 import { Devotional } from '../features/devotionals/types';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -80,6 +83,22 @@ export const DevotionalCard: React.FC<DevotionalCardProps> = ({
           <View style={[styles.themeTag, { backgroundColor: themeColors.surfaceAlt }]}>
             <Text style={[styles.themeText, { color: themeColors.textSecondary }]}>{devotional.theme}</Text>
           </View>
+          
+          <TouchableOpacity 
+            style={styles.shareButton}
+            onPress={async () => {
+              try {
+                await Share.share({
+                  message: `${devotional.title}\n\n${devotional.verseRef}: ${devotional.verseText}\n\n${devotional.body}\n\n— Shared via Rooted Daily`,
+                  title: devotional.title,
+                });
+              } catch (error: any) {
+                Alert.alert('Error', error.message);
+              }
+            }}
+          >
+            <Share2 size={16} color={themeColors.accent} />
+          </TouchableOpacity>
         </View>
       )}
     </TouchableOpacity>
@@ -170,5 +189,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
+  },
+  shareButton: {
+    marginLeft: 'auto',
+    padding: 8,
+    borderRadius: 20,
   },
 });
