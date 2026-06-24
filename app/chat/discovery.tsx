@@ -9,6 +9,8 @@ import { spacing } from '../../src/theme/spacing';
 import { Search, UserPlus, UserCircle, QrCode, Copy, Check } from 'lucide-react-native';
 import { useToast } from '../../src/context/ToastContext';
 import * as Clipboard from 'expo-clipboard';
+import * as Contacts from 'expo-contacts';
+import { Share } from 'react-native';
 
 interface Profile {
   id: string;
@@ -16,6 +18,7 @@ interface Profile {
   username: string;
   unique_code: string;
   avatar_url: string;
+  email?: string;
 }
 
 export default function DiscoveryScreen() {
@@ -30,6 +33,8 @@ export default function DiscoveryScreen() {
   const [loading, setLoading] = useState(false);
   const [myProfile, setMyProfile] = useState<Profile | null>(null);
   const [copied, setCopied] = useState(false);
+  const [contactsSynced, setContactsSynced] = useState(false);
+  const [nonMatchingContacts, setNonMatchingContacts] = useState<Contacts.Contact[]>([]);
 
   useEffect(() => {
     fetchMyProfile();
@@ -67,6 +72,67 @@ export default function DiscoveryScreen() {
     }
   };
 
+  const handleSyncContacts = async () => {
+    try {
+      setLoading(true);
+      const { status } = await Contacts.requestPermissionsAsync();
+      if (status !== 'granted') {
+        showToast({ message: 'Permission to access contacts was denied', type: 'error' });
+        setLoading(false);
+        return;
+      }
+
+      const { data } = await Contacts.getContactsAsync({
+        fields: [Contacts.Fields.Emails, Contacts.Fields.PhoneNumbers],
+      });
+
+      if (data.length > 0) {
+        const emails = data
+          .map(c => c.emails?.[0]?.email)
+          .filter(e => e && e.trim() !== '') as string[];
+
+        if (emails.length === 0) {
+          showToast({ message: 'No emails found in contacts', type: 'info' });
+          setLoading(false);
+          return;
+        }
+
+        // Chunk emails to avoid URL length limits in Supabase API
+        const matchResults: Profile[] = [];
+        const chunkSize = 50;
+        for (let i = 0; i < emails.length; i += chunkSize) {
+          const chunk = emails.slice(i, i + chunkSize);
+          const { data: matchedProfiles } = await supabase
+            .from('profiles')
+            .select('*')
+            .in('email', chunk);
+          if (matchedProfiles) {
+            matchResults.push(...matchedProfiles);
+          }
+        }
+
+        const filteredMatches = matchResults.filter(p => p.id !== myProfile?.id);
+        
+        // Find contacts that didn't match to invite them
+        const matchedEmails = matchResults.map(p => p.email);
+        const unmatched = data.filter(c => {
+          const cEmail = c.emails?.[0]?.email;
+          if (!cEmail) return true; // Keep if no email, can invite via phone
+          return !matchedEmails.includes(cEmail);
+        });
+
+        setResults(filteredMatches);
+        setNonMatchingContacts(unmatched.slice(0, 30)); // limit invite list
+        setContactsSynced(true);
+        showToast({ message: `Found ${filteredMatches.length} friends!`, type: 'success' });
+      }
+    } catch (err: any) {
+      showToast({ message: 'Failed to sync contacts: ' + err.message, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const startConversation = async (targetUserId: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
@@ -99,6 +165,19 @@ export default function DiscoveryScreen() {
       router.push(`/chat/dm/${newConv.id}`);
     } catch (err: any) {
       showToast({ message: 'Failed to start chat', type: 'error' });
+    }
+  };
+
+  const handleInvite = async (contact: Contacts.Contact) => {
+    try {
+      const result = await Share.share({
+        message: `Hey! I'm using Rooted Daily to study the Word. Add me using my unique code: ${myProfile?.unique_code || ''}. Download the app here!`,
+      });
+      if (result.action === Share.sharedAction) {
+        showToast({ message: 'Invite sent!', type: 'success' });
+      }
+    } catch (error: any) {
+      showToast({ message: error.message, type: 'error' });
     }
   };
 
@@ -163,9 +242,17 @@ export default function DiscoveryScreen() {
             </TouchableOpacity>
           )}
         </View>
+        <TouchableOpacity 
+          style={[styles.syncBtn, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+          onPress={handleSyncContacts}
+          disabled={loading}
+        >
+          <UserPlus size={16} color={themeColors.accent} />
+          <Text style={[styles.syncBtnText, { color: themeColors.accent }]}>Find Friends from Contacts</Text>
+        </TouchableOpacity>
       </View>
 
-      {myProfile && (
+      {myProfile && !contactsSynced && (
         <View style={[styles.myCodeSection, { backgroundColor: themeColors.surface + '80', borderColor: themeColors.border }]}>
           <QrCode size={20} color={themeColors.accent} />
           <View style={{ flex: 1, marginLeft: spacing.md }}>
@@ -186,6 +273,35 @@ export default function DiscoveryScreen() {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
+          ListHeaderComponent={() => contactsSynced && results.length > 0 ? (
+            <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Found on Rooted</Text>
+          ) : null}
+          ListFooterComponent={() => contactsSynced && nonMatchingContacts.length > 0 ? (
+            <View style={{ marginTop: spacing.xl }}>
+              <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Invite Friends</Text>
+              {nonMatchingContacts.map((contact, i) => (
+                <View key={`contact-${i}`} style={[styles.resultItem, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+                  <View style={[styles.resultAvatar, { backgroundColor: themeColors.accent + '20', justifyContent: 'center', alignItems: 'center' }]}>
+                    <Text style={{ color: themeColors.accent, fontFamily: 'DMSans_700Bold' }}>
+                      {contact.name ? contact.name.charAt(0).toUpperCase() : '?'}
+                    </Text>
+                  </View>
+                  <View style={styles.resultInfo}>
+                    <Text style={[styles.resultName, { color: themeColors.text }]}>{contact.name || 'Unknown'}</Text>
+                    <Text style={[styles.resultCode, { color: themeColors.textSecondary }]}>
+                      {contact.phoneNumbers?.[0]?.number || contact.emails?.[0]?.email || 'No contact info'}
+                    </Text>
+                  </View>
+                  <TouchableOpacity 
+                    style={[styles.addBtn, { backgroundColor: 'transparent', borderWidth: 1, borderColor: themeColors.accent }]}
+                    onPress={() => handleInvite(contact)}
+                  >
+                    <Text style={[styles.addBtnText, { color: themeColors.accent }]}>Invite</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+          ) : null}
           ListEmptyComponent={() => searchQuery.length > 0 ? (
             <View style={styles.emptyContainer}>
               <Text style={[styles.emptyText, { color: themeColors.textSecondary }]}>No users found matching "{searchQuery}"</Text>
@@ -303,5 +419,27 @@ const styles = StyleSheet.create({
   emptyText: {
     ...typography.body,
     textAlign: 'center',
+  },
+  syncBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.md,
+    borderRadius: 16,
+    borderWidth: 1,
+    marginTop: spacing.sm,
+    gap: spacing.sm,
+  },
+  syncBtnText: {
+    fontFamily: 'DMSans_700Bold',
+    fontSize: 14,
+  },
+  sectionTitle: {
+    fontFamily: 'DMSans_700Bold',
+    fontSize: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: spacing.md,
+    marginTop: spacing.md,
   }
 });

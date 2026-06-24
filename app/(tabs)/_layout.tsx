@@ -3,7 +3,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { useColorScheme } from 'react-native';
-import { Home, BookOpen, Search, Bookmark, Settings } from 'lucide-react-native';
+import { Home, BookOpen, Search, Bookmark, Settings, MessageSquare } from 'lucide-react-native';
 import { colors } from '../../src/theme/colors';
 
 export default function TabLayout() {
@@ -51,10 +51,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="devotionals"
+        name="community"
         options={{
-          title: 'Devotionals',
-          tabBarIcon: ({ color, size }) => <Search size={size} color={color} />,
+          title: 'Community',
+          tabBarIcon: ({ color, size }) => <MessageSquare size={size} color={color} />,
         }}
       />
       <Tabs.Screen

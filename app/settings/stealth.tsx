@@ -176,10 +176,14 @@ export default function StealthSetupScreen() {
 
   const renderStep4 = () => (
     <View style={styles.stepContainer}>
-      <CheckCircle2 size={64} color={themeColors.accent} style={styles.heroIcon} />
-      <Text style={[styles.headline, { color: themeColors.text }]}>Ready to activate</Text>
+      <CheckCircle2 size={64} color={mode === 'NORMAL_MODE' ? themeColors.accent : themeColors.textSecondary} style={styles.heroIcon} />
+      <Text style={[styles.headline, { color: themeColors.text }]}>
+        {mode === 'NORMAL_MODE' ? 'Ready to activate' : 'Stealth Mode Active'}
+      </Text>
       <Text style={[styles.body, { color: themeColors.textSecondary }]}>
-        Here's what will change when you turn this on:
+        {mode === 'NORMAL_MODE' 
+          ? "Here's what will change when you turn this on:" 
+          : "Your app is currently disguised. Here are your settings:"}
       </Text>
       
       <View style={[styles.summaryCard, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>

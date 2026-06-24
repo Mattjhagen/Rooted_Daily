@@ -15,7 +15,6 @@ import Animated, { useSharedValue, useAnimatedStyle, withRepeat, withSequence, w
 import { Clipboard, Share, Pressable } from 'react-native';
 import { useHighlightsStore } from '../../src/features/bible/highlightsStore';
 import { HighlightPalette } from '../../src/components/HighlightPalette';
-import { AudioIconButton } from '../../src/components/AudioIconButton';
 import { useReaderSettings } from '../../src/features/reader/readerSettingsStore';
 import { ReaderSettingsSheet } from '../../src/components/ReaderSettingsSheet';
 import { BookmarkButton } from '../../src/components/BookmarkButton';
@@ -283,13 +282,6 @@ export default function ReaderScreen() {
             <TypeIcon size={20} color={readerColors.text} />
           </TouchableOpacity>
           <BookmarkButton reference={currentRef} color={readerColors.text} />
-          <AudioIconButton 
-            text={activeChapter?.verses.map(v => v.text).join(' ') || ''} 
-            title={`${activeChapter?.book} ${activeChapter?.chapter}`}
-            subtitle="Read by Rooted"
-            size={22}
-            color={readerColors.text}
-          />
         </View>
       </View>
 

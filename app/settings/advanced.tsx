@@ -10,6 +10,7 @@ import { useAudioStore } from '../../src/features/audio/audioStore';
 import * as Linking from 'expo-linking';
 import { useToast } from '../../src/context/ToastContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthService } from '../../src/services/auth/AuthService';
 
 export default function AdvancedSettingsScreen() {
   const colorScheme = useColorScheme();
@@ -24,15 +25,32 @@ export default function AdvancedSettingsScreen() {
 
   useEffect(() => {
     // Load existing key
-    AsyncStorage.getItem('elevenlabs_api_key').then(val => {
-      if (val) setApiKey(val);
+    AsyncStorage.getItem('elevenlabs_api_key').then(async (val) => {
+      if (val) {
+        setApiKey(val);
+      } else {
+        // Fallback to Supabase
+        const user = await AuthService.getCurrentUser();
+        if (user?.user_metadata?.elevenlabs_api_key) {
+          const key = user.user_metadata.elevenlabs_api_key;
+          setApiKey(key);
+          await AsyncStorage.setItem('elevenlabs_api_key', key);
+        }
+      }
     });
   }, []);
 
   const handleSave = async () => {
     try {
-      await AsyncStorage.setItem('elevenlabs_api_key', apiKey);
-      // Also update the store if we add it there
+      // Aggressively sanitize: remove any spaces, quotes, or invisible characters
+      const cleanKey = apiKey.replace(/[^a-zA-Z0-9_]/g, '');
+      await AsyncStorage.setItem('elevenlabs_api_key', cleanKey);
+      
+      const user = await AuthService.getCurrentUser();
+      if (user) {
+        await AuthService.updateUserMetadata({ elevenlabs_api_key: cleanKey });
+      }
+
       showToast({ message: 'API Key saved successfully', type: 'success' });
     } catch (err) {
       showToast({ message: 'Failed to save API Key', type: 'error' });
@@ -153,51 +171,6 @@ export default function AdvancedSettingsScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>AI Voice Integration</Text>
-            <TouchableOpacity onPress={() => setShowWalkthrough(true)}>
-              <HelpCircle size={20} color={themeColors.accent} />
-            </TouchableOpacity>
-          </View>
-          
-          <View style={[styles.card, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
-            <Text style={[styles.cardLabel, { color: themeColors.textSecondary }]}>ElevenLabs API Key</Text>
-            <View style={[styles.inputWrapper, { backgroundColor: themeColors.background, borderColor: themeColors.border }]}>
-              <Key size={18} color={themeColors.textSecondary} />
-              <TextInput
-                style={[styles.input, { color: themeColors.text }]}
-                value={apiKey}
-                onChangeText={setApiKey}
-                placeholder="Paste your key here..."
-                placeholderTextColor={themeColors.textSecondary + '80'}
-                secureTextEntry
-                autoCapitalize="none"
-                autoCorrect={false}
-              />
-            </View>
-            <Text style={[styles.cardInfo, { color: themeColors.textSecondary }]}>
-              Adding your own key allows for higher quality voices and faster synthesis. Your key is stored only on this device.
-            </Text>
-            
-            <TouchableOpacity 
-              style={[styles.saveBtn, { backgroundColor: themeColors.accent }]}
-              onPress={handleSave}
-            >
-              <Text style={styles.saveBtnText}>Save Changes</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity 
-            style={[styles.linkBtn, { borderColor: themeColors.border }]}
-            onPress={openElevenLabs}
-          >
-            <View style={styles.rowLabel}>
-              <ExternalLink size={20} color={themeColors.accent} />
-              <Text style={[styles.rowText, { color: themeColors.text }]}>Get API Key from ElevenLabs</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
 
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Privacy & Safety</Text>

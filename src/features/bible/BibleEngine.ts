@@ -12,6 +12,8 @@ export interface Verse {
   translation: string;
 }
 
+const stripHtml = (text: string) => text ? text.replace(/<[^>]+>/g, '').trim() : '';
+
 const db = SQLite.openDatabaseSync('rooted.db');
 
 /**
@@ -37,7 +39,7 @@ export const BibleEngine = {
     );
 
     if (rtVerses.length > 0) {
-      return rtVerses;
+      return rtVerses.map(v => ({ ...v, text: stripHtml(v.text) }));
     }
 
     // Fallback to WEB if RT is missing for this chapter
@@ -63,6 +65,8 @@ export const BibleEngine = {
         [book, chapter, verse, 'WEB']
       );
     }
+
+    if (result) result.text = stripHtml(result.text);
 
     return result;
   },

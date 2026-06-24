@@ -9,8 +9,10 @@ import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { VerseCard } from '../../src/components/VerseCard';
 import { SuggestedChips } from '../../src/components/SuggestedChips';
-import { getDailyVerse } from '../../src/data/dailyVerses';
 import { getVerse } from '../../src/features/bible/bibleService';
+import { getVerseOfTheDayText } from '../../src/services/youversion/YouVersionManager';
+import { useYouVersionStore } from '../../src/features/bible/youVersionStore';
+import { BibleVersionSelector } from '../../src/components/BibleVersionSelector';
 import { Flame, BookOpen, CheckCircle2, Circle } from 'lucide-react-native';
 
 import { PlanCard } from '../../src/components/PlanCard';
@@ -51,6 +53,8 @@ export default function HomeScreen() {
   } = usePersistenceStore();
   
   const [showTutorial, setShowTutorial] = useState(false);
+  const [showVersionSelector, setShowVersionSelector] = useState(false);
+  const { selectedVersionId, selectedVersionAbbrev } = useYouVersionStore();
 
   // Wait for Zustand to rehydrate from AsyncStorage before deciding to show tutorial
   useEffect(() => {
@@ -71,8 +75,9 @@ export default function HomeScreen() {
     setHasSeenTutorial(true);
   };
   
-  const [dailyData, setDailyData] = useState(getDailyVerse());
+  const [dailyData, setDailyData] = useState<any>(null); // Use VOTD
   const [verseText, setVerseText] = useState('Loading...');
+  const [verseRef, setVerseRef] = useState('Loading...');
 
   const todayKey = new Date().toISOString().split('T')[0];
   const devProgress = getDevotionalProgress(todayKey);
@@ -99,15 +104,16 @@ export default function HomeScreen() {
 
   useEffect(() => {
     async function loadVerse() {
-      const parts = dailyData.ref.match(/(.*)\s(\d+):(\d+)/);
-      if (parts) {
-        const [_, book, chapter, verse] = parts;
-        const v = await getVerse(book, parseInt(chapter), parseInt(verse));
-        if (v) setVerseText(v.text);
+      console.log('Fetching VOTD...'); setVerseText('Loading...');
+      const votdText = await getVerseOfTheDayText(selectedVersionId);
+      if (votdText) {
+        setVerseText(votdText.text.replace(/<[^>]+>/g, '').trim()); // Strip basic HTML if any
+        setVerseRef(votdText.reference);
+        setDailyData({ ref: votdText.reference, reflection: 'Take a moment to reflect on today\'s verse.', usfm: votdText.usfm });
       }
     }
     loadVerse();
-  }, [dailyData]);
+  }, [selectedVersionId]);
 
   const QUICK_START = [
     "What does this mean?",
@@ -133,12 +139,15 @@ export default function HomeScreen() {
 
   const handleReadVerse = () => {
     updateDevotionalProgress(todayKey, { readBible: true });
-    router.push(`/verse/${encodeURIComponent(dailyData.ref)}` as any);
+    // Navigate to the reader with the USFM or fallback ref
+    const targetRef = verseRef;
+    router.push(`/reader/${encodeURIComponent(targetRef)}`);
   };
 
   const handleReflect = (query?: string) => {
     updateDevotionalProgress(todayKey, { reflected: true });
-    const url = `/chat/${encodeURIComponent(dailyData.ref)}${query ? `?q=${encodeURIComponent(query)}` : ''}`;
+    const targetRef = verseRef;
+    const url = `/chat/${encodeURIComponent(targetRef)}${query ? `?q=${encodeURIComponent(query)}` : ''}`;
     router.push(url as any);
   };
 
@@ -237,11 +246,13 @@ export default function HomeScreen() {
         </View>
 
         <VerseCard
-          reference={dailyData.ref}
+          reference={verseRef}
           text={verseText}
-          reflectionPreview={dailyData.reflection}
+          reflectionPreview={dailyData?.reflection}
+          versionAbbreviation={selectedVersionAbbrev}
+          onVersionPress={() => setShowVersionSelector(true)}
           onPress={handleReadVerse}
-          onReaderPress={() => router.push(`/reader/${encodeURIComponent(dailyData.ref)}`)}
+          onReaderPress={() => router.push(`/reader/${encodeURIComponent(verseRef)}`)}
         />
 
         <View style={styles.sectionHeader}>
@@ -281,6 +292,10 @@ export default function HomeScreen() {
       <TutorialModal 
         isVisible={showTutorial} 
         onClose={handleCloseTutorial} 
+      />
+      <BibleVersionSelector
+        isVisible={showVersionSelector}
+        onClose={() => setShowVersionSelector(false)}
       />
     </SafeAreaView>
   );

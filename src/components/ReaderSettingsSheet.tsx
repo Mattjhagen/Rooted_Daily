@@ -5,8 +5,8 @@ import { useAudioStore } from '../features/audio/audioStore';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
 import { typography } from '../theme/typography';
-import { X, Minus, Plus } from 'lucide-react-native';
-import * as Speech from 'expo-speech';
+import { X, Minus, Plus, RefreshCw, Settings } from 'lucide-react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ReaderSettingsSheetProps {
   visible: boolean;
@@ -14,23 +14,7 @@ interface ReaderSettingsSheetProps {
 }
 
 export const ReaderSettingsSheet: React.FC<ReaderSettingsSheetProps> = ({ visible, onClose }) => {
-  const { theme, fontSize, fontFamily, customVoiceId, setTheme, setFontSize, setFontFamily, setCustomVoiceId } = useReaderSettings();
-  const { preferredVoiceIdentifier, setPreferredVoiceIdentifier } = useAudioStore();
-  const [nativeVoices, setNativeVoices] = React.useState<Speech.Voice[]>([]);
-  const [voiceSource, setVoiceSource] = React.useState<'ai' | 'device'>(customVoiceId ? 'ai' : 'device');
-  
-React.useEffect(() => {
-    if (visible) {
-      Speech.getAvailableVoicesAsync().then(voices => {
-        const filtered = voices.filter(v => v.language.startsWith('en'));
-        setNativeVoices(filtered);
-      });
-    }
-  }, [visible]);
-
-  const openiOSAccessibility = () => {
-    Linking.openURL('App-Prefs:root=ACCESSIBILITY');
-  };
+  const { theme, fontSize, fontFamily, selectedVersion, setTheme, setFontSize, setFontFamily, setSelectedVersion } = useReaderSettings();
 
   const themeOptions: { id: ReaderTheme; label: string; color: string; textColor: string }[] = [
     { id: 'parchment', label: 'Parchment', color: '#FAF8F4', textColor: '#1C1917' },
@@ -78,6 +62,25 @@ React.useEffect(() => {
                     <Text style={[styles.themeLabel, { color: subtextColor }]}>{opt.label}</Text>
                   </TouchableOpacity>
                 ))}
+              </View>
+            </View>
+
+            {/* Translation Selection */}
+            <View style={styles.section}>
+              <Text style={[styles.sectionLabel, { color: subtextColor }]}>TRANSLATION</Text>
+              <View style={[styles.sizeRow, { backgroundColor: inputBg }]}>
+                <TouchableOpacity
+                  style={[styles.translationBtn, selectedVersion === 'WEB' && { backgroundColor: colors.accent }]}
+                  onPress={() => setSelectedVersion('WEB')}
+                >
+                  <Text style={[styles.translationText, selectedVersion === 'WEB' ? { color: 'white' } : { color: textColor }]}>World English Bible (WEB)</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.translationBtn, selectedVersion === 'RT' && { backgroundColor: colors.accent }]}
+                  onPress={() => setSelectedVersion('RT')}
+                >
+                  <Text style={[styles.translationText, selectedVersion === 'RT' ? { color: 'white' } : { color: textColor }]}>Rooted Translation (RT)</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
@@ -130,74 +133,6 @@ React.useEffect(() => {
                   </TouchableOpacity>
                 ))}
               </View>
-            </View>
-
-            {/* Voice Settings */}
-            <View style={styles.section}>
-              <Text style={[styles.sectionLabel, { color: subtextColor }]}>VOICE NARRATION</Text>
-              
-              <View style={styles.tabRow}>
-                <TouchableOpacity 
-                  onPress={() => setVoiceSource('device')}
-                  style={[styles.tabBtn, voiceSource === 'device' && { borderBottomColor: colors.accent }]}
-                >
-                  <Text style={[styles.tabText, { color: voiceSource === 'device' ? colors.accent : subtextColor }]}>Device Voice</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                  onPress={() => setVoiceSource('ai')}
-                  style={[styles.tabBtn, voiceSource === 'ai' && { borderBottomColor: colors.accent }]}
-                >
-                  <Text style={[styles.tabText, { color: voiceSource === 'ai' ? colors.accent : subtextColor }]}>AI Clone</Text>
-                </TouchableOpacity>
-              </View>
-
-              {voiceSource === 'device' ? (
-                <View style={styles.voiceSection}>
-                  <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.voiceScroll}>
-                    {nativeVoices.map(v => (
-                      <TouchableOpacity 
-                        key={v.identifier}
-                        onPress={() => setPreferredVoiceIdentifier(v.identifier)}
-                        style={[
-                          styles.voiceChip,
-                          { backgroundColor: inputBg },
-                          preferredVoiceIdentifier === v.identifier && { borderColor: colors.accent, borderWidth: 1.5 }
-                        ]}
-                      >
-                        <Text style={[styles.voiceChipText, { color: textColor }]}>{v.name}</Text>
-                      </TouchableOpacity>
-                    ))}
-                  </ScrollView>
-                  
-                  {Platform.OS === 'ios' && (
-                    <TouchableOpacity onPress={openiOSAccessibility} style={styles.settingsLink}>
-                      <Text style={styles.settingsLinkText}>Setup "Personal Voice" in iOS Settings →</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              ) : (
-                <View style={styles.voiceSection}>
-                  <TextInput
-                    style={[
-                      styles.voiceInput,
-                      { 
-                        backgroundColor: inputBg,
-                        color: textColor,
-                        borderColor: customVoiceId ? colors.accent : 'transparent'
-                      }
-                    ]}
-                    placeholder="ElevenLabs Voice ID"
-                    placeholderTextColor={isDark ? '#666' : '#999'}
-                    value={customVoiceId || ''}
-                    onChangeText={setCustomVoiceId}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                  />
-                  <Text style={[styles.helpText, { color: subtextColor }]}>
-                    Enter your cloned voice ID from ElevenLabs to hear Scripture in your own voice.
-                  </Text>
-                </View>
-              )}
             </View>
 
             <View style={{ height: spacing.xxl * 2 }} />
@@ -311,6 +246,19 @@ const styles = StyleSheet.create({
   tabText: {
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 13,
+  },
+  translationBtn: {
+    flex: 1,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginHorizontal: spacing.xs,
+  },
+  translationText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 14,
+    textAlign: 'center',
   },
   voiceSection: {
     marginTop: spacing.sm,

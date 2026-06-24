@@ -10,6 +10,8 @@ export interface Verse {
   text: string;
 }
 
+const stripHtml = (text: string) => text ? text.replace(/<[^>]+>/g, '').trim() : '';
+
 const db = SQLite.openDatabaseSync('rooted.db');
 
 export const getChapterCount = (bookName: string) => getBooksChapterCount(bookName);
@@ -24,6 +26,7 @@ export async function getVerse(book: string, chapter: number, verse: number): Pr
     'SELECT book, chapter, verse, text FROM verses WHERE book = ? AND chapter = ? AND verse = ?',
     [book, chapter, verse]
   );
+  if (result) result.text = stripHtml(result.text);
   return result;
 }
 
@@ -33,7 +36,7 @@ export async function getChapter(book: string, chapter: number): Promise<Verse[]
     'SELECT book, chapter, verse, text FROM verses WHERE book = ? AND chapter = ? ORDER BY verse ASC',
     [book, chapter]
   );
-  return results;
+  return results.map(r => ({ ...r, text: stripHtml(r.text) }));
 }
 
 export async function searchVerses(query: string): Promise<Verse[]> {
@@ -43,7 +46,7 @@ export async function searchVerses(query: string): Promise<Verse[]> {
     'SELECT book, chapter, verse, text FROM verses WHERE text LIKE ? LIMIT 50',
     [`%${query}%`]
   );
-  return results;
+  return results.map(r => ({ ...r, text: stripHtml(r.text) }));
 }
 
 export async function getVersesInRange(book: string, chapter: number, start: number, end: number): Promise<Verse[]> {
@@ -52,5 +55,5 @@ export async function getVersesInRange(book: string, chapter: number, start: num
     'SELECT book, chapter, verse, text FROM verses WHERE book = ? AND chapter = ? AND verse >= ? AND verse <= ? ORDER BY verse ASC',
     [book, chapter, start, end]
   );
-  return results;
+  return results.map(r => ({ ...r, text: stripHtml(r.text) }));
 }

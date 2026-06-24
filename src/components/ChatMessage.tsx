@@ -14,7 +14,6 @@ import { Copy, Share2, Check } from 'lucide-react-native';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
-import { AudioIconButton } from './AudioIconButton';
 
 interface ChatMessageProps {
   role: 'user' | 'assistant';
@@ -55,17 +54,6 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
           borderBottomLeftRadius: isUser ? 16 : 4,
         }
       ]}>
-        {!isUser && (
-          <View style={styles.audioAction}>
-            <AudioIconButton
-              text={content}
-              title="Reflection"
-              subtitle="Rooted Companion"
-              size={18}
-              color={themeColors.aiBubbleText}
-            />
-          </View>
-        )}
         <Text style={[
           styles.text,
           { color: isUser ? themeColors.userBubbleText : themeColors.aiBubbleText }

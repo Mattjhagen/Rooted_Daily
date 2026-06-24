@@ -92,7 +92,7 @@ export const CommunityInsights: React.FC<Props> = ({ book, chapter, verse }) => 
         .from('community_insights')
         .insert({
           user_id: user.id,
-          user_name: user.user_metadata?.full_name || user.email.split('@')[0],
+          user_name: user.user_metadata?.username || user.user_metadata?.full_name || user.email.split('@')[0],
           book,
           chapter,
           verse,
