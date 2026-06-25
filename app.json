@@ -51,7 +51,9 @@
       ],
       "@react-native-community/datetimepicker",
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-audio",
+      "./withFoldableSupport.js"
     ],
     "experiments": {
       "typedRoutes": true
