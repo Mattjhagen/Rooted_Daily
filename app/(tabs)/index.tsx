@@ -1,7 +1,7 @@
 // app/(tabs)/index.tsx
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, useColorScheme, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, useColorScheme, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { colors } from '../../src/theme/colors';
@@ -176,18 +176,28 @@ export default function HomeScreen() {
         <View style={styles.header}>
           <Text style={[styles.date, { color: themeColors.textSecondary }]}>{todayStr}</Text>
           <View style={styles.titleRow}>
-            <TouchableOpacity activeOpacity={1} onPress={handleTitleTap}>
+            <Pressable 
+              onPress={handleTitleTap}
+              style={({ focused }) => [
+                focused && { opacity: 0.8, borderWidth: 2, borderColor: themeColors.accent, borderRadius: 8, padding: 4 }
+              ]}
+            >
               <Text style={[styles.title, { color: themeColors.text }]}>Rooted</Text>
-            </TouchableOpacity>
+            </Pressable>
             <View style={styles.headerRight}>
               {lastReadRef && (
-                <TouchableOpacity 
-                  style={[styles.resumeBtn, { backgroundColor: isDark ? colors.dark.accentLight : colors.accentLight }]}
+                <Pressable 
+                  style={({ pressed, focused }) => [
+                    styles.resumeBtn, 
+                    { backgroundColor: isDark ? colors.dark.accentLight : colors.accentLight },
+                    pressed && { opacity: 0.8 },
+                    focused && { borderWidth: 2, borderColor: themeColors.accent }
+                  ]}
                   onPress={() => router.push(`/reader/${encodeURIComponent(lastReadRef)}`)}
                 >
                   <BookOpen size={16} color={themeColors.accent} />
                   <Text style={[styles.resumeText, { color: themeColors.accent }]}>Resume</Text>
-                </TouchableOpacity>
+                </Pressable>
               )}
               <View style={[styles.streakBadge, { backgroundColor: themeColors.goldLight }]}>
                 <Flame size={14} color={themeColors.gold} fill={themeColors.gold} />
@@ -203,8 +213,12 @@ export default function HomeScreen() {
         <View style={styles.devotionalHeader}>
           <Text style={[styles.sectionTitle, { color: themeColors.textSecondary }]}>Daily Devotional</Text>
           <View style={styles.checkpoints}>
-            <TouchableOpacity 
-              style={styles.checkpoint}
+            <Pressable 
+              style={({ pressed, focused }) => [
+                styles.checkpoint,
+                pressed && { opacity: 0.7 },
+                focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+              ]}
               onPress={() => showToast({ 
                 message: "Tap the verse card below to read today's Scripture and reflection.", 
                 type: 'info' 
@@ -212,12 +226,16 @@ export default function HomeScreen() {
             >
               {devProgress.readBible ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.readBible ? themeColors.text : themeColors.textSecondary }]}>Read</Text>
-            </TouchableOpacity>
+            </Pressable>
 
             <View style={styles.divider} />
 
-            <TouchableOpacity 
-              style={styles.checkpoint}
+            <Pressable 
+              style={({ pressed, focused }) => [
+                styles.checkpoint,
+                pressed && { opacity: 0.7 },
+                focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+              ]}
               onPress={() => showToast({ 
                 message: "Tap 'Reflect' or one of the topics below to start a chat about the verse.", 
                 type: 'info' 
@@ -225,12 +243,16 @@ export default function HomeScreen() {
             >
               {devProgress.reflected ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.reflected ? themeColors.text : themeColors.textSecondary }]}>Reflect</Text>
-            </TouchableOpacity>
+            </Pressable>
 
             <View style={styles.divider} />
 
-            <TouchableOpacity 
-              style={styles.checkpoint}
+            <Pressable 
+              style={({ pressed, focused }) => [
+                styles.checkpoint,
+                pressed && { opacity: 0.7 },
+                focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+              ]}
               onPress={() => showToast({ 
                 message: devProgress.completed 
                   ? "Great job! You've earned points for today's devotional." 
@@ -240,7 +262,7 @@ export default function HomeScreen() {
             >
               {devProgress.completed ? <CheckCircle2 size={16} color={themeColors.accent} /> : <Circle size={16} color={themeColors.border} />}
               <Text style={[styles.checkpointText, { color: devProgress.completed ? themeColors.text : themeColors.textSecondary }]}>Done</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
 

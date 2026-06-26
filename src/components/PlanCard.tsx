@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
 import { typography } from '../theme/typography';
@@ -27,17 +27,17 @@ export const PlanCard: React.FC<PlanCardProps> = ({
   themeColors 
 }) => {
   return (
-    <TouchableOpacity 
-      style={[
+    <Pressable 
+      style={({ pressed, focused }) => [
         styles.container, 
         { 
           backgroundColor: themeColors.surface, 
-          borderColor: themeColors.border,
-          opacity: isCompleted ? 0.7 : 1
+          borderColor: focused ? themeColors.accent : themeColors.border,
+          borderWidth: focused ? 2 : 1,
+          opacity: isCompleted ? 0.7 : (pressed ? 0.8 : 1)
         }
       ]}
       onPress={onPress}
-      activeOpacity={0.7}
     >
       <View style={styles.content}>
         <View style={styles.textContainer}>
@@ -45,16 +45,31 @@ export const PlanCard: React.FC<PlanCardProps> = ({
           <Text style={[styles.subtitle, { color: themeColors.textSecondary }]}>{subtitle}</Text>
         </View>
         <View style={styles.actions}>
-          <TouchableOpacity onPress={onReaderPress} style={[styles.actionBtn, { marginRight: spacing.sm }]}>
+          <Pressable 
+            onPress={onReaderPress} 
+            style={({ pressed, focused }) => [
+              styles.actionBtn, 
+              { marginRight: spacing.sm },
+              pressed && { opacity: 0.7 },
+              focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8 }
+            ]}
+          >
             <BookOpen size={20} color={themeColors.accent} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onCheck} style={styles.actionBtn}>
+          </Pressable>
+          <Pressable 
+            onPress={onCheck} 
+            style={({ pressed, focused }) => [
+              styles.actionBtn,
+              pressed && { opacity: 0.7 },
+              focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8 }
+            ]}
+          >
             {isCompleted ? (
               <CheckCircle size={24} color={colors.accent} fill={colors.accentLight} />
             ) : (
               <Circle size={24} color={themeColors.border} />
             )}
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
       
@@ -69,7 +84,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
           ]} 
         />
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

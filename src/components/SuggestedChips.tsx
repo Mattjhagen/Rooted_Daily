@@ -1,7 +1,7 @@
 // src/components/SuggestedChips.tsx
 
 import React from 'react';
-import { ScrollView, Text, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+import { ScrollView, Text, StyleSheet, Pressable, useColorScheme } from 'react-native';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing } from '../theme/spacing';
@@ -25,13 +25,20 @@ export const SuggestedChips: React.FC<SuggestedChipsProps> = ({ suggestions, onS
       contentContainerStyle={styles.container}
     >
       {suggestions.map((s, index) => (
-        <TouchableOpacity
+        <Pressable
           key={index}
-          style={[styles.chip, { backgroundColor: themeColors.chip }]}
+          style={({ pressed, focused }) => [
+            styles.chip, 
+            { backgroundColor: focused ? themeColors.border : themeColors.chip },
+            pressed && { opacity: 0.8 },
+            focused && { borderWidth: 2, borderColor: themeColors.accent }
+          ]}
           onPress={() => onSelect(s)}
         >
-          <Text style={[styles.chipText, { color: themeColors.chipText }]}>{s}</Text>
-        </TouchableOpacity>
+          {({ focused }) => (
+            <Text style={[styles.chipText, { color: focused ? themeColors.text : themeColors.chipText }]}>{s}</Text>
+          )}
+        </Pressable>
       ))}
     </ScrollView>
   );

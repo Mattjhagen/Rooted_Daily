@@ -1,7 +1,7 @@
 // src/components/VerseCard.tsx
 
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet, Pressable, useColorScheme } from 'react-native';
 import { useRouter } from 'expo-router';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -33,19 +33,34 @@ export const VerseCard: React.FC<VerseCardProps> = ({
   const themeColors = isDark ? colors.dark : colors;
 
   return (
-    <TouchableOpacity
-      style={[styles.container, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+    <Pressable
+      style={({ pressed, focused }) => [
+        styles.container, 
+        { 
+          backgroundColor: themeColors.surface, 
+          borderColor: focused ? themeColors.accent : themeColors.border,
+          borderWidth: focused ? 2 : 1
+        },
+        pressed && { opacity: 0.8 }
+      ]}
       onPress={onPress}
-      activeOpacity={0.8}
     >
       <View style={styles.header}>
-        <TouchableOpacity 
-          style={[styles.badge, { backgroundColor: themeColors.accentLight }]}
+        <Pressable 
+          style={({ pressed, focused }) => [
+            styles.badge, 
+            { 
+              backgroundColor: focused ? themeColors.accent : themeColors.accentLight,
+            },
+            pressed && { opacity: 0.8 }
+          ]}
           onPress={onVersionPress}
           disabled={!onVersionPress}
         >
-          <Text style={[styles.badgeText, { color: themeColors.accent }]}>{versionAbbreviation}</Text>
-        </TouchableOpacity>
+          {({ focused }) => (
+            <Text style={[styles.badgeText, { color: focused ? themeColors.background : themeColors.accent }]}>{versionAbbreviation}</Text>
+          )}
+        </Pressable>
         <Text style={[styles.reference, { color: themeColors.accent }]}>{reference}</Text>
         <View style={styles.audioButton}>
         </View>
@@ -62,18 +77,32 @@ export const VerseCard: React.FC<VerseCardProps> = ({
       )}
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.cta} onPress={onPress}>
+        <Pressable 
+          style={({ pressed, focused }) => [
+            styles.cta,
+            pressed && { opacity: 0.7 },
+            focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+          ]} 
+          onPress={onPress}
+        >
           <Text style={[styles.ctaText, { color: themeColors.accent }]}>Reflect on this verse</Text>
           <ChevronRight size={16} color={themeColors.accent} />
-        </TouchableOpacity>
+        </Pressable>
 
         {showReadFull && (
-          <TouchableOpacity style={styles.secondaryCta} onPress={onReaderPress}>
+          <Pressable 
+            style={({ pressed, focused }) => [
+              styles.secondaryCta,
+              pressed && { opacity: 0.7 },
+              focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+            ]} 
+            onPress={onReaderPress}
+          >
             <Text style={[styles.secondaryCtaText, { color: themeColors.textSecondary }]}>Read full chapter</Text>
-          </TouchableOpacity>
+          </Pressable>
         )}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
