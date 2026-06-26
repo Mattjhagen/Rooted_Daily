@@ -54,7 +54,16 @@
       "expo-web-browser",
       "expo-audio",
       "./withFoldableSupport.js",
-      "./withFireTVSupport.js"
+      "./withFireTVSupport.js",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
