@@ -7,12 +7,12 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { spacing, shadows } from '../theme/spacing';
 import { ChevronRight } from 'lucide-react-native';
-import { AudioIconButton } from './AudioIconButton';
-
 interface VerseCardProps {
   reference: string;
   text: string;
   reflectionPreview?: string;
+  versionAbbreviation?: string;
+  onVersionPress?: () => void;
   onPress?: () => void;
   onReaderPress?: () => void;
   showReadFull?: boolean;
@@ -22,6 +22,8 @@ export const VerseCard: React.FC<VerseCardProps> = ({
   reference,
   text,
   reflectionPreview,
+  versionAbbreviation = 'WEB',
+  onVersionPress,
   onPress,
   onReaderPress,
   showReadFull = true,
@@ -37,12 +39,15 @@ export const VerseCard: React.FC<VerseCardProps> = ({
       activeOpacity={0.8}
     >
       <View style={styles.header}>
-        <View style={[styles.badge, { backgroundColor: themeColors.accentLight }]}>
-          <Text style={[styles.badgeText, { color: themeColors.accent }]}>WEB</Text>
-        </View>
+        <TouchableOpacity 
+          style={[styles.badge, { backgroundColor: themeColors.accentLight }]}
+          onPress={onVersionPress}
+          disabled={!onVersionPress}
+        >
+          <Text style={[styles.badgeText, { color: themeColors.accent }]}>{versionAbbreviation}</Text>
+        </TouchableOpacity>
         <Text style={[styles.reference, { color: themeColors.accent }]}>{reference}</Text>
         <View style={styles.audioButton}>
-          <AudioIconButton text={text} title={reference} subtitle="Rooted Scripture" size={20} />
         </View>
       </View>
 

@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   generateBtnText: {
     color: '#FFFFFF',
-    ...typography.headingSM,
+    ...typography.headingMD,
     fontFamily: 'DMSans_700Bold',
   },
 });

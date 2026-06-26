@@ -23,7 +23,8 @@ import {
   Lock, 
   AlertCircle,
   ChevronLeft,
-  CheckCircle2
+  CheckCircle2,
+  ShieldAlert
 } from 'lucide-react-native';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';

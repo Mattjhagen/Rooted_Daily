@@ -53,7 +53,8 @@
       "expo-font",
       "expo-web-browser",
       "expo-audio",
-      "./withFoldableSupport.js"
+      "./withFoldableSupport.js",
+      "./withFireTVSupport.js"
     ],
     "experiments": {
       "typedRoutes": true

@@ -371,6 +371,13 @@ const styles = StyleSheet.create({
   formContainer: {
     gap: spacing.lg,
   },
+  sectionHeader: {
+    marginBottom: spacing.md,
+  },
+  caption: {
+    ...typography.caption,
+    marginTop: spacing.xs,
+  },
   sectionTitle: {
     ...typography.headingLG,
     fontFamily: 'Lora_600SemiBold',

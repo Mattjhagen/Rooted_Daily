@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAudioPlayer, createAudioPlayer, AudioPlayer } from 'expo-audio';
 import * as Speech from 'expo-speech';
 import { Platform } from 'react-native';

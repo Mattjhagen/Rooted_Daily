@@ -79,7 +79,7 @@ export default function RootLayout() {
     if (fontsLoaded || fontError) {
       const init = async () => {
         try {
-          await audioService.init(); // Init Audio settings
+          // await audioService.init(); // Disabled for Android parity
           setInitMessage('Initializing offline Bible...');
           await initializeBible((p) => {
             setInitProgress(p);
@@ -155,8 +155,6 @@ export default function RootLayout() {
         <Stack.Screen name="verse/[ref]" options={{ title: 'Scripture' }} />
         <Stack.Screen name="reader/[ref]" options={{ headerShown: false }} />
       </Stack>
-      <MiniPlayer />
-      <FullPlayerModal />
       <Toast />
       <WhatsNewModal />
     </ToastProvider>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity, useColorScheme, Platform, Modal, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { colors } from '../../src/theme/colors';
@@ -16,7 +16,8 @@ import { usePersistenceStore } from '../../src/features/persistence/persistenceS
 import { useAudioStore } from '../../src/features/audio/audioStore';
 import { useRouter } from 'expo-router';
 import { AuthService } from '../../src/services/auth/AuthService';
-import { User, LogIn, LogOut, UserCircle } from 'lucide-react-native';
+import { User, LogIn, LogOut, UserCircle, X, MessageSquare } from 'lucide-react-native';
+import { supabase } from '../../src/services/supabase';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
@@ -25,11 +26,44 @@ export default function SettingsScreen() {
   const { setHasSeenTutorial } = usePersistenceStore();
   const { preferredVoiceIdentifier } = useAudioStore();
   const router = useRouter();
+  const { showToast } = useToast();
 
   const [isEnabled, setIsEnabled] = useState(false);
   const [date, setDate] = useState(new Date(new Date().setHours(7, 0, 0, 0)));
   const [showPicker, setShowPicker] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [showUsernameModal, setShowUsernameModal] = useState(false);
+  const [editingUsername, setEditingUsername] = useState('');
+  const [savingUsername, setSavingUsername] = useState(false);
+
+  const handleSaveUsername = async () => {
+    if (!editingUsername.trim() || !user) return;
+    setSavingUsername(true);
+    try {
+      const cleanUsername = editingUsername.trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+      await AuthService.updateUserMetadata({ username: cleanUsername });
+      
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({ username: cleanUsername })
+        .eq('id', user.id);
+        
+      if (profileError) console.error("Error updating profile username:", profileError);
+
+      setUser({ ...user, user_metadata: { ...user.user_metadata, username: cleanUsername } });
+      setShowUsernameModal(false);
+      showToast({ message: 'Username updated!', type: 'success' });
+    } catch (err) {
+      showToast({ message: 'Failed to save username', type: 'error' });
+    } finally {
+      setSavingUsername(false);
+    }
+  };
+
+  const openUsernameModal = () => {
+    setEditingUsername(user?.user_metadata?.username || '');
+    setShowUsernameModal(true);
+  };
 
   useEffect(() => {
     AuthService.getCurrentUser().then(setUser);
@@ -129,6 +163,16 @@ export default function SettingsScreen() {
                 </View>
               </View>
             </View>
+            <TouchableOpacity 
+              style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
+              onPress={openUsernameModal}
+            >
+              <View style={styles.rowLabel}>
+                <UserCircle size={20} color={themeColors.accent} />
+                <Text style={[styles.rowText, { color: themeColors.text }]}>Username: <Text style={{ fontFamily: 'DMSans_700Bold' }}>{user.user_metadata?.username || 'Not set'}</Text></Text>
+              </View>
+              <ChevronRight size={18} color={themeColors.textSecondary} />
+            </TouchableOpacity>
             <TouchableOpacity 
               style={[styles.row, { backgroundColor: themeColors.surface, borderColor: themeColors.border, marginTop: -1 }]}
               onPress={() => router.push('/chat/inbox')}
@@ -275,6 +319,47 @@ export default function SettingsScreen() {
       <View style={styles.footer}>
         <Text style={[styles.versionText, { color: themeColors.textSecondary }]}>Rooted Daily v0.0.8</Text>
       </View>
+
+      {/* Username Edit Modal */}
+      <Modal visible={showUsernameModal} transparent animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
+            <View style={styles.modalHeader}>
+              <Text style={[styles.modalTitle, { color: themeColors.text }]}>Edit Username</Text>
+              <TouchableOpacity onPress={() => setShowUsernameModal(false)}>
+                <X size={24} color={themeColors.textSecondary} />
+              </TouchableOpacity>
+            </View>
+            
+            <Text style={[styles.modalSubtitle, { color: themeColors.textSecondary }]}>
+              This name will be displayed when you post insights or message others in the community.
+            </Text>
+
+            <TextInput
+              style={[styles.input, { color: themeColors.text, borderColor: themeColors.border, backgroundColor: themeColors.background }]}
+              value={editingUsername}
+              onChangeText={setEditingUsername}
+              placeholder="Enter username"
+              placeholderTextColor={themeColors.textSecondary}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={20}
+            />
+
+            <TouchableOpacity 
+              style={[styles.saveBtn, { backgroundColor: themeColors.accent, opacity: savingUsername || !editingUsername.trim() ? 0.7 : 1 }]}
+              onPress={handleSaveUsername}
+              disabled={savingUsername || !editingUsername.trim()}
+            >
+              {savingUsername ? (
+                <ActivityIndicator color="white" />
+              ) : (
+                <Text style={styles.saveBtnText}>Save Username</Text>
+              )}
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -364,5 +449,52 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'DMSans_600SemiBold',
     fontSize: 15,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.xl,
+  },
+  modalContent: {
+    width: '100%',
+    borderRadius: 20,
+    padding: spacing.xl,
+    borderWidth: 1,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.md,
+  },
+  modalTitle: {
+    ...typography.headingLG,
+    fontSize: 20,
+  },
+  modalSubtitle: {
+    ...typography.body,
+    fontSize: 14,
+    marginBottom: spacing.xl,
+    lineHeight: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: spacing.md,
+    fontFamily: 'DMSans_500Medium',
+    fontSize: 16,
+    marginBottom: spacing.xl,
+  },
+  saveBtn: {
+    padding: spacing.md,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  saveBtnText: {
+    color: 'white',
+    fontFamily: 'DMSans_700Bold',
+    fontSize: 16,
   },
 });

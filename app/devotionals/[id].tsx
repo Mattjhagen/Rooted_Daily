@@ -26,7 +26,7 @@ import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { Devotional } from '../../src/features/devotionals/types';
-import { supabase } from '../../src/features/devotionals/devotionalService';
+import { supabase } from '../../src/services/supabase';
 import { OrgBadge } from '../../src/components/OrgBadge';
 import { useToast } from '../../src/context/ToastContext';
 

@@ -21,7 +21,7 @@ export const ReaderSettingsSheet: React.FC<ReaderSettingsSheetProps> = ({ visibl
   
   React.useEffect(() => {
     if (visible) {
-      Speech.getVoicesAsync().then(voices => {
+      Speech.getAvailableVoicesAsync().then(voices => {
         // Filter for English voices for best experience
         const filtered = voices.filter(v => v.language.startsWith('en'));
         setNativeVoices(filtered);

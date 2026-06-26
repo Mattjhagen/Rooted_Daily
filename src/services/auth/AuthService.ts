@@ -39,6 +39,14 @@ export class AuthService {
   }
 
   /**
+   * update user metadata
+   */
+  static async updateUserMetadata(data: any): Promise<void> {
+    const { error } = await supabase.auth.updateUser({ data });
+    if (error) throw error;
+  }
+
+  /**
    * subscribe to auth changes
    */
   static onAuthStateChange(callback: (event: string, session: any) => void) {
