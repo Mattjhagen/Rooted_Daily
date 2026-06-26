@@ -37,9 +37,23 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="journal"
+        options={{
+          title: 'Journal',
+          tabBarIcon: ({ color, size }) => <Bookmark size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="devotionals"
+        options={{
+          title: 'Bible',
+          tabBarIcon: ({ color, size }) => <BookOpen size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="inbox"
         options={{
-          title: 'Chat',
+          title: 'Community',
           tabBarIcon: ({ color, size }) => <MessageSquare size={size} color={color} />,
         }}
       />
