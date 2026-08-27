@@ -14,15 +14,15 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Plus, Sparkles, Wand2 } from 'lucide-react-native';
-import { colors } from '../../../src/theme/colors';
-import { typography } from '../../../src/theme/typography';
-import { spacing } from '../../../src/theme/spacing';
-import { Devotional } from '../../../src/features/devotionals/types';
-import { getApprovedDevotionals } from '../../../src/features/devotionals/devotionalService';
-import { DevotionalCard } from '../../../src/components/DevotionalCard';
-import { InterestsModal } from '../../../src/components/InterestsModal';
-import { PersonalizedDevotionalService } from '../../../src/features/devotionals/PersonalizedDevotionalService';
-import { usePersistenceStore } from '../../../src/features/persistence/persistenceStore';
+import { colors } from '../../src/theme/colors';
+import { typography } from '../../src/theme/typography';
+import { spacing } from '../../src/theme/spacing';
+import { Devotional } from '../../src/features/devotionals/types';
+import { getApprovedDevotionals } from '../../src/features/devotionals/devotionalService';
+import { DevotionalCard } from '../../src/components/DevotionalCard';
+import { InterestsModal } from '../../src/components/InterestsModal';
+import { PersonalizedDevotionalService } from '../../src/features/devotionals/PersonalizedDevotionalService';
+import { usePersistenceStore } from '../../src/features/persistence/persistenceStore';
 
 const PAGE_SIZE = 10;
 
