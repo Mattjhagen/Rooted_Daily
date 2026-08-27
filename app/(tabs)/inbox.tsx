@@ -38,6 +38,10 @@ export default function InboxScreen() {
   ];
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
       if (data.user) fetchConversations(data.user.id);
@@ -46,6 +50,10 @@ export default function InboxScreen() {
   }, []);
 
   const fetchConversations = async (userId: string) => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     try {
       const { data, error } = await supabase
         .from('conversations')

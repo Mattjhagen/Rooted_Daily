@@ -39,16 +39,21 @@ export const CommunityInsights: React.FC<Props> = ({ book, chapter, verse }) => 
   const [posting, setPosting] = useState(false);
   const [user, setUser] = useState<any>(null);
 
+  // If Supabase is not configured, don't render the component
+  if (!supabase) {
+    return null;
+  }
+
   useEffect(() => {
     let isActive = true;
     checkUser();
-    
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (isActive) setUser(session?.user || null);
     });
 
     loadInsights(isActive);
-    
+
     return () => {
       isActive = false;
       subscription.unsubscribe();

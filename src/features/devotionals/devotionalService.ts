@@ -12,6 +12,11 @@ const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 // --- Public feed ---
 export async function getApprovedDevotionals(limit = 20, offset = 0): Promise<Devotional[]> {
+  if (!supabase) {
+    console.log('[devotionalService] Supabase not configured - returning empty devotionals list');
+    return [];
+  }
+
   const { data, error } = await supabase
     .from('devotionals')
     .select(`*, organization:organizations(*)`)
@@ -28,15 +33,19 @@ export async function getApprovedDevotionals(limit = 20, offset = 0): Promise<De
 
 // --- Submission ---
 export async function submitDevotional(submission: DevotionalSubmission): Promise<void> {
+  if (!supabase) {
+    throw new Error('Supabase not configured. Please add EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY to .env file.');
+  }
+
   // 1. Upsert org by email
   const { data: org, error: orgError } = await supabase
     .from('organizations')
     .upsert(
-      { 
-        name: submission.orgName, 
-        contact_email: submission.contactEmail, 
-        website_url: submission.websiteUrl 
-      }, 
+      {
+        name: submission.orgName,
+        contact_email: submission.contactEmail,
+        website_url: submission.websiteUrl
+      },
       { onConflict: 'contact_email' }
     )
     .select()

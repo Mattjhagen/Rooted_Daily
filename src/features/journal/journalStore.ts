@@ -35,6 +35,8 @@ export const useJournalStore = create<JournalState>()(
       streak: 0,
 
       syncEntries: async () => {
+        if (!supabase) return;
+
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
@@ -70,14 +72,16 @@ export const useJournalStore = create<JournalState>()(
       },
 
       addEntry: async (entry) => {
-        const { data: { user } } = await supabase.auth.getUser();
-        
         // Optimistic local update
         const tempId = Math.random().toString(36).substring(7);
         const newEntry = { ...entry, id: tempId };
         set((state) => ({
           entries: [newEntry, ...state.entries],
         }));
+
+        if (!supabase) return;
+
+        const { data: { user } } = await supabase.auth.getUser();
 
         if (user) {
           try {
@@ -100,7 +104,7 @@ export const useJournalStore = create<JournalState>()(
               .single();
 
             if (error) throw error;
-            
+
             // Replace temp ID with real DB ID
             if (data) {
               set((state) => ({
@@ -118,6 +122,8 @@ export const useJournalStore = create<JournalState>()(
         set((state) => ({
           entries: state.entries.filter((e) => e.id !== id),
         }));
+
+        if (!supabase) return;
 
         const { data: { user } } = await supabase.auth.getUser();
         if (user && !id.startsWith('temp_')) {
@@ -145,6 +151,8 @@ export const useJournalStore = create<JournalState>()(
             e.id === id ? { ...e, isFavorite: newFavorite } : e
           ),
         }));
+
+        if (!supabase) return;
 
         const { data: { user } } = await supabase.auth.getUser();
         if (user && !id.startsWith('temp_')) {
