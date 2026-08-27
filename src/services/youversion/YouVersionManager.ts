@@ -2,15 +2,26 @@ import { BibleClient, ApiClient, YouVersionPlatformConfiguration } from '@youver
 
 // Configure the core SDK
 const apiKey = process.env.EXPO_PUBLIC_YOUVERSION_API_KEY || '';
+let bibleClient: BibleClient | null = null;
+
 if (apiKey) {
-  YouVersionPlatformConfiguration.appKey = apiKey;
+  try {
+    YouVersionPlatformConfiguration.appKey = apiKey;
+    const apiClient = new ApiClient({ appKey: apiKey });
+    bibleClient = new BibleClient(apiClient);
+  } catch (error) {
+    console.log('[YouVersion] Failed to initialize client:', error);
+  }
 }
 
-// Create a single instance of BibleClient
-const apiClient = new ApiClient({ appKey: apiKey });
-export const bibleClient = new BibleClient(apiClient);
+export { bibleClient };
 
 export async function getVerseOfTheDay() {
+  if (!bibleClient) {
+    console.log('[YouVersion] API not configured - add EXPO_PUBLIC_YOUVERSION_API_KEY to .env');
+    return null;
+  }
+
   try {
     const today = new Date();
     // getDay() gives 0-6. We need day of year.
@@ -29,10 +40,12 @@ export async function getVerseOfTheDay() {
 }
 
 export async function getVerseOfTheDayText(versionId: number) {
+  if (!bibleClient) return null;
+
   try {
     const votd = await getVerseOfTheDay();
     if (!votd) return null;
-    
+
     // getPassage takes versionId, usfm (which is the passage_id from VOTD)
     const passage = await bibleClient.getPassage(versionId, votd.passage_id, 'text');
     return {
@@ -47,6 +60,8 @@ export async function getVerseOfTheDayText(versionId: number) {
 }
 
 export async function getBibleVersions() {
+  if (!bibleClient) return [];
+
   try {
     const versions = await bibleClient.getVersions('eng');
     return versions.data;

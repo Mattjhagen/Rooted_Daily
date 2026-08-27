@@ -110,6 +110,18 @@ export default function HomeScreen() {
         setVerseText(votdText.text.replace(/<[^>]+>/g, '').trim());
         setVerseRef(votdText.reference);
         setDailyData({ ref: votdText.reference, reflection: 'Take a moment to reflect on today\'s verse.', usfm: votdText.usfm });
+      } else {
+        // Fallback verse when YouVersion API is not configured
+        const fallbackVerse = await getVerse('John', 3, 16);
+        if (fallbackVerse) {
+          setVerseText(fallbackVerse.text);
+          setVerseRef('John 3:16');
+          setDailyData({ ref: 'John 3:16', reflection: 'Take a moment to reflect on today\'s verse.' });
+        } else {
+          setVerseText('For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.');
+          setVerseRef('John 3:16');
+          setDailyData({ ref: 'John 3:16', reflection: 'Take a moment to reflect on today\'s verse.' });
+        }
       }
     }
     loadVerse();
