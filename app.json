@@ -1,0 +1,85 @@
+{
+  "expo": {
+    "name": "Rooted Daily",
+    "slug": "rooted-daily-bible-buddy",
+    "version": "0.0.9",
+    "orientation": "portrait",
+    "icon": "./assets/images/rooted-icon.png",
+    "scheme": "deenbuddy",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/images/rooted-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#212733"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rooteddaily.bible",
+      "buildNumber": "10",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ],
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/rooted-icon.png",
+        "backgroundColor": "#212733"
+      },
+      "softwareKeyboardLayoutMode": "resize",
+      "predictiveBackGestureEnabled": false,
+      "package": "com.rooteddaily.bible",
+      "versionCode": 10
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/rooted-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/rooted-icon.png",
+          "color": "#212733"
+        }
+      ],
+      "@react-native-community/datetimepicker",
+      "expo-font",
+      "expo-web-browser",
+      "expo-audio",
+      "./withFoldableSupport.js",
+      "./withFireTVSupport.js",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8068b023-d161-4ea9-9da1-402876a5140c"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8068b023-d161-4ea9-9da1-402876a5140c"
+      }
+    },
+    "owner": "unsungomaha"
+  }
+}

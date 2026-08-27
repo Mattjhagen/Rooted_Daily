@@ -1,0 +1,168 @@
+// src/components/VerseCard.tsx
+
+import React from 'react';
+import { View, Text, StyleSheet, Pressable, useColorScheme } from 'react-native';
+import { useRouter } from 'expo-router';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
+import { spacing, shadows } from '../theme/spacing';
+import { ChevronRight } from 'lucide-react-native';
+interface VerseCardProps {
+  reference: string;
+  text: string;
+  reflectionPreview?: string;
+  versionAbbreviation?: string;
+  onVersionPress?: () => void;
+  onPress?: () => void;
+  onReaderPress?: () => void;
+  showReadFull?: boolean;
+}
+
+export const VerseCard: React.FC<VerseCardProps> = ({
+  reference,
+  text,
+  reflectionPreview,
+  versionAbbreviation = 'WEB',
+  onVersionPress,
+  onPress,
+  onReaderPress,
+  showReadFull = true,
+}) => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
+
+  return (
+    <Pressable
+      style={({ pressed, focused }) => [
+        styles.container, 
+        { 
+          backgroundColor: themeColors.surface, 
+          borderColor: focused ? themeColors.accent : themeColors.border,
+          borderWidth: focused ? 2 : 1
+        },
+        pressed && { opacity: 0.8 }
+      ]}
+      onPress={onPress}
+    >
+      <View style={styles.header}>
+        <Pressable 
+          style={({ pressed, focused }) => [
+            styles.badge, 
+            { 
+              backgroundColor: focused ? themeColors.accent : themeColors.accentLight,
+            },
+            pressed && { opacity: 0.8 }
+          ]}
+          onPress={onVersionPress}
+          disabled={!onVersionPress}
+        >
+          {({ focused }) => (
+            <Text style={[styles.badgeText, { color: focused ? themeColors.background : themeColors.accent }]}>{versionAbbreviation}</Text>
+          )}
+        </Pressable>
+        <Text style={[styles.reference, { color: themeColors.accent }]}>{reference}</Text>
+        <View style={styles.audioButton}>
+        </View>
+      </View>
+
+      <Text style={[styles.scripture, { color: themeColors.text }]} numberOfLines={4}>
+        "{text}"
+      </Text>
+
+      {reflectionPreview && (
+        <Text style={[styles.reflection, { color: themeColors.textSecondary }]}>
+          {reflectionPreview}
+        </Text>
+      )}
+
+      <View style={styles.footer}>
+        <Pressable 
+          style={({ pressed, focused }) => [
+            styles.cta,
+            pressed && { opacity: 0.7 },
+            focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+          ]} 
+          onPress={onPress}
+        >
+          <Text style={[styles.ctaText, { color: themeColors.accent }]}>Reflect on this verse</Text>
+          <ChevronRight size={16} color={themeColors.accent} />
+        </Pressable>
+
+        {showReadFull && (
+          <Pressable 
+            style={({ pressed, focused }) => [
+              styles.secondaryCta,
+              pressed && { opacity: 0.7 },
+              focused && { opacity: 0.8, backgroundColor: themeColors.border, borderRadius: 8, padding: 4 }
+            ]} 
+            onPress={onReaderPress}
+          >
+            <Text style={[styles.secondaryCtaText, { color: themeColors.textSecondary }]}>Read full chapter</Text>
+          </Pressable>
+        )}
+      </View>
+    </Pressable>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    borderRadius: 16,
+    padding: spacing.lg,
+    borderWidth: 1,
+    ...shadows.md,
+    marginVertical: spacing.md,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: spacing.md,
+    justifyContent: 'space-between',
+  },
+  audioButton: {
+    marginLeft: 'auto',
+  },
+  badge: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: 4,
+    marginRight: spacing.sm,
+  },
+  badgeText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 10,
+    letterSpacing: 0.5,
+  },
+  reference: {
+    ...typography.headingMD,
+  },
+  scripture: {
+    ...typography.scriptureXL,
+    marginBottom: spacing.md,
+  },
+  reflection: {
+    ...typography.scriptureMD,
+    marginBottom: spacing.lg,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: spacing.sm,
+  },
+  cta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ctaText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 15,
+    marginRight: spacing.xs,
+  },
+  secondaryCta: {},
+  secondaryCtaText: {
+    fontFamily: 'DMSans_500Medium',
+    fontSize: 14,
+  },
+});

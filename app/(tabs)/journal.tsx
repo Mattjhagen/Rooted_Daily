@@ -1,0 +1,207 @@
+// app/(tabs)/journal.tsx
+
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, useColorScheme, TouchableOpacity, RefreshControl } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../../src/theme/colors';
+import { typography } from '../../src/theme/typography';
+import { spacing } from '../../src/theme/spacing';
+import { useJournalStore, JournalEntry } from '../../src/features/journal/journalStore';
+import { Edit3, Heart, MessageSquare, BookOpen } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
+
+export default function JournalScreen() {
+  const router = useRouter();
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const themeColors = isDark ? colors.dark : colors;
+
+  const { entries, toggleFavorite, syncEntries, loading } = useJournalStore();
+
+  const handleResumeChat = (item: JournalEntry) => {
+    router.push({
+      pathname: '/chat/[ref]',
+      params: { 
+        ref: item.verseRef,
+        q: `I want to reflect more on my previous note: "${item.note}"`
+      }
+    });
+  };
+
+  const renderItem = ({ item }: { item: JournalEntry }) => (
+    <TouchableOpacity 
+      style={[styles.item, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+      onPress={() => handleResumeChat(item)}
+    >
+      <View style={styles.itemHeader}>
+        <View style={styles.headerTitleRow}>
+          <Text style={[styles.itemRef, { color: themeColors.accent }]} numberOfLines={1} ellipsizeMode="tail">{item.verseRef}</Text>
+          <View style={[styles.typeBadge, { backgroundColor: item.type === 'prayer' ? themeColors.goldLight : themeColors.accentLight, marginLeft: spacing.sm }]}>
+            <Text style={[styles.typeText, { color: item.type === 'prayer' ? themeColors.gold : themeColors.accent }]}>
+              {item.type}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.actionIcons}>
+          <TouchableOpacity 
+            onPress={() => router.push(`/reader/${encodeURIComponent(item.verseRef)}`)} 
+            style={styles.iconBtn}
+          >
+            <BookOpen size={20} color={themeColors.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleResumeChat(item)} style={styles.iconBtn}>
+            <MessageSquare size={20} color={themeColors.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.iconBtn}>
+            <Heart size={20} color={item.isFavorite ? colors.danger : themeColors.textSecondary} fill={item.isFavorite ? colors.danger : 'transparent'} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Text style={[styles.itemText, { color: themeColors.text }]} numberOfLines={2} ellipsizeMode="tail">
+        {item.verseText}
+      </Text>
+      <Text style={[styles.itemNote, { color: themeColors.textSecondary }]} numberOfLines={3} ellipsizeMode="tail">
+        {item.note}
+      </Text>
+      <View style={styles.itemFooter}>
+        <Text style={[styles.itemDate, { color: themeColors.textSecondary }]}>{item.date}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: themeColors.background }]}>
+      <View style={styles.header}>
+        <Text style={[styles.title, { color: themeColors.text }]}>My Journal</Text>
+      </View>
+
+      {entries.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Edit3 size={48} color={themeColors.border} />
+          <Text style={[styles.emptyText, { color: themeColors.textSecondary }]}>
+            Your reflections and prayers will appear here. Start a chat about a verse to save a note!
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          data={entries}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.listContent}
+          refreshControl={
+            <RefreshControl 
+              refreshing={loading} 
+              onRefresh={syncEntries} 
+              tintColor={themeColors.accent}
+              colors={[themeColors.accent]}
+            />
+          }
+          ListFooterComponent={
+            <View style={styles.disclaimerContainer}>
+              <Text style={[styles.disclaimerText, { color: themeColors.textSecondary }]}>
+                AI responses are for reflection purposes only. They do not constitute theological instruction or replace the guidance of a pastor or church community.
+              </Text>
+            </View>
+          }
+        />
+      )}
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    padding: spacing.lg,
+  },
+  title: {
+    fontFamily: 'Lora_600SemiBold',
+    fontSize: 28,
+  },
+  listContent: {
+    padding: spacing.lg,
+    paddingTop: 0,
+  },
+  item: {
+    borderRadius: 16,
+    padding: spacing.md,
+    borderWidth: 1,
+    marginBottom: spacing.md,
+  },
+  itemHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  itemRef: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 16,
+    flexShrink: 1,
+  },
+  itemText: {
+    ...typography.scriptureMD,
+    marginBottom: spacing.sm,
+  },
+  itemNote: {
+    ...typography.body,
+    marginBottom: spacing.md,
+    flexShrink: 1,
+  },
+  itemFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  itemDate: {
+    ...typography.caption,
+  },
+  typeBadge: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  typeText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 11,
+    textTransform: 'capitalize',
+  },
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.xl,
+  },
+  emptyText: {
+    ...typography.body,
+    textAlign: 'center',
+    marginTop: spacing.md,
+  },
+  headerTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    marginRight: spacing.md,
+    overflow: 'hidden',
+  },
+  actionIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconBtn: {
+    marginLeft: spacing.md,
+  },
+  disclaimerContainer: {
+    padding: spacing.lg,
+    paddingTop: spacing.xxl,
+    paddingBottom: spacing.xxl,
+    opacity: 0.6,
+  },
+  disclaimerText: {
+    ...typography.caption,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+});
