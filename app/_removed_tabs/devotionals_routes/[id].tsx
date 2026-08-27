@@ -28,7 +28,7 @@ import { spacing } from '../../../src/theme/spacing';
 import { Devotional } from '../../../src/features/devotionals/types';
 import { supabase } from '../../../src/services/supabase';
 import { OrgBadge } from '../../../src/components/OrgBadge';
-import { useToast } from '../../src/context/ToastContext';
+import { useToast } from '../../../src/context/ToastContext';
 
 export default function DevotionalDetailScreen() {
   const { id } = useLocalSearchParams();
