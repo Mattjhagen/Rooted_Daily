@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { BookOpen, Search, BookMarked } from 'lucide-react-native';
+import { BookOpen, Search } from 'lucide-react-native';
 import { colors } from '../../src/theme/colors';
 import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
@@ -133,13 +133,6 @@ export default function BibleScreen() {
             {selectedBook ? 'Select a chapter' : 'Browse books & chapters'}
           </Text>
         </View>
-        <TouchableOpacity
-          style={[styles.devotionalsButton, { borderColor: themeColors.accent }]}
-          onPress={() => router.push('/devotionals/submit')}
-        >
-          <BookMarked size={20} color={themeColors.accent} />
-          <Text style={[styles.devotionalsButtonText, { color: themeColors.accent }]}>Devotionals</Text>
-        </TouchableOpacity>
       </View>
 
       {!selectedBook && (
@@ -181,9 +174,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
   },
@@ -194,19 +184,6 @@ const styles = StyleSheet.create({
   subtitle: {
     ...typography.caption,
     marginTop: 2,
-  },
-  devotionalsButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: spacing.xs,
-    paddingHorizontal: spacing.sm,
-    borderRadius: 20,
-    borderWidth: 1,
-    gap: 4,
-  },
-  devotionalsButtonText: {
-    fontFamily: 'DMSans_600SemiBold',
-    fontSize: 14,
   },
   searchContainer: {
     flexDirection: 'row',
