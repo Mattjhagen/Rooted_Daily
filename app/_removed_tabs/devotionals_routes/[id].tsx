@@ -1,33 +1,33 @@
-// app/devotionals/[id].tsx
+// app/_removed_tabs/devotionals_routes/[id].tsx
 
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  ScrollView, 
-  Share, 
-  TouchableOpacity, 
-  Modal, 
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Share,
+  TouchableOpacity,
+  Modal,
   ActivityIndicator,
   useColorScheme,
   Linking
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { 
-  Share2, 
-  Bookmark, 
-  MessageSquare, 
+import {
+  Share2,
+  Bookmark,
+  MessageSquare,
   ExternalLink,
   ChevronLeft
 } from 'lucide-react-native';
-import { colors } from '../../src/theme/colors';
-import { typography } from '../../src/theme/typography';
-import { spacing } from '../../src/theme/spacing';
-import { Devotional } from '../../src/features/devotionals/types';
-import { supabase } from '../../src/services/supabase';
-import { OrgBadge } from '../../src/components/OrgBadge';
+import { colors } from '../../../src/theme/colors';
+import { typography } from '../../../src/theme/typography';
+import { spacing } from '../../../src/theme/spacing';
+import { Devotional } from '../../../src/features/devotionals/types';
+import { supabase } from '../../../src/services/supabase';
+import { OrgBadge } from '../../../src/components/OrgBadge';
 import { useToast } from '../../src/context/ToastContext';
 
 export default function DevotionalDetailScreen() {

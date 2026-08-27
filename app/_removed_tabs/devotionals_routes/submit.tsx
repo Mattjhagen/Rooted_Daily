@@ -1,4 +1,4 @@
-// app/devotionals/submit.tsx
+// app/_removed_tabs/devotionals_routes/submit.tsx
 
 import React, { useState, useEffect } from 'react';
 import { 
@@ -18,13 +18,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Stack } from 'expo-router';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from 'lucide-react-native';
-import { colors } from '../../src/theme/colors';
-import { typography } from '../../src/theme/typography';
-import { spacing } from '../../src/theme/spacing';
-import { VERSE_REF_REGEX } from '../../src/features/bible/bibleParser';
-import { getVerse } from '../../src/features/bible/bibleService';
-import { submitDevotional } from '../../src/features/devotionals/devotionalService';
-import { useToast } from '../../src/context/ToastContext';
+import { colors } from '../../../src/theme/colors';
+import { typography } from '../../../src/theme/typography';
+import { spacing } from '../../../src/theme/spacing';
+import { VERSE_REF_REGEX } from '../../../src/features/bible/bibleParser';
+import { getVerse } from '../../../src/features/bible/bibleService';
+import { submitDevotional } from '../../../src/features/devotionals/devotionalService';
+import { useToast } from '../../../src/context/ToastContext';
 
 type Step = 1 | 2 | 'success';
 
