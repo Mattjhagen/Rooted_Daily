@@ -50,7 +50,7 @@ Pick ONE to start (you can add more later):
 3. Navigate to **Applications** → **Create New Application**
 4. Fill in:
    - Name: `Rooted Daily`
-   - Redirect URI: `deenbuddy://auth/callback`
+   - Redirect URI: `rooted-daily://auth/callback`
    - Scope: `user:read`
 5. Click **Create**
 6. Copy your **Client ID** and **Client Secret**
@@ -163,7 +163,7 @@ Simulators don't work well with OAuth. Use a real iPhone or Android device.
 
 **Solution:**
 1. Are you testing on a physical device? (Simulators don't work)
-2. Check `app.json` has `"scheme": "deenbuddy"` (✅ already there)
+2. Check `app.json` has `"scheme": "rooted-daily"` (✅ already there)
 3. Try quitting the app completely and reopening
 
 ### "Redirect URI mismatch"
@@ -171,7 +171,7 @@ Simulators don't work well with OAuth. Use a real iPhone or Android device.
 **Solution:**
 1. For Google/Apple: Check callback URL exactly matches in provider console
 2. Format: `https://YOUR-PROJECT-REF.supabase.co/auth/v1/callback`
-3. For YouVersion: Use `deenbuddy://auth/callback`
+3. For YouVersion: Use `rooted-daily://auth/callback`
 
 ### "Invalid client_id" or "Invalid credentials"
 

@@ -134,7 +134,7 @@ You need to create TWO client IDs:
    - **Description**: A daily devotional and Bible study app
    - **Website**: Your app website or GitHub repo
    - **Redirect URIs**: 
-     - Add: `deenbuddy://auth/callback`
+     - Add: `rooted-daily://auth/callback`
      - For testing: `exp://localhost:8081/--/auth/callback`
 4. **Scopes**: Select `user:read` (to get user profile info)
 5. Save the application
@@ -235,7 +235,7 @@ Add the Apple Sign-In entitlement to your iOS configuration:
 - Restart the Expo server after changing .env
 
 #### OAuth doesn't redirect back to app
-- Check app.json has the correct scheme: `"scheme": "deenbuddy"`
+- Check app.json has the correct scheme: `"scheme": "rooted-daily"`
 - Make sure you're testing on a physical device
 - Try rebuilding the app: `npm run ios` or `npm run android`
 

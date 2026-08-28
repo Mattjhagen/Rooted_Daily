@@ -150,7 +150,7 @@ npm start
 
 **Solution:**
 1. Are you using a **physical device**? (Not simulator)
-2. Check `app.json` has `"scheme": "deenbuddy"` (already there ✅)
+2. Check `app.json` has `"scheme": "rooted-daily"` (already there ✅)
 3. Try force-quitting the app and reopening
 
 ### "Redirect URI mismatch" error
@@ -158,7 +158,7 @@ npm start
 **Solution:**
 1. Check your OAuth callback URL in provider console
 2. Should be: `https://YOUR-PROJECT.supabase.co/auth/v1/callback`
-3. For YouVersion: `deenbuddy://auth/callback`
+3. For YouVersion: `rooted-daily://auth/callback`
 
 ---
 

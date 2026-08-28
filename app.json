@@ -5,7 +5,7 @@
     "version": "0.0.9",
     "orientation": "portrait",
     "icon": "./assets/images/rooted-icon.png",
-    "scheme": "deenbuddy",
+    "scheme": "rooted-daily",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": false,
     "splash": {

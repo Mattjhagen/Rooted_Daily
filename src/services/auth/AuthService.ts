@@ -23,7 +23,7 @@ export class AuthService {
     if (!supabase) throw new Error(SUPABASE_NOT_CONFIGURED_ERROR);
 
     const redirectTo = AuthSession.makeRedirectUri({
-      scheme: 'deenbuddy',
+      scheme: 'rooted-daily',
       path: 'auth/callback',
     });
 
@@ -77,7 +77,7 @@ export class AuthService {
     }
 
     const redirectUri = AuthSession.makeRedirectUri({
-      scheme: 'deenbuddy',
+      scheme: 'rooted-daily',
       path: 'auth/callback',
     });
 

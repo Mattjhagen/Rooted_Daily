@@ -62,7 +62,7 @@ Follow this checklist to add Google & Apple sign-in to Rooted Daily.
 - [ ] Navigate to Applications
 - [ ] Create new application:
   - [ ] Name: Rooted Daily
-  - [ ] Add redirect URI: `deenbuddy://auth/callback`
+  - [ ] Add redirect URI: `rooted-daily://auth/callback`
   - [ ] Select scope: `user:read`
 - [ ] Copy Client ID and Client Secret
 - [ ] Add to .env file:
@@ -110,7 +110,7 @@ If you encounter issues, check:
    - For Apple: Use the Services ID, not the Bundle ID
 
 4. **OAuth window closes immediately**
-   - Make sure app.json has `"scheme": "deenbuddy"`
+   - Make sure app.json has `"scheme": "rooted-daily"`
    - Test on a physical device, not simulator
    - Check for console errors
 

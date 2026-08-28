@@ -147,7 +147,7 @@ User → "Continue with Google/Apple/YouVersion" → One tap → Signed in ✅
 → Verify you copied the correct Client ID from provider console
 
 ### OAuth window closes immediately
-→ Make sure `scheme: "deenbuddy"` is in app.json and you're testing on physical device
+→ Make sure `scheme: "rooted-daily"` is in app.json and you're testing on physical device
 
 ### YouVersion says "Invalid credentials"
 → Check Client Secret is correct and hasn't expired
