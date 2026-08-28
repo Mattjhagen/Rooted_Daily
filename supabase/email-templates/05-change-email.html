@@ -1,0 +1,57 @@
+<html>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f0; padding: 20px;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #8B7355 0%, #6B5645 100%); padding: 40px 20px; text-align: center;">
+      <h1 style="color: white; font-size: 28px; margin: 0; font-family: 'Georgia', serif;">🌱 Rooted Daily</h1>
+      <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Grow deeper in faith, daily</p>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px 30px;">
+      <h2 style="color: #2c2c2c; font-size: 24px; margin: 0 0 16px 0;">Confirm Your New Email ✉️</h2>
+
+      <p style="color: #666; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
+        We received a request to change the email address for your Rooted Daily account. To complete this change, please confirm your new email address by clicking the button below.
+      </p>
+
+      <!-- Button -->
+      <div style="text-align: center; margin: 0 0 32px 0;">
+        <a href="{{ .ConfirmationURL }}"
+           style="display: inline-block; background: linear-gradient(135deg, #8B7355 0%, #6B5645 100%); color: white; padding: 16px 40px; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 16px;">
+          Confirm New Email
+        </a>
+      </div>
+
+      <p style="color: #999; font-size: 14px; line-height: 1.6; margin: 0 0 24px 0;">
+        If the button doesn't work, copy and paste this link into your browser:
+      </p>
+      <p style="color: #8B7355; font-size: 13px; word-break: break-all; margin: 0 0 32px 0;">
+        {{ .ConfirmationURL }}
+      </p>
+
+      <div style="background-color: #f0f7ff; border-left: 4px solid #4A90E2; padding: 16px; border-radius: 8px; margin: 0 0 24px 0;">
+        <p style="color: #666; font-size: 14px; line-height: 1.6; margin: 0;">
+          <strong>📧 Important:</strong> After you confirm, {{ .Email }} will become your new email address for signing in to Rooted Daily.
+        </p>
+      </div>
+
+      <p style="color: #999; font-size: 14px; line-height: 1.6; margin: 0;">
+        If you didn't request this change, please contact us immediately to secure your account.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #f9f9f9; padding: 24px 30px; text-align: center; border-top: 1px solid #eee;">
+      <p style="color: #999; font-size: 12px; margin: 0 0 8px 0;">
+        Rooted Daily - Your daily companion for spiritual growth
+      </p>
+      <p style="color: #999; font-size: 12px; margin: 0;">
+        © 2026 Rooted Daily. All rights reserved.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

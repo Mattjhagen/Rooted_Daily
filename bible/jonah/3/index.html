@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonah 3 | Rooted Daily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=1777248753">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="llt-mode">
+    <div class="container">
+        <header>
+            <a href="../../../" class="logo-link">
+                <img src="https://rootedapp.space/logo_dark_light.png" alt="Rooted Icon" class="logo-img">
+                <span class="logo-text">Rooted Daily</span>
+            </a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div class="switcher">
+                    <button class="switch-btn" data-translation="web">WEB</button>
+                    <button class="switch-btn active" data-translation="llt">LLT</button>
+                </div>
+                <a href="#" id="signin-btn" class="nav-link">Sign In</a>
+            </div>
+        </header>
+
+        <main class="bible-reader">
+            <div class="meta-top">Old Testament</div>
+            <h1>Jonah 3</h1>
+            <span class="translation-info">Living Legacy Translation · Study Edition</span>
+
+            <div class="verse-container" data-book-slug="jonah" data-chapter="3">
+                <div class="verse"><span class="verse-num">1</span><span class="verse-text">Yahweh’s word came to Jonah the second time, saying,</span></div>
+                <div class="verse"><span class="verse-num">2</span><span class="verse-text">“Arise, go to Nineveh, that great city, and preach to it the message that I give you.”</span></div>
+                <div class="verse"><span class="verse-num">3</span><span class="verse-text">So Jonah arose, and went to Nineveh, according to Yahweh’s word. Now Nineveh was an exceedingly great city, three days’ journey across.</span></div>
+                <div class="verse"><span class="verse-num">4</span><span class="verse-text">Jonah began to enter into the city a day’s journey, and he cried out, and said, “In forty days, Nineveh will be overthrown!”</span></div>
+                <div class="verse"><span class="verse-num">5</span><span class="verse-text">The people of Nineveh believed God; and they proclaimed a fast, and put on sackcloth, from their greatest even to their least.</span></div>
+                <div class="verse"><span class="verse-num">6</span><span class="verse-text">The news reached the king of Nineveh, and he arose from his throne, and took off his royal robe, covered himself with sackcloth, and sat in ashes.</span></div>
+                <div class="verse"><span class="verse-num">7</span><span class="verse-text">He made a proclamation and published through Nineveh by the decree of the king and his nobles, saying, “Let neither man nor animal, herd nor flock, taste anything; let them not feed, nor drink water;</span></div>
+                <div class="verse"><span class="verse-num">8</span><span class="verse-text">but let them be covered with sackcloth, both man and animal, and let them cry mightily to God. Yes, let them turn everyone from his evil way, and from the violence that is in his hands.</span></div>
+                <div class="verse"><span class="verse-num">9</span><span class="verse-text">Who knows whether God will not turn and relent, and turn away from his fierce anger, so that we might not perish?”</span></div>
+                <div class="verse"><span class="verse-num">10</span><span class="verse-text">God saw their works, that they turned from their evil way. God relented of the disaster which he said he would do to them, and he didn’t do it.</span></div>
+            </div>
+
+            <div class="ch-nav">
+                <a href="../2/" class="nav-link">← Chapter 2</a>
+                <a href="../../" class="nav-link">Index</a>
+                <a href="../4/" class="nav-link">Chapter 4 →</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PacMac Mobile LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Features Screen -->
+    <div id="features-screen" class="features-overlay">
+        <div class="features-content">
+            <div class="features-header"><p>Welcome to the Future of Scripture</p><h2>The Social Bible</h2></div>
+            <div class="feature-grid">
+                <div class="feature-item"><h3>Digital Marginalia</h3><p>Grandmothers scribbled prayers in Bibles for generations. We've digitized those scribbles. The Word is the foundation; the "Living Legacy" is the layer of human experience written on top of it.</p></div>
+                <div class="feature-item"><h3>Living Heirlooms</h3><p>Every insight is persistent and time-stamped. Ten years from now, your children can read the same verse and see exactly what you were feeling in this moment.</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1rem;">The Shared Legacy</h3>
+                <table class="legacy-table">
+                    <thead><tr><th>Layer</th><th>Type</th><th>Who can see it?</th></tr></thead>
+                    <tbody>
+                        <tr><td><b>The Foundation</b></td><td>The Rooted Translation (RT)</td><td>Everyone</td></tr>
+                        <tr><td><b>Personal Journal</b></td><td>Private Insights</td><td>Only You</td></tr>
+                        <tr><td><b>The Legacy Wall</b></td><td>Public/Shared Insights</td><td>The Community</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mission-quote">"We aren't changing the Word; we are changing how we remember our journey with it. The Rooted Translation is your family's spiritual DNA."</div>
+            <div class="features-actions"><button id="btn-close-features" class="btn-get-started">Start My Journey</button></div>
+        </div>
+    </div>
+
+    <!-- AI Chat -->
+    <div id="ai-bubble" class="ai-bubble"><img src="https://rootedapp.space/logo_dark_light.png" alt="AI" style="width: 24px;"></div>
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header"><span>Rooted AI</span><button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;">✕</button></div>
+        <div id="chat-messages" class="ai-chat-messages"><div class="message ai">Hi! I'm Rooted. How can I help you today?</div></div>
+        <form id="chat-form" class="ai-chat-input"><input type="text" id="chat-input" placeholder="Ask Rooted..."><button type="submit">Send</button></form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 400px;">
+            <button id="close-auth" class="close-modal" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--color-text-secondary); font-size: 1.5rem; cursor: pointer;">✕</button>
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem; text-align: center;">Join Rooted Daily</h2>
+            <form id="auth-form">
+                <div class="form-group" style="margin-bottom: 1.5rem;"><label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 0.5rem;">Email</label><input type="email" id="email" required placeholder="you@example.com" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem; color: white;"></div>
+                <div class="form-group" style="margin-bottom: 2rem;"><label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 0.5rem;">Password</label><input type="password" id="password" required placeholder="••••••••" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem; color: white;"></div>
+                <button type="submit" class="btn primary" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--color-text-secondary); text-align: center;">Don't have an account? <a href="#" id="toggle-auth-mode" style="color: var(--color-accent); text-decoration: none;">Create one</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/bible-reader.js?v=1777248753" defer></script>
+</body>
+</html>

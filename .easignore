@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Native build artifacts
+android/
+ios/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# IDE and System files
+.idea/
+.vscode/
+.DS_Store
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Large project-specific junk
+Library/
+AndroidStudio/
+rooted.env/
+v0.0.1/
+brain/
+temp_icon.png
+logo_dark_light.png
+v0.0.1/
