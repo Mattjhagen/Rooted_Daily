@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rooted Daily",
     "slug": "rooted-daily-bible-buddy",
-    "version": "0.0.9",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/images/rooted-icon.png",
     "scheme": "rooted-daily",
@@ -16,7 +16,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rooteddaily.bible",
-      "buildNumber": "11",
+      "buildNumber": "13",
       "infoPlist": {
         "UIBackgroundModes": [
           "audio"
