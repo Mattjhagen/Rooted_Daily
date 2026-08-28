@@ -7,7 +7,7 @@ import { typography } from '../../src/theme/typography';
 import { spacing } from '../../src/theme/spacing';
 import { AuthService } from '../../src/services/auth/AuthService';
 import { useToast } from '../../src/context/ToastContext';
-import { Mail, Lock, ChevronLeft, Eye, EyeOff } from 'lucide-react-native';
+import { Mail, Lock, ChevronLeft, Eye, EyeOff, Chrome, BookOpen } from 'lucide-react-native';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -42,6 +42,40 @@ export default function LoginScreen() {
       }
     } catch (err: any) {
       showToast({ message: err.message, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOAuthSignIn = async (provider: 'google' | 'apple') => {
+    setLoading(true);
+    try {
+      const { data, error } = await AuthService.signInWithOAuth(provider);
+      if (error) throw error;
+
+      if (data.session) {
+        showToast({ message: `Welcome! Signed in with ${provider}`, type: 'success' });
+        router.replace('/(tabs)');
+      }
+    } catch (err: any) {
+      showToast({ message: err.message || 'OAuth sign-in failed', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleYouVersionSignIn = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await AuthService.signInWithYouVersion();
+      if (error) throw error;
+
+      if (data.session) {
+        showToast({ message: 'Welcome! Signed in with YouVersion', type: 'success' });
+        router.replace('/(tabs)');
+      }
+    } catch (err: any) {
+      showToast({ message: err.message || 'YouVersion sign-in failed', type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -85,6 +119,43 @@ export default function LoginScreen() {
           </View>
 
           <View style={styles.form}>
+            {/* OAuth Buttons */}
+            <View style={styles.oauthContainer}>
+              <TouchableOpacity
+                style={[styles.oauthBtn, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+                onPress={() => handleOAuthSignIn('google')}
+                disabled={loading}
+              >
+                <Chrome size={20} color={themeColors.text} />
+                <Text style={[styles.oauthBtnText, { color: themeColors.text }]}>Continue with Google</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.oauthBtn, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
+                onPress={() => handleOAuthSignIn('apple')}
+                disabled={loading}
+              >
+                <Text style={styles.appleIcon}></Text>
+                <Text style={[styles.oauthBtnText, { color: themeColors.text }]}>Continue with Apple</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.oauthBtn, styles.youversionBtn, { backgroundColor: '#FF6C00', borderColor: '#FF6C00' }]}
+                onPress={handleYouVersionSignIn}
+                disabled={loading}
+              >
+                <BookOpen size={20} color="white" />
+                <Text style={[styles.oauthBtnText, { color: 'white' }]}>Continue with YouVersion</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Divider */}
+            <View style={styles.divider}>
+              <View style={[styles.dividerLine, { backgroundColor: themeColors.border }]} />
+              <Text style={[styles.dividerText, { color: themeColors.textSecondary }]}>or</Text>
+              <View style={[styles.dividerLine, { backgroundColor: themeColors.border }]} />
+            </View>
+
             <View style={[styles.inputGroup, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
               <Mail size={20} color={themeColors.textSecondary} />
               <TextInput
@@ -214,6 +285,42 @@ const styles = StyleSheet.create({
   },
   forgotText: {
     fontFamily: 'DMSans_600SemiBold',
+    fontSize: 14,
+  },
+  oauthContainer: {
+    gap: spacing.sm,
+  },
+  oauthBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 56,
+    borderRadius: 14,
+    borderWidth: 1,
+    gap: spacing.sm,
+  },
+  oauthBtnText: {
+    fontFamily: 'DMSans_600SemiBold',
+    fontSize: 16,
+  },
+  appleIcon: {
+    fontSize: 20,
+  },
+  youversionBtn: {
+    borderWidth: 0,
+  },
+  divider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: spacing.md,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+  },
+  dividerText: {
+    marginHorizontal: spacing.md,
+    fontFamily: 'DMSans_400Regular',
     fontSize: 14,
   },
 });
