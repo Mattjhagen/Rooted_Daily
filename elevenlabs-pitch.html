@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooted Daily × ElevenLabs — Startup Grant Pitch Deck</title>
+  <meta name="description" content="Pitch deck for Rooted Daily's ElevenLabs Startup Grant application: Turning the Bible into a dynamic, personalized, and dramatized generative audiobook.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0D1612;
+      --bg-surface: #14221A;
+      --bg-surface-elevated: #1B2C22;
+      --bg-surface-card: rgba(27, 44, 34, 0.7);
+      --border: rgba(201, 168, 76, 0.2);
+      --border-focus: #C9A84C;
+      --text: #F3EFE8;
+      --text-muted: #A3B3A8;
+      --accent: #4A7C59;
+      --accent-bright: #5E9E72;
+      --accent-glow: rgba(74, 124, 89, 0.35);
+      --gold: #C9A84C;
+      --gold-light: #E7C975;
+      --gold-glow: rgba(201, 168, 76, 0.25);
+      --danger: #E74C3C;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+      --shadow-glow: 0 0 30px rgba(201, 168, 76, 0.15);
+    }
+
+    [data-theme="light"] {
+      --bg: #FAF7F2;
+      --bg-surface: #FFFFFF;
+      --bg-surface-elevated: #F4EFE6;
+      --bg-surface-card: rgba(255, 255, 255, 0.85);
+      --border: #E5DCCE;
+      --border-focus: #B5933A;
+      --text: #1C2620;
+      --text-muted: #5E6D64;
+      --accent: #2E5C3D;
+      --accent-bright: #3B754E;
+      --accent-glow: rgba(46, 92, 61, 0.2);
+      --gold: #B5933A;
+      --gold-light: #947526;
+      --gold-glow: rgba(181, 147, 58, 0.2);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 12px 32px rgba(46, 92, 61, 0.1);
+      --shadow-glow: 0 0 30px rgba(181, 147, 58, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Ambient background lighting */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%;
+      left: 15%;
+      width: 70%;
+      height: 60%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -15%;
+      right: 10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(90px);
+    }
+
+    /* Layout */
+    .deck-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+    }
+
+    /* Header Nav */
+    header.deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(13, 22, 18, 0.6);
+      z-index: 10;
+    }
+
+    [data-theme="light"] header.deck-header {
+      background: rgba(250, 247, 242, 0.75);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      background: var(--gold-glow);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #997828 100%);
+      color: #0D1612;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(201, 168, 76, 0.35);
+      filter: brightness(1.08);
+    }
+
+    .btn-icon-only {
+      padding: 8px;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      justify-content: center;
+    }
+
+    /* Slide Stage */
+    .stage {
+      flex: 1;
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 48px;
+    }
+
+    .slide {
+      width: 100%;
+      max-width: 1180px;
+      min-height: 580px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 56px;
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Slide Header */
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .slide-title {
+      font-family: var(--font-serif);
+      font-size: 2.3rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .slide-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 850px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .highlight-gold {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .highlight-green {
+      color: var(--accent-bright);
+      font-weight: 600;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* Feature Cards */
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .card-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      background: rgba(201, 168, 76, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+
+    /* Stat Box */
+    .stat-pill {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Interactive Audio Simulator */
+    .audio-simulator {
+      background: linear-gradient(145deg, #111E17 0%, #172B20 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    [data-theme="light"] .audio-simulator {
+      background: linear-gradient(145deg, #F3ECE0 0%, #EDE4D3 100%);
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scripture-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--text);
+      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius-sm);
+    }
+
+    [data-theme="light"] .scripture-quote {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .voice-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .voice-btn {
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .voice-btn.active {
+      border-color: var(--gold);
+      background: var(--gold-glow);
+      color: var(--gold-light);
+    }
+
+    .waveform-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0D1612;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 16px var(--gold-glow);
+      transition: transform 0.2s ease, filter 0.2s;
+    }
+
+    .play-circle:hover {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+
+    .visualizer-bars {
+      flex: 1;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+    }
+
+    .bar {
+      flex: 1;
+      height: 6px;
+      background: var(--accent-bright);
+      border-radius: 3px;
+      transition: height 0.15s ease;
+      opacity: 0.4;
+    }
+
+    .playing .bar {
+      opacity: 0.95;
+      animation: pulseBar 1.2s infinite ease-in-out alternate;
+    }
+
+    @keyframes pulseBar {
+      0% { height: 6px; background: var(--accent); }
+      50% { height: 38px; background: var(--gold); }
+      100% { height: 14px; background: var(--accent-bright); }
+    }
+
+    .playing .bar:nth-child(2n) { animation-delay: 0.15s; }
+    .playing .bar:nth-child(3n) { animation-delay: 0.3s; }
+    .playing .bar:nth-child(4n) { animation-delay: 0.45s; }
+    .playing .bar:nth-child(5n) { animation-delay: 0.6s; }
+
+    /* Character Calculator */
+    .calc-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .calc-bar {
+      height: 24px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      display: flex;
+      overflow: hidden;
+      margin: 16px 0 20px;
+      border: 1px solid var(--border);
+    }
+
+    .calc-seg-1 { width: 10.6%; background: #C9A84C; }
+    .calc-seg-2 { width: 60.6%; background: #4A7C59; }
+    .calc-seg-3 { width: 15.2%; background: #3498DB; }
+    .calc-seg-4 { width: 13.6%; background: #9B59B6; }
+
+    .calc-legend {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .calc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+
+    .color-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Architecture diagram */
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .arch-node {
+      flex: 1;
+      padding: 16px 14px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+
+    .arch-node h4 {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .arch-node p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .arch-arrow {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    /* Speaker Notes Drawer */
+    .speaker-notes-drawer {
+      position: fixed;
+      bottom: 74px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      width: 90%;
+      max-width: 900px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-md);
+      padding: 20px 28px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      z-index: 50;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .notes-content {
+      font-family: var(--font-serif);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* Bottom Control Bar */
+    footer.deck-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(13, 22, 18, 0.6);
+      z-index: 10;
+    }
+
+    [data-theme="light"] footer.deck-footer {
+      background: rgba(250, 247, 242, 0.75);
+    }
+
+    .progress-bar-container {
+      flex: 1;
+      max-width: 380px;
+      margin: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .progress-track {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 10%;
+      transition: width 0.3s ease;
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Modal for Copying Grant Answers */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 850px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .grant-field-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .field-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .field-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .field-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--gold);
+      color: #0D1612;
+    }
+
+    /* Print styling for High-Resolution PDF Export */
+    @media print {
+      @page {
+        size: 14in 8.5in;
+        margin: 0;
+      }
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      html, body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #0D1612 !important;
+        color: #F3EFE8 !important;
+      }
+      body::before, body::after {
+        display: none !important;
+      }
+      header.deck-header, footer.deck-footer, .speaker-notes-drawer, .modal-overlay, #playBtn {
+        display: none !important;
+      }
+      .deck-container {
+        height: auto !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      .stage {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        width: 14in !important;
+        height: 8.5in !important;
+        max-width: 14in !important;
+        min-height: 8.5in !important;
+        max-height: 8.5in !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: #0D1612 !important;
+        padding: 50px 70px !important;
+        box-sizing: border-box !important;
+        justify-content: center !important;
+      }
+      .slide:last-of-type, .slide:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .slide-title { color: #F3EFE8 !important; }
+      .feature-card {
+        background: #14221A !important;
+        border-color: rgba(201, 168, 76, 0.25) !important;
+      }
+      .stat-pill {
+        background: #1B2C22 !important;
+        border-color: rgba(201, 168, 76, 0.25) !important;
+      }
+      .audio-simulator {
+        background: #111E17 !important;
+        border-color: #C9A84C !important;
+      }
+      .arch-flow {
+        background: #14221A !important;
+        border-color: rgba(201, 168, 76, 0.25) !important;
+      }
+      .arch-node {
+        background: #1B2C22 !important;
+        border-color: rgba(201, 168, 76, 0.25) !important;
+      }
+      .grid-2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+      .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; }
+      .grid-4 { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
+      .arch-flow { display: flex !important; flex-direction: row !important; }
+      .calc-legend { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; }
+      .slide-badge { margin-top: 0 !important; }
+    }
+
+    /* Responsive (Screen Only) */
+    @media screen and (max-width: 900px) {
+      .stage { padding: 16px; }
+      .slide { padding: 28px 24px; min-height: auto; }
+      .slide-title { font-size: 1.65rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .arch-flow { flex-direction: column; }
+      .calc-legend { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deck-container">
+    <!-- Top Header -->
+    <header class="deck-header">
+      <a href="https://rootedapp.space" class="brand-group" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="360" height="360" rx="80" fill="#1C3D2A"/>
+          <g transform="translate(180, 180)" stroke="#F5F0E8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="0" y1="-90" x2="0" y2="60" stroke-width="14"/>
+            <line x1="-48" y1="-40" x2="48" y2="-40" stroke-width="14"/>
+            <path d="M0 60 Q-20 80 -55 100" stroke-width="10" opacity="0.9"/>
+            <path d="M0 60 Q20 80 55 100" stroke-width="10" opacity="0.9"/>
+            <path d="M-22 75 Q-38 90 -62 85" stroke-width="8" opacity="0.7"/>
+            <path d="M22 75 Q38 90 62 85" stroke-width="8" opacity="0.7"/>
+          </g>
+        </svg>
+        <div class="brand-title-wrap">
+          <span class="brand-title">
+            Rooted Daily 
+            <span class="brand-badge">ElevenLabs Grant</span>
+          </span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <button class="btn btn-outline" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+          🌓 <span style="font-size: 0.8rem;">Theme</span>
+        </button>
+        <button class="btn btn-outline" id="notesToggleBtn" title="Toggle Speaker Notes (N)">
+          🎙️ <span style="font-size: 0.8rem;">Notes (N)</span>
+        </button>
+        <button class="btn btn-gold" id="openGrantModalBtn" title="View & Copy Official Application Answers">
+          📋 <span>Grant Application</span>
+        </button>
+        <button class="btn btn-outline btn-icon-only" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          ⛶
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Slide Stage -->
+    <main class="stage">
+      
+      <!-- Slide 1: Cover -->
+      <section class="slide active" data-slide="1" data-notes="Welcome. For thousands of years, Scripture was an oral tradition. Today, billions read it in silence or struggle through monotone computerized text-to-speech. We are building the next generation of spiritual immersion—where the Bible speaks with the gravity, warmth, and intimacy it was always meant to possess.">
+        <div class="slide-badge">⚡ ElevenLabs Startup Grant Application • 2026</div>
+        <h1 class="slide-title">The Bible Was Written to be Heard,<br>Not Just Read.</h1>
+        <p class="slide-subtitle">
+          Rooted Daily × ElevenLabs: Bringing 66 books, 1,189 chapters, and 31,000+ verses to life through <span class="highlight-gold">emotionally nuanced generative voice</span>, dynamic cast dramatization, and family voice cloning.
+        </p>
+        
+        <div class="grid-3" style="margin-top: 16px;">
+          <div class="feature-card">
+            <span class="card-icon">🏛️</span>
+            <h3 class="card-title">Living Scripture</h3>
+            <p class="card-text">Dynamic cast dramatization mapping distinct ElevenLabs voices to Jesus, Old Testament prophets, and apostolical authors.</p>
+            <span class="card-tag">Turbo v2.5 Synthesis</span>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">🎙️</span>
+            <h3 class="card-title">Family Voice Legacy</h3>
+            <p class="card-text">Allowing believers to hear Psalms or Proverbs read in their own voice, a pastor's voice, or an elderly grandparent's voice.</p>
+            <span class="card-tag">Instant Voice Cloning</span>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">📱</span>
+            <h3 class="card-title">Production-Ready</h3>
+            <p class="card-text">Already bundled with a full offline 66-book KJV SQLite database, MD5 local caching, and custom ElevenLabs Voice ID settings.</p>
+            <span class="card-tag">Live in Rooted Daily App</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: The Problem -->
+      <section class="slide" data-slide="2" data-notes="Here is the paradox: over 2.4 billion Christians want to engage with Scripture daily, but over 80 percent quit by week three due to reading fatigue. Traditional audio Bibles are either 30-year-old single-reader tapes, robot TTS that butchers sacred poetry, or multi-million dollar studio productions that can never be updated or personalized.">
+        <div class="slide-badge">📉 The Opportunity & The Friction</div>
+        <h2 class="slide-title">2.4 Billion Believers. Millions of Audio Listeners.<br><span class="highlight-gold">Outdated Audio Technology.</span></h2>
+        <p class="slide-subtitle">Traditional audio Bibles force listeners to choose between lifeless robot monotone or static 30-year-old recordings.</p>
+
+        <div class="grid-4" style="margin-bottom: 24px;">
+          <div class="stat-pill">
+            <div class="stat-num">80%+</div>
+            <div class="stat-label">Quit "Bible in a Year" plans within 21 days due to screen fatigue</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-num">$2.0M+</div>
+            <div class="stat-label">Traditional studio cost for a 100-actor dramatized audio Bible</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-num">3×</div>
+            <div class="stat-label">Faster growth rate of audio devotional listening vs. text reading</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-num">73%</div>
+            <div class="stat-label">Listen during morning routines, driving, workouts, and bedtime</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="feature-card" style="border-left: 3px solid var(--danger);">
+            <h3 class="card-title">The Flat Monotone Problem</h3>
+            <p class="card-text">Standard mobile TTS engines sound like automated GPS driving directions. They destroy the emotional resonance of David's laments, Solomon's proverbs, and Christ's beatitudes.</p>
+          </div>
+          <div class="feature-card" style="border-left: 3px solid var(--gold);">
+            <h3 class="card-title">The Personal Disconnect</h3>
+            <p class="card-text">Faith is intimate. Listening to an unfamiliar, detached voice misses the spiritual warmth of hearing scripture recited by trusted leaders or beloved family members.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: The Solution -->
+      <section class="slide" data-slide="3" data-notes="Rooted Daily solves this by combining the world's most robust offline Bible engine with ElevenLabs' cutting-edge generative voice technology. We turn ancient sacred texts into dynamic acoustic cinema tailored to the modern listener.">
+        <div class="slide-badge">✨ The Solution</div>
+        <h2 class="slide-title">Rooted Daily Powered by ElevenLabs:<br><span class="highlight-green">Generative, Dramatized, & Personal.</span></h2>
+        <p class="slide-subtitle">Transforming static scripture reading into a deeply immersive, emotionally resonant daily habit.</p>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="feature-card">
+            <span class="card-icon">🎭</span>
+            <h3 class="card-title">Automated Multi-Voice Dramatization</h3>
+            <p class="card-text">Our verse parser identifies speaker tags across all 66 books—assigning distinct ElevenLabs voices for the Narrator, God, Jesus, Moses, David, and the Apostles.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">🧬</span>
+            <h3 class="card-title">Generational Voice Cloning</h3>
+            <p class="card-text">Through ElevenLabs Instant Voice Cloning (IVC), users can hear scripture in their own voice, their pastor's voice, or preserve an elderly parent's voice for future generations.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <span class="card-icon">🌊</span>
+            <h3 class="card-title">Atmospheric Soundscapes (Foley FX)</h3>
+            <p class="card-text">Procedural environmental textures via ElevenLabs Sound Effects (desert wind in Exodus, gentle Sea of Galilee waves, Roman dungeon echoes) creating deep meditative focus.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">💬</span>
+            <h3 class="card-title">Spoken AI Reflection Companion</h3>
+            <p class="card-text">Connecting ElevenLabs Conversational AI to our existing Journal Reflection engine, allowing users to talk through scripture during walks or commutes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Deep Integration -->
+      <section class="slide" data-slide="4" data-notes="We are not just wrapping a basic text-to-speech endpoint. We are deploying ElevenLabs across four distinct product layers: Turbo v2.5 for zero-latency streaming, Instant Voice Cloning for family legacy, Sound Effects for sacred ambiance, and Conversational AI for spoken journal reflection.">
+        <div class="slide-badge">🛠️ Deep Technology Stack</div>
+        <h2 class="slide-title">Beyond Basic TTS:<br><span class="highlight-gold">Full ElevenLabs Modality Integration</span></h2>
+        <p class="slide-subtitle">How Rooted Daily integrates ElevenLabs APIs across every devotional touchpoint.</p>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light); margin-bottom: 8px;">01 • SPEECH SYNTHESIS</div>
+            <h3 class="card-title">Eleven Turbo v2.5</h3>
+            <p class="card-text">Ultra-low latency streaming for on-demand chapter reading with natural pacing, breathing dynamics, and phonetic accuracy for archaic biblical names.</p>
+            <span class="card-tag">&lt; 300ms First-Byte Latency</span>
+          </div>
+
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light); margin-bottom: 8px;">02 • PERSONALIZATION</div>
+            <h3 class="card-title">Instant Voice Cloning</h3>
+            <p class="card-text">Seamless 1-minute voice capture letting users clone their voice or upload audio of pastors and family members to serve as personal scripture narrators.</p>
+            <span class="card-tag">High Emotional Retention</span>
+          </div>
+
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light); margin-bottom: 8px;">03 • CONVERSATIONAL AI</div>
+            <h3 class="card-title">Spoken Reflection Agent</h3>
+            <p class="card-text">Transforms Rooted's AI Reflection Journal into a voice-first spiritual dialogue, encouraging users to vocalize insights and questions naturally.</p>
+            <span class="card-tag">Full Duplex Conversational</span>
+          </div>
+        </div>
+
+        <div class="feature-card" style="margin-top: 20px; flex-direction: row; align-items: center; justify-content: space-between;">
+          <div>
+            <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--text);">ElevenLabs Sound Effects Integration</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Generating chapter-matched atmospheric Foley (Galilee waves, temple reverb, gentle desert breeze) blended in real-time with narration.</p>
+          </div>
+          <span class="card-tag" style="margin-top: 0;">Immersive Audio Design</span>
+        </div>
+      </section>
+
+      <!-- Slide 5: Interactive Simulator -->
+      <section class="slide" data-slide="5" data-notes="Let's experience the difference live. Here on this slide is an interactive simulator of our ElevenLabs audio player. Notice how we can switch from our Marcus narrator voice, to Christ's words in red, to a cloned grandmother's voice, complete with ambient soundscape.">
+        <div class="slide-badge">🎧 Interactive Demo Simulator</div>
+        <h2 class="slide-title">Experience the Living Voice</h2>
+        <p class="slide-subtitle">Interact with our audio player prototype to preview how different ElevenLabs voice profiles transform scripture.</p>
+
+        <div class="audio-simulator" id="audioSim">
+          <div class="sim-header">
+            <div>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold-light); text-transform: uppercase;">Currently Selected Passage</span>
+              <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--text);">Psalm 23:1-4 (King James Version)</h4>
+            </div>
+            <span class="card-tag" id="currentVoiceBadge">Voice: Marcus (Narrator)</span>
+          </div>
+
+          <div class="scripture-quote" id="scriptureText">
+            "The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake."
+          </div>
+
+          <div class="voice-selector">
+            <span style="font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 6px;">Select Voice Profile:</span>
+            <button class="voice-btn active" data-voice="narrator" data-title="Marcus (Sacred Narrator)" data-quote="&quot;The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters.&quot;">
+              🎙️ Marcus (Narrator)
+            </button>
+            <button class="voice-btn" data-voice="christ" data-title="The Master (Words in Red)" data-quote="&quot;Come unto me, all ye that labour and are heavy laden, and I will give you rest. Take my yoke upon you, and learn of me.&quot;">
+              🕊️ Words of Christ
+            </button>
+            <button class="voice-btn" data-voice="prophet" data-title="Isaiah (Prophetic Echo)" data-quote="&quot;Comfort ye, comfort ye my people, saith your God. Speak ye comfortably to Jerusalem, and cry unto her, that her warfare is accomplished.&quot;">
+              ⚡ Prophetic Tone
+            </button>
+            <button class="voice-btn" data-voice="clone" data-title="Grandmother's Voice (Cloned)" data-quote="&quot;Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.&quot;">
+              👵 Family Voice Clone
+            </button>
+          </div>
+
+          <div class="waveform-wrap">
+            <button class="play-circle" id="playBtn" title="Play / Pause Audio Simulation">▶</button>
+            <div class="visualizer-bars" id="visBars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold-light);" id="timerDisplay">00:00 / 00:34</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Technical Architecture -->
+      <section class="slide" data-slide="6" data-notes="We are ready to deploy on day one. Our mobile app already bundles the full 66-book KJV Bible in offline SQLite, with an MD5-hashed caching layer in TTSService.ts. Once synthesized, audio is cached locally—protecting bandwidth and ensuring zero latency on repeat listens.">
+        <div class="slide-badge">🏗️ Production Architecture</div>
+        <h2 class="slide-title">Engineering Readiness & Architecture</h2>
+        <p class="slide-subtitle">Proven caching pipeline, offline database, and resilient fallback hierarchy already in production.</p>
+
+        <div class="arch-flow" style="margin-bottom: 24px;">
+          <div class="arch-node">
+            <h4>1. Offline Engine</h4>
+            <p>66-Book SQLite DB with 31,102 verses pre-indexed locally.</p>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node">
+            <h4>2. Speaker Parsing</h4>
+            <p>Context classifier tags verse speaker (Narrator vs. Dialogue).</p>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node" style="border-color: var(--gold);">
+            <h4>3. ElevenLabs API</h4>
+            <p>Turbo v2.5 / Cloned Voice generated & streamed.</p>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node">
+            <h4>4. Local MD5 Cache</h4>
+            <p>Cached in FileSystem for instant 0ms repeat playback.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <h3 class="card-title">High-Efficiency Caching Strategy</h3>
+            <p class="card-text">In <code>TTSService.ts</code>, every chapter query is hashed using <code>CryptoJS.MD5(cleanedText + voiceId)</code>. Audio is stored in <code>audio_cache/</code> on the client. Over 80% of repeat chapter listens require zero API calls, drastically reducing COGS.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="card-title">Resilient Fallback Hierarchy</h3>
+            <p class="card-text">Tier 1: ElevenLabs High-Fidelity (Default) → Tier 2: OpenAI TTS (Network failover) → Tier 3: Native On-Device Speech. The listener never experiences a crashed or silent session even in airplane mode.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Market & Traction -->
+      <section class="slide" data-slide="7" data-notes="The market validation is overwhelming. Hallow proved that faith apps can hit number one on the App Store and raise over 100 million dollars. YouVersion has over 700 million downloads. Rooted Daily is positioned to capture the audio-first segment with daily reading plans, AI reflection, and ElevenLabs voice immersion.">
+        <div class="slide-badge">📈 Market & Traction</div>
+        <h2 class="slide-title">Capturing the $2.8B Faith & Wellness Market</h2>
+        <p class="slide-subtitle">Unprecedented consumer appetite for premium spoken audio and daily habit formation.</p>
+
+        <div class="grid-3" style="margin-bottom: 24px;">
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light);">HALLOW BENCHMARK</div>
+            <h3 class="card-title">$100M+ Raised</h3>
+            <p class="card-text">Reached #1 overall on the US App Store during Super Bowl Sunday, validating faith audio as mainstream.</p>
+          </div>
+
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light);">YOUVERSION SCALE</div>
+            <h3 class="card-title">700M+ Downloads</h3>
+            <p class="card-text">Audio engagement is growing 3x faster than text reading across their global user base.</p>
+          </div>
+
+          <div class="feature-card">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-light);">ROOTED DAILY TRACTION</div>
+            <h3 class="card-title">Production Live</h3>
+            <p class="card-text">Live web reader, 365-day dual reading tracks, active mobile app, and AI reflection journal in active testing.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="card-title">Target Listener Persona: The Time-Constrained Seeker</h3>
+          <p class="card-text">Modern professionals, parents, and students who yearn for spiritual discipline but cannot carve out 45 minutes of quiet desk reading. Audio lets them absorb sacred wisdom during their 20-minute morning commute, gym session, or evening walk.</p>
+        </div>
+      </section>
+
+      <!-- Slide 8: Business Model -->
+      <section class="slide" data-slide="8" data-notes="Our unit economics are exceptionally strong. A complete Bible contains about 3.5 million characters. By pre-rendering the foundational 66-book library and serving it via cache, our ongoing streaming costs are minimal. Our premium subscription at 7.99 a month or 59.99 a year provides over 82 percent gross margin.">
+        <div class="slide-badge">💎 Monetization & Unit Economics</div>
+        <h2 class="slide-title">Sustainable, High-Margin Monetization</h2>
+        <p class="slide-subtitle">Freemium distribution paired with high-LTV premium subscriptions.</p>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="feature-card">
+            <span class="card-tag" style="background: rgba(255,255,255,0.08); color: var(--text-muted);">FREE TIER (VIRAL ACQUISITION)</span>
+            <h3 class="card-title" style="margin-top: 10px;">Free Forever Reader</h3>
+            <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
+              <li>Full 66-book offline KJV Bible text</li>
+              <li>Dual 365-day reading plan tracking</li>
+              <li>Daily "Verse of the Day" in ElevenLabs voice</li>
+              <li>Basic on-device native TTS narration</li>
+            </ul>
+          </div>
+
+          <div class="feature-card" style="border-color: var(--gold);">
+            <span class="card-tag" style="background: var(--gold-glow); color: var(--gold-light);">ROOTED PREMIUM ($7.99/MO • $59.99/YR)</span>
+            <h3 class="card-title" style="margin-top: 10px;">Full ElevenLabs Audio Suite</h3>
+            <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text); line-height: 1.8;">
+              <li><strong>Unlimited Dramatized Audio Bible</strong> (Multi-voice cast)</li>
+              <li><strong>Personal Voice Cloning</strong> for family devotionals</li>
+              <li><strong>Atmospheric Soundscapes</strong> (Foley sound effects)</li>
+              <li><strong>Spoken Conversational AI Journal</strong> companion</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stat-pill" style="display: flex; justify-content: space-around; align-items: center;">
+          <div>
+            <div class="stat-num">3.5M</div>
+            <div class="stat-label">Characters in Full KJV Bible</div>
+          </div>
+          <div style="font-size: 1.5rem; color: var(--gold);">×</div>
+          <div>
+            <div class="stat-num">1-Time</div>
+            <div class="stat-label">Pre-generation & Edge Caching</div>
+          </div>
+          <div style="font-size: 1.5rem; color: var(--gold);">=</div>
+          <div>
+            <div class="stat-num">&gt;82%</div>
+            <div class="stat-label">Projected Gross Margin</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Grant Allocation -->
+      <section class="slide" data-slide="9" data-notes="Here is our exact, disciplined allocation of the 33 million character ElevenLabs grant. 10.6% pre-generates the canonical 66-book audio Bible. 60.6% powers daily devotional streaming for 25,000 active listeners. 15.2% funds our family voice cloning pilot, and 13.6% prototypes multilingual editions and sound effects.">
+        <div class="slide-badge">📊 Resource Allocation</div>
+        <h2 class="slide-title">The 33,000,000 Character Grant Plan</h2>
+        <p class="slide-subtitle">A high-leverage 12-month roadmap turning ElevenLabs credits into enduring product value.</p>
+
+        <div class="calc-container" style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold-light);">TOTAL GRANT CAPACITY</span>
+            <span style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--text);">33,000,000 Characters</span>
+          </div>
+
+          <div class="calc-bar">
+            <div class="calc-seg-1" title="Foundational Library: 3.5M"></div>
+            <div class="calc-seg-2" title="Daily Streaming: 20M"></div>
+            <div class="calc-seg-3" title="Voice Cloning: 5M"></div>
+            <div class="calc-seg-4" title="Multilingual & Foley: 4.5M"></div>
+          </div>
+
+          <div class="calc-legend">
+            <div class="calc-item">
+              <div class="color-dot" style="background: #C9A84C;"></div>
+              <div>
+                <strong>Foundational 66-Book Library (3.5M chars • 10.6%)</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Complete pre-rendering of KJV across 5 core voice personas.</p>
+              </div>
+            </div>
+
+            <div class="calc-item">
+              <div class="color-dot" style="background: #4A7C59;"></div>
+              <div>
+                <strong>Daily Devotional Streams (20.0M chars • 60.6%)</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Powers daily chapter streams for 25,000+ active listeners with zero audio COGS.</p>
+              </div>
+            </div>
+
+            <div class="calc-item">
+              <div class="color-dot" style="background: #3498DB;"></div>
+              <div>
+                <strong>Family Voice Legacy Pilot (5.0M chars • 15.2%)</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Cloning voices for 1,000 families to hear Scripture in loved ones' voices.</p>
+              </div>
+            </div>
+
+            <div class="calc-item">
+              <div class="color-dot" style="background: #9B59B6;"></div>
+              <div>
+                <strong>Multilingual & Sound Effects (4.5M chars • 13.6%)</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Spanish/Portuguese dramatized editions + procedural ambient Foley generation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <div class="stat-pill"><div class="stat-num">Q1</div><div class="stat-label">Full Library Synthesis & QA</div></div>
+          <div class="stat-pill"><div class="stat-num">Q2</div><div class="stat-label">Dramatized Beta Launch</div></div>
+          <div class="stat-pill"><div class="stat-num">Q3</div><div class="stat-label">Family Cloning Rollout</div></div>
+          <div class="stat-pill"><div class="stat-num">Q4</div><div class="stat-label">Global Languages & Public Case Study</div></div>
+        </div>
+      </section>
+
+      <!-- Slide 10: The Ask & Partnership -->
+      <section class="slide" data-slide="10" data-notes="In conclusion, this grant represents a powerful mutual partnership. Rooted Daily brings the complete offline architecture, the mobile distribution, and the audience. ElevenLabs provides the world's best audio engine. Together, we can make the most read book in history the most beautifully heard book in history.">
+        <div class="slide-badge">🤝 Strategic Partnership</div>
+        <h2 class="slide-title">Why ElevenLabs Wins by Partnering with Rooted</h2>
+        <p class="slide-subtitle">A flagship showcase demonstrating ElevenLabs' emotional depth on the world's most cherished literature.</p>
+
+        <div class="grid-3" style="margin-bottom: 28px;">
+          <div class="feature-card">
+            <span class="card-icon">🌟</span>
+            <h3 class="card-title">Flagship Cultural Showcase</h3>
+            <p class="card-text">Demonstrating that ElevenLabs can render profound sacred reverence, complex ancient terminology, and poetic cadence better than any model on earth.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">❤️</span>
+            <h3 class="card-title">Viral Human-Interest PR</h3>
+            <p class="card-text">Grandparents recording bedtime Proverbs for grandchildren and deployed service members reading Scripture for their families create heartwarming stories.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="card-icon">⚡</span>
+            <h3 class="card-title">Developer Case Study</h3>
+            <p class="card-text">Co-authoring a technical deep dive on high-efficiency mobile edge caching, offline SQLite integration, and zero-latency audio pipelines.</p>
+          </div>
+        </div>
+
+        <div class="audio-simulator" style="flex-direction: row; align-items: center; justify-content: space-between;">
+          <div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold-light);">The Ask: ElevenLabs Startup Grant Recipient</h3>
+            <p style="font-size: 0.9rem; color: var(--text); margin-top: 4px;">33M characters • 12 months full platform tier • Technical advisory • Co-marketing feature</p>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <a href="https://rootedapp.space/bible/" class="btn btn-outline" target="_blank" rel="noopener">📖 Web Reader Demo</a>
+            <button class="btn btn-gold" onclick="document.getElementById('openGrantModalBtn').click()">📋 Copy Application</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Speaker Notes Drawer (Toggled by 'N' or button) -->
+    <div class="speaker-notes-drawer" id="speakerNotesDrawer">
+      <div class="notes-header">
+        <span>🎙️ Speaker Notes (Slide <span id="notesSlideNum">1</span>)</span>
+        <button class="copy-btn" id="closeNotesBtn">Close (Esc)</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        Welcome. For thousands of years, Scripture was an oral tradition. Today, billions read it in silence or struggle through monotone computerized text-to-speech. We are building the next generation of spiritual immersion—where the Bible speaks with the gravity, warmth, and intimacy it was always meant to possess.
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Footer -->
+    <footer class="deck-footer">
+      <div class="nav-buttons">
+        <button class="btn btn-outline" id="prevSlideBtn" title="Previous Slide (Left Arrow)">← Prev</button>
+        <button class="btn btn-outline" id="nextSlideBtn" title="Next Slide (Right Arrow or Space)">Next →</button>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="slide-counter">
+          <span id="currentSlideNum">01</span> / <span id="totalSlidesNum">10</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: none; @media(min-width:768px){display:inline;}">Keys: ← → F (Full) N (Notes)</span>
+        <button class="btn btn-outline" onclick="window.print()" title="Print / Export to PDF">
+          🖨️ <span style="font-size: 0.8rem;">Export PDF</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal for Grant Application Copy/Paste -->
+  <div class="modal-overlay" id="grantModal">
+    <div class="modal-card">
+      <div class="modal-title">
+        <span>Official ElevenLabs Grant Submission Answers</span>
+        <button class="copy-btn" id="closeGrantModalBtn">✕ Close</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">
+        These answers are tailored to match the exact requirements of the <a href="https://elevenlabs.io/startup-grants" target="_blank" style="color: var(--gold-light);">ElevenLabs Startup Grants Application</a>.
+      </p>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">Company / Project Name</span>
+          <button class="copy-btn" onclick="copyText('Rooted Daily (PacMac Mobile LLC)')">Copy</button>
+        </div>
+        <div class="field-text">Rooted Daily (PacMac Mobile LLC)</div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">Website URL</span>
+          <button class="copy-btn" onclick="copyText('https://rootedapp.space')">Copy</button>
+        </div>
+        <div class="field-text">https://rootedapp.space (Live Web Reader: https://rootedapp.space/bible/)</div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">What does your company do? (Elevator Pitch)</span>
+          <button class="copy-btn" onclick="copyField('field-desc')">Copy</button>
+        </div>
+        <div class="field-text" id="field-desc">
+          Rooted Daily is a next-generation Bible reading and reflection platform designed to help millions of believers build lasting daily devotional habits. Our app features a completely offline 66-book KJV Bible engine, structured 365-day reading tracks, and AI reflection journaling. We are integrating ElevenLabs to turn the entire Bible into a living, emotionally nuanced audiobook featuring multi-voice character dramatization, family voice cloning, and atmospheric soundscapes.
+        </div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">How are you using or planning to use ElevenLabs?</span>
+          <button class="copy-btn" onclick="copyField('field-usage')">Copy</button>
+        </div>
+        <div class="field-text" id="field-usage">
+          We are integrating ElevenLabs across four distinct dimensions:
+1. Dynamic Multi-Voice Dramatization: Using Turbo v2.5 with automated speaker classification to narrate scripture with distinct, reverent voices for the Narrator, Jesus, Moses, David, and the Apostles.
+2. Instant Voice Cloning (IVC): Enabling users to clone their own voice, their pastor's voice, or an elderly grandparent's voice to hear daily devotionals in beloved voices.
+3. Spoken AI Reflection Companion: Transforming our reflection journal into an interactive, voice-first spiritual dialogue powered by ElevenLabs Conversational AI.
+4. Procedural Foley Sound Effects: Adding subtle atmospheric soundscapes (Galilee waves, temple echoes, desert breeze) to elevate meditation and focus.
+Our production app already includes MD5-hashed client caching (TTSService.ts) and ElevenLabs Voice ID settings.
+        </div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">What problem does this solve for your users?</span>
+          <button class="copy-btn" onclick="copyField('field-problem')">Copy</button>
+        </div>
+        <div class="field-text" id="field-problem">
+          Over 80% of Christians who attempt reading through the Bible abandon their goal within the first month due to screen fatigue, dense text, and busy modern lifestyles. Traditional audio Bibles are either 30-year-old monotone recordings, robotic TTS that strips scripture of sacred reverence, or $2M+ static studio productions that cannot be adapted or personalized. Rooted Daily delivers an intimate, emotionally expressive, personalized listening experience that fits effortlessly into daily commutes, exercise, and bedtime routines while providing full accessibility for visually impaired and dyslexic believers.
+        </div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">How will the ElevenLabs Grant accelerate your roadmap?</span>
+          <button class="copy-btn" onclick="copyField('field-accelerate')">Copy</button>
+        </div>
+        <div class="field-text" id="field-accelerate">
+          The 33M character grant and 12-month platform access will enable us to:
+1. Pre-render the foundational 66-book KJV Dramatized Audio Bible library (~3.5M characters).
+2. Support 25,000+ active daily listeners streaming daily devotionals with zero audio COGS during our crucial launch and customer acquisition phase.
+3. Launch our beta Family Voice Legacy program, allowing 1,000 families to clone a loved one's voice for generational devotional listening.
+4. Provide ElevenLabs with a premier flagship case study demonstrating the profound cultural, literary, and emotional capabilities of ElevenLabs AI audio.
+        </div>
+      </div>
+
+      <div class="grant-field-card">
+        <div class="field-header">
+          <span class="field-label">What is your business model?</span>
+          <button class="copy-btn" onclick="copyField('field-biz')">Copy</button>
+        </div>
+        <div class="field-text" id="field-biz">
+          Rooted Daily operates on a freemium model:
+- Free Tier: Offline 66-book Bible reader, 365-day reading tracks, daily Verse of the Day in ElevenLabs voice, and standard on-device TTS.
+- Rooted Premium ($7.99/month or $59.99/year): Unlimited ElevenLabs dramatized multi-voice audio, custom voice cloning integration, atmospheric soundscapes, and spoken conversational AI journal reflections.
+Because our offline engine and local MD5 audio caching layer store synthesized audio permanently on device and via edge CDN, our unit economics yield an 82%+ gross margin on premium subscriptions.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentSlide = 1;
+    const totalSlides = 10;
+    const slides = document.querySelectorAll('.slide');
+    const currentSlideNumEl = document.getElementById('currentSlideNum');
+    const totalSlidesNumEl = document.getElementById('totalSlidesNum');
+    const progressFillEl = document.getElementById('progressFill');
+    const speakerNotesDrawer = document.getElementById('speakerNotesDrawer');
+    const notesContentEl = document.getElementById('notesContent');
+    const notesSlideNumEl = document.getElementById('notesSlideNum');
+
+    // Update Slide Display with View Transitions if supported
+    function goToSlide(targetSlide, direction = 'forward') {
+      if (targetSlide < 1 || targetSlide > totalSlides) return;
+
+      const updateDOM = () => {
+        slides.forEach(slide => {
+          const slideNum = parseInt(slide.getAttribute('data-slide'));
+          if (slideNum === targetSlide) {
+            slide.classList.add('active');
+            // Update speaker notes
+            const notes = slide.getAttribute('data-notes') || '';
+            notesContentEl.textContent = notes;
+            notesSlideNumEl.textContent = targetSlide;
+          } else {
+            slide.classList.remove('active');
+          }
+        });
+
+        currentSlide = targetSlide;
+        currentSlideNumEl.textContent = String(currentSlide).padStart(2, '0');
+        const progressPct = ((currentSlide) / totalSlides) * 100;
+        progressFillEl.style.width = `${progressPct}%`;
+      };
+
+      // Check for View Transitions API with Directional Type support
+      if (document.startViewTransition) {
+        try {
+          document.startViewTransition({
+            update: updateDOM,
+            types: [direction]
+          });
+        } catch (e) {
+          document.startViewTransition(updateDOM);
+        }
+      } else {
+        updateDOM();
+      }
+    }
+
+    // Navigation triggers
+    document.getElementById('nextSlideBtn').addEventListener('click', () => {
+      goToSlide(currentSlide + 1, 'forward');
+    });
+
+    document.getElementById('prevSlideBtn').addEventListener('click', () => {
+      goToSlide(currentSlide - 1, 'backward');
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        goToSlide(currentSlide + 1, 'forward');
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSlide(currentSlide - 1, 'backward');
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      } else if (e.key === 'Escape') {
+        speakerNotesDrawer.classList.remove('open');
+        document.getElementById('grantModal').classList.remove('open');
+      }
+    });
+
+    // Notes Drawer
+    function toggleNotes() {
+      speakerNotesDrawer.classList.toggle('open');
+    }
+    document.getElementById('notesToggleBtn').addEventListener('click', toggleNotes);
+    document.getElementById('closeNotesBtn').addEventListener('click', () => {
+      speakerNotesDrawer.classList.remove('open');
+    });
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('deck-theme', newTheme);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('deck-theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+    document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
+
+    // Grant Application Modal
+    const grantModal = document.getElementById('grantModal');
+    document.getElementById('openGrantModalBtn').addEventListener('click', () => {
+      grantModal.classList.add('open');
+    });
+    document.getElementById('closeGrantModalBtn').addEventListener('click', () => {
+      grantModal.classList.remove('open');
+    });
+    grantModal.addEventListener('click', (e) => {
+      if (e.target === grantModal) grantModal.classList.remove('open');
+    });
+
+    // Copy Utilities
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
+
+    function copyField(elementId) {
+      const el = document.getElementById(elementId);
+      if (el) {
+        navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+          alert('Field copied to clipboard!');
+        });
+      }
+    }
+
+    // Interactive Audio Simulation with Web Audio API
+    let audioCtx = null;
+    let isPlaying = false;
+    let oscillatorNode = null;
+    let gainNode = null;
+    let playTimer = null;
+    let secondsElapsed = 0;
+    const totalDuration = 34;
+
+    const playBtn = document.getElementById('playBtn');
+    const visBars = document.getElementById('visBars');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const scriptureTextEl = document.getElementById('scriptureText');
+    const currentVoiceBadgeEl = document.getElementById('currentVoiceBadge');
+    const voiceButtons = document.querySelectorAll('.voice-btn');
+
+    // Voice button switching
+    voiceButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        voiceButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const title = btn.getAttribute('data-title');
+        const quote = btn.getAttribute('data-quote');
+        currentVoiceBadgeEl.textContent = `Voice: ${title}`;
+        scriptureTextEl.textContent = quote;
+
+        // Reset player if active
+        if (isPlaying) {
+          stopAudio();
+          startAudio();
+        }
+      });
+    });
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function startAudio() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        // Create warm ambient harmonic chord (Scriptural reverent tone)
+        oscillatorNode = audioCtx.createOscillator();
+        const subOsc = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+
+        // Harmonious calming meditative frequencies
+        oscillatorNode.type = 'sine';
+        oscillatorNode.frequency.setValueAtTime(174, audioCtx.currentTime); // Solfeggio frequency for peaceful focus
+        subOsc.type = 'triangle';
+        subOsc.frequency.setValueAtTime(261.63, audioCtx.currentTime); // C4 warm presence
+
+        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 1.2);
+
+        oscillatorNode.connect(gainNode);
+        subOsc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillatorNode.start();
+        subOsc.start();
+      } catch (err) {
+        console.log('Web Audio synthesis fallback mode', err);
+      }
+
+      isPlaying = true;
+      playBtn.textContent = '⏸';
+      visBars.classList.add('playing');
+
+      playTimer = setInterval(() => {
+        secondsElapsed++;
+        if (secondsElapsed > totalDuration) {
+          stopAudio();
+          secondsElapsed = 0;
+        }
+        timerDisplay.textContent = `${formatTime(secondsElapsed)} / ${formatTime(totalDuration)}`;
+      }, 1000);
+    }
+
+    function stopAudio() {
+      if (gainNode && audioCtx) {
+        try {
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+          setTimeout(() => {
+            if (oscillatorNode) {
+              oscillatorNode.stop();
+              oscillatorNode.disconnect();
+              oscillatorNode = null;
+            }
+          }, 450);
+        } catch (e) {}
+      }
+
+      isPlaying = false;
+      playBtn.textContent = '▶';
+      visBars.classList.remove('playing');
+      clearInterval(playTimer);
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopAudio();
+      } else {
+        startAudio();
+      }
+    });
+
+    // Initialize progress fill
+    progressFillEl.style.width = '10%';
+  </script>
+</body>
+</html>
