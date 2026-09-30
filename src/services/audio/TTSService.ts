@@ -3,16 +3,17 @@
 
 import * as FileSystem from 'expo-file-system';
 import CryptoJS from 'crypto-js';
+import { useApiKeyStore } from '../../features/settings/apiKeyStore';
 
-const OPENAI_API_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
-const ELEVENLABS_API_KEY = process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY;
+const ENV_OPENAI_API_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
+const ENV_ELEVENLABS_API_KEY = process.env.EXPO_PUBLIC_ELEVENLABS_API_KEY;
 const AUDIO_CACHE_DIR = `${FileSystem.cacheDirectory}audio_cache/`;
 
-const ELEVENLABS_VOICE_ID = 'nPczCjzI2devNBz1zQ9n'; // Marcus - Great for Scripture
+const DEFAULT_ELEVENLABS_VOICE_ID = 'nPczCjzI2devNBz1zQ9n'; // Marcus - Great for Scripture
 
 /**
  * TTSService handles generating audio from text.
- * Priority: ElevenLabs → OpenAI → Native device TTS (free, unlimited, always works)
+ * Priority: ElevenLabs (BYOK or Env) → OpenAI (BYOK or Env) → Native device TTS (free, unlimited, always works)
  */
 export class TTSService {
   private static async ensureCacheDir() {
@@ -43,23 +44,28 @@ export class TTSService {
    * Falls back gracefully: ElevenLabs → OpenAI → Native device TTS.
    */
   static async getAudio(text: string, voice?: string): Promise<string> {
+    const keyStore = useApiKeyStore.getState();
+    const elevenKey = keyStore.elevenlabsKey || ENV_ELEVENLABS_API_KEY;
+    const voiceId = voice || keyStore.elevenlabsVoiceId || DEFAULT_ELEVENLABS_VOICE_ID;
+    const openAIKey = keyStore.openaiKey || ENV_OPENAI_API_KEY;
+
     // 1. Try ElevenLabs (highest quality)
-    if (ELEVENLABS_API_KEY) {
+    if (elevenKey) {
       try {
-        const url = await this.getElevenLabsAudio(text, voice || ELEVENLABS_VOICE_ID);
+        const url = await this.getElevenLabsAudio(text, voiceId, elevenKey);
         if (url) return url;
-      } catch (e) {
-        console.warn('ElevenLabs unavailable, trying OpenAI TTS.');
+      } catch (e: any) {
+        console.warn('ElevenLabs unavailable, trying OpenAI TTS:', e.message);
       }
     }
 
     // 2. Try OpenAI TTS
-    if (OPENAI_API_KEY) {
+    if (openAIKey) {
       try {
-        const url = await this.getOpenAIAudio(text);
+        const url = await this.getOpenAIAudio(text, 'shimmer', openAIKey);
         if (url) return url;
-      } catch (e) {
-        console.warn('OpenAI TTS unavailable, using native device TTS.');
+      } catch (e: any) {
+        console.warn('OpenAI TTS unavailable, using native device TTS:', e.message);
       }
     }
 
@@ -68,7 +74,7 @@ export class TTSService {
     return `speech://${cleanedText}`;
   }
 
-  private static async getElevenLabsAudio(text: string, voiceId: string): Promise<string | null> {
+  private static async getElevenLabsAudio(text: string, voiceId: string, apiKey: string): Promise<string | null> {
     const cleanedText = this.cleanText(text);
     const hash = CryptoJS.MD5(cleanedText + voiceId).toString();
     const filePath = `${AUDIO_CACHE_DIR}${hash}.mp3`;
@@ -83,13 +89,13 @@ export class TTSService {
       filePath,
       {
         headers: {
-          'xi-api-key': ELEVENLABS_API_KEY!,
+          'xi-api-key': apiKey,
           'Content-Type': 'application/json',
         },
         httpMethod: 'POST',
         body: JSON.stringify({
           text: cleanedText,
-          model_id: 'eleven_monolingual_v1',
+          model_id: 'eleven_multilingual_v2',
           voice_settings: { stability: 0.5, similarity_boost: 0.75 },
         }),
       }
@@ -104,7 +110,8 @@ export class TTSService {
 
   private static async getOpenAIAudio(
     text: string,
-    voice: 'alloy' | 'shimmer' | 'echo' = 'shimmer'
+    voice: 'alloy' | 'shimmer' | 'echo' = 'shimmer',
+    apiKey?: string
   ): Promise<string | null> {
     const cleanedText = this.cleanText(text);
     const hash = CryptoJS.MD5(cleanedText + voice).toString();
@@ -115,12 +122,15 @@ export class TTSService {
     const fileInfo = await FileSystem.getInfoAsync(filePath);
     if (fileInfo.exists) return filePath;
 
+    const activeKey = apiKey || ENV_OPENAI_API_KEY;
+    if (!activeKey) throw new Error('No OpenAI API Key');
+
     const response = await FileSystem.downloadAsync(
       'https://api.openai.com/v1/audio/speech',
       filePath,
       {
         headers: {
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
+          Authorization: `Bearer ${activeKey}`,
           'Content-Type': 'application/json',
         },
         httpMethod: 'POST',
